@@ -115,6 +115,103 @@ Plataforma de aprendizaje electrónico construida con Next.js 15 (App Router).
 - UI construida con componentes reutilizables y Tailwind CSS.
 
 ---
+
+# 🚀 Flujo de trabajo con Git
+
+## 1. Clona el repositorio
+
+```bash
+git clone <URL-del-repo>
+cd <nombre-del-repo>
+git switch develop
+```
+
+---
+
+## 2. Crea tu rama desde develop
+
+```bash
+git switch develop
+git pull origin develop   # trae lo último
+git switch -c feature/nombre-de-tu-tarea
+```
+
+**Convención de nombres:**
+
+- `feature/...` → nuevas funcionalidades
+- `fix/...` → arreglos
+- `chore/...` → tareas menores
+
+Ejemplo:  
+- `feature/login-page`
+- `fix/navbar-bug`
+
+---
+
+## 3. Trabaja y guarda cambios
+
+```bash
+git add .
+git commit -m "feat(login): formulario básico"
+```
+
+---
+
+## 4. Sube tu rama al remoto
+
+```bash
+git push -u origin feature/nombre-de-tu-tarea
+```
+
+Luego en GitHub:
+
+- Base: `develop`
+- Compare: `feature/nombre...`
+- Crea el Pull Request ✅
+
+---
+
+## 5. Ritual diario (cada mañana)
+
+Antes de empezar a trabajar:
+
+```bash
+git switch develop
+git pull origin develop     # actualiza develop
+
+git switch feature/nombre
+git merge develop           # trae lo último a tu rama
+```
+
+> Así todos trabajamos siempre con la base actualizada.
+
+---
+
+## 6. Después del merge
+
+Limpieza de ramas que ya se integraron:
+
+```bash
+git branch -d feature/nombre
+git push origin --delete feature/nombre
+```
+
+---
+
+## 📌 Reglas básicas
+
+- `main`: protegida, solo se actualiza en releases.
+- `develop`: base de desarrollo, todas las ramas se integran acá con PR.
+- Nada de pushes directos a `main` o `develop`. Siempre PR.
+
+---
+
+## 👉 Resumen de comandos clave
+
+- `switch` para moverse entre ramas
+- `merge` para traer cambios de develop
+- `push` y PR para colaborar
+
 <div align="center">
   <img src="https://github.com/user-attachments/assets/bc85ece2-16f8-4c27-ba00-6ad47dc7ed4c" alt="imagen"/>
 </div>

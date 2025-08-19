@@ -115,3 +115,6 @@ Plataforma de aprendizaje electrónico construida con Next.js 15 (App Router).
 - UI construida con componentes reutilizables y Tailwind CSS.
 
 ---
+<div align="center">
+  <img src="https://github.com/user-attachments/assets/bc85ece2-16f8-4c27-ba00-6ad47dc7ed4c" alt="imagen"/>
+</div>

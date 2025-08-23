@@ -38,7 +38,7 @@ export default function FAQPage() {
   };
 
   return (
-    <section className="min-h-screen bg-gradient-to-b from-gray-50 to-gray-100 dark:from-gray-900 dark:to-gray-950 text-gray-900 dark:text-gray-100 p-8">
+    <section className="min-h-screen bg-background text-foreground py-12 px-6 md:px-20 dark:bg-background dark:text-foreground p-8">
       <div className="max-w-3xl mx-auto">
         <h1 className="text-4xl font-bold text-center mb-8">
           Preguntas Frecuentes (FAQ)
@@ -47,7 +47,7 @@ export default function FAQPage() {
           {faqs.map((faq, index) => (
             <div
               key={index}
-              className="border border-gray-200 dark:border-gray-700 rounded-xl shadow-sm hover:shadow-md transition-all"
+              className="border border-gray-200 dark:border-gray-700 rounded-xl shadow-sm hover:shadow-md transition-all dark:border-gray-700"
             >
               <button
                 className="w-full text-left px-6 py-4 flex justify-between items-center focus:outline-none"
@@ -59,7 +59,7 @@ export default function FAQPage() {
                 </span>
               </button>
               {openIndex === index && (
-                <div className="px-6 pb-4 text-gray-600 dark:text-gray-300">
+                <div className="px-6 pb-4 text-foreground dark:text-foreground">
                   {faq.answer}
                 </div>
               )}

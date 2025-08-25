@@ -30,7 +30,7 @@ export default function Stats() {
             key={i}
             className="flex flex-col items-center max-w-[220px] w-full"
           >
-            <div className="text-5xl mb-4 text-[var(--color-primary)]">
+            <div className="text-5xl mb-4">
               {s.icon}
             </div>
             <div className="text-3xl font-bold text-[var(--color-primary)] mb-2">

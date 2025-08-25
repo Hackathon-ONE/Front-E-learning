@@ -88,7 +88,7 @@ export default function TermsPage() {
             <h2 className="text-2xl font-semibold mb-3">8. Contacto</h2>
             <p>
               Si tienes preguntas sobre estos términos, puedes escribirnos a:{" "}
-              <a href="mailto:soporte@tusitio.com" className="text-primary underline">
+              <a href="mailto:soporte@tusitio.com" className="text-primary">
                 soporte@tusitio.com
               </a>
             </p>

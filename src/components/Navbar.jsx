@@ -17,7 +17,7 @@ export default function Navbar({ user }) {
   if (!mounted) return null;
 
   return (
-    <nav className="sticky top-0 z-50 bg-surface shadow-sm">
+    <nav className="sticky top-0 z-50 bg-surface shadow-sm border-b border-primary">
       <div className="container mx-auto flex justify-between items-center p-4">
         <Link href="/" className="text-xl font-bold text-primary">
           🎓 E-Learning
@@ -34,6 +34,9 @@ export default function Navbar({ user }) {
           <Link href="/dashboard" className="text-foreground hover:text-primary transition">
             Dashboard
           </Link>
+          <Link href="/team" className="text-foreground hover:text-primary transition">
+            Equipo
+          </Link>
           <ThemeToggle />
 
           {/* Dropdown user */}
@@ -46,43 +49,49 @@ export default function Navbar({ user }) {
             </button>
 
             {dropdownOpen && (
-              <div className="absolute right-0 mt-2 w-48 bg-surface rounded-xl shadow-lg border border-muted p-2 z-50">
-                {!user ? (
-                  <>
-                    <Link
-                      href="/login"
-                      className="block rounded-md px-3 py-2 hover:bg-secondary"
-                    >
-                      Iniciar sesión
-                    </Link>
-                    <Link
-                      href="/demo"
-                      className="block rounded-md px-3 py-2 hover:bg-secondary"
-                    >
-                      Demo gratis
-                    </Link>
-                  </>
-                ) : (
-                  <>
-                    <Link
-                      href="/profile"
-                      className="block rounded-md px-3 py-2 hover:bg-secondary"
-                    >
-                      Perfil
-                    </Link>
-                    <Link
-                      href="/settings"
-                      className="block rounded-md px-3 py-2 hover:bg-secondary"
-                    >
-                      Settings
-                    </Link>
-                    <button className="w-full text-left rounded-md px-3 py-2 hover:bg-secondary">
-                      Cerrar sesión
-                    </button>
-                  </>
-                )}
-              </div>
-            )}
+            <div
+              className="absolute right-0 mt-2 w-48 
+                        bg-surface 
+                        dark:bg-surface 
+                        text-primary
+                        rounded-xl shadow-lg border border-muted p-2 z-50"
+            >
+          {!user ? (
+            <>
+              <Link
+                href="/login"
+                className="block rounded-md px-3 py-2 hover:bg-secondary"
+              >
+                Iniciar sesión
+              </Link>
+              <Link
+                href="/demo"
+                className="block rounded-md px-3 py-2 hover:bg-secondary"
+              >
+                Demo gratis
+              </Link>
+            </>
+          ) : (
+            <>
+              <Link
+                href="/profile"
+                className="block rounded-md px-3 py-2 hover:bg-secondary"
+              >
+                Perfil
+              </Link>
+              <Link
+                href="/settings"
+                className="block rounded-md px-3 py-2 hover:bg-secondary"
+              >
+                Settings
+              </Link>
+              <button className="w-full text-left rounded-md px-3 py-2 hover:bg-secondary">
+                Cerrar sesión
+              </button>
+            </>
+          )}
+        </div>
+          )}
           </div>
         </div>
 

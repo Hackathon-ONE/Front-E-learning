@@ -81,7 +81,7 @@ export default function PrivacyPolicy() {
         <h2 className="text-2xl font-semibold mb-3">7. Contacto</h2>
         <p>
           Si tienes dudas sobre esta Política de Privacidad, puedes escribirnos
-          a: <a href="mailto:soporte@tuplataforma.com" className="text-blue-600 dark:text-blue-400 underline">soporte@tuplataforma.com</a>
+          a: <a href="mailto:soporte@tuplataforma.com" className="text-orange-600 dark:text-orange-400">soporte@tuplataforma.com</a>
         </p>
       </section>
     </main>

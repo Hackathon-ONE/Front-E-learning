@@ -1,5 +1,5 @@
 import Hero from "@/components/Hero";
-import AboutUs from "@/components/AboutUs";
+import CoursesCarousel from "@/components/CoursesCarousel";
 import Features from "@/components/Features";
 import Partners from "@/components/Partners";
 import Pricing from "@/components/Pricing";
@@ -12,9 +12,9 @@ export default function HomePage() {
     <>
       <Hero />
       <Stats />
-      <AboutUs />
       <Features />
       <Partners />
+      <CoursesCarousel />
       <Pricing />
       <Testimonials />
       <CTA />

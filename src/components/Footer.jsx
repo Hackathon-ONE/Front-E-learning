@@ -28,6 +28,7 @@ export default function Footer() {
             <li><Link href="/about" className="hover:text-[var(--color-primary)] transition">Sobre Nosotros</Link></li>
             <li><Link href="/courses" className="hover:text-[var(--color-primary)] transition">Cursos</Link></li>
             <li><Link href="/instructors" className="hover:text-[var(--color-primary)] transition">Instructores</Link></li>
+            <li><Link href="/team" className="hover:text-[var(--color-primary)] transition">Equipo 4 - LATAM</Link></li>
             <li><Link href="/faq" className="hover:text-[var(--color-primary)] transition">FAQ</Link></li>
             <li><Link href="/terms" className="hover:text-[var(--color-primary)] transition">Términos y Condiciones</Link></li>
             <li><Link href="/policies" className="hover:text-[var(--color-primary)] transition">Políticas de Privacidad</Link></li>

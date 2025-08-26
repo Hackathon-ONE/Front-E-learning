@@ -9,7 +9,7 @@
 :root {
   /* 🎨 Light Mode */
   --color-bg: #f6f9fc;
-  --color-surface: #e5eff8;
+  --color-surface: #f5f2eeff;
   
   --color-text: #333333;
   --color-muted: #3e3f41;
@@ -33,6 +33,7 @@
 
   /* Accents */
   --color-accent: #3d3f3e;
+  --color-progress: #ff5400;
 
   --font-heading: var(--font-ubuntu);
   --font-body: var(--font-inter);
@@ -64,7 +65,7 @@
   --color-secondary-hover-text: #ffffff;
 
   /* Accents */
-  --color-accent: #06D6A0;
+  --color-accent: #c9ce89ff;
 
   --font-heading: var(--font-ubuntu);
   --font-body: var(--font-inter);

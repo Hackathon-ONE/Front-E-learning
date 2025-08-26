@@ -28,14 +28,14 @@ export default function Navbar({ user }) {
           <Link href="/courses" className="text-foreground hover:text-primary transition">
             Cursos
           </Link>
-          <Link href="/instructors" className="text-foreground hover:text-primary transition">
-            Instructores
+          <Link href="/about" className="text-foreground hover:text-primary transition">
+            Sobre Nosotros
           </Link>
-          <Link href="/dashboard" className="text-foreground hover:text-primary transition">
+          {/* <Link href="/dashboard" className="text-foreground hover:text-primary transition">
             Dashboard
-          </Link>
-          <Link href="/team" className="text-foreground hover:text-primary transition">
-            Equipo
+          </Link> */}
+          <Link href="/help/faq" className="text-foreground hover:text-primary transition">
+            FAQ
           </Link>
           <ThemeToggle />
 
@@ -59,7 +59,7 @@ export default function Navbar({ user }) {
           {!user ? (
             <>
               <Link
-                href="/login"
+                href="/auth/login"
                 className="block rounded-md px-3 py-2 hover:bg-secondary"
               >
                 Iniciar sesión
@@ -74,13 +74,13 @@ export default function Navbar({ user }) {
           ) : (
             <>
               <Link
-                href="/profile"
+                href="/dashboard/profile"
                 className="block rounded-md px-3 py-2 hover:bg-secondary"
               >
                 Perfil
               </Link>
               <Link
-                href="/settings"
+                href="/dashboard/settings"
                 className="block rounded-md px-3 py-2 hover:bg-secondary"
               >
                 Settings
@@ -119,7 +119,7 @@ export default function Navbar({ user }) {
 
           {!user ? (
             <div className="flex flex-col gap-2 mt-2">
-              <Link href="/login" className="px-4 py-2 bg-secondary rounded-lg hover:bg-secondary transition">
+              <Link href="/auth/login" className="px-4 py-2 bg-secondary rounded-lg hover:bg-secondary transition">
                 Iniciar sesión
               </Link>
               <Link href="/demo" className="px-4 py-2 bg-secondary rounded-lg hover:bg-secondary transition">
@@ -128,10 +128,10 @@ export default function Navbar({ user }) {
             </div>
           ) : (
             <div className="flex flex-col gap-2 mt-2">
-              <Link href="/profile" className="px-4 py-2 hover:bg-secondary rounded-lg">
+              <Link href="/dashboard/profile" className="px-4 py-2 hover:bg-secondary rounded-lg">
                 Perfil
               </Link>
-              <Link href="/settings" className="px-4 py-2 hover:bg-secondary rounded-lg">
+              <Link href="/dashboard/settings" className="px-4 py-2 hover:bg-secondary rounded-lg">
                 Settings
               </Link>
               <button className="px-4 py-2 hover:bg-secondary rounded-lg text-left w-full">

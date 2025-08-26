@@ -1,5 +1,5 @@
 import React from "react";
-import { Card } from "@/components/ui/Card";
+import { Card } from "@/components/ui/card";
 import { BookOpen, Film, FileText, BarChart } from "lucide-react";
 
 const features = [
@@ -41,11 +41,11 @@ export default function Features() {
 
         <div className="grid gap-10 sm:grid-cols-2 lg:grid-cols-4">
           {features.map((f, i) => (
-            <Card 
-              key={i} 
-              title={f.title} 
-              description={f.description} 
-              icon={f.icon} 
+            <Card
+              key={i}
+              title={f.title}
+              description={f.description}
+              icon={f.icon}
               className="max-w-md"
             />
           ))}

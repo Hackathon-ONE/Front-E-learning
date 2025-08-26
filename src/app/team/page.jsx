@@ -25,11 +25,6 @@ const team = [
     image: "/team/francisco.jpg",
   },
   {
-    name: "Nicolás Farreaut",
-    role: "Team Frontend",
-    image: "/team/nicolas.jpg",
-  },
-  {
     name: "Angeles Escudero Gedge",
     role: "Team Backend",
     image: "/team/angeles.jpg",
@@ -49,7 +44,7 @@ export default function TeamPage() {
       </motion.h1>
 
       {/* Grid de Miembros */}
-      <section className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-12 max-w-7xl mx-auto">
+      <section className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-12 max-w-7xl mx-auto">
         {team.map((member, idx) => (
           <motion.div
             key={idx}

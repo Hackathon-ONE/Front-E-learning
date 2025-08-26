@@ -1,6 +1,8 @@
 "use client";
 
-import Button from "@/components/ui/Button";
+import Button from "@/components/ui/button";
+/* import Link from "daisyui/components/link"; */
+import Link from "next/link";
 
 export default function Hero() {
   return (
@@ -29,12 +31,16 @@ export default function Hero() {
           encuentran para construir el futuro de la educación.
         </p>
         <div className="flex flex-col sm:flex-row justify-center gap-4">
+          <Link href="/courses">
           <Button variant="primary" size="lg">
             Explorar cursos
           </Button>
+          </Link>
+          <Link href="/instructor/dashboard">
           <Button variant="outline" size="lg">
             Soy instructor
           </Button>
+          </Link>
         </div>
       </div>
     </section>

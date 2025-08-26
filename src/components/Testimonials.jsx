@@ -5,7 +5,7 @@ import 'swiper/css';
 import 'swiper/css/navigation';
 import SwiperCore from 'swiper';
 import { Navigation, Autoplay } from 'swiper/modules';
-import { Card } from '@/components/ui/Card';
+import { Card } from '@/components/ui/card';
 import { Star } from 'lucide-react';
 
 SwiperCore.use([Navigation, Autoplay]);
@@ -77,28 +77,28 @@ export default function Testimonials() {
         >
           {testimonials.map((t, i) => (
             <SwiperSlide key={i} className="h-full flex mt-6 mb-6">
-            <Card className="flex flex-col justify-between items-center p-2 text-center bg-[var(--color-card-secondary)] dark:bg-[var(--color-card-secondary-dark)] rounded-2xl shadow-lg w-full h-[300px] transition-transform transform hover:scale-105">
-              <div className="flex flex-col items-center">
-                <img
-                  src={t.avatar}
-                  alt={t.name}
-                  className="w-24 h-24 rounded-full mb-2 object-cover"
-                />
-                <h4 className="font-semibold text-md text-[var(--color-primary)] dark:text-[var(--color-primary-dark)]">{t.name}</h4>
-                <p className="text-[var(--color-card-secondary-text)] text-sm mb-2">{t.profession}</p>
-                <div className="flex">
-                  {Array.from({ length: 5 }, (_, index) => (
-                    <Star
-                      key={index}
-                      size={16}
-                      className={index < t.rating ? "text-yellow-400" : "text-gray-300"}
-                    />
-                  ))}
+              <Card className="flex flex-col justify-between items-center p-2 text-center bg-[var(--color-card-secondary)] dark:bg-[var(--color-card-secondary-dark)] rounded-2xl shadow-lg w-full h-[300px] transition-transform transform hover:scale-105">
+                <div className="flex flex-col items-center">
+                  <img
+                    src={t.avatar}
+                    alt={t.name}
+                    className="w-24 h-24 rounded-full mb-2 object-cover"
+                  />
+                  <h4 className="font-semibold text-md text-[var(--color-primary)] dark:text-[var(--color-primary-dark)]">{t.name}</h4>
+                  <p className="text-[var(--color-card-secondary-text)] text-sm mb-2">{t.profession}</p>
+                  <div className="flex">
+                    {Array.from({ length: 5 }, (_, index) => (
+                      <Star
+                        key={index}
+                        size={16}
+                        className={index < t.rating ? "text-yellow-400" : "text-gray-300"}
+                      />
+                    ))}
+                  </div>
                 </div>
-              </div>
-              <p className="text-[var(--color-card-secondary-text)] text-sm overflow-auto">{t.review}</p>
-            </Card>
-          </SwiperSlide>          
+                <p className="text-[var(--color-card-secondary-text)] text-sm overflow-auto">{t.review}</p>
+              </Card>
+            </SwiperSlide>
           ))}
         </Swiper>
       </div>

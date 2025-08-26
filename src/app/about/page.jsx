@@ -108,7 +108,7 @@ export default function AboutPage() {
           digital.
         </p>
         <motion.a
-          href="/register"
+          href="/auth/login"
           className="inline-block bg-white text-primary font-semibold px-8 py-3 rounded-xl shadow-lg hover:bg-gray-100 transition"
           whileHover={{ scale: 1.05 }}
         >

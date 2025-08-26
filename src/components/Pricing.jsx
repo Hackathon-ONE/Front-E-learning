@@ -12,7 +12,8 @@ import ListItemDecorator from "@mui/joy/ListItemDecorator";
 import Typography from "@mui/joy/Typography";
 import Check from "@mui/icons-material/Check";
 import KeyboardArrowRight from "@mui/icons-material/KeyboardArrowRight";
-import Button from "@/components/ui/Button";
+import Button from "@/components/ui/button";
+import Link from "next/link";
 
 const plans = [
   {
@@ -21,13 +22,13 @@ const plans = [
     features: ["Acceso a todos los cursos", "Soporte básico"],
   },
   {
-    title: "POPULAR",
+    title: "PRO",
     price: "19.99€/mes",
     features: ["Publicar cursos", "Estadísticas avanzadas", "Certificados", "Soporte"],
     popular: true,
   },
   {
-    title: "PRO",
+    title: "PREMIUM",
     price: "29.99€/mes",
     features: ["Acceso a todos los cursos", "Soporte avanzado", "Certificados", "Soporte"],
   },
@@ -102,11 +103,13 @@ export default function PricingCards() {
                     / mes
                   </Typography>
                 </Typography>
+                <Link href="/payments">
                 <Button
                   variant={plan.popular ? "primary" : "outline"}
                 >
                   Suscribirme
                 </Button>
+                </Link>
               </CardActions>
             </Card>
           ))}

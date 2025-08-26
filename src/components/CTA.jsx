@@ -1,5 +1,6 @@
-import Button from "@/components/ui/Button";
+import Button from "@/components/ui/button";
 import { Rocket } from "lucide-react";
+import Link from "next/link";
 
 export default function CTA() {
   return (
@@ -16,7 +17,7 @@ export default function CTA() {
         <p className="text-lg md:text-xl mb-8 text-muted max-w-xl">
           Únete hoy mismo y transforma la manera en que aprendes y enseñas en línea.
         </p>
-
+        <Link href="/auth/login">
         <Button
           className="flex items-center gap-2 px-8 py-4 text-lg font-semibold rounded-xl transition-transform transform hover:scale-105 hover:shadow-xl shadow-primary/50"
           style={{
@@ -26,6 +27,7 @@ export default function CTA() {
         >
           Empezar ahora
         </Button>
+        </Link>
       </div>
     </section>
   );

@@ -6,7 +6,8 @@ import { Pagination, Navigation } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/pagination";
 import "swiper/css/navigation";
-import Button from "./ui/Button";
+import Button from "./ui/button";
+import Link from "next/link";
 
 const courses = [
   {
@@ -55,7 +56,7 @@ export default function CoursesCarousel() {
   return (
     <section className="py-14 bg-surface text-foreground">
       <div className="container mx-auto grid grid-cols-1 md:grid-cols-3 gap-10 items-start">
-        
+
         {/* 📖 Columna Izquierda */}
         <div className="md:col-span-1 flex flex-col justify-center text-left px-4 md:px-0 mt-8">
           <motion.h2
@@ -72,10 +73,12 @@ export default function CoursesCarousel() {
             <span className="text-primary font-semibold">habilidades reales</span>{" "}
             y consigas nuevas oportunidades laborales.
           </p>
-          <Button className="bg-primary text-white px-6 py-2 rounded-lg shadow cursor-pointer hover:bg-[#3f3e3c] transition w-full md:w-fit"
-                  variant="primary">
-            Explorar Todos
-          </Button>
+          <Link href="/courses" passHref>
+            <Button className="bg-primary text-white px-6 py-2 rounded-lg shadow cursor-pointer hover:bg-[#3f3e3c] transition w-full md:w-fit"
+              variant="primary">
+              Explorar Todos
+            </Button>
+          </Link>
         </div>
 
         {/* 🎠 Columna Derecha - Carrusel */}
@@ -130,9 +133,11 @@ export default function CoursesCarousel() {
                       >
                         Ver Demo
                       </a>
-                      <button className="w-full sm:w-1/2 bg-gray-200 dark:bg-gray-700 text-sm text-foreground py-1.5 rounded-lg shadow hover:bg-[#3f3e3c] dark:hover:bg-gray-600 transition">
-                        Suscribirse
-                      </button>
+                      <Link href={`/courses/${course.id}/overview`}>
+                        <Button className="w-full p-2 bg-gray-200 dark:bg-gray-900 text-sm text-foreground py-1.5 rounded-lg shadow hover:bg-[#ffdb70] dark:hover:bg-primary-hover transition">
+                          Suscribirse
+                        </Button>
+                      </Link>
                     </div>
                   </div>
                 </motion.div>

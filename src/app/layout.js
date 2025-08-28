@@ -2,7 +2,7 @@ import "./globals.css";
 import { Ubuntu, Inter } from "next/font/google";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
-import { ThemeProvider } from "next-themes";
+import { Providers } from "./Providers"; 
 
 const ubuntu = Ubuntu({
   weight: ["400", "700"],
@@ -23,13 +23,13 @@ export const metadata = {
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="es" className={`${ubuntu.variable} ${inter.variable}`} suppressHydrationWarning={true}>
+    <html lang="es" className={`${ubuntu.variable} ${inter.variable}`} suppressHydrationWarning>
       <body className="bg-background text-foreground font-body">
-        <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
+        <Providers>
           <Navbar />
           <main className="min-h-screen">{children}</main>
           <Footer />
-        </ThemeProvider>
+        </Providers>
       </body>
     </html>
   );

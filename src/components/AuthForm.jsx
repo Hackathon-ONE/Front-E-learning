@@ -2,11 +2,16 @@
 
 import { useState } from "react";
 import { FcGoogle } from "react-icons/fc";
+import { useAuth } from "@/context/AuthContext";
+import { signIn, signOut } from "next-auth/react";
+import { useSession } from "next-auth/react";
 
 export default function AuthForm({ isRegister }) {
-  const [showRegister, setShowRegister] = useState(isRegister); 
+  const [showRegister, setShowRegister] = useState(isRegister);
   const [formData, setFormData] = useState({ name: "", email: "", password: "" });
   const [errors, setErrors] = useState({});
+  const { login, register } = useAuth();
+  const { data: session } = useSession();
 
   const handleChange = (e) => setFormData({ ...formData, [e.target.name]: e.target.value });
 
@@ -21,15 +26,39 @@ export default function AuthForm({ isRegister }) {
     return Object.keys(newErrors).length === 0;
   };
 
+  // ✅ Si hay sesión, mostrar avatar + logout
+  if (session?.user) {
+    return (
+      <div className="text-center">
+        {session.user.image && (
+          <img
+            src={session.user.image}
+            alt="avatar"
+            className="w-8 h-8 rounded-full mx-auto"
+          />
+        )}
+        <p>{session.user.name}</p>
+        <button
+          onClick={() => signOut({ callbackUrl: "/auth/login" })}
+          className="mt-2 text-sm text-red-500"
+        >
+          Logout
+        </button>
+      </div>
+    );
+  }
+
   const handleSubmit = (e) => {
     e.preventDefault();
     if (!validate()) return;
-    if (showRegister) console.log("Registrando", formData);
-    else console.log("Login", formData);
+    if (showRegister) {
+      register(formData);
+    } else {
+      login(formData);
+    }
   };
 
-  const handleGoogleLogin = () => console.log("Login con Google");
-
+  // ✅ Si NO hay sesión, mostrar el form
   return (
     <div className="flex items-center justify-center" style={{ backgroundColor: "var(--color-bg)" }}>
       <div
@@ -43,7 +72,7 @@ export default function AuthForm({ isRegister }) {
         <h2 className="text-2xl font-bold mb-6 text-center text-gray-900 dark:text-gray-100">
           {showRegister ? "Registro" : "Login"}
         </h2>
-
+        
         <form onSubmit={handleSubmit} className="space-y-4">
           {showRegister && (
             <div>
@@ -99,8 +128,7 @@ export default function AuthForm({ isRegister }) {
           <span>o</span>
         </div>
 
-        <button
-          onClick={handleGoogleLogin}
+        <button onClick={() => signIn("google", { callbackUrl: "/" })}
           className="w-full flex items-center justify-center gap-2 py-3 rounded-lg border font-semibold"
           style={{
             borderColor: "var(--color-secondary)",
@@ -108,9 +136,9 @@ export default function AuthForm({ isRegister }) {
             color: "var(--color-text)"
           }}
         >
-          <FcGoogle className="w-5 h-5" />
+          <FcGoogle className="w-5 h-5 text-primary hover:text-primary/80 transition cursor-pointer" />
           {showRegister ? "Registrarse con Google" : "Iniciar sesión con Google"}
-        </button>
+          </button>
 
         <p className="text-center mt-4">
           {showRegister ? "¿Ya tienes cuenta?" : "¿No tienes cuenta?"}{" "}

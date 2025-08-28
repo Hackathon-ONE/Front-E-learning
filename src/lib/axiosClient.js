@@ -30,7 +30,7 @@ api.interceptors.response.use(
       // Token inválido → redirigir a login
       if (typeof window !== "undefined") {
         localStorage.removeItem("token");
-        window.location.href = "/login";
+        window.location.href = "/auth/login";
       }
     }
 

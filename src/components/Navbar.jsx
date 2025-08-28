@@ -59,7 +59,7 @@ export default function Navbar() {
                     onClick={() => signOut({ callbackUrl: "/auth/login" })}
                     className="ml-2 text-sm text-red-500"
                   >
-                    Logout
+                    
                   </button>
                 </div>
               ) : (

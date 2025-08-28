@@ -1,8 +1,8 @@
-"use client"; 
+"use client";
 
 import { Facebook, Twitter, Instagram, Linkedin } from "lucide-react";
 import Link from "next/link";
-import Button from "../components/ui/button";
+import Button from "./ui/Button";
 
 export default function Footer() {
   return (
@@ -64,7 +64,7 @@ export default function Footer() {
         </div>
       </div>
 
-     {/* Footer bottom */}
+      {/* Footer bottom */}
       <div className="border-t border-gray-700 mt-4 py-4 text-center text-gray-400 text-sm overflow-x-hidden">
         © {new Date().getFullYear()} E-Learning Platform. Todos los derechos reservados.
       </div>

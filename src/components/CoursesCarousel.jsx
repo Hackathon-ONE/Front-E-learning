@@ -6,7 +6,7 @@ import { Pagination, Navigation } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/pagination";
 import "swiper/css/navigation";
-import Button from "./ui/button";
+import Button from "./ui/Button";
 import Link from "next/link";
 
 const courses = [

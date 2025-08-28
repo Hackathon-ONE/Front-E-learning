@@ -1,7 +1,7 @@
 "use client";
 import { useState /*, useEffect */ } from "react";
 import { CreditCard, CheckCircle } from "lucide-react";
-import Button from "../../../components/ui/button";
+import Button from "@/components/ui/Button";
 
 // Ejemplo de cómo importar datos desde la base de datos (Java/Spring Boot):
 /*

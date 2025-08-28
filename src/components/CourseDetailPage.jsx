@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import { PlayCircle, Clock, CheckCircle, Linkedin, Github, Twitter } from "lucide-react";
-import { Card } from "@/components/ui/card";
+import Card from "@/components/ui/Card";
 
 export default function CourseDetailPage({ courseId }) {
   const [progress] = useState(100); // Progreso del estudiante

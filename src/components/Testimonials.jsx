@@ -5,7 +5,7 @@ import 'swiper/css';
 import 'swiper/css/navigation';
 import SwiperCore from 'swiper';
 import { Navigation, Autoplay } from 'swiper/modules';
-import { Card } from '@/components/ui/card';
+import Card from '@/components/ui/Card';
 import { Star } from 'lucide-react';
 
 SwiperCore.use([Navigation, Autoplay]);

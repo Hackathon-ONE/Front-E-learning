@@ -2,30 +2,97 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
 @plugin "daisyui";
 
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  /* 🎨 Light Mode */
+  --color-bg: #f6f9fc;
+  --color-surface: #f5f2eeff;
+  
+  --color-text: #333333;
+  --color-muted: #3e3f41;
+
+  /* Cards */
+  --color-card-primary: #fcfbfb;
+  --color-card-primary-text: #3f3838;
+  --color-card-secondary: #fbfcfd;
+  --color-card-secondary-text: #333333;
+
+  /* Buttons */
+  --color-primary: #ff5400;
+  --color-primary-text: #fdfbfb;
+  --color-primary-hover: #3f3e3c;          /* Hover primary */
+  --color-primary-hover-text: #fdfbfb;     /* Texto sobre hover primary */
+
+  --color-secondary: #f8f7f1;
+  --color-secondary-text: #e7e1e1;
+  --color-secondary-hover: #afabab;        /* Hover secondary */
+  --color-secondary-hover-text: #333333;
+
+  /* Accents */
+  --color-accent: #3d3f3e;
+  --color-progress: #ff5400;
+
+  --font-heading: var(--font-ubuntu);
+  --font-body: var(--font-inter);
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+.dark {
+  /* 🌙 Dark Mode */
+  --color-bg: #1e293ff5;
+  --color-surface: #2a2e3b;
+  
+  --color-text: #ffffff;
+  --color-muted: #dfdfe6;
+
+  /* Cards */
+  --color-card-primary: #e1e4e7;
+  --color-card-primary-text: #3f3a3a;
+  --color-card-secondary: #ededf0;
+  --color-card-secondary-text: #080707;
+
+  /* Buttons */
+  --color-primary: #fca311;
+  --color-primary-text: #333333;
+  --color-primary-hover: #ffdb70;          /* Hover primary */
+  --color-primary-hover-text: #080707;     /* Texto sobre hover primary */
+
+  --color-secondary: #5c6c8d;
+  --color-secondary-text: #ffffff;
+  --color-secondary-hover: #3a4a6a;        /* Hover secondary */
+  --color-secondary-hover-text: #ffffff;
+
+  /* Accents */
+  --color-accent: #c9ce89ff;
+
+  --font-heading: var(--font-ubuntu);
+  --font-body: var(--font-inter);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+/* 🖋️ Tipografía global */
+h1, h2, h3, h4, h5 {
+  font-family: var(--font-heading);
+  font-weight: 700;
+}
+
+body, p, span, input, button {
+  font-family: var(--font-body);
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background-color: var(--color-bg);
+  color: var(--color-text);
+  line-height: 1.6;
+}
+
+.btn-primary {
+  background-color: var(--color-primary);
+  color: var(--color-primary-text);
+  transition: background-color 0.2s, color 0.2s;
+}
+.btn-primary:hover {
+  background-color: var(--color-primary-hover);
+  color: var(--color-primary-hover-text);
 }

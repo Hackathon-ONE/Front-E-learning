@@ -4,11 +4,16 @@ import { useState, useEffect } from "react";
 import Link from "next/link";
 import ThemeToggle from "./ThemeToggle";
 import { MenuIcon, XIcon, CircleUserRound } from "lucide-react";
+import { useSession, signOut } from "next-auth/react";
 
-export default function Navbar({ user }) {
+export default function Navbar() {
   const [mobileOpen, setMobileOpen] = useState(false);
   const [dropdownOpen, setDropdownOpen] = useState(false);
   const [mounted, setMounted] = useState(false);
+
+  // NextAuth session
+  const { data: session } = useSession();
+  const user = session?.user;
 
   useEffect(() => {
     setMounted(true);
@@ -31,9 +36,6 @@ export default function Navbar({ user }) {
           <Link href="/about" className="text-foreground hover:text-primary transition">
             Sobre Nosotros
           </Link>
-          {/* <Link href="/dashboard" className="text-foreground hover:text-primary transition">
-            Dashboard
-          </Link> */}
           <Link href="/help/faq" className="text-foreground hover:text-primary transition">
             FAQ
           </Link>
@@ -43,55 +45,75 @@ export default function Navbar({ user }) {
           <div className="relative">
             <button
               onClick={() => setDropdownOpen(!dropdownOpen)}
-              className="rounded-full p-2 hover:bg-secondary transition"
+              className="rounded-full p-1 hover:bg-secondary transition"
             >
-              <CircleUserRound className="w-8 h-8 text-foreground hover:text-primary transition" />
+              {user?.image ? (
+                <div className="flex items-center gap-2">
+                  <img
+                    src={user.image}
+                    alt={user.name || "avatar"}
+                    className="w-9 h-9 rounded-full border"
+                  />
+                  <span className="text-sm text-foreground">{user.name}</span>
+                  <button
+                    onClick={() => signOut({ callbackUrl: "/auth/login" })}
+                    className="ml-2 text-sm text-red-500"
+                  >
+                    Logout
+                  </button>
+                </div>
+              ) : (
+                <CircleUserRound className="w-8 h-8 text-foreground hover:text-primary transition" />
+              )}
             </button>
 
             {dropdownOpen && (
-            <div
-              className="absolute right-0 mt-2 w-48 
+              <div
+                className="absolute right-0 mt-2 w-48 
                         bg-surface 
                         dark:bg-surface 
                         text-primary
                         rounded-xl shadow-lg border border-muted p-2 z-50"
-            >
-          {!user ? (
-            <>
-              <Link
-                href="/auth/login"
-                className="block rounded-md px-3 py-2 hover:bg-secondary"
               >
-                Iniciar sesión
-              </Link>
-              <Link
-                href="/demo"
-                className="block rounded-md px-3 py-2 hover:bg-secondary"
-              >
-                Demo gratis
-              </Link>
-            </>
-          ) : (
-            <>
-              <Link
-                href="/dashboard/profile"
-                className="block rounded-md px-3 py-2 hover:bg-secondary"
-              >
-                Perfil
-              </Link>
-              <Link
-                href="/dashboard/settings"
-                className="block rounded-md px-3 py-2 hover:bg-secondary"
-              >
-                Settings
-              </Link>
-              <button className="w-full text-left rounded-md px-3 py-2 hover:bg-secondary">
-                Cerrar sesión
-              </button>
-            </>
-          )}
-        </div>
-          )}
+                {!user ? (
+                  <>
+                    <Link
+                      href="/auth/login"
+                      className="block rounded-md px-3 py-2 hover:bg-secondary"
+                    >
+                      Iniciar sesión
+                    </Link>
+                    <Link
+                      href="/demo"
+                      className="block rounded-md px-3 py-2 hover:bg-secondary"
+                    >
+                      Demo gratis
+                    </Link>
+                  </>
+                ) : (
+                  <>
+                    <Link
+                      href="/dashboard/profile"
+                      className="block rounded-md px-3 py-2 hover:bg-secondary"
+                    >
+                      Perfil
+                    </Link>
+                    <Link
+                      href="/dashboard/settings"
+                      className="block rounded-md px-3 py-2 hover:bg-secondary"
+                    >
+                      Settings
+                    </Link>
+                    <button
+                      onClick={() => signOut()}
+                      className="w-full text-left rounded-md px-3 py-2 hover:bg-secondary"
+                    >
+                      Cerrar sesión
+                    </button>
+                  </>
+                )}
+              </div>
+            )}
           </div>
         </div>
 
@@ -119,22 +141,37 @@ export default function Navbar({ user }) {
 
           {!user ? (
             <div className="flex flex-col gap-2 mt-2">
-              <Link href="/auth/login" className="px-4 py-2 bg-secondary rounded-lg hover:bg-secondary transition">
+              <Link
+                href="/auth/login"
+                className="px-4 py-2 bg-secondary rounded-lg hover:bg-secondary transition"
+              >
                 Iniciar sesión
               </Link>
-              <Link href="/demo" className="px-4 py-2 bg-secondary rounded-lg hover:bg-secondary transition">
+              <Link
+                href="/demo"
+                className="px-4 py-2 bg-secondary rounded-lg hover:bg-secondary transition"
+              >
                 Demo gratis
               </Link>
             </div>
           ) : (
             <div className="flex flex-col gap-2 mt-2">
-              <Link href="/dashboard/profile" className="px-4 py-2 hover:bg-secondary rounded-lg">
+              <Link
+                href="/dashboard/profile"
+                className="px-4 py-2 hover:bg-secondary rounded-lg"
+              >
                 Perfil
               </Link>
-              <Link href="/dashboard/settings" className="px-4 py-2 hover:bg-secondary rounded-lg">
+              <Link
+                href="/dashboard/settings"
+                className="px-4 py-2 hover:bg-secondary rounded-lg"
+              >
                 Settings
               </Link>
-              <button className="px-4 py-2 hover:bg-secondary rounded-lg text-left w-full">
+              <button
+                onClick={() => signOut()}
+                className="px-4 py-2 hover:bg-secondary rounded-lg text-left w-full"
+              >
                 Cerrar sesión
               </button>
             </div>

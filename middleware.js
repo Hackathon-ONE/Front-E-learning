@@ -7,7 +7,7 @@ export function middleware(req) {
   if (!token) {
     // si no hay token -> redirigir a login
     if (url.pathname.startsWith("/dashboard") || url.pathname.startsWith("/admin")) {
-      url.pathname = "/login";
+      url.pathname = "/auth/login";
       return NextResponse.redirect(url);
     }
     return NextResponse.next();

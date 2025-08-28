@@ -1,7 +1,7 @@
 "use client";
 
 import { Award, Medal, GraduationCap } from "lucide-react"; // iconos
-import { Card } from "@/components/ui/card";
+import Card from "@/components/ui/Card";
 
 export default function CertificationsSection() {
   const certifications = [

@@ -1,8 +1,8 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { Card } from "@/components/ui/card";
-import Button from "@/components/ui/button";
+import Card from "@/components/ui/Card";
+import Button from "@/components/ui/Button";
 import { User, Mail, Shield, Edit, Trash } from "lucide-react";
 
 export default function UsersPage() {
@@ -69,7 +69,7 @@ export default function UsersPage() {
                 variant="outline"
                 size="sm"
                 className="flex items-center gap-1"
-                // onClick={() => handleEdit(user.id)}
+              // onClick={() => handleEdit(user.id)}
               >
                 <Edit size={16} /> Editar
               </Button>
@@ -77,7 +77,7 @@ export default function UsersPage() {
                 variant="destructive"
                 size="sm"
                 className="flex items-center gap-1"
-                // onClick={() => handleDelete(user.id)}
+              // onClick={() => handleDelete(user.id)}
               >
                 <Trash size={16} /> Eliminar
               </Button>

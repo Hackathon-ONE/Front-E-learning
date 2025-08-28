@@ -1,4 +1,4 @@
-import Button from "../components/ui/button";
+import Button from "./ui/Button";
 import { Rocket } from "lucide-react";
 import Link from "next/link";
 
@@ -18,15 +18,15 @@ export default function CTA() {
           Únete hoy mismo y transforma la manera en que aprendes y enseñas en línea.
         </p>
         <Link href="/auth/login">
-        <Button
-          className="flex items-center gap-2 px-8 py-4 text-lg font-semibold rounded-xl transition-transform transform hover:scale-105 hover:shadow-xl shadow-primary/50"
-          style={{
-            backgroundColor: "var(--color-primary)",
-            color: "var(--color-primary-text)",
-          }}
-        >
-          Empezar ahora
-        </Button>
+          <Button
+            className="flex items-center gap-2 px-8 py-4 text-lg font-semibold rounded-xl transition-transform transform hover:scale-105 hover:shadow-xl shadow-primary/50"
+            style={{
+              backgroundColor: "var(--color-primary)",
+              color: "var(--color-primary-text)",
+            }}
+          >
+            Empezar ahora
+          </Button>
         </Link>
       </div>
     </section>

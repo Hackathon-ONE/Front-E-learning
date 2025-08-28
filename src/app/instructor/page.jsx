@@ -2,7 +2,7 @@
 import { useState /*, useEffect */ } from "react";
 import { BookOpen, Users, Edit } from "lucide-react";
 import Link from "next/link";
-import Button from "../../components/ui/button";
+import Button from "@/components/ui/Button";
 
 // Ejemplo de cómo importar datos desde la base de datos (Java/Spring Boot):
 /*
@@ -97,11 +97,10 @@ export default function InstructorCoursesPage() {
                     <Users size={16} className="text-blue-500" /> {c.students}
                   </td>
                   <td className="px-3 py-2">
-                    <span className={`text-xs font-bold rounded px-2 py-1 ${
-                      c.published
+                    <span className={`text-xs font-bold rounded px-2 py-1 ${c.published
                         ? "bg-green-100 text-green-700"
                         : "bg-yellow-100 text-yellow-700"
-                    }`}>
+                      }`}>
                       {c.published ? "Publicado" : "Borrador"}
                     </span>
                   </td>

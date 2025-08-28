@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import { Search, ChevronDown } from "lucide-react";
-import { Card } from "@/components/ui/card";
+import Card from "@/components/ui/Card";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 
@@ -236,8 +236,8 @@ export default function CoursesPage() {
                   {t === "all"
                     ? "Todos"
                     : t === "free"
-                    ? "Gratis"
-                    : "De pago"}
+                      ? "Gratis"
+                      : "De pago"}
                 </label>
               </li>
             ))}

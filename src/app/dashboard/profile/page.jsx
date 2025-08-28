@@ -5,12 +5,16 @@ import { motion } from "framer-motion";
 import Image from "next/image";
 import Button from "@/components/ui/Button";
 import GridProjects from "@/components/GridCertificates";
+import { useSession } from "next-auth/react";
 
 export default function ProfilePage() {
-  const [bio, setBio] = useState(
-    "Hola! Soy User, Desarrollador Full Stack con 2 años de experiencia construyendo proyectos web modernos..."
-  );
+  const { data: session } = useSession();
   const [isEditing, setIsEditing] = useState(false);
+
+  const bio = session?.user?.bio || "Hola! Soy desarrollador Full Stack..."; // fallback
+  const avatar = session?.user?.image || "/default-avatar.png";
+  const name = session?.user?.name || "Usuario";
+  const [editableBio, setEditableBio] = useState(bio);
 
   const stats = [
     { label: "Cursos Finalizados", value: 64 },
@@ -66,21 +70,22 @@ export default function ProfilePage() {
     <section className="py-10 px-6 container mx-auto">
       {/* 🧑 Perfil */}
       <div className="bg-surface rounded-2xl shadow p-6 flex flex-col md:flex-row gap-6 items-start">
-        <Image
-          src="/default-avatar.png"
-          alt="Avatar"
-          width={120}
-          height={120}
-          className="rounded-full border-4 border-primary"
-        />
+      <Image
+        src={avatar}
+        alt={name}
+        width={120}
+        height={120}
+        className="rounded-full border-4 border-primary"
+      />
         <div className="flex-1">
-          <h1 className="text-2xl font-bold text-foreground">Biografía</h1>
+        <h1 className="text-2xl font-bold text-foreground">{name}</h1>
+          <h2 className="text-2xl font-bold text-foreground">Bio</h2>
 
           {isEditing ? (
             <textarea
               className="w-full mt-2 p-2 rounded-lg border bg-bg text-foreground"
-              value={bio}
-              onChange={(e) => setBio(e.target.value)}
+              value={editableBio}
+              onChange={(e) => setEditableBio(e.target.value)}
             />
           ) : (
             <p className="mt-2 text-muted">{bio}</p>

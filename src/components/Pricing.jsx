@@ -12,7 +12,7 @@ import ListItemDecorator from "@mui/joy/ListItemDecorator";
 import Typography from "@mui/joy/Typography";
 import Check from "@mui/icons-material/Check";
 import KeyboardArrowRight from "@mui/icons-material/KeyboardArrowRight";
-import Button from "@/components/ui/button";
+import Button from "../components/ui/button";
 import Link from "next/link";
 
 const plans = [

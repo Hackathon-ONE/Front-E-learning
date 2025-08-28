@@ -2,7 +2,7 @@
 
 import { Facebook, Twitter, Instagram, Linkedin } from "lucide-react";
 import Link from "next/link";
-import Button from "@/components/ui/button";
+import Button from "../components/ui/button";
 
 export default function Footer() {
   return (

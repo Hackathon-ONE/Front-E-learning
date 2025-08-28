@@ -3,7 +3,7 @@
 import { useRouter } from "next/navigation";
 import { useState, useEffect } from "react";
 import { CheckCircle } from "lucide-react";
-import Button from "@/components/ui/button";
+import Button from "../../components/ui/button";
 
 // 🔹 Datos harcodeados de planes (podrían venir de una API en el futuro)
 const plans = [

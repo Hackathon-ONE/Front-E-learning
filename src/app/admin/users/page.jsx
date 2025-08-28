@@ -1,8 +1,8 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { Card } from "@/components/ui/card";
-import Button from "@/components/ui/button";
+import { Card } from "../../../components/ui/card";
+import Button from "../../../components/ui/button";
 import { User, Mail, Shield, Edit, Trash } from "lucide-react";
 
 export default function UsersPage() {

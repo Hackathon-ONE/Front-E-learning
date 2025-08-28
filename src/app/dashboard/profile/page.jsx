@@ -3,8 +3,8 @@
 import { useState /*, useEffect */ } from "react";
 import { motion } from "framer-motion";
 import Image from "next/image";
-import Button from "@/components/ui/button";
-import GridProjects from "@/components/GridCertificates";
+import Button from "../../../components/ui/button";
+import GridProjects from "../../../components/GridCertificates";
 
 export default function ProfilePage() {
   const [bio, setBio] = useState(

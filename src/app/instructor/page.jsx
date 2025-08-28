@@ -2,7 +2,7 @@
 import { useState /*, useEffect */ } from "react";
 import { BookOpen, Users, Edit } from "lucide-react";
 import Link from "next/link";
-import Button from "@/components/ui/button";
+import Button from "../../components/ui/button";
 
 // Ejemplo de cómo importar datos desde la base de datos (Java/Spring Boot):
 /*

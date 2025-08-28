@@ -21,9 +21,9 @@ export default function ThemeToggle() {
       className="p-2 rounded-full bg-surface shadow hover:bg-primary transition"
     >
       {currentTheme === "dark" ? (
-        <Sun className="w-6 h-6 text-yellow-400" />
+        <Sun data-testid="sun-icon" className="w-6 h-6 text-yellow-400" />
       ) : (
-        <Moon className="w-6 h-6 text-gray-800" />
+        <Moon data-testid="moon-icon" className="w-6 h-6 text-gray-800" />
       )}
     </Button>
   );

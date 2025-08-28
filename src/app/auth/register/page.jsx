@@ -1,7 +1,7 @@
 "use client";
 
-import AuthForm from "@/components/AuthForm";
+import RegisterForm from "@/components/RegisterForm";
 
 export default function RegisterPage() {
-  return <AuthForm isRegister={true} />;
+  return <RegisterForm />;
 }

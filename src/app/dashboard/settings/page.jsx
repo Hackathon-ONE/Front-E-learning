@@ -117,8 +117,8 @@ export default function SettingsPage() {
 
         {/* Datos personales */}
         <form onSubmit={handleProfileSubmit} className="flex flex-col gap-4 bg-[var(--color-card-primary)] rounded-xl shadow p-4 sm:p-6 w-full">
-          <h2 className="text-lg sm:text-xl font-bold text-[var(--color-text)] mb-2">Datos personales</h2>
-          <label className="font-semibold text-[var(--color-muted)]">
+          <h2 className="text-lg sm:text-xl font-bold text-gray-600 mb-2">Datos personales</h2>
+          <label className="font-semibold text-gray-600">
             Nombre
             <input
               type="text"
@@ -129,7 +129,7 @@ export default function SettingsPage() {
               required
             />
           </label>
-          <label className="font-semibold text-[var(--color-muted)]">
+          <label className="font-semibold text-gray-600">
             Email
             <input
               type="email"
@@ -151,8 +151,8 @@ export default function SettingsPage() {
 
         {/* Cambiar contraseña */}
         <form onSubmit={handlePasswordSubmit} className="flex flex-col gap-4 bg-[var(--color-card-primary)] rounded-xl shadow p-4 sm:p-6 w-full">
-          <h2 className="text-lg sm:text-xl font-bold text-[var(--color-text)] mb-2">Cambiar contraseña</h2>
-          <label className="font-semibold text-[var(--color-muted)]">
+          <h2 className="text-lg sm:text-xl font-bold text-gray-600 mb-2">Cambiar contraseña</h2>
+          <label className="font-semibold text-gray-600">
             Contraseña actual
             <input
               type="password"
@@ -163,7 +163,7 @@ export default function SettingsPage() {
               required
             />
           </label>
-          <label className="font-semibold text-[var(--color-muted)]">
+          <label className="font-semibold text-gray-600">
             Nueva contraseña
             <input
               type="password"
@@ -174,7 +174,7 @@ export default function SettingsPage() {
               required
             />
           </label>
-          <label className="font-semibold text-[var(--color-muted)]">
+          <label className="font-semibold text-gray-600">
             Confirmar nueva contraseña
             <input
               type="password"
@@ -196,11 +196,11 @@ export default function SettingsPage() {
 
         {/* Preferencias */}
         <div className="flex flex-col gap-4 bg-[var(--color-card-primary)] rounded-xl shadow p-4 sm:p-6 w-full">
-          <h2 className="text-lg sm:text-xl font-bold text-[var(--color-text)] mb-2">Preferencias</h2>
+          <h2 className="text-lg sm:text-xl font-bold text-gray-600 mb-2">Preferencias</h2>
           <div className="flex flex-col sm:flex-row gap-6">
             {/* Notificaciones */}
             <div className="flex-1">
-              <h3 className="font-semibold text-[var(--color-muted)] mb-2">Notificaciones</h3>
+              <h3 className="font-semibold text-gray-600 mb-2">Notificaciones</h3>
               <label className="flex items-center gap-2 mb-2">
                 <input
                   type="checkbox"
@@ -209,7 +209,7 @@ export default function SettingsPage() {
                   onChange={handleNotificationsChange}
                   className="accent-[var(--color-primary)]"
                 />
-                <span className="text-[var(--color-text)]">Email</span>
+                <span className="text-gray-600">Email</span>
               </label>
               <label className="flex items-center gap-2">
                 <input
@@ -219,12 +219,12 @@ export default function SettingsPage() {
                   onChange={handleNotificationsChange}
                   className="accent-[var(--color-primary)]"
                 />
-                <span className="text-[var(--color-text)]">SMS</span>
+                <span className="text-gray-600">SMS</span>
               </label>
             </div>
             {/* Tema */}
             <div className="flex-1 mt-4 sm:mt-0">
-              <h3 className="font-semibold text-[var(--color-muted)] mb-2">Tema</h3>
+              <h3 className="font-semibold text-gray-600 mb-2">Tema</h3>
               <div className="flex gap-4 flex-col xs:flex-row sm:flex-row">
                 <button
                   type="button"

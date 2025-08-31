@@ -81,7 +81,7 @@ export default function ContactPage() {
             onSubmit={handleSubmit}
             className="flex flex-col gap-4 bg-[var(--color-card-primary)] rounded-xl shadow p-6"
           >
-            <label className="font-semibold text-[var(--color-muted)]">
+            <label className="font-semibold text-gray-900 dark:text-gray-100">
               Nombre
               <input
                 type="text"
@@ -89,11 +89,11 @@ export default function ContactPage() {
                 required
                 value={form.name}
                 onChange={handleChange}
-                className="mt-1 w-full px-3 py-2 rounded border border-gray-200 focus:outline-none focus:ring-2 focus:ring-[var(--color-primary)] bg-white text-[var(--color-card-primary-text)]"
+                className="mt-1 w-full px-3 py-2 rounded border border-gray-200 focus:outline-none focus:ring-2 focus:ring-[var(--color-primary)] bg-white text-gray-900 dark:text-gray-100"
                 placeholder="Tu nombre"
               />
             </label>
-            <label className="font-semibold text-[var(--color-muted)]">
+            <label className="font-semibold text-gray-900 dark:text-gray-100">
               Email
               <input
                 type="email"
@@ -101,18 +101,18 @@ export default function ContactPage() {
                 required
                 value={form.email}
                 onChange={handleChange}
-                className="mt-1 w-full px-3 py-2 rounded border border-gray-200 focus:outline-none focus:ring-2 focus:ring-[var(--color-primary)] bg-white text-[var(--color-card-primary-text)]"
+                className="mt-1 w-full px-3 py-2 rounded border border-gray-200 focus:outline-none focus:ring-2 focus:ring-[var(--color-primary)] bg-white text-gray-900 dark:text-gray-100"
                 placeholder="tu@email.com"
               />
             </label>
-            <label className="font-semibold text-[var(--color-muted)]">
+            <label className="font-semibold text-gray-900 dark:text-gray-100">
               Mensaje
               <textarea
                 name="message"
                 required
                 value={form.message}
                 onChange={handleChange}
-                className="mt-1 w-full px-3 py-2 rounded border border-gray-200 focus:outline-none focus:ring-2 focus:ring-[var(--color-primary)] bg-white text-[var(--color-card-primary-text)]"
+                className="mt-1 w-full px-3 py-2 rounded border border-gray-200 focus:outline-none focus:ring-2 focus:ring-[var(--color-primary)] bg-white text-gray-900 dark:text-gray-100"
                 rows={5}
                 placeholder="¿En qué podemos ayudarte?"
               />

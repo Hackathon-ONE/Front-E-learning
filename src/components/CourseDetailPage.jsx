@@ -3,8 +3,26 @@
 import { useState } from "react";
 import { PlayCircle, Clock, CheckCircle, Linkedin, Github, Twitter } from "lucide-react";
 import Card from "@/components/ui/Card";
+import Link from "next/link";
 
 export default function CourseDetailPage({ courseId }) {
+  const [course, lesson] = useState({
+    id: 1,
+    title: "Curso de ChatGPT: optimizando la calidad de los resultados",
+    description: "Domina la integración de IA con APIs.",
+    cover: "/courses/react.jpg",
+    lessons: 24,
+    duration: "12h 30m",
+    students: 320,
+    progress: 45,
+    objectives: [
+      "Comprender la arquitectura de React",
+      "Crear componentes reutilizables",
+      "Gestionar estado con hooks",
+      "Implementar rutas y navegación",
+      "Consumir APIs REST",
+    ],
+  });
   const [progress] = useState(100); // Progreso del estudiante
   const [lessons] = useState([
     { id: 1, title: "Creando los primeros prompts", duration: "22min", completed: true },
@@ -33,12 +51,16 @@ export default function CourseDetailPage({ courseId }) {
           </p>
         </div>
         <div className="mt-4 md:mt-0 flex gap-4">
-          <button className="px-6 py-2 rounded-lg shadow transition bg-accent text-secondary hover:scale-105">
-            Acceder Curso
-          </button>
-          <button className="px-6 py-2 rounded-lg shadow transition bg-secondary text-secondary-text hover:scale-105">
-            Otras acciones
-          </button>
+          <Link href={`/courses/${courseId}/lessons/${lesson.id}`}>
+            <button className="px-6 py-2 rounded-lg shadow transition bg-accent text-secondary hover:scale-105">
+              Acceder Curso
+            </button>
+          </Link>
+          <Link href="/courses">
+            <button className="px-6 py-2 rounded-lg shadow transition bg-secondary text-secondary-text hover:scale-105">
+              Otras acciones
+            </button>
+          </Link>
         </div>
       </header>
 
@@ -123,9 +145,11 @@ export default function CourseDetailPage({ courseId }) {
                     </p>
                   </div>
                 </div>
+                <Link href={`/courses/${course.id}/lessons/${lesson.id}`}>
                 <button className="text-sm text-primary hover:scale-110 transition">
                   {lesson.completed ? "Revisar" : "Ver ahora"}
                 </button>
+                </Link>
               </Card>
             ))}
           </div>

@@ -11,6 +11,7 @@ export default function LoginForm() {
   const [formData, setFormData] = useState({ email: "", password: "" });
   const [errors, setErrors] = useState({});
   const { login } = useAuth();
+  const [loading, setLoading] = useState(false);
 
   const handleChange = (e) => setFormData({ ...formData, [e.target.name]: e.target.value });
 
@@ -24,17 +25,45 @@ export default function LoginForm() {
     return Object.keys(newErrors).length === 0;
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     if (!validate()) return;
-    login(formData);
+
+    setLoading(true);
+
+    // 👇 Usamos NextAuth credentials
+    const res = await signIn("credentials", {
+      redirect: false,
+      email: formData.email,
+      password: formData.password,
+    });
+
+    setLoading(false);
+
+    if (res?.error) {
+      setErrors({ general: "Credenciales inválidas" });
+      return;
+    }
+
+    // 👇 Obtenemos el session para saber el rol
+    const sessionRes = await fetch("/api/auth/session");
+    const session = await sessionRes.json();
+    const role = session?.user?.role || "student";
+
+    if (role === "instructor") router.push("/instructor/dashboard");
+    else if (role === "admin") router.push("/admin/dashboard");
+    else router.push("/students");
   };
 
   return (
     <AuthLayout>
       <h2 className="text-2xl font-bold mb-6 text-center">Iniciar sesión</h2>
-      
+
       <form onSubmit={handleSubmit} className="space-y-4">
+        {errors.general && (
+          <p className="text-sm text-red-500">{errors.general}</p>
+        )}
+
         <div>
           <label className="block mb-1">Email</label>
           <input
@@ -44,7 +73,9 @@ export default function LoginForm() {
             value={formData.email}
             onChange={handleChange}
           />
-          {errors.email && <p className="text-sm text-red-500 mt-1">{errors.email}</p>}
+          {errors.email && (
+            <p className="text-sm text-red-500 mt-1">{errors.email}</p>
+          )}
         </div>
 
         <div>
@@ -56,18 +87,21 @@ export default function LoginForm() {
             value={formData.password}
             onChange={handleChange}
           />
-          {errors.password && <p className="text-sm text-red-500 mt-1">{errors.password}</p>}
+          {errors.password && (
+            <p className="text-sm text-red-500 mt-1">{errors.password}</p>
+          )}
         </div>
 
         <button
           type="submit"
-          className="w-full py-3 rounded-lg font-semibold"
+          disabled={loading}
+          className="w-full py-3 rounded-lg font-semibold disabled:opacity-50"
           style={{
             backgroundColor: "var(--color-primary)",
-            color: "var(--color-primary-text)"
+            color: "var(--color-primary-text)",
           }}
         >
-          Entrar
+          {loading ? "Entrando..." : "Entrar"}
         </button>
       </form>
 
@@ -76,12 +110,12 @@ export default function LoginForm() {
       </div>
 
       <button
-        onClick={() => signIn("google", { callbackUrl: "/" })}
-        className="w-full flex items-center justify-center gap-2 py-3 rounded-lg border font-semibold"
+        onClick={() => signIn("google", { callbackUrl: "/students" })}
+        className="w-full flex items-center justify-center gap-2 py-3 rounded-lg border font-semibold hover:bg-primary hover:text-primary-text"
         style={{
           borderColor: "var(--color-secondary)",
-          backgroundColor: "var(--color-surface)",
-          color: "var(--color-text)"
+          backgroundColor: "var(--color-terciary)",
+          color: "var(--color-text-primary)",
         }}
       >
         <FcGoogle className="w-5 h-5" />
@@ -92,12 +126,20 @@ export default function LoginForm() {
       <div className="text-center mt-4 text-sm flex flex-col gap-2">
         <p>
           ¿No tienes cuenta?{" "}
-          <Link href="/auth/register" className="font-semibold" style={{ color: "var(--color-primary)" }}>
+          <Link
+            href="/auth/register"
+            className="font-semibold"
+            style={{ color: "var(--color-primary)" }}
+          >
             Regístrate
           </Link>
         </p>
         <p>
-          <Link href="/auth/forgot-password" className="font-semibold" style={{ color: "var(--color-primary)" }}>
+          <Link
+            href="/auth/forgot-password"
+            className="font-semibold"
+            style={{ color: "var(--color-primary)" }}
+          >
             ¿Olvidaste tu contraseña?
           </Link>
         </p>

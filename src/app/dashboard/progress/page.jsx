@@ -13,7 +13,7 @@ const mockProgress = {
       progress: 80,
       lastLesson: "Hooks y Custom Hooks",
       status: "En progreso",
-      color: "bg-orange-100",
+      color: "bg-orange-100 dark:bg-orange-900/40",
     },
     {
       id: 2,
@@ -21,7 +21,7 @@ const mockProgress = {
       progress: 50,
       lastLesson: "SSR y SSG",
       status: "En progreso",
-      color: "bg-blue-100",
+      color: "bg-blue-100 dark:bg-blue-900/40",
     },
     {
       id: 3,
@@ -29,7 +29,7 @@ const mockProgress = {
       progress: 100,
       lastLesson: "Proyecto final",
       status: "Completado",
-      color: "bg-green-100",
+      color: "bg-green-100 dark:bg-green-900/40",
     },
   ],
   history: [
@@ -114,7 +114,7 @@ export default function ProgressPage() {
         {/* Cursos en progreso */}
         <div>
           <h2 className="text-xl font-bold text-[var(--color-text)] mb-4">Tus cursos</h2>
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
             {progress.courses.map((c) => (
               <div
                 key={c.id}
@@ -122,14 +122,16 @@ export default function ProgressPage() {
               >
                 <div className="flex items-center gap-2">
                   <BookOpen size={22} className="text-[var(--color-primary)]" />
-                  <span className="font-semibold text-[var(--color-text)]">{c.title}</span>
+                  <span className="font-semibold text-gray-900 dark:text-gray-100">
+                    {c.title}
+                  </span>
                 </div>
-                <div className="flex items-center gap-2 text-sm text-[var(--color-muted)]">
+                <div className="flex items-center gap-2 text-sm text-gray-600 dark:text-gray-400">
                   <Clock size={16} /> Última lección: {c.lastLesson}
                 </div>
-                <div className="w-full bg-gray-300 rounded-full h-2 mt-2">
+                <div className="w-full bg-gray-300 dark:bg-gray-700 rounded-full h-2 mt-2">
                   <div
-                    className={`bg-[var(--color-primary)] h-2 rounded-full transition-all`}
+                    className="bg-blue-600 dark:bg-blue-400 h-2 rounded-full transition-all"
                     style={{ width: `${c.progress}%` }}
                   />
                 </div>
@@ -137,13 +139,15 @@ export default function ProgressPage() {
                   <span
                     className={`text-xs font-bold ${
                       c.status === "Completado"
-                        ? "text-green-600"
+                        ? "text-green-600 dark:text-green-400"
                         : "text-[var(--color-primary)]"
                     }`}
                   >
                     {c.status}
                   </span>
-                  <span className="text-xs text-[var(--color-muted)]">{c.progress}%</span>
+                  <span className="text-xs text-gray-600 dark:text-gray-400">
+                    {c.progress}%
+                  </span>
                 </div>
               </div>
             ))}
@@ -164,7 +168,7 @@ export default function ProgressPage() {
               </thead>
               <tbody>
                 {progress.history.map((h) => (
-                  <tr key={h.id} className="border-b border-gray-100">
+                  <tr key={h.id} className="border-b border-gray-200 dark:border-gray-700">
                     <td className="px-3 py-2">{h.course}</td>
                     <td className="px-3 py-2">{h.action}</td>
                     <td className="px-3 py-2">{h.date}</td>

@@ -11,6 +11,7 @@ export default function RegisterForm() {
   const [formData, setFormData] = useState({ name: "", email: "", password: "" });
   const [errors, setErrors] = useState({});
   const { register } = useAuth();
+  const [loading, setLoading] = useState(false);
 
   const handleChange = (e) => setFormData({ ...formData, [e.target.name]: e.target.value });
 
@@ -25,10 +26,23 @@ export default function RegisterForm() {
     return Object.keys(newErrors).length === 0;
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    if (!validate()) return;
-    register(formData);
+
+    const res = await fetch("/api/auth/register", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        ...formData,
+        role: "student", // 👈 por defecto asignamos estudiante
+      }),
+    });
+
+    if (res.ok) {
+      router.push("/auth/login");
+    } else {
+      alert("Error al registrarse");
+    }
   };
 
   return (
@@ -93,8 +107,8 @@ export default function RegisterForm() {
         className="w-full flex items-center justify-center gap-2 py-3 rounded-lg border font-semibold"
         style={{
           borderColor: "var(--color-secondary)",
-          backgroundColor: "var(--color-surface)",
-          color: "var(--color-text)"
+          backgroundColor: "var(--color-terciary)",
+          color: "var(--color-text-primary)"
         }}
       >
         <FcGoogle className="w-5 h-5" />

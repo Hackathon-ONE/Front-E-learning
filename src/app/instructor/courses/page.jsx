@@ -91,7 +91,7 @@ useEffect(() => {
 return (
   <main className="min-h-screen bg-[var(--color-bg)] flex flex-col items-center py-8 px-2 sm:px-4">
     <section className="w-full max-w-4xl bg-[var(--color-surface)] rounded-2xl shadow-xl p-4 sm:p-8 flex flex-col gap-8">
-      <h1 className="text-2xl sm:text-3xl font-bold text-[var(--color-primary)] text-center mb-2">
+      <h1 className="text-2xl sm:text-3xl font-bold text-center mb-2">
         Mis Cursos como Instructor
       </h1>
 

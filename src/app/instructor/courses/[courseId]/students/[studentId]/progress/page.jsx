@@ -61,10 +61,10 @@ export default function StudentProgressPage() {
           className="w-24 h-24 sm:w-28 sm:h-28 rounded-full border-4 border-primary/30 shadow-md object-cover mx-auto sm:mx-0"
         />
         <div className="text-center sm:text-left">
-          <h1 className="text-2xl sm:text-3xl font-bold text-[var(--color-primary)]">
+          <h1 className="text-2xl sm:text-3xl font-bold text-gray-400">
             {student.name}
           </h1>
-          <p className="text-gray-500 text-sm sm:text-base">{student.email}</p>
+          <p className="text-gray-500 text-sm sm:text-base text-center sm:text-left">{student.email}</p>
         </div>
       </section>
 
@@ -80,8 +80,8 @@ export default function StudentProgressPage() {
             className="bg-[var(--color-surface)] rounded-xl shadow p-6 flex flex-col gap-4"
           >
             <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2">
-              <h3 className="text-lg font-semibold text-center sm:text-left">{course.title}</h3>
-              <span className="text-sm text-gray-500 text-center sm:text-right">
+              <h3 className="text-lg font-semibold text-center sm:text-left text-gray-400">{course.title}</h3>
+              <span className="text-sm text-gray-500 text-center sm:text-right text-gray-400">
                 {course.progress}% completado
               </span>
             </div>
@@ -102,15 +102,15 @@ export default function StudentProgressPage() {
                   className="flex items-center gap-3 p-3 rounded-lg bg-gray-50 dark:bg-gray-800"
                 >
                   {lesson.completed ? (
-                    <CheckCircle className="text-green-500 flex-shrink-0" size={20} />
+                    <CheckCircle className="text-green-400 flex-shrink-0" size={20} />
                   ) : (
                     <Circle className="text-gray-400 flex-shrink-0" size={20} />
                   )}
                   <span
                     className={`text-sm sm:text-base ${
                       lesson.completed
-                        ? "line-through text-gray-500"
-                        : "text-[var(--color-text)]"
+                        ? "line-through text-gray-400"
+                        : "text-gray-400"
                     }`}
                   >
                     {lesson.title}

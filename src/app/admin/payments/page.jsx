@@ -57,12 +57,12 @@ export default function PaymentsPage() {
                 key={payment.id}
                 className="border-t border-[var(--color-accent)] hover:bg-[var(--color-card-secondary)] transition-colors"
               >
-                <td className="px-4 py-3">{payment.id}</td>
-                <td className="px-4 py-3">{payment.date}</td>
-                <td className="px-4 py-3">
+                <td className="px-4 py-3 text-gray-500">{payment.id}</td>
+                <td className="px-4 py-3 text-gray-500">{payment.date}</td>
+                <td className="px-4 py-3 text-gray-500">
                   ${payment.amount.toFixed(2)}
                 </td>
-                <td className="px-4 py-3">{payment.method}</td>
+                <td className="px-4 py-3 text-gray-500">{payment.method}</td>
                 <td
                   className={`px-4 py-3 font-semibold`}
                   style={{

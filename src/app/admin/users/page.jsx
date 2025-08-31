@@ -46,9 +46,9 @@ export default function UsersPage() {
                   key={user.id}
                   className="border-t border-[var(--color-muted)] hover:bg-[var(--color-card-secondary)] transition"
                 >
-                  <td className="p-3 md:p-4">{user.name}</td>
-                  <td className="p-3 md:p-4">{user.email}</td>
-                  <td className="p-3 md:p-4 capitalize">{user.role}</td>
+                  <td className="p-3 md:p-4 text-gray-500">{user.name}</td>
+                  <td className="p-3 md:p-4 text-gray-500">{user.email}</td>
+                  <td className="p-3 md:p-4 capitalize text-gray-500">{user.role}</td>
                   <td className="p-3 md:p-4 text-right">
                     <button
                       onClick={() => handleEdit(user)}

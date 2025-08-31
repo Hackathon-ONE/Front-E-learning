@@ -45,7 +45,7 @@ export default function DemoPage() {
             ) : (
               <div className="flex justify-center items-center h-64 md:h-[400px] text-center p-6">
                 <p className="text-lg flex items-center gap-2">
-                  <PlayCircle className="w-5 h-5 text-[var(--color-primary)]" />
+                  <PlayCircle className="w-5 h-5" />
                   Selecciona la primera lección para comenzar
                 </p>
               </div>
@@ -60,22 +60,22 @@ export default function DemoPage() {
           {/* Lista de lecciones */}
           <aside className="bg-[var(--color-surface)] rounded-xl shadow-lg p-4 space-y-3">
             <h3 className="text-lg font-semibold mb-2">Lecciones</h3>
-            <ul className="space-y-2">
+            <ul className="space-y-2 text-gray-500 text-sm">
               {lessons.map((lesson) => (
                 <li
                   key={lesson.id}
                   onClick={() => handleLessonClick(lesson)}
-                  className={`flex items-center justify-between p-3 rounded-lg cursor-pointer transition ${
+                  className={`flex items-center text-gray-500 justify-between p-3 rounded-lg cursor-pointer transition ${
                     lesson.free
                       ? "bg-[var(--color-card-primary)] hover:bg-[var(--color-card-secondary)]"
-                      : "bg-[var(--color-card-secondary)] opacity-70"
+                      : "bg-[var(--color-card-secondary)] opacity-80"
                   }`}
                 >
-                  <span className="text-sm md:text-base flex items-center gap-2">
+                  <span className="text-xs md:text-sm flex items-center gap-2 text-gray-500">
                     {lesson.free ? (
                       <PlayCircle className="w-4 h-4 text-[var(--color-primary)]" />
                     ) : (
-                      <Lock className="w-4 h-4 text-[var(--color-muted)]" />
+                      <Lock className="w-4 h-4 text-gray-500" />
                     )}
                     {lesson.title}
                   </span>
@@ -84,7 +84,7 @@ export default function DemoPage() {
                       <Star className="w-4 h-4" /> Gratis
                     </span>
                   ) : (
-                    <span className="text-[var(--color-muted)] flex items-center gap-1">
+                    <span className="text-gray-500 text-sm flex items-center gap-1">
                       <Lock className="w-4 h-4" /> Suscripción
                     </span>
                   )}
@@ -95,8 +95,8 @@ export default function DemoPage() {
             {/* CTA para suscribirse */}
             <div className="mt-6 text-center">
               <Link href="/payments">
-                <button className="w-full py-3 rounded-lg btn-primary text-sm md:text-base flex items-center justify-center gap-2">
-                  <Lock className="ml-2 w-5 h-5" /> Suscríbete para desbloquear todas las lecciones
+                <button className="w-full py-2 rounded-lg btn-primary text-xs sm:text-base flex items-center justify-center">
+                  Suscríbete para desbloquear todas las lecciones
                 </button>
               </Link>
             </div>
@@ -116,7 +116,7 @@ export default function DemoPage() {
             </button>
 
             <h2 className="text-xl font-bold mb-3 flex items-center gap-2">
-              <Lock className="w-5 h-5 text-[var(--color-primary)]" />
+              <Lock className="w-5 h-5" />
               Lección bloqueada
             </h2>
             <p className="mb-4 text-[var(--color-muted)]">

@@ -34,6 +34,7 @@
   /* Accents */
   --color-accent: #3d3f3e;
   --color-progress: #ff5400;
+  --color-terciary: rgb(241, 240, 224);
 
   --font-heading: var(--font-ubuntu);
   --font-body: var(--font-inter);
@@ -66,6 +67,7 @@
 
   /* Accents */
   --color-accent: #c9ce89ff;
+  --color-terciary: rgb(241, 240, 224);
 
   --font-heading: var(--font-ubuntu);
   --font-body: var(--font-inter);

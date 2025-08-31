@@ -49,11 +49,11 @@ export default function AnalyticsPage() {
   }, []);
 
    // Colores para gráficas
-   const COLORS = ["#ff5400", "#3d3f3e", "#fca311"];
+   const COLORS = ["#ff5400", "#3d3f3e", "#fca311", "#6366F1", "#F59E0B", "#EF4444"];
 
    return (
     <main
-      className="max-w-6xl mx-auto p-6 rounded-xl shadow space-y-10"
+      className="max-w-7xl mx-auto px-3 sm:px-6 lg:px-8 py-6 rounded-xl shadow space-y-10"
       style={{ backgroundColor: "var(--color-bg)", color: "var(--color-text)" }}
     >
       <h1 className="text-3xl font-bold mb-6 text-center">Analíticas de mis cursos</h1>
@@ -68,10 +68,10 @@ export default function AnalyticsPage() {
             <table className="w-full border-collapse">
               <thead style={{ backgroundColor: "var(--color-card-primary)" }}>
                 <tr>
-                  <th className="p-3 text-left text-sm font-semibold">Curso</th>
-                  <th className="p-3 text-center text-sm font-semibold">Estudiantes</th>
-                  <th className="p-3 text-center text-sm font-semibold">Progreso promedio</th>
-                  <th className="p-3 text-center text-sm font-semibold">Ingresos (USD)</th>
+                  <th className="p-3 text-left text-sm text-gray-900 dark:text-gray-100 font-semibold">Curso</th>
+                  <th className="p-3 text-center text-sm text-gray-900 dark:text-gray-100 font-semibold">Estudiantes</th>
+                  <th className="p-3 text-center text-sm text-gray-900 dark:text-gray-100 font-semibold">Progreso promedio</th>
+                  <th className="p-3 text-center text-sm text-gray-900 dark:text-gray-100 font-semibold">Ingresos (USD)</th>
                 </tr>
               </thead>
               <tbody>
@@ -84,9 +84,9 @@ export default function AnalyticsPage() {
                         : "bg-[var(--color-card-primary)]"
                     }`}
                   >
-                    <td className="p-3 font-medium">{course.title}</td>
-                    <td className="p-3 text-center">{course.students}</td>
-                    <td className="p-3 text-center">{course.avgProgress}%</td>
+                    <td className="p-3 text-gray-500 font-medium">{course.title}</td>
+                    <td className="p-3 text-center text-gray-500">{course.students}</td>
+                    <td className="p-3 text-center text-gray-500">{course.avgProgress}%</td>
                     <td className="p-3 text-center font-semibold text-green-600 dark:text-green-400">
                       ${course.revenue.toLocaleString()}
                     </td>
@@ -103,9 +103,9 @@ export default function AnalyticsPage() {
               <h2 className="text-lg font-semibold mb-3">Estudiantes por curso</h2>
               <ResponsiveContainer width="100%" height="90%">
                 <BarChart data={analytics}>
-                  <XAxis dataKey="title" />
-                  <YAxis />
-                  <Tooltip />
+                  <XAxis dataKey="title" stroke="var(--color-primary)" strokeDasharray="3 3" />
+                  <YAxis stroke="var(--color-primary)" strokeDasharray="3 3"/>
+                  <Tooltip contentStyle={{ backgroundColor: "var(--color-terciary)", color: "var(--color-card-primary-text)" }} />
                   <Bar dataKey="students" fill="var(--color-primary)" />
                 </BarChart>
               </ResponsiveContainer>
@@ -117,16 +117,16 @@ export default function AnalyticsPage() {
               <ResponsiveContainer width="100%" height="90%">
                 <LineChart data={analytics}>
                   <CartesianGrid strokeDasharray="3 3" />
-                  <XAxis dataKey="title" />
-                  <YAxis />
-                  <Tooltip />
-                  <Line type="monotone" dataKey="avgProgress" stroke="var(--color-accent)" strokeWidth={3} />
+                  <XAxis dataKey="title" stroke="var(--color-primary)" strokeDasharray="3 3" />
+                  <YAxis stroke="var(--color-primary)" strokeDasharray="3 3"/>
+                  <Tooltip contentStyle={{ backgroundColor: "var(--color-terciary)", color: "var(--color-card-primary-text)" }} />
+                  <Line type="monotone" dataKey="avgProgress" stroke="var(--color-primary)" strokeWidth={3} strokeDasharray="3 3" />
                 </LineChart>
               </ResponsiveContainer>
             </div>
 
             {/* Distribución de ingresos */}
-            <div className="h-90 md:col-span-2 bg-[var(--color-surface)] p-8 rounded-lg shadow">
+            <div className="h-90 md:col-span-2 bg-[var(--color-surface)] text-[var(--color-terciary)] p-8 rounded-lg shadow">
               <h2 className="text-lg font-semibold mb-3 text-center">Distribución de ingresos</h2>
               <ResponsiveContainer width="100%" height="95%">
                 <PieChart>
@@ -135,18 +135,22 @@ export default function AnalyticsPage() {
                     dataKey="revenue"
                     className="mb-6 mt-4"
                     nameKey="title"
+                    stroke="var(--color-terciary)"
+                    strokeDasharray="3 3"
+                    strokeWidth={3}
                     cx="50%"
                     cy="50%"
+                    labelLine={false}
                     outerRadius={100}
-                    fill="var(--color-primary)"
+                    fill="var(--color-terciary)"
                     label
                   >
                     {analytics.map((_, index) => (
                       <Cell key={index} fill={COLORS[index % COLORS.length]} />
                     ))}
                   </Pie>
-                  <Tooltip />
-                  <Legend />
+                  <Tooltip contentStyle={{ backgroundColor: "var(--color-terciary)", color: "var(--color-primary-text)" }} />
+                  <Legend align="center" verticalAlign="bottom" wrapperStyle={{ padding: 0 }} stroke="var(--color-terciary)" strokeDasharray="3 3" />
                 </PieChart>
               </ResponsiveContainer>
             </div>

@@ -1,122 +1,112 @@
 "use client";
-import { useState /*, useEffect */ } from "react";
-import { BookOpen, Users, Edit } from "lucide-react";
-import Link from "next/link";
-import Button from "@/components/ui/Button";
 
-// Ejemplo de cómo importar datos desde la base de datos (Java/Spring Boot):
-/*
 import { useEffect, useState } from "react";
-const [courses, setCourses] = useState([]);
-const [loading, setLoading] = useState(true);
-const [error, setError] = useState(null);
+import Link from "next/link";
+import { Users, BookOpen, Star } from "lucide-react";
 
-useEffect(() => {
-  async function fetchCourses() {
-    try {
-      setLoading(true);
-      setError(null);
-      // Cambia la URL por tu endpoint real de Spring Boot
-      const res = await fetch("http://localhost:8080/api/instructor/courses");
-      if (!res.ok) throw new Error("Error al obtener cursos");
-      const data = await res.json();
-      setCourses(data);
-    } catch (err) {
-      setError("No se pudo cargar los cursos.");
-    } finally {
-      setLoading(false);
-    }
-  }
-  fetchCourses();
-}, []);
+export default function InstructorsPage() {
+  const [instructors, setInstructors] = useState([]);
 
-// Puedes mostrar loading y error así:
-// if (loading) return <div className="text-center py-10">Cargando cursos...</div>;
-// if (error) return <div className="text-center text-red-500 py-10">{error}</div>;
-*/
-
-export default function InstructorCoursesPage() {
-  // Datos hardcodeados para demo
-  const [courses] = useState([
-    {
-      id: 1,
-      title: "React desde Cero",
-      students: 120,
-      lessons: 18,
-      published: true,
-    },
-    {
-      id: 2,
-      title: "Next.js Avanzado",
-      students: 80,
-      lessons: 22,
-      published: false,
-    },
-    {
-      id: 3,
-      title: "UI/UX para Developers",
-      students: 60,
-      lessons: 15,
-      published: true,
-    },
-  ]);
+  useEffect(() => {
+    // 🚀 Datos simulados (esto vendrá del backend)
+    const mockInstructors = [
+      {
+        id: 1,
+        name: "Juan Pérez",
+        bio: "Especialista en React y Next.js con 8 años de experiencia.",
+        avatar: "https://i.pravatar.cc/150?img=1",
+        courses: 5,
+        reviews: 4.7,
+        students: 320,
+      },
+      {
+        id: 2,
+        name: "María Gómez",
+        bio: "Apasionada por el diseño web y UX. Instructora de Figma y Tailwind.",
+        avatar: "https://i.pravatar.cc/150?img=5",
+        courses: 3,
+        reviews: 4.9,
+        students: 210,
+      },
+      {
+        id: 3,
+        name: "Carlos López",
+        bio: "Backend developer con foco en Node.js, NestJS y bases de datos.",
+        avatar: "https://i.pravatar.cc/150?img=3",
+        courses: 7,
+        reviews: 4.5,
+        students: 410,
+      },
+    ];
+    setInstructors(mockInstructors);
+  }, []);
 
   return (
-    <main className="min-h-screen bg-[var(--color-bg)] flex flex-col items-center py-8 px-2 sm:px-4">
-      <section className="w-full max-w-4xl bg-[var(--color-surface)] rounded-2xl shadow-xl p-4 sm:p-8 flex flex-col gap-8">
-        <h1 className="text-2xl sm:text-3xl font-bold text-[var(--color-primary)] text-center mb-2">
-          Mis Cursos como Instructor
-        </h1>
-        <div className="flex justify-end mb-4">
-          <Link href="/instructor/create">
-            <Button className="btn-primary px-6 py-2 rounded-lg font-bold">
-              Crear nuevo curso
-            </Button>
-          </Link>
-        </div>
-        <div className="overflow-x-auto">
-          <table className="min-w-full text-sm">
-            <thead>
-              <tr>
-                <th className="px-3 py-2 text-left text-[var(--color-muted)]">Curso</th>
-                <th className="px-3 py-2 text-left text-[var(--color-muted)]">Lecciones</th>
-                <th className="px-3 py-2 text-left text-[var(--color-muted)]">Estudiantes</th>
-                <th className="px-3 py-2 text-left text-[var(--color-muted)]">Estado</th>
-                <th className="px-3 py-2 text-left text-[var(--color-muted)]"></th>
-              </tr>
-            </thead>
-            <tbody>
-              {courses.map((c) => (
-                <tr key={c.id} className="border-b border-gray-100">
-                  <td className="px-3 py-2 flex items-center gap-2">
-                    <BookOpen size={18} className="text-[var(--color-primary)]" />
-                    <span className="font-semibold text-[var(--color-text)]">{c.title}</span>
-                  </td>
-                  <td className="px-3 py-2">{c.lessons}</td>
-                  <td className="px-3 py-2 flex items-center gap-1">
-                    <Users size={16} className="text-blue-500" /> {c.students}
-                  </td>
-                  <td className="px-3 py-2">
-                    <span className={`text-xs font-bold rounded px-2 py-1 ${c.published
-                        ? "bg-green-100 text-green-700"
-                        : "bg-yellow-100 text-yellow-700"
-                      }`}>
-                      {c.published ? "Publicado" : "Borrador"}
-                    </span>
-                  </td>
-                  <td className="px-3 py-2">
-                    <Link href={`/instructor/edit/${c.id}`}>
-                      <Button className="flex items-center gap-1 px-3 py-1 text-sm">
-                        <Edit size={16} /> Editar
-                      </Button>
-                    </Link>
-                  </td>
-                </tr>
+    <main className="min-h-screen bg-[var(--color-bg)] py-10 px-4 sm:px-6 lg:px-12">
+      <h1 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-center mb-10">
+        Nuestros Instructores
+      </h1>
+
+      <div className="grid gap-8 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 max-w-7xl mx-auto">
+        {instructors.map((instructor) => (
+          <div
+            key={instructor.id}
+            className="bg-[var(--color-surface)] rounded-2xl shadow-lg hover:shadow-xl transition p-6 flex flex-col items-center text-center"
+          >
+            {/* Avatar */}
+            <img
+              src={instructor.avatar}
+              alt={instructor.name}
+              className="w-20 h-20 sm:w-24 sm:h-24 md:w-28 md:h-28 rounded-full border-4 border-primary/30 object-cover shadow-md mb-4"
+            />
+
+            {/* Nombre y bio */}
+            <h2 className="text-lg sm:text-xl md:text-2xl font-bold text-[var(--color-text)] mb-1">
+              {instructor.name}
+            </h2>
+            <p className="text-xs sm:text-sm md:text-base text-[var(--color-muted)] mb-4 line-clamp-3">
+              {instructor.bio}
+            </p>
+
+            {/* Stats */}
+            <div className="flex flex-wrap justify-center gap-4 text-xs sm:text-sm text-gray-600 dark:text-gray-200 mb-4">
+              <div className="flex items-center gap-1 text-gray-400">
+                <BookOpen size={16} className="text-primary" />
+                {instructor.courses} cursos
+              </div>
+              <div className="flex items-center gap-1 text-gray-400">
+                <Users size={16} className="text-green-500" />
+                {instructor.students}
+              </div>
+            </div>
+
+            {/* Reviews */}
+            <div className="flex items-center gap-1 mb-5">
+              {Array.from({ length: 5 }).map((_, i) => (
+                <Star
+                  key={i}
+                  size={18}
+                  className={`${
+                    i < Math.round(instructor.reviews)
+                      ? "text-yellow-400 fill-yellow-400"
+                      : "text-gray-300"
+                  }`}
+                />
               ))}
-            </tbody>
-          </table>
-        </div>
-      </section>
+              <span className="ml-2 text-xs sm:text-sm md:text-base font-semibold">
+                {instructor.reviews.toFixed(1)}
+              </span>
+            </div>
+
+            {/* Botón Ver perfil */}
+            <Link href={`/instructor/${instructor.id}`} className="w-full">
+              <button className="w-full py-2 sm:py-3 rounded-lg bg-primary text-white font-semibold text-sm sm:text-base hover:opacity-80 transition">
+                Ver perfil
+              </button>
+            </Link>
+          </div>
+        ))}
+      </div>
     </main>
   );
 }

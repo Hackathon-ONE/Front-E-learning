@@ -24,7 +24,7 @@ const mockCourse = {
 };
 
 export default function CourseOverviewPage() {
-  const [course] = useState(mockCourse);
+  const [course, lesson] = useState(mockCourse);
 
   return (
     <main className="min-h-screen bg-[var(--color-bg)] flex flex-col items-center py-8 px-2 sm:px-4">
@@ -84,7 +84,7 @@ export default function CourseOverviewPage() {
 
         {/* Acción */}
         <div className="flex flex-col sm:flex-row gap-4 justify-end items-center">
-          <Link href={`/courses/lessons`}>
+          <Link href={`/courses/${course.id}/lessons`}>
             <Button className="btn-primary px-8 py-3 rounded-lg text-lg font-bold w-full sm:w-auto">
               Continuar curso
             </Button>

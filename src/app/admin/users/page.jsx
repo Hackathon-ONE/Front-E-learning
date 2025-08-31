@@ -1,90 +1,139 @@
 "use client";
 
-import { useState, useEffect } from "react";
-import Card from "@/components/ui/Card";
-import Button from "@/components/ui/Button";
-import { User, Mail, Shield, Edit, Trash } from "lucide-react";
+import { useState } from "react";
 
 export default function UsersPage() {
-  // Estado local con datos HARDCODEADOS
   const [users, setUsers] = useState([
-    {
-      id: 1,
-      name: "Juan Pérez",
-      email: "juan@example.com",
-      role: "Administrador",
-    },
-    {
-      id: 2,
-      name: "María Gómez",
-      email: "maria@example.com",
-      role: "Editor",
-    },
-    {
-      id: 3,
-      name: "Carlos Ruiz",
-      email: "carlos@example.com",
-      role: "Usuario",
-    },
+    { id: 1, name: "Juan Pérez", email: "juan@example.com", role: "student" },
+    { id: 2, name: "María López", email: "maria@example.com", role: "instructor" },
+    { id: 3, name: "Carlos Admin", email: "admin@example.com", role: "admin" },
   ]);
 
-  // 🚀 Aquí luego podrás traer los datos desde tu backend o DB
-  /*
-  useEffect(() => {
-    fetch("/api/users")
-      .then(res => res.json())
-      .then(data => setUsers(data))
-      .catch(err => console.error("Error al cargar usuarios", err));
-  }, []);
-  */
+  const [selectedUser, setSelectedUser] = useState(null);
+
+  const handleEdit = (user) => {
+    setSelectedUser({ ...user });
+  };
+
+  const handleSave = () => {
+    setUsers((prev) =>
+      prev.map((u) => (u.id === selectedUser.id ? selectedUser : u))
+    );
+    setSelectedUser(null);
+  };
 
   return (
-    <div className="p-4 md:p-8">
-      <h1 className="text-2xl font-bold mb-2">Gestión de Usuarios</h1>
-      <p className="text-gray-400 mb-6">
-        Administra los usuarios registrados en la plataforma.
-      </p>
+    <main className="min-h-screen bg-[var(--color-bg)] text-[var(--color-text)] p-4 md:p-6">
+      <section className="max-w-6xl mx-auto">
+        <h1 className="text-2xl md:text-3xl font-bold mb-6 text-center md:text-left">
+          Gestión de Usuarios
+        </h1>
 
-      <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-        {users.map((user) => (
-          <Card
-            key={user.id}
-            className="p-4 flex flex-col justify-between rounded-2xl shadow-md bg-[var(--card-bg)] border border-[var(--border-color)]"
-          >
-            <div className="flex items-center gap-3 mb-3">
-              <User className="w-10 h-10 text-[var(--primary-color)]" />
-              <div>
-                <h2 className="font-semibold text-lg">{user.name}</h2>
-                <p className="text-sm text-gray-400 flex items-center gap-1">
-                  <Mail size={14} /> {user.email}
-                </p>
-                <p className="text-sm text-gray-500 flex items-center gap-1">
-                  <Shield size={14} /> {user.role}
-                </p>
+        {/* Tabla responsive */}
+        <div className="overflow-x-auto rounded-xl shadow-sm border border-[var(--color-muted)]">
+          <table className="w-full border-collapse text-sm md:text-base">
+            <thead className="bg-[var(--color-surface)] text-left">
+              <tr>
+                <th className="p-3 md:p-4">Nombre</th>
+                <th className="p-3 md:p-4">Email</th>
+                <th className="p-3 md:p-4">Rol</th>
+                <th className="p-3 md:p-4 text-right">Acciones</th>
+              </tr>
+            </thead>
+            <tbody>
+              {users.map((user) => (
+                <tr
+                  key={user.id}
+                  className="border-t border-[var(--color-muted)] hover:bg-[var(--color-card-secondary)] transition"
+                >
+                  <td className="p-3 md:p-4">{user.name}</td>
+                  <td className="p-3 md:p-4">{user.email}</td>
+                  <td className="p-3 md:p-4 capitalize">{user.role}</td>
+                  <td className="p-3 md:p-4 text-right">
+                    <button
+                      onClick={() => handleEdit(user)}
+                      className="px-3 py-1.5 md:px-4 md:py-2 rounded-lg btn-primary text-sm md:text-base"
+                    >
+                      Editar
+                    </button>
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+
+        {/* Modal responsivo */}
+        {selectedUser && (
+          <div className="fixed inset-0 bg-black/50 flex justify-center items-center z-50 px-4">
+            <div className="bg-[var(--color-surface)] dark:bg-[var(--color-card-secondary)] rounded-xl p-6 w-full max-w-lg shadow-xl">
+              <h2 className="text-xl md:text-2xl font-bold mb-4 text-center md:text-left">
+                Editar Usuario
+              </h2>
+
+              <div className="space-y-4">
+                {/* Nombre */}
+                <div>
+                  <label className="block mb-1 text-sm">Nombre</label>
+                  <input
+                    type="text"
+                    value={selectedUser.name}
+                    onChange={(e) =>
+                      setSelectedUser({ ...selectedUser, name: e.target.value })
+                    }
+                    className="w-full p-2.5 md:p-3 rounded-lg border border-[var(--color-muted)] bg-[var(--color-card-primary)] text-[var(--color-card-primary-text)] text-sm md:text-base"
+                  />
+                </div>
+
+                {/* Email */}
+                <div>
+                  <label className="block mb-1 text-sm">Email</label>
+                  <input
+                    type="email"
+                    value={selectedUser.email}
+                    onChange={(e) =>
+                      setSelectedUser({ ...selectedUser, email: e.target.value })
+                    }
+                    className="w-full p-2.5 md:p-3 rounded-lg border border-[var(--color-muted)] bg-[var(--color-card-primary)] text-[var(--color-card-primary-text)] text-sm md:text-base"
+                  />
+                </div>
+
+                {/* Rol */}
+                <div>
+                  <label className="block mb-1 text-sm">Rol</label>
+                  <select
+                    value={selectedUser.role}
+                    onChange={(e) =>
+                      setSelectedUser({ ...selectedUser, role: e.target.value })
+                    }
+                    className="w-full p-2.5 md:p-3 rounded-lg border border-[var(--color-muted)] bg-[var(--color-card-primary)] text-[var(--color-card-primary-text)] text-sm md:text-base"
+                  >
+                    <option value="student">Estudiante</option>
+                    <option value="instructor">Instructor</option>
+                    <option value="admin">Admin</option>
+                  </select>
+                </div>
+              </div>
+
+              {/* Botones */}
+              <div className="flex flex-col md:flex-row justify-end gap-3 mt-6">
+                <button
+                  onClick={() => setSelectedUser(null)}
+                  className="px-4 py-2 rounded-lg bg-[var(--color-secondary)] text-[var(--color-secondary-text)] hover:bg-[var(--color-secondary-hover)] hover:text-[var(--color-secondary-hover-text)] w-full md:w-auto"
+                >
+                  Cancelar
+                </button>
+                <button
+                  onClick={handleSave}
+                  className="px-4 py-2 rounded-lg btn-primary w-full md:w-auto"
+                >
+                  Guardar
+                </button>
               </div>
             </div>
-
-            <div className="flex justify-end gap-2">
-              <Button
-                variant="outline"
-                size="sm"
-                className="flex items-center gap-1"
-              // onClick={() => handleEdit(user.id)}
-              >
-                <Edit size={16} /> Editar
-              </Button>
-              <Button
-                variant="destructive"
-                size="sm"
-                className="flex items-center gap-1"
-              // onClick={() => handleDelete(user.id)}
-              >
-                <Trash size={16} /> Eliminar
-              </Button>
-            </div>
-          </Card>
-        ))}
-      </div>
-    </div>
+          </div>
+        )}
+      </section>
+    </main>
   );
 }

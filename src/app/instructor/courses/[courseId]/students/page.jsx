@@ -62,13 +62,13 @@ export default function ProgressReportsPage() {
             Reportes de Progreso de Cursos
           </h1>
 
-          <div className="overflow-x-auto rounded-xl shadow-md border border-[var(--color-muted)]">
+          <div className="overflow-x-auto rounded-xl shadow-xs border border-[var(--color-muted)]">
             <table className="w-full border-collapse text-sm md:text-base">
               <thead className="bg-[var(--color-surface)]">
                 <tr>
-                  <th className="p-4 text-left">Curso</th>
-                  <th className="p-4 text-left">Estudiantes</th>
-                  <th className="p-4 text-left">Progreso</th>
+                  <th className="p-4 text-left text-[var(--color-text)]">Curso</th>
+                  <th className="p-4 text-left text-[var(--color-text)]">Estudiantes</th>
+                  <th className="p-4 text-left text-[var(--color-text)]">Progreso</th>
                 </tr>
               </thead>
               <tbody>
@@ -77,15 +77,15 @@ export default function ProgressReportsPage() {
                     key={course.id}
                     className="border-t border-[var(--color-muted)] hover:bg-[var(--color-card-secondary)] transition"
                   >
-                    <td className="p-4 font-medium">{course.title}</td>
-                    <td className="p-4 flex items-center gap-2">
-                      <Users className="w-4 h-4 text-[var(--color-muted)]" />
+                    <td className="p-4 font-medium text-gray-500">{course.title}</td>
+                    <td className="p-4 flex items-center gap-2 text-gray-500">
+                      <Users className="w-4 h-4 text-gray-500" />
                       {course.students}
                     </td>
                     <td className="p-4 w-64">
                       <div className="w-full bg-[var(--color-card-secondary)] rounded-full h-4 overflow-hidden">
                         <div
-                          className="h-4 rounded-full"
+                          className="h-4 rounded-full text-gray-500"
                           style={{
                             width: `${course.progress}%`,
                             backgroundColor: "var(--color-progress)",
@@ -134,9 +134,9 @@ export default function ProgressReportsPage() {
                         className="border-t hover:bg-[var(--color-surface)] transition"
                         style={{ borderColor: "var(--color-surface)" }}
                       >
-                        <td className="p-3">{s.name}</td>
-                        <td className="p-3">{s.email}</td>
-                        <td className="p-3">
+                        <td className="p-3 text-gray-500">{s.name}</td>
+                        <td className="p-3 text-gray-500">{s.email}</td>
+                        <td className="p-3 text-gray-500">
                           {s.courseTitle || (
                             <span className="text-gray-400">
                               Sin curso asignado

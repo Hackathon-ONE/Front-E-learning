@@ -2,7 +2,7 @@
 
 import { X } from "lucide-react";
 
-export default function Modal({ isOpen, title, content, onClose }) {
+export default function useModal({ isOpen, title, content, onClose }) {
   if (!isOpen) return null;
 
   return (

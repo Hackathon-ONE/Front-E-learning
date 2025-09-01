@@ -3,7 +3,7 @@
 import { useState } from "react";
 import Link from "next/link";
 import { Lock, PlayCircle, Star } from "lucide-react";
-import Modal from "@/components/Modal";
+import useModal from "@/hooks/useModal";
 
 export default function DemoPage() {
   const [currentLesson, setCurrentLesson] = useState(0);
@@ -114,7 +114,7 @@ export default function DemoPage() {
       </section>
 
       {/* Modal dinámico */}
-      <Modal
+      <useModal
         isOpen={isOpen}
         title={modalTitle}
         content={`La lección "${blockedLesson?.title}" está disponible solo para usuarios con suscripción activa.`}

@@ -5,6 +5,7 @@ import Link from "next/link";
 import ThemeToggle from "./ThemeToggle";
 import { MenuIcon, XIcon, CircleUserRound } from "lucide-react";
 import { useSession, signOut } from "next-auth/react";
+import { useRouter } from "next/navigation";
 
 export default function Navbar() {
   const [mobileOpen, setMobileOpen] = useState(false);
@@ -13,130 +14,70 @@ export default function Navbar() {
 
   const { data: session } = useSession();
   const user = session?.user;
+  const router = useRouter();
 
-  // Rutas segun rol
-  const roleRoutes = {
-    student: "/students",
-    instructor: "/instructor/dashboard",
-    admin: "/admin/dashboard",
-  };
-
-  useEffect(() => {
-    setMounted(true);
-  }, []);
-
+  useEffect(() => setMounted(true), []);
   if (!mounted) return null;
+
+  const handleSignOut = () => {
+    signOut({ callbackUrl: "/" }); // redirige a /inicio
+  };
 
   return (
     <nav className="sticky top-0 z-50 bg-surface shadow-sm border-b border-primary">
       <div className="container mx-auto flex justify-between items-center p-4">
-        <Link href="/" className="text-xl font-bold text-primary">
+        {/* Logo */}
+        <Link href="/" className="text-xl sm:text-2xl font-bold text-primary">
           🎓 E-Learning
         </Link>
 
-        {/* Desktop menu */}
+        {/* Desktop Menu */}
         <div className="hidden md:flex gap-6 items-center">
-          <Link href="/courses" className="text-foreground hover:text-primary transition">
-            Cursos
-          </Link>
-          <Link href="/about" className="text-foreground hover:text-primary transition">
-            Sobre Nosotros
-          </Link>
-          <Link href="/help/faq" className="text-foreground hover:text-primary transition">
-            FAQ
-          </Link>
+          {["/courses", "/about", "/help/faq"].map((href, i) => (
+            <Link
+              key={i}
+              href={href}
+              className="text-foreground hover:text-primary transition"
+            >
+              {href === "/courses" ? "Cursos" : href === "/about" ? "Sobre Nosotros" : "FAQ"}
+            </Link>
+          ))}
           <ThemeToggle />
 
-          {/* Dropdown user */}
+          {/* Dropdown Usuario */}
           <div className="relative">
             <button
+              aria-label="User menu"
+              aria-expanded={dropdownOpen}
               onClick={() => setDropdownOpen(!dropdownOpen)}
-              className="rounded-full p-1 hover:bg-secondary transition"
+              className="rounded-full p-1 hover:bg-secondary transition flex items-center gap-2"
             >
               {user?.image ? (
-                <div className="flex items-center gap-2">
+                <>
                   <img
                     src={user.image}
                     alt={user.name || "avatar"}
-                    className="w-9 h-9 rounded-full border"
+                    className="w-9 h-9 sm:w-8 sm:h-8 rounded-full border"
                   />
-                  <span className="text-sm text-foreground">{user.name}</span>
-                </div>
+                  <span className="text-sm text-foreground hidden lg:block">{user.name}</span>
+                </>
               ) : (
                 <CircleUserRound className="w-8 h-8 text-foreground hover:text-primary transition" />
               )}
             </button>
 
             {dropdownOpen && (
-              <div
-                className="absolute right-0 mt-2 w-48 
-                        bg-surface 
-                        dark:bg-surface 
-                        text-primary
-                        rounded-xl shadow-lg border border-muted p-2 z-50"
-              >
+              <div className="absolute right-0 mt-2 w-48 max-h-72 overflow-auto bg-surface dark:bg-surface text-primary rounded-xl shadow-lg border border-muted p-2 z-50 transition-all duration-300">
                 {!user ? (
                   <>
-                    <Link
-                      href="/auth/login"
-                      className="block rounded-md px-3 py-2 hover:bg-secondary"
-                    >
-                      Iniciar sesión
-                    </Link>
-                    <Link
-                      href="/demo"
-                      className="block rounded-md px-3 py-2 hover:bg-secondary"
-                    >
-                      Demo gratis
-                    </Link>
+                    <Link href="/auth/login" className="block rounded-md px-3 py-2 hover:bg-secondary">Iniciar sesión</Link>
+                    <Link href="/demo" className="block rounded-md px-3 py-2 hover:bg-secondary">Demo gratis</Link>
                   </>
                 ) : (
                   <>
-                    {/* Dashboard según rol */}
-                    <Link
-                      href={roleRoutes[user.role] || "/dashboard"}
-                      className="block rounded-md px-3 py-2 hover:bg-secondary"
-                    >
-                      Dashboard
-                    </Link>
-
-                    {user.role === "student" && (
-                      <Link
-                        href="/students/courses"
-                        className="block rounded-md px-3 py-2 hover:bg-secondary"
-                      >
-                        Mis Inscripciones
-                      </Link>
-                    )}
-                    {user.role === "instructor" && (
-                      <Link
-                        href="/instructor/courses"
-                        className="block rounded-md px-3 py-2 hover:bg-secondary"
-                      >
-                        Mis Cursos
-                      </Link>
-                    )}
-                    {user.role === "admin" && (
-                      <Link
-                        href="/admin/users"
-                        className="block rounded-md px-3 py-2 hover:bg-secondary"
-                      >
-                        Gestión de Usuarios
-                      </Link>
-                    )}
-
-                    <Link
-                      href="/dashboard/settings"
-                      className="block rounded-md px-3 py-2 hover:bg-secondary"
-                    >
-                      Settings
-                    </Link>
-                    <button
-                      onClick={() => signOut()}
-                      className="w-full text-left rounded-md px-3 py-2 hover:bg-secondary"
-                    >
-                      Cerrar sesión
-                    </button>
+                    <Link href="/inicio" className="block rounded-md px-3 py-2 hover:bg-secondary">Inicio</Link>
+                    <Link href="/dashboard/settings" className="block rounded-md px-3 py-2 hover:bg-secondary">Settings</Link>
+                    <button onClick={handleSignOut} className="w-full text-left rounded-md px-3 py-2 hover:bg-secondary">Cerrar sesión</button>
                   </>
                 )}
               </div>
@@ -144,8 +85,9 @@ export default function Navbar() {
           </div>
         </div>
 
-        {/* Mobile button */}
+        {/* Mobile Button */}
         <button
+          aria-label="Toggle menu"
           className="md:hidden text-2xl"
           onClick={() => setMobileOpen(!mobileOpen)}
         >
@@ -153,99 +95,48 @@ export default function Navbar() {
         </button>
       </div>
 
-      {/* Mobile dropdown */}
-      {mobileOpen && (
-        <div className="md:hidden bg-surface px-4 pb-4 flex flex-col gap-2">
-          {user?.image ? (
-            <div className="flex items-center gap-2 mb-2">
-              <img
-                src={user.image}
-                alt={user.name || "avatar"}
-                className="w-9 h-9 rounded-full border"
-              />
-              <span className="text-sm text-foreground">{user.name}</span>
-            </div>
-          ) : (
-            <CircleUserRound className="w-8 h-8 text-foreground hover:text-primary transition mb-2" />
-          )}
-
-          <Link href="/courses" className="text-foreground hover:text-primary transition">
-            Cursos
-          </Link>
-          <Link href="/about" className="text-foreground hover:text-primary transition">
-            Sobre Nosotros
-          </Link>
-          <Link href="/help/faq" className="text-foreground hover:text-primary transition">
-            FAQ
-          </Link>
-
-          {user && (
-            <Link
-              href={roleRoutes[user.role] || "/dashboard"}
-              className="text-foreground hover:text-primary transition"
-            >
-              Dashboard
-            </Link>
-          )}
+      {/* Mobile Menu */}
+      <div
+        className={`md:hidden bg-surface px-4 pb-4 flex flex-col gap-3 transition-all duration-300 ${
+          mobileOpen ? "max-h-screen opacity-100" : "max-h-0 opacity-0 overflow-hidden"
+        }`}
+      >
+        {/* Usuario + ThemeToggle */}
+        <div className="flex justify-between items-center py-2 border-b border-muted">
+          <div className="flex items-center gap-2">
+            {user?.image ? (
+              <img src={user.image} alt={user.name || "avatar"} className="w-9 h-9 rounded-full border" />
+            ) : (
+              <CircleUserRound className="w-8 h-8 text-foreground" />
+            )}
+            {user && <span className="text-sm text-foreground font-medium">{user.name}</span>}
+          </div>
           <ThemeToggle />
+        </div>
 
+        {/* Links principales */}
+        <div className="flex flex-col gap-2 mt-2">
+          <Link href="/courses" className="px-4 py-2 hover:bg-secondary rounded-lg">Cursos</Link>
+          <Link href="/about" className="px-4 py-2 hover:bg-secondary rounded-lg">Sobre Nosotros</Link>
+          <Link href="/help/faq" className="px-4 py-2 hover:bg-secondary rounded-lg">FAQ</Link>
+        </div>
+
+        {/* Links de usuario */}
+        <div className="flex flex-col gap-2 mt-2">
           {!user ? (
-            <div className="flex flex-col gap-2 mt-2">
-              <Link
-                href="/auth/login"
-                className="px-4 py-2 bg-secondary rounded-lg hover:bg-secondary transition"
-              >
-                Iniciar sesión
-              </Link>
-              <Link
-                href="/demo"
-                className="px-4 py-2 bg-secondary rounded-lg hover:bg-secondary transition"
-              >
-                Demo gratis
-              </Link>
-            </div>
+            <>
+              <Link href="/auth/login" className="px-4 py-2 bg-secondary rounded-lg text-center">Iniciar sesión</Link>
+              <Link href="/demo" className="px-4 py-2 bg-secondary rounded-lg text-center">Demo gratis</Link>
+            </>
           ) : (
-            <div className="flex flex-col gap-2 mt-2">
-              {user.role === "student" && (
-                <Link
-                  href="/students/courses"
-                  className="px-4 py-2 hover:bg-secondary rounded-lg"
-                >
-                  Mis Inscripciones
-                </Link>
-              )}
-              {user.role === "instructor" && (
-                <Link
-                  href="/instructor/courses"
-                  className="px-4 py-2 hover:bg-secondary rounded-lg"
-                >
-                  Mis Cursos
-                </Link>
-              )}
-              {user.role === "admin" && (
-                <Link
-                  href="/admin/users"
-                  className="px-4 py-2 hover:bg-secondary rounded-lg"
-                >
-                  Gestión de Usuarios
-                </Link>
-              )}
-              <Link
-                href="/dashboard/settings"
-                className="px-4 py-2 hover:bg-secondary rounded-lg"
-              >
-                Settings
-              </Link>
-              <button
-                onClick={() => signOut()}
-                className="px-4 py-2 hover:bg-secondary rounded-lg text-left w-full"
-              >
-                Cerrar sesión
-              </button>
-            </div>
+            <>
+              <Link href="/" className="px-4 py-2 hover:bg-secondary rounded-lg text-center">Inicio</Link>
+              <Link href="/dashboard/settings" className="px-4 py-2 hover:bg-secondary rounded-lg text-center">Settings</Link>
+              <button onClick={handleSignOut} className="px-4 py-2 hover:bg-secondary rounded-lg text-center w-full">Cerrar sesión</button>
+            </>
           )}
         </div>
-      )}
+      </div>
     </nav>
   );
 }

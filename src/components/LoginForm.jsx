@@ -46,7 +46,7 @@ export default function LoginForm() {
     }
 
     // 👇 Obtenemos el session para saber el rol
-    const sessionRes = await fetch("/api/auth/session");
+    const sessionRes = await fetch("/auth/session");
     const session = await sessionRes.json();
     const role = session?.user?.role || "student";
 

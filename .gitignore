@@ -39,7 +39,10 @@ yarn-error.log*
 # test env files
 .env.test.local
 # development env files
-.env.development.local
+.env.development.local+
+
+genkit/*
+.env*
 
 # vercel
 .vercel

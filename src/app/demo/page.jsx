@@ -10,7 +10,7 @@ export default function DemoPage() {
   const [blockedLesson, setBlockedLesson] = useState(null);
 
   const lessons = [
-    { id: 0, title: "Introducción al curso", free: true, video: "https://www.w3schools.com/html/mov_bbb.mp4" },
+    { id: 0, title: "Introducción al curso", free: true, video: "./video/Video_Demo.mp4" },
     { id: 1, title: "Lección 1: Conceptos básicos", free: false },
     { id: 2, title: "Lección 2: Ejercicios prácticos", free: false },
     { id: 3, title: "Lección 3: Proyecto final", free: false },

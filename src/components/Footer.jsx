@@ -3,6 +3,7 @@
 import { Facebook, Twitter, Instagram, Linkedin } from "lucide-react";
 import Link from "next/link";
 import Button from "./ui/Button";
+import Image from "next/image";
 
 export default function Footer() {
   return (
@@ -11,7 +12,14 @@ export default function Footer() {
         {/* Marca y redes */}
         <div className="flex flex-col items-start min-w-0">
           <Link href="/" className="text-xl mt-6 mb-6 font-bold text-[var(--color-primary)] whitespace-nowrap">
-            🎓 E-Learning
+            <Image
+              src="/Logo.png"
+              alt="Logo"
+              width={148}
+              height={148}
+              priority
+              unoptimized
+            />
           </Link>
           <p className="text-gray-300 text-sm mb-4 break-words">
             Plataforma líder para aprender y enseñar en línea con cursos de calidad y materiales interactivos.
@@ -42,6 +50,7 @@ export default function Footer() {
           <ul className="flex flex-col gap-2 text-sm md:text-md text-gray-300 text-center md:text-left">
             <li><Link href="/help/terms" className="hover:text-[var(--color-primary)] transition">Términos y Condiciones</Link></li>
             <li><Link href="/help/policies" className="hover:text-[var(--color-primary)] transition">Políticas de Privacidad</Link></li>
+            <li><Link href="/help/cookies" className="hover:text-[var(--color-primary)] transition">Política de Cookies</Link></li>
           </ul>
         </div>
 
@@ -66,7 +75,7 @@ export default function Footer() {
 
       {/* Footer bottom */}
       <div className="border-t border-gray-700 mt-4 py-4 text-center text-gray-400 text-sm overflow-x-hidden">
-        © {new Date().getFullYear()} E-Learning Platform. Todos los derechos reservados.
+        © {new Date().getFullYear()} Lumina Platform. Todos los derechos reservados.
       </div>
     </footer>
   );

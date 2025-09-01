@@ -1,10 +1,9 @@
 "use client";
 
 import React, { useState, useRef, useEffect } from 'react';
-import { FaPaperPlane, FaCommentDots, FaTimes } from 'react-icons/fa';
+import { FaPaperPlane, FaTimes } from 'react-icons/fa';
 import Link from 'next/link';
 import Image from 'next/image';
-import logochat from '../assets/logochat.png';
 import { knowledgeBase } from '../app/chatbot/knowledgeBase';
 
 export default function Chatbot() {
@@ -20,7 +19,7 @@ export default function Chatbot() {
   useEffect(() => {
     if (isOpen) {
       setMessages([
-        { id: Date.now(), text: '¡Hola! Soy tu Bot de E-learning. ¿En qué puedo ayudarte?', sender: 'bot' }
+        { id: Date.now(), text: '¡Hola! Soy Lumi. ¿En qué puedo ayudarte?', sender: 'bot' }
       ]);
     } else {
       setMessages([]);
@@ -30,7 +29,16 @@ export default function Chatbot() {
   const processMessage = (text) => {
     const lowerText = text.toLowerCase();
     const match = knowledgeBase.find(r => r.keywords.some(k => lowerText.includes(k)));
-    return match ? match.response : "No entendí tu pregunta. Prueba con palabras clave como 'inicio' o 'login'.";
+    if (match) {
+      return (
+        <Link href={match.path} className="text-gray-500 hover:text-[var(--color-primary)]">
+          {match.response.replace(match.path, '')} {/* opcional: quitar ruta si estaba en el texto */}
+        </Link>
+      );
+    }
+  
+    const faqMatch = faqKnowledgeBase.find(r => r.keywords.some(k => lowerText.includes(k)));
+    return faqMatch ? faqMatch.answer : "No entendí tu pregunta. Prueba con palabras clave como 'inicio' o 'login'.";
   };
 
   const handleSendMessage = (e) => {
@@ -50,10 +58,10 @@ export default function Chatbot() {
         className="fixed bottom-5 right-5 w-14 h-14 bg-[var(--color-primary)] text-[var(--color-primary-text)] rounded-full flex items-center justify-center shadow-lg z-50 hover:scale-110 transition-transform"
       >
         <Image 
-        src={logochat} 
+        src="/Lumi.png" 
         alt="Logo" 
-        width={36} 
-        height={36}
+        width={50} 
+        height={50}
         className="items-center border-black" 
         priority 
         unoptimized
@@ -68,14 +76,14 @@ export default function Chatbot() {
     <div className="flex items-center justify-between bg-[var(--color-primary)] text-[var(--color-primary-text)] p-3 sm:p-4 font-bold">
      <div className="flex items-center space-x-2">
       <Image 
-        src={logochat} 
+        src="/Lumi.png" 
         alt="Logo" 
-        width={40} 
-        height={40} 
+        width={50} 
+        height={50} 
         priority 
         unoptimized 
       />
-      <span className="text-sm sm:text-base md:text-lg">Bot de E-learning</span>
+      <span className="text-sm sm:text-base md:text-lg">Lumi</span>
     </div>
     <button onClick={() => setIsOpen(false)} className="text-gray-500 text-xl sm:text-2xl">
       <FaTimes />
@@ -86,15 +94,15 @@ export default function Chatbot() {
    <div className="flex-grow p-2 sm:p-4 overflow-y-auto flex flex-col text-gray-500 gap-2 bg-[var(--color-bg)]">
     {messages.map(msg => (
       <div
-        key={msg.id}
-        className={`p-2 sm:p-3 rounded-lg max-w-[80%] break-words text-sm sm:text-base text-gray-500 leading-relaxed ${
-          msg.sender === 'user'
-            ? 'bg-[var(--color-primary)] text-[var(--color-primary-text)] self-end rounded-br-sm'
-            : 'bg-[var(--color-card-primary)] text-[var(--color-text)] self-start rounded-bl-sm'
-        }`}
-      >
-        {msg.text}
-      </div>
+      key={msg.id}
+      className={`p-3 rounded-lg max-w-[80%] break-words text-gray-500 text-sm leading-relaxed ${
+        msg.sender === 'user'
+          ? 'bg-[var(--color-primary)] text-[var(--color-primary-text)] self-end rounded-br-sm'
+          : 'bg-[var(--color-card-primary)] text-[var(--color-text)] self-start rounded-bl-sm'
+      }`}
+    >
+      {msg.text}
+    </div>
     ))}
     <div ref={messagesEndRef} />
    </div>

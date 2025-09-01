@@ -6,6 +6,7 @@ import ThemeToggle from "./ThemeToggle";
 import { MenuIcon, XIcon, CircleUserRound } from "lucide-react";
 import { useSession, signOut } from "next-auth/react";
 import { useRouter } from "next/navigation";
+import Image from "next/image";
 
 export default function Navbar() {
   const [mobileOpen, setMobileOpen] = useState(false);
@@ -27,8 +28,18 @@ export default function Navbar() {
     <nav className="sticky top-0 z-50 bg-surface shadow-sm border-b border-primary">
       <div className="container mx-auto flex justify-between items-center p-4">
         {/* Logo */}
-        <Link href="/" className="text-xl sm:text-2xl font-bold text-primary">
-          🎓 E-Learning
+        <Link href="/" className="flex items-center space-x-2">
+          <Image
+            src="/Logo.png"
+            alt="Logo"
+            width={48}
+            height={48}
+            priority
+            unoptimized
+          />
+          <span className="text-xl sm:text-2xl font-bold text-primary">
+            E-Learning
+          </span>
         </Link>
 
         {/* Desktop Menu */}

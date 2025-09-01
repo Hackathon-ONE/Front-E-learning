@@ -6,7 +6,7 @@ import { useState } from "react";
 export default function LessonPlayerPage() {
   const { courseId, lessonId } = useParams();
 
-  // 🔹 Mock de datos (normalmente estos vienen del backend)
+  // 🔹 Mock de datos (esto vendrá del backend)
   const lessons = [
     { id: "1", title: "Presentación", duration: "08 min" },
     { id: "2", title: "Preparando el ambiente", duration: "12 min" },
@@ -17,21 +17,23 @@ export default function LessonPlayerPage() {
 
   return (
     <div
-      className="flex h-screen"
+      className="flex flex-col md:flex-row h-screen"
       style={{ backgroundColor: "var(--color-bg)", color: "var(--color-text)" }}
     >
       {/* 📑 Sidebar lecciones */}
       <aside
-        className="w-1/4 p-6 overflow-y-auto"
+        className="w-full md:w-1/4 p-4 md:p-6 overflow-y-auto border-b md:border-b-0 md:border-r"
         style={{ backgroundColor: "var(--color-card-primary)" }}
       >
-        <h2 className="text-lg font-bold mb-4 text-gray-900 dark:text-gray-100">Contenido del curso</h2>
+        <h2 className="text-lg font-bold mb-4 text-gray-900 dark:text-gray-100">
+          Contenido del curso
+        </h2>
         <ul className="space-y-3">
           {lessons.map((lesson) => (
             <li
               key={lesson.id}
               onClick={() => setCurrentLesson(lesson.id)}
-              className={`p-3 rounded-lg cursor-pointer transition ${
+              className={`p-3 rounded-lg cursor-pointer transition text-sm sm:text-base ${
                 currentLesson === lesson.id
                   ? "font-semibold"
                   : "opacity-80 hover:opacity-100"
@@ -47,9 +49,11 @@ export default function LessonPlayerPage() {
                     : "var(--color-text)",
               }}
             >
-              <div className="flex justify-between">
+              <div className="flex justify-between items-center">
                 <span>{lesson.title}</span>
-                <span className="text-sm opacity-70">{lesson.duration}</span>
+                <span className="text-xs sm:text-sm opacity-70">
+                  {lesson.duration}
+                </span>
               </div>
             </li>
           ))}
@@ -58,22 +62,25 @@ export default function LessonPlayerPage() {
 
       {/* 🎬 Player */}
       <main className="flex-1 flex flex-col">
-        <div className="flex-1 flex items-center justify-center bg-black">
+        {/* Video Player */}
+        <div className="flex-1 flex items-center justify-center bg-black relative">
           <video
             key={currentLesson}
             controls
-            className="w-full h-full object-cover"
-            src={`/videos/${currentLesson}.mp4`} // ⚠️ aquí se conecta tu backend/CDN
+            className="w-full h-full object-contain sm:object-cover"
+            src={`/videos/${currentLesson}.mp4`} // ⚠️ conecta con tu backend/CDN real
           />
         </div>
+
+        {/* Info de la lección */}
         <div
-          className="p-4"
+          className="p-4 sm:p-6"
           style={{ backgroundColor: "var(--color-card-primary)" }}
         >
-          <h1 className="text-xl font-semibold text-gray-900 dark:text-gray-100">
+          <h1 className="text-lg sm:text-xl font-semibold text-gray-900 dark:text-gray-100">
             {lessons.find((l) => l.id === currentLesson)?.title}
           </h1>
-          <p className="text-sm opacity-75 mt-1 text-gray-900 dark:text-gray-100">
+          <p className="text-xs sm:text-sm opacity-75 mt-1 text-gray-900 dark:text-gray-100">
             Curso {courseId} · Lección {currentLesson}
           </p>
         </div>

@@ -36,9 +36,9 @@ export default function Hero() {
               Explorar cursos
             </Button>
           </Link>
-          <Link href="/instructor/dashboard">
+          <Link href="/instructor/apply">
             <Button variant="outline" size="lg">
-              Soy instructor
+              Quiero ser instructor
             </Button>
           </Link>
         </div>

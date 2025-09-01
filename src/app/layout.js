@@ -3,6 +3,7 @@ import { Ubuntu, Inter } from "next/font/google";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import { Providers } from "./Providers"; 
+import Chatbot from "@/components/Chatbot";
 
 const ubuntu = Ubuntu({
   weight: ["400", "700"],
@@ -29,6 +30,7 @@ export default function RootLayout({ children }) {
           <Navbar />
           <main className="min-h-screen">{children}</main>
           <Footer />
+          <Chatbot />
         </Providers>
       </body>
     </html>

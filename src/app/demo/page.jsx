@@ -2,12 +2,13 @@
 
 import { useState } from "react";
 import Link from "next/link";
-import { Lock, PlayCircle, X, Star } from "lucide-react";
-import { useModal } from "@/hooks/useModal";
+import { Lock, PlayCircle, Star } from "lucide-react";
+import Modal from "@/components/Modal";
 
 export default function DemoPage() {
   const [currentLesson, setCurrentLesson] = useState(0);
-  const { isOpen, title, content, openModal, closeModal } = useModal();
+  const [isOpen, setIsOpen] = useState(false);
+  const [modalTitle, setModalTitle] = useState("");
   const [blockedLesson, setBlockedLesson] = useState(null);
 
   const lessons = [
@@ -22,9 +23,16 @@ export default function DemoPage() {
       setCurrentLesson(lesson.id);
     } else {
       setBlockedLesson(lesson);
-      openModal();
+      openModal("Lección bloqueada");
     }
   };
+
+  const openModal = (title) => {
+    setModalTitle(title);
+    setIsOpen(true);
+  };
+
+  const closeModal = () => setIsOpen(false);
 
   return (
     <main className="min-h-screen bg-[var(--color-bg)] text-[var(--color-text)] p-4 md:p-8">
@@ -66,13 +74,13 @@ export default function DemoPage() {
                 <li
                   key={lesson.id}
                   onClick={() => handleLessonClick(lesson)}
-                  className={`flex items-center text-gray-500 justify-between p-3 rounded-lg cursor-pointer transition ${
+                  className={`flex items-center justify-between p-3 rounded-lg cursor-pointer transition ${
                     lesson.free
                       ? "bg-[var(--color-card-primary)] hover:bg-[var(--color-card-secondary)]"
                       : "bg-[var(--color-card-secondary)] opacity-80"
                   }`}
                 >
-                  <span className="text-xs md:text-sm flex items-center gap-2 text-gray-500">
+                  <span className="text-xs md:text-sm flex items-center gap-2">
                     {lesson.free ? (
                       <PlayCircle className="w-4 h-4 text-[var(--color-primary)]" />
                     ) : (
@@ -106,41 +114,12 @@ export default function DemoPage() {
       </section>
 
       {/* Modal dinámico */}
-      {showModal && (
-        <div className="fixed inset-0 bg-black/60 flex justify-center items-center z-50 p-4">
-          <div className="bg-[var(--color-surface)] rounded-xl shadow-xl max-w-md w-full p-6 relative">
-            <button
-              onClick={() => setShowModal(false)}
-              className="absolute top-3 right-3 text-[var(--color-muted)] hover:text-[var(--color-primary)]"
-            >
-              <X className="w-5 h-5" />
-            </button>
-
-            <h2 className="text-xl font-bold mb-3 flex items-center gap-2">
-              <Lock className="w-5 h-5" />
-              Lección bloqueada
-            </h2>
-            <p className="mb-4 text-[var(--color-muted)]">
-              <strong>{blockedLesson?.title}</strong> está disponible solo para
-              usuarios con suscripción activa.
-            </p>
-
-            <div className="flex flex-col gap-3">
-              <Link href="/payments" onClick={() => setShowModal(false)}>
-                <button className="w-full py-3 rounded-lg btn-primary flex items-center justify-center gap-2">
-                  <Star className="w-5 h-5" /> Suscribirme ahora
-                </button>
-              </Link>
-              <button
-                onClick={() => setShowModal(false)}
-                className="w-full py-3 rounded-lg bg-[var(--color-secondary)] text-[var(--color-secondary-text)] hover:bg-[var(--color-secondary-hover)] hover:text-[var(--color-secondary-hover-text)] flex items-center justify-center gap-2"
-              >
-                <PlayCircle className="w-5 h-5" /> Seguir explorando
-              </button>
-            </div>
-          </div>
-        </div>
-      )}
+      <Modal
+        isOpen={isOpen}
+        title={modalTitle}
+        content={`La lección "${blockedLesson?.title}" está disponible solo para usuarios con suscripción activa.`}
+        onClose={closeModal}
+      />
     </main>
   );
 }

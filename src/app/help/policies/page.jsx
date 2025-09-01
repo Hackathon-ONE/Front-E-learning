@@ -5,7 +5,7 @@ export default function PrivacyPolicy() {
     <main className="min-h-screen bg-background text-foreground py-12 px-6 md:px-20">
       <h1 className="text-3xl font-bold mb-6">Política de Privacidad</h1>
       <p className="mb-6">
-        En <strong>[Nombre de la Plataforma]</strong>, valoramos y respetamos tu
+        En <strong>Lumina</strong>, valoramos y respetamos tu
         privacidad. Esta Política de Privacidad describe cómo recopilamos,
         usamos y protegemos tu información personal cuando utilizas nuestra
         plataforma de aprendizaje en línea.
@@ -81,7 +81,7 @@ export default function PrivacyPolicy() {
         <h2 className="text-2xl font-semibold mb-3">7. Contacto</h2>
         <p>
           Si tienes dudas sobre esta Política de Privacidad, puedes escribirnos
-          a: <a href="mailto:soporte@tuplataforma.com" className="text-primary">soporte@tuplataforma.com</a>
+          a: <a href="mailto:soporte@lumina.com" className="text-primary">soporte@lumina.com</a>
         </p>
       </section>
     </main>

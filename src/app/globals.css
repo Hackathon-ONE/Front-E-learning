@@ -31,6 +31,8 @@
   --color-secondary-hover: #afabab;        /* Hover secondary */
   --color-secondary-hover-text: #333333;
 
+  --color-dropdown: #f2f8d6;
+
   /* Accents */
   --color-accent: #3d3f3e;
   --color-progress: #ff5400;
@@ -64,6 +66,8 @@
   --color-secondary-text: #ffffff;
   --color-secondary-hover: #3a4a6a;        /* Hover secondary */
   --color-secondary-hover-text: #ffffff;
+
+  --color-dropdown: #f2f8d6;
 
   /* Accents */
   --color-accent: #c9ce89ff;

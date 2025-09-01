@@ -25,21 +25,21 @@ export default function Navbar() {
   };
 
   return (
-    <nav className="sticky top-0 z-50 bg-surface shadow-sm border-b border-primary">
+    <nav className="sticky top-0 z-50 bg-[var(--color-surface)] shadow-md border-b border-primary">
       <div className="container mx-auto flex justify-between items-center p-4">
         {/* Logo */}
         <Link href="/" className="flex items-center space-x-2">
           <Image
             src="/Logo.png"
             alt="Logo"
-            width={48}
-            height={48}
+            width={108}
+            height={108}
             priority
             unoptimized
           />
-          <span className="text-xl sm:text-2xl font-bold text-primary">
-            E-Learning
-          </span>
+          {/* <span className="text-xl sm:text-2xl font-bold text-primary">
+            LUMINA
+          </span> */}
         </Link>
 
         {/* Desktop Menu */}
@@ -78,11 +78,11 @@ export default function Navbar() {
             </button>
 
             {dropdownOpen && (
-              <div className="absolute right-0 mt-2 w-48 max-h-72 overflow-auto bg-surface dark:bg-surface text-primary rounded-xl shadow-lg border border-muted p-2 z-50 transition-all duration-300">
+              <div className="absolute right-0 mt-2 w-48 max-h-72 overflow-auto bg-[var(--color-surface)] dark:bg-surface text-primary rounded-xl shadow-lg border border-muted p-2 z-50 transition-all duration-300">
                 {!user ? (
                   <>
-                    <Link href="/auth/login" className="block rounded-md px-3 py-2 hover:bg-secondary">Iniciar sesión</Link>
-                    <Link href="/demo" className="block rounded-md px-3 py-2 hover:bg-secondary">Demo gratis</Link>
+                    <Link href="/auth/login" className="block rounded-md px-3 py-2 hover:bg-[var(--color-dropdown)]">Iniciar sesión</Link>
+                    <Link href="/demo" className="block rounded-md px-3 py-2 hover:bg-[var(--color-dropdown)]">Demo gratis</Link>
                   </>
                 ) : (
                   <>
@@ -108,8 +108,8 @@ export default function Navbar() {
 
       {/* Mobile Menu */}
       <div
-        className={`md:hidden bg-surface px-4 pb-4 flex flex-col gap-3 transition-all duration-300 ${
-          mobileOpen ? "max-h-screen opacity-100" : "max-h-0 opacity-0 overflow-hidden"
+        className={`md:hidden bg-[var(--color-surface)] px-4 pb-4 flex flex-col gap-3 transition-all duration-300 ${
+          mobileOpen ? "max-h-screen opacity-90" : "max-h-0 opacity-0 overflow-hidden"
         }`}
       >
         {/* Usuario + ThemeToggle */}
@@ -136,8 +136,8 @@ export default function Navbar() {
         <div className="flex flex-col gap-2 mt-2">
           {!user ? (
             <>
-              <Link href="/auth/login" className="px-4 py-2 bg-secondary rounded-lg text-center">Iniciar sesión</Link>
-              <Link href="/demo" className="px-4 py-2 bg-secondary rounded-lg text-center">Demo gratis</Link>
+              <Link href="/auth/login" className="px-4 py-2 bg-[var(--color-dropdown)] rounded-lg text-center">Iniciar sesión</Link>
+              <Link href="/demo" className="px-4 py-2 bg-[var(--color-dropdown)] rounded-lg text-center">Demo gratis</Link>
             </>
           ) : (
             <>

@@ -1,19 +1,22 @@
 {
-  "name": "front-elearning",
+  "name": "front-lumina",
   "version": "0.1.0",
   "private": true,
-  "description": "A front-end e-learning application built with Next.js, React, and Tailwind CSS.",
-  "author": "E-Learning Team",
+  "description": "A front-end Lumina application built with Next.js, React, and Tailwind CSS.",
+  "author": "Lumina Team",
   "license": "MIT",
   "repository": {
     "type": "git",
     "url": "https://github.com/Hackathon-ONE/Front-E-learning.git"
   },
   "scripts": {
-    "dev": "next dev --turbopack",
+    "dev": "next dev --turbopack -p 9002",
+    "genkit:dev": "genkit start -- tsx src/ai/dev.ts",
+    "genkit:watch": "genkit start -- tsx --watch src/ai/dev.ts",    
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
+    "typecheck": "tsc --noEmit",
     "test": "jest",
     "test:watch": "jest --watch",
     "test:coverage": "jest --coverage"
@@ -21,7 +24,12 @@
   "dependencies": {
     "@emotion/react": "^11.14.0",
     "@emotion/styled": "^11.14.1",
+    "@genkit-ai/googleai": "^1.14.1",
+    "@genkit-ai/next": "^1.14.1",
+    "genkit-cli": "^1.14.1",
+    "genkit": "^1.14.1",
     "@headlessui/react": "^2.2.7",
+    "@hookform/resolvers": "^4.1.3",
     "@mui/icons-material": "^7.3.1",
     "@mui/joy": "^5.0.0-beta.52",
     "@radix-ui/react-accordion": "^1.2.12",
@@ -39,6 +47,7 @@
     "@radix-ui/react-tooltip": "^1.2.8",
     "axios": "^1.11.0",
     "daisyui": "^5.0.50",
+    "dotenv": "^17.2.1",
     "framer-motion": "^12.23.12",
     "lucide-react": "^0.541.0",
     "next": "15.4.7",
@@ -51,7 +60,8 @@
     "react-icons": "^5.5.0",
     "react-intersection-observer": "^9.16.0",
     "recharts": "^3.1.2",
-    "swiper": "^11.2.10"
+    "swiper": "^11.2.10",
+    "zod": "^3.24.2"
   },
   "devDependencies": {
     "@eslint/eslintrc": "^3",

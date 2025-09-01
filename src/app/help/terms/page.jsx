@@ -89,7 +89,7 @@ export default function TermsPage() {
             <p>
               Si tienes preguntas sobre estos términos, puedes escribirnos a:{" "}
               <a href="mailto:soporte@tusitio.com" className="text-primary">
-                soporte@tusitio.com
+                soporte@lumina.com
               </a>
             </p>
           </section>

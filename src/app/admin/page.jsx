@@ -73,26 +73,26 @@ export default function AdminPage() {
         <div className="bg-[var(--color-card-primary)] shadow rounded-xl p-6">
           <h2 className="text-lg font-semibold text-[var(--color-card-primary-text)]">Usuarios</h2>
           <p className="text-3xl font-bold text-indigo-500">1,245</p>
-          <p className="text-[var(--color-muted)]">+12% este mes</p>
+          <p className="text-gray-500">+12% este mes</p>
         </div>
 
         <div className="bg-[var(--color-card-primary)] shadow rounded-xl p-6">
           <h2 className="text-lg font-semibold text-[var(--color-card-primary-text)]">Ventas</h2>
           <p className="text-3xl font-bold text-green-500">$8,460</p>
-          <p className="text-[var(--color-muted)]">+8% respecto al mes anterior</p>
+          <p className="text-gray-500">+8% respecto al mes anterior</p>
         </div>
 
         <div className="bg-[var(--color-card-primary)] shadow rounded-xl p-6">
           <h2 className="text-lg font-semibold text-[var(--color-card-primary-text)]">Tickets Soporte</h2>
           <p className="text-3xl font-bold text-red-500">34</p>
-          <p className="text-[var(--color-muted)]">-5% cerrados más rápido</p>
+          <p className="text-gray-500">-5% cerrados más rápido</p>
         </div>
 
         {/* Nuevo card de cursos */}
         <div className="bg-[var(--color-card-primary)] shadow rounded-xl p-6">
           <h2 className="text-lg font-semibold text-[var(--color-card-primary-text)]">Cursos Publicados</h2>
           <p className="text-3xl font-bold text-orange-500">58</p>
-          <p className="text-[var(--color-muted)]">+3 nuevos esta semana</p>
+          <p className="text-gray-500">+3 nuevos esta semana</p>
         </div>
       </div>
 
@@ -100,13 +100,13 @@ export default function AdminPage() {
       <div className="grid gap-6 lg:grid-cols-2">
         {/* Gráfico de línea */}
         <div className="bg-[var(--color-card-secondary)] shadow rounded-xl p-6">
-          <h2 className="text-lg font-semibold mb-4">Crecimiento de Usuarios y Ventas</h2>
+          <h2 className="text-lg font-semibold mb-4 text-[var(--color-card-primary-text)]">Crecimiento de Usuarios y Ventas</h2>
           <ResponsiveContainer width="100%" height={300}>
             <LineChart data={lineData}>
               <CartesianGrid strokeDasharray="3 3" stroke="var(--color-muted)" />
               <XAxis dataKey="name" />
               <YAxis />
-              <Tooltip />
+              <Tooltip contentStyle={{ backgroundColor: "var(--color-terciary)", color: "var(--color-primary-text)" }} />
               <Line type="monotone" dataKey="usuarios" stroke="#6366F1" strokeWidth={3} />
               <Line type="monotone" dataKey="ventas" stroke="#10B981" strokeWidth={3} />
             </LineChart>
@@ -115,7 +115,7 @@ export default function AdminPage() {
 
         {/* Gráfico de pastel */}
         <div className="bg-[var(--color-card-secondary)] shadow rounded-xl p-6">
-          <h2 className="text-lg font-semibold mb-4">Estado de Usuarios</h2>
+          <h2 className="text-lg font-semibold mb-4 text-[var(--color-card-primary-text)]">Estado de Usuarios</h2>
           <ResponsiveContainer width="100%" height={300}>
             <PieChart>
               <Pie
@@ -131,7 +131,7 @@ export default function AdminPage() {
                   <Cell key={`cell-${index}`} fill={COLORS[index]} />
                 ))}
               </Pie>
-              <Tooltip />
+              <Tooltip contentStyle={{ backgroundColor: "var(--color-terciary)", color: "var(--color-primary-text)" }} />
               <Legend />
             </PieChart>
           </ResponsiveContainer>
@@ -140,13 +140,13 @@ export default function AdminPage() {
 
       {/* Gráfico de barras */}
       <div className="bg-[var(--color-card-secondary)] shadow rounded-xl p-6">
-        <h2 className="text-lg font-semibold mb-4">Cursos más populares</h2>
+        <h2 className="text-lg font-semibold mb-4 text-[var(--color-card-primary-text)]">Cursos más populares</h2>
         <ResponsiveContainer width="100%" height={300}>
           <BarChart data={barData}>
             <CartesianGrid strokeDasharray="3 3" stroke="var(--color-muted)" />
             <XAxis dataKey="name" />
             <YAxis />
-            <Tooltip />
+            <Tooltip contentStyle={{ backgroundColor: "var(--color-terciary)", color: "var(--color-primary-text)" }} />
             <Bar dataKey="estudiantes" fill="var(--color-primary)" radius={[6, 6, 0, 0]} />
           </BarChart>
         </ResponsiveContainer>
@@ -154,15 +154,15 @@ export default function AdminPage() {
 
       {/* Tabla de solicitudes de instructores */}
       <div className="bg-[var(--color-card-secondary)] shadow rounded-xl p-6">
-        <h2 className="text-lg font-semibold mb-4">Solicitudes recientes de Instructores</h2>
+        <h2 className="text-lg font-semibold mb-4 text-[var(--color-card-primary-text)]">Solicitudes recientes de Instructores</h2>
         <div className="overflow-x-auto">
           <table className="w-full text-sm border-collapse">
             <thead style={{ backgroundColor: "var(--color-surface)" }}>
               <tr>
-                <th className="p-3 text-left">Nombre</th>
-                <th className="p-3 text-left">Experiencia</th>
-                <th className="p-3 text-left">Estado</th>
-                <th className="p-3 text-left">Acciones</th>
+                <th className="p-3 text-left text-gray-500">Nombre</th>
+                <th className="p-3 text-left text-gray-500">Experiencia</th>
+                <th className="p-3 text-left text-gray-500">Estado</th>
+                <th className="p-3 text-left text-gray-500">Acciones</th>
               </tr>
             </thead>
             <tbody>
@@ -172,9 +172,9 @@ export default function AdminPage() {
                   className="border-t hover:bg-[var(--color-surface)] transition"
                   style={{ borderColor: "var(--color-muted)" }}
                 >
-                  <td className="p-3">{req.nombre}</td>
-                  <td className="p-3">{req.experiencia}</td>
-                  <td className="p-3">{req.estado}</td>
+                  <td className="p-3 text-gray-500">{req.nombre}</td>
+                  <td className="p-3 text-gray-500">{req.experiencia}</td>
+                  <td className="p-3 text-gray-500">{req.estado}</td>
                   <td className="p-3">
                     <Link
                       href={`/admin/instructors/${req.id}`}

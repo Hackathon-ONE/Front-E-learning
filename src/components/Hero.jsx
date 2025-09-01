@@ -10,12 +10,12 @@ export default function Hero() {
       {/* Video de fondo */}
       <video
         className="absolute top-0 left-0 w-full h-full opacity-50 object-cover"
-        src="/video/educacionenlinea.mp4"
+        src="https://storage.cloud.google.com/luminamp4/demo_inicial.mp4"
         autoPlay
         loop
         muted
         playsInline
-        poster="/video/educacionenlinea.jpg"
+        poster="https://storage.cloud.google.com/luminamp4/demo_inicial.jpg"
       />
 
       {/* Overlay para contraste */}

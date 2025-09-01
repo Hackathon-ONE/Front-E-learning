@@ -41,7 +41,7 @@ export default function NotFound() {
             <rect x="55" y="20" width="10" height="20" rx="5" fill="#ff5400" opacity="0.2" />
           </svg>
           <span className="text-xs text-[var(--color-muted)] text-center">
-            E-Learning Platform · Siempre aprendiendo, nunca perdido.
+            Lumina Platform · Siempre aprendiendo, nunca perdido.
           </span>
         </div>
       </div>

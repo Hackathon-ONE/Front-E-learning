@@ -1,4 +1,4 @@
-# Front-E-learning
+# Front-Lumina
 
 Plataforma de aprendizaje electrónico construida con Next.js 15 (App Router).
 

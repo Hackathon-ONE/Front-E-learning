@@ -1,12 +1,13 @@
 "use client";
 
-import { useParams } from "next/navigation";
 import { useState, useEffect } from "react";
 import { CheckCircle, Circle } from "lucide-react";
+import { useCourseProgress } from "@/hooks/useCourseProgress";
 
-export default function StudentProgressPage() {
-  const { id } = useParams();
+export default function StudentProgressPage({ params }) {
+  const { id: courseId } = params;
   const [student, setStudent] = useState(null);
+  const { progress, loading, error } = useCourseProgress(courseId);
 
   useEffect(() => {
     // 🔹 Mock data (reemplaza con fetch a tu API)

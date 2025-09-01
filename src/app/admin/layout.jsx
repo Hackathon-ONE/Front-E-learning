@@ -2,12 +2,13 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { BookOpen, Users, Settings, CreditCard, Home } from "lucide-react";
+import { BookOpen, Users, Settings, CreditCard, Home, ShieldUser } from "lucide-react";
 
 const navItems = [
   { name: "Panel", href: "/admin", icon: Home },
   { name: "Cursos", href: "/admin/courses", icon: BookOpen },
   { name: "Usuarios", href: "/admin/users", icon: Users },
+  { name: "Instructores", href: "/admin/instructors", icon: ShieldUser },
   { name: "Pagos", href: "/admin/payments", icon: CreditCard },
   { name: "Configuración", href: "/admin/settings", icon: Settings },
 ];

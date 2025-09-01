@@ -1,6 +1,6 @@
 import axios from "axios";
+import { useRouter } from "next/navigation";
 
-// ⚡ Crear instancia
 const api = axios.create({
   baseURL: process.env.NEXT_PUBLIC_API_URL || "http://localhost:4000/api",
   headers: {
@@ -8,35 +8,28 @@ const api = axios.create({
   },
 });
 
-// ⚡ Interceptor para requests → agrega token
-api.interceptors.request.use(
-  (config) => {
-    if (typeof window !== "undefined") {
-      const token = localStorage.getItem("token"); // o cookie
-      if (token) {
-        config.headers.Authorization = `Bearer ${token}`;
-      }
-    }
-    return config;
-  },
-  (error) => Promise.reject(error)
-);
+// Request interceptor → agrega token
+api.interceptors.request.use((config) => {
+  if (typeof window !== "undefined") {
+    const token = localStorage.getItem("token");
+    if (token) config.headers.Authorization = `Bearer ${token}`;
+  }
+  return config;
+});
 
-// ⚡ Interceptor para responses → manejo de errores
+// Response interceptor → manejo de errores
 api.interceptors.response.use(
-  (response) => response,
+  (response) => response.data, // devuelvo solo data
   (error) => {
-    if (error.response?.status === 401) {
-      // Token inválido → redirigir a login
-      if (typeof window !== "undefined") {
-        localStorage.removeItem("token");
-        window.location.href = "/auth/login";
-      }
+    const status = error.response?.status;
+
+    if (status === 401 && typeof window !== "undefined") {
+      localStorage.removeItem("token");
+      window.location.href = "/auth/login"; // o usar router.push("/auth/login")
     }
 
-    // Manejo global de otros errores
     console.error("❌ API Error:", error.response?.data || error.message);
-    return Promise.reject(error);
+    return Promise.reject(error.response?.data || error.message);
   }
 );
 

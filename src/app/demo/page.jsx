@@ -3,11 +3,10 @@
 import { useState } from "react";
 import Link from "next/link";
 import { Lock, PlayCircle, X, Star } from "lucide-react";
-import { useModal } from "@/hooks/useModal";
 
 export default function DemoPage() {
   const [currentLesson, setCurrentLesson] = useState(0);
-  const { isOpen, title, content, openModal, closeModal } = useModal();
+  const [showModal, setShowModal] = useState(false);
   const [blockedLesson, setBlockedLesson] = useState(null);
 
   const lessons = [
@@ -22,7 +21,7 @@ export default function DemoPage() {
       setCurrentLesson(lesson.id);
     } else {
       setBlockedLesson(lesson);
-      openModal();
+      setShowModal(true);
     }
   };
 

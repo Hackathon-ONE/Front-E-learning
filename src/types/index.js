@@ -3,26 +3,34 @@ export const UserEntity = (data) => ({
     name: data.name || "",
     email: data.email || "",
     role: data.role || "student",
-    image: data.image || "",  
-});
-
-export const InstructorEntity = (data) => ({
+    image: data.image || "",
+  });
+  
+  export const InstructorEntity = (data) => ({
     id: data.id || "",
     name: data.name || "",
     email: data.email || "",
     role: data.role || "instructor",
     image: data.image || "",
-});
-
-export const CourseEntity = (data) => ({
+  });
+  
+  export const AdminEntity = (data) => ({
+    id: data.id || "",
+    name: data.name || "",
+    email: data.email || "",
+    role: data.role || "admin",
+    image: data.image || "",
+  });
+  
+  export const CourseEntity = (data) => ({
     id: data.id || "",
     title: data.title || "",
     description: data.description || "",
     instructor: data.instructor || null,
     studentsCount: data.studentsCount || 0,
-});
-
-export const LessonEntity = (data) => ({
+  });
+  
+  export const LessonEntity = (data) => ({
     id: data.id || "",
     title: data.title || "",
     description: data.description || "",
@@ -30,18 +38,18 @@ export const LessonEntity = (data) => ({
     videoUrl: data.videoUrl || "",
     createdAt: data.createdAt || new Date(),
     updatedAt: data.updatedAt || new Date(),
-});
-
-export const QuizEntity = (data) => ({
+  });
+  
+  export const QuizEntity = (data) => ({
     id: data.id || "",
     title: data.title || "",
     description: data.description || "",
     courseId: data.courseId || "",
     createdAt: data.createdAt || new Date(),
     updatedAt: data.updatedAt || new Date(),
-});
-
-export const QuestionEntity = (data) => ({
+  });
+  
+  export const QuestionEntity = (data) => ({
     id: data.id || "",
     text: data.text || "",
     options: data.options || [],
@@ -49,34 +57,26 @@ export const QuestionEntity = (data) => ({
     quizId: data.quizId || "",
     createdAt: data.createdAt || new Date(),
     updatedAt: data.updatedAt || new Date(),
-});
-
-export const ResourceEntity = (data) => ({
+  });
+  
+  export const ResourceEntity = (data) => ({
     id: data.id || "",
     title: data.title || "",
     description: data.description || "",
     courseId: data.courseId || "",
     createdAt: data.createdAt || new Date(),
     updatedAt: data.updatedAt || new Date(),
-});
- 
-export const EnrollmentEntity = (data) => ({
+  });
+  
+  export const EnrollmentEntity = (data) => ({
     id: data.id || "",
     courseId: data.courseId || "",
     userId: data.userId || "",
     enrolledAt: data.enrolledAt || "",
-});
-
-export const AdminEntity = (data) => ({
-    id: data.id || "",
-    name: data.name || "",
-    email: data.email || "",
-    role: data.role || "admin",
-    image: data.image || "",
-});
+  });
   
-// Comentarios de cursos o lecciones
-export const CommentEntity = (data) => ({
+  // Comentarios de cursos o lecciones
+  export const CommentEntity = (data) => ({
     id: data.id || "",
     userId: data.userId || "",
     courseId: data.courseId || null,
@@ -84,22 +84,22 @@ export const CommentEntity = (data) => ({
     text: data.text || "",
     createdAt: data.createdAt || new Date(),
     updatedAt: data.updatedAt || new Date(),
-});
+  });
   
-// Progreso de lecciones por usuario
-export const LessonProgressEntity = (data) => ({
+  // Progreso de lecciones por usuario
+  export const LessonProgressEntity = (data) => ({
     id: data.id || "",
     userId: data.userId || "",
     lessonId: data.lessonId || "",
     completed: data.completed || false,
     completedAt: data.completedAt || null,
-});
+  });
   
-// Notificaciones (opcional)
-export const NotificationEntity = (data) => ({
+  // Notificaciones (opcional)
+  export const NotificationEntity = (data) => ({
     id: data.id || "",
     userId: data.userId || "",
     message: data.message || "",
     read: data.read || false,
     createdAt: data.createdAt || new Date(),
-});  
+  });  

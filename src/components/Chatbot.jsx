@@ -83,11 +83,11 @@ export default function Chatbot() {
    </div>
 
    {/* Mensajes */}
-   <div className="flex-grow p-2 sm:p-4 overflow-y-auto flex flex-col gap-2 bg-[var(--color-bg)]">
+   <div className="flex-grow p-2 sm:p-4 overflow-y-auto flex flex-col text-gray-500 gap-2 bg-[var(--color-bg)]">
     {messages.map(msg => (
       <div
         key={msg.id}
-        className={`p-2 sm:p-3 rounded-lg max-w-[80%] break-words text-sm sm:text-base leading-relaxed ${
+        className={`p-2 sm:p-3 rounded-lg max-w-[80%] break-words text-sm sm:text-base text-gray-500 leading-relaxed ${
           msg.sender === 'user'
             ? 'bg-[var(--color-primary)] text-[var(--color-primary-text)] self-end rounded-br-sm'
             : 'bg-[var(--color-card-primary)] text-[var(--color-text)] self-start rounded-bl-sm'

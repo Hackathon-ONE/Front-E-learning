@@ -1,4 +1,4 @@
-const mockProgress = {
+export const mockProgress = {
     completed: 3,
     total: 8,
     percent: 37,

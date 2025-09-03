@@ -6,86 +6,99 @@ Plataforma de aprendizaje electrónico construida con Next.js 15 (App Router).
 
 ```
 /src
- ├── app
- │    ├── layout.js                  # Layout global (Navbar + Footer)
- │    ├── page.js                    # Landing Page (Home)
+ ├── app/                            # Rutas de la aplicación
+ │    ├── (auth)/                    # Rutas de autenticación
+ │    │    ├── login/page.jsx
+ │    │    ├── register/page.jsx
+ │    │    └── forgot-password/page.jsx
  │    │
- │    ├── auth                       # Rutas de autenticación
- │    │    ├── login/page.js
- │    │    ├── register/page.js
- │    │    └── forgot-password/page.js
+ │    ├── admin/                     # Panel de administración
+ │    │    ├── courses/             # Gestión de cursos
+ │    │    ├── instructors/         # Gestión de instructores
+ │    │    ├── payments/            # Gestión de pagos
+ │    │    ├── settings/            # Configuración
+ │    │    └── users/               # Gestión de usuarios
  │    │
- │    ├── dashboard                  # Panel Estudiante (protegido)
- │    │    ├── layout.js             # DashboardLayout (Navbar/Sidebar)
- │    │    ├── page.js               # Resumen del usuario
- │    │    ├── profile/page.js
- │    │    ├── settings/page.js
- │    │    └── progress/page.js
+ │    ├── courses/                   # Catálogo de cursos
+ │    │    ├── [id]/                # Detalles del curso
+ │    │    │    ├── lessons/        # Lecciones
+ │    │    │    │    └── [lessonId] # Reproductor de lección
+ │    │    │    ├── overview/       # Vista general
+ │    │    │    ├── quizzes/        # Cuestionarios
+ │    │    │    └── resources/      # Recursos
+ │    │    └── page.jsx             # Listado de cursos
  │    │
- │    ├── courses                    # Catálogo de cursos (público/privado)
- │    │    ├── page.js               # Listado de cursos
- │    │    └── [id]
- │    │         ├── page.js          # Detalle curso
- │    │         ├── overview/page.js
- │    │         ├── lessons
- │    │         │    ├── page.js
- │    │         │    └── [lessonId]/page.js   # Course Player
- │    │         ├── quizzes
- │    │         │    └── [quizId]/page.js
- │    │         └── resources/page.js
+ │    ├── dashboard/                 # Panel del usuario
+ │    │    ├── profile/             # Perfil
+ │    │    ├── progress/            # Progreso
+ │    │    └── settings/            # Configuración
  │    │
- │    ├── instructor                 # Panel del Instructor (role-based)
- │    │    ├── layout.js
- │    │    ├── courses/page.js        # Mis cursos creados
- │    │    ├── create/page.js
- │    │    ├── edit/[id]/page.js
- │    │    └── analytics/page.js
+ │    ├── help/                     # Centro de ayuda
+ │    │    ├── contact/             # Contacto
+ │    │    ├── faq/                 # Preguntas frecuentes
+ │    │    ├── policies/            # Políticas
+ │    │    ├── support/             # Soporte
+ │    │    └── terms/               # Términos y condiciones
  │    │
- │    ├── admin                      # Panel del Admin (role-based)
- │    │    ├── layout.js
- │    │    ├── users/page.js
- │    │    ├── courses/page.js
- │    │    ├── payments/page.js
- │    │    └── settings/page.js
+ │    ├── instructor/               # Área de instructores
+ │    │    ├── [id]/               # Perfil de instructor
+ │    │    ├── apply/              # Solicitud de instructor
+ │    │    ├── courses/            # Cursos del instructor
+ │    │    │    └── [courseId]/    # Gestión de curso específico
+ │    │    │         ├── analytics # Análiticas
+ │    │    │         ├── edit/     # Edición
+ │    │    │         ├── lessons/  # Lecciones
+ │    │    │         └── students/ # Estudiantes
+ │    │    ├── dashboard/          # Panel principal
+ │    │    └── earnings/           # Ganancias
  │    │
- │    ├── payments
- │    │    ├── checkout/page.js
- │    │    └── history/page.js
+ │    ├── payments/                 # Gestión de pagos
+ │    │    ├── checkout/           # Proceso de pago
+ │    │    └── history/            # Historial
  │    │
- │    ├── help
- │    │    ├── faq/page.js
- │    │    ├── contact/page.js
- │    │    └── terms/page.js
+ │    ├── students/                 # Gestión de estudiantes
+ │    │    └── [id]/               # Perfil de estudiante
+ │    │         └── progress/      # Progreso del estudiante
  │    │
- │    └── not-found.js               # Página 404
+ │    ├── about/                    # Sobre nosotros
+ │    ├── team/                     # Equipo
+ │    └── layout.jsx                # Layout global
  │
- ├── components                      # UI compartida
- │    ├── ui/                        # Botones, inputs, modales, tablas
- │    ├── Navbar.jsx
- │    ├── Sidebar.jsx
- │    ├── Footer.jsx
- │    ├── Hero.jsx
- │    ├── AboutUs.jsx
- │    ├── Features.jsx
- │    ├── Partners.jsx
- │    ├── Pricing.jsx
- │    └── CTA.jsx
+ ├── components/                    # Componentes reutilizables
+ │    ├── ui/                       # Componentes de UI
+ │    │    ├── button.jsx          # Botones
+ │    │    ├── card.jsx            # Tarjetas
+ │    │    └── ...
+ │    ├── Navbar.jsx               # Barra de navegación
+ │    ├── Sidebar.jsx              # Barra lateral
+ │    └── Footer.jsx               # Pie de página
  │
- ├── context
- │    └── AuthContext.jsx            # Manejo de sesión (JWT, roles)
+ ├── context/                      # Contextos de React
+ │    └── AuthContext.jsx          # Autenticación y autorización
  │
- ├── lib
- │    ├── axios.js                   # Cliente API con interceptores
- │    ├── auth.js                    # Helpers de autenticación
- │    └── utils.js                   # Formatters, helpers
+ ├── data/                         # Datos estáticos y mocks
+ │    ├── courses.js               # Datos de cursos
+ │    ├── instructors.js           # Datos de instructores
+ │    └── payments.js              # Datos de pagos
  │
- ├── hooks
- │    ├── useAuth.js
- │    ├── useCourse.js
- │    └── usePayment.js
+ ├── hooks/                        # Custom hooks
+ │    ├── useAuth.js               # Manejo de autenticación
+ │    └── useCourse.js             # Lógica de cursos
  │
- └── styles
-      └── globals.css                # Tailwind + estilos globales
+ ├── lib/                          # Utilidades
+ │    ├── api/                     # Llamadas a la API
+ │    ├── auth/                    # Helpers de autenticación
+ │    └── utils/                   # Funciones de utilidad
+ │
+ └── styles/                       # Estilos globales
+      └── globals.css              # Tailwind y estilos base
+
+/public                           # Archivos estáticos
+ ├── avatars/                      # Imágenes de perfil
+ ├── courses/                      # Imágenes de cursos
+ ├── images/                       # Imágenes generales
+ ├── logos/                        # Logotipos
+ └── videos/                       # Videos de lecciones
 ```
 
 ## Instalación y uso rápido

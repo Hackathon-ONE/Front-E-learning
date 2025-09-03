@@ -3,42 +3,13 @@
 import { useEffect, useState } from "react";
 import Link from "next/link";
 import { Users, BookOpen, Star } from "lucide-react";
+import { instructorsPage } from "@/data/instructors";
 
 export default function InstructorsPage() {
-  const [instructors, setInstructors] = useState([]);
+  const [instructors, setInstructors] = useState(instructorsPage);
 
   useEffect(() => {
-    // 🚀 Datos simulados (esto vendrá del backend)
-    const mockInstructors = [
-      {
-        id: 1,
-        name: "Juan Pérez",
-        bio: "Especialista en React y Next.js con 8 años de experiencia.",
-        avatar: "https://i.pravatar.cc/150?img=1",
-        courses: 5,
-        reviews: 4.7,
-        students: 320,
-      },
-      {
-        id: 2,
-        name: "María Gómez",
-        bio: "Apasionada por el diseño web y UX. Instructora de Figma y Tailwind.",
-        avatar: "https://i.pravatar.cc/150?img=5",
-        courses: 3,
-        reviews: 4.9,
-        students: 210,
-      },
-      {
-        id: 3,
-        name: "Carlos López",
-        bio: "Backend developer con foco en Node.js, NestJS y bases de datos.",
-        avatar: "https://i.pravatar.cc/150?img=3",
-        courses: 7,
-        reviews: 4.5,
-        students: 410,
-      },
-    ];
-    setInstructors(mockInstructors);
+    setInstructors(instructorsPage);
   }, []);
 
   return (

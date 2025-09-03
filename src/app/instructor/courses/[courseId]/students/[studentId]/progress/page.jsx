@@ -3,6 +3,7 @@
 import { useParams } from "next/navigation";
 import { useEffect, useState } from "react";
 import { CheckCircle, Circle } from "lucide-react";
+import { studentsInstructorData } from "@/data/instructors";
 
 export default function StudentProgressPage() {
   const { studentId } = useParams();
@@ -10,40 +11,7 @@ export default function StudentProgressPage() {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    // 🔹 Mock data (simulación del backend)
-    const mockStudents = [
-      {
-        id: "1",
-        name: "Ana Gómez",
-        email: "ana@example.com",
-        avatar: "https://i.pravatar.cc/150?img=20",
-        courses: [
-          {
-            id: "c1",
-            title: "React desde cero",
-            progress: 70,
-            lessons: [
-              { id: "l1", title: "Introducción a React", completed: true },
-              { id: "l2", title: "Componentes y Props", completed: true },
-              { id: "l3", title: "Estado y Eventos", completed: false },
-              { id: "l4", title: "Hooks básicos", completed: false },
-            ],
-          },
-          {
-            id: "c2",
-            title: "Next.js avanzado",
-            progress: 40,
-            lessons: [
-              { id: "l1", title: "SSR vs SSG", completed: true },
-              { id: "l2", title: "ISR", completed: false },
-              { id: "l3", title: "Middleware", completed: false },
-            ],
-          },
-        ],
-      },
-    ];
-
-    const found = mockStudents.find((s) => s.id === studentId);
+    const found = studentsInstructorData.find((s) => s.id === studentId);
     setStudent(found);
     setLoading(false);
   }, [studentId]);

@@ -1,14 +1,10 @@
 "use client";
 
 import { useState } from "react";
+import { usersData } from "@/data/users";
 
 export default function UsersPage() {
-  const [users, setUsers] = useState([
-    { id: 1, name: "Juan Pérez", email: "juan@example.com", role: "student" },
-    { id: 2, name: "María López", email: "maria@example.com", role: "instructor" },
-    { id: 3, name: "Carlos Admin", email: "admin@example.com", role: "admin" },
-  ]);
-
+  const [users, setUsers] = useState(usersData);
   const [selectedUser, setSelectedUser] = useState(null);
 
   const handleEdit = (user) => {

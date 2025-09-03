@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import { PlusCircle, BookOpen, Users, Edit } from "lucide-react";
 import Link from "next/link";
 import Button from "@/components/ui/Button";
+import { instructorCourses } from "@/data/instructors";
 
 export default function InstructorCoursesPage() {
   const [courses, setCourses] = useState([]);
@@ -11,38 +12,8 @@ export default function InstructorCoursesPage() {
   const [error, setError] = useState(null);
 
   useEffect(() => {
-    // ⚡ Datos hardcodeados simulando backend
-    const mockCourses = [
-      {
-        id: 1,
-        title: "Introducción a React",
-        description: "Aprende los fundamentos de React, componentes y props.",
-        studentsCount: 120,
-        lessons: 18,
-        published: true,
-      },
-      {
-        id: 2,
-        title: "Next.js Avanzado",
-        description:
-          "Explora SSR, ISR, rutas dinámicas y despliegue en producción.",
-        studentsCount: 85,
-        lessons: 22,
-        published: false,
-      },
-      {
-        id: 3,
-        title: "TailwindCSS desde cero",
-        description:
-          "Domina el diseño responsive moderno con utilidades y buenas prácticas.",
-        studentsCount: 60,
-        lessons: 15,
-        published: true,
-      },
-    ];
-
     setTimeout(() => {
-      setCourses(mockCourses);
+      setCourses(instructorCourses);
       setLoading(false);
     }, 800);
   }, []);

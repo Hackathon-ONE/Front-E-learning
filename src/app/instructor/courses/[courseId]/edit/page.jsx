@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from "react";
 import { useParams, useRouter } from "next/navigation";
+import { fakeCourseEdit } from "@/data/instructors";
 
 export default function EditCoursePage() {
   const { id } = useParams();
@@ -22,20 +23,9 @@ export default function EditCoursePage() {
 
   // 🚀 Simulación de fetch con datos hardcodeados
   useEffect(() => {
-    const fakeCourse = {
-      id,
-      title: "Curso de React Avanzado",
-      description:
-        "Aprende patrones avanzados de React, hooks personalizados y optimización de rendimiento.",
-      category: "Frontend",
-      level: "Intermedio",
-      price: 49,
-      instructor: "Juan Pérez",
-    };
-
     setTimeout(() => {
-      setCourse(fakeCourse);
-      setFormData(fakeCourse);
+      setCourse(fakeCourseEdit);
+      setFormData(fakeCourseEdit);
       setLoading(false);
     }, 600);
   }, [id]);
@@ -61,14 +51,14 @@ export default function EditCoursePage() {
       setSaving(true);
       setError(null);
 
-      // 🚀 Aquí harías el PUT real al backend
+      // Aquí harías el PUT real al backend
       // await fetch(`/api/courses/${id}`, {
       //   method: "PUT",
       //   headers: { "Content-Type": "application/json" },
       //   body: JSON.stringify(formData),
       // });
 
-      console.log("✅ Datos enviados:", formData);
+      console.log("Datos enviados:", formData);
 
       router.push("/instructor/courses");
     } catch (err) {

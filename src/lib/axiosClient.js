@@ -28,7 +28,7 @@ api.interceptors.response.use(
       window.location.href = "/auth/login"; // o usar router.push("/auth/login")
     }
 
-    console.error("❌ API Error:", error.response?.data || error.message);
+    console.error("API Error:", error.response?.data || error.message);
     return Promise.reject(error.response?.data || error.message);
   }
 );

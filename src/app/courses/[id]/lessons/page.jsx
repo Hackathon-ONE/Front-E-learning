@@ -3,29 +3,22 @@
 import Link from "next/link";
 import { useParams } from "next/navigation";
 import { useState, useEffect } from "react";
-
-// 🔹 Datos mock para pruebas (harcodeados)
-const mockLessons = [
-  { id: 1, title: "Introducción al curso", duration: "5:32", completed: true },
-  { id: 2, title: "Fundamentos básicos", duration: "12:15", completed: false },
-  { id: 3, title: "Tema intermedio", duration: "18:47", completed: false },
-  { id: 4, title: "Ejercicios prácticos", duration: "22:05", completed: false },
-];
+import { lessonsCoursesData } from "@/data/courses";
 
 export default function LessonsPage() {
   const { id } = useParams(); // courseId
   const [lessons, setLessons] = useState([]);
 
   useEffect(() => {
-    // En real: fetch(`/api/courses/${id}/lessons`)
-    setLessons(mockLessons);
+    // fetch(`/api/courses/${id}/lessons`)
+    setLessons(lessonsCoursesData);
   }, [id]);
 
   return (
     <div className="max-w-4xl mx-auto px-6 py-10">
       {/* Título */}
       <h1 className="text-3xl font-bold mb-6 text-center">
-        Lecciones del curso #{id}
+        Lecciones del curso {id}
       </h1>
 
       {/* Lista de lecciones */}
@@ -54,6 +47,21 @@ export default function LessonsPage() {
           </li>
         ))}
       </ul>
+
+      <div className="flex flex-col sm:flex-row justify-center items-center gap-4 mt-8">
+        <Link
+          href={`/courses/${id}/quizzes/${id}`}
+          className="btn-primary px-6 py-3 rounded-lg text-sm font-semibold text-center w-full sm:w-auto"
+        >
+          Tomar Quiz
+        </Link>
+        <Link
+          href={`/courses/${id}/resources`}
+          className="btn-primary px-6 py-3 rounded-lg text-sm font-semibold text-center w-full sm:w-auto"
+        >
+          Recursos
+        </Link>
+      </div>
     </div>
   );
 }

@@ -18,7 +18,7 @@ export function useAdminDashboard() {
     async function fetchDashboard() {
       try {
         setLoading(true);
-        // 👉 Aquí llamas a tu backend: /api/admin/dashboard
+        // backend: /api/admin/dashboard
         const res = await fetch("/api/admin/dashboard");
         if (!res.ok) throw new Error("Error al cargar métricas");
 

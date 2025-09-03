@@ -2,17 +2,11 @@
 
 import { useParams } from "next/navigation";
 import { useState } from "react";
+import { lessonsPlayerData } from "@/data/courses";
 
 export default function LessonPlayerPage() {
   const { courseId, lessonId } = useParams();
-
-  // 🔹 Mock de datos (esto vendrá del backend)
-  const lessons = [
-    { id: "1", title: "Presentación", duration: "08 min" },
-    { id: "2", title: "Preparando el ambiente", duration: "12 min" },
-    { id: "3", title: "Mi primer prompt", duration: "10 min" },
-  ];
-
+  const lessons = lessonsPlayerData;
   const [currentLesson, setCurrentLesson] = useState(lessonId || "1");
 
   return (
@@ -20,7 +14,7 @@ export default function LessonPlayerPage() {
       className="flex flex-col md:flex-row h-screen"
       style={{ backgroundColor: "var(--color-bg)", color: "var(--color-text)" }}
     >
-      {/* 📑 Sidebar lecciones */}
+      {/* Sidebar lecciones */}
       <aside
         className="w-full md:w-1/4 p-4 md:p-6 overflow-y-auto border-b md:border-b-0 md:border-r"
         style={{ backgroundColor: "var(--color-card-primary)" }}
@@ -60,7 +54,7 @@ export default function LessonPlayerPage() {
         </ul>
       </aside>
 
-      {/* 🎬 Player */}
+      {/* Player */}
       <main className="flex-1 flex flex-col">
         {/* Video Player */}
         <div className="flex-1 flex items-center justify-center bg-black relative">
@@ -68,7 +62,7 @@ export default function LessonPlayerPage() {
             key={currentLesson}
             controls
             className="w-full h-full object-contain sm:object-cover"
-            src={`/videos/${currentLesson}.mp4`} // ⚠️ conecta con tu backend/CDN real
+            src={`/videos/${currentLesson}.mp4`} // conectar con backend/CDN real
           />
         </div>
 

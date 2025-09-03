@@ -3,53 +3,11 @@
 import { useState } from "react";
 import { Users } from "lucide-react";
 import { useRouter, useParams } from "next/navigation";
+import { progressReportsCoursesData, progressReportsStudentsData } from "@/data/instructors";
 
 export default function ProgressReportsPage() {
   const router = useRouter();
   const { courseId } = useParams(); // en caso de usar dinámica [courseId]
-
-  // 🔹 Datos HARDCODEADOS
-  const [students] = useState([
-    {
-      id: 1,
-      name: "Ana Gómez",
-      email: "ana@example.com",
-      courseTitle: "React Avanzado",
-    },
-    {
-      id: 2,
-      name: "Luis Pérez",
-      email: "luis@example.com",
-      courseTitle: "Node.js desde cero",
-    },
-  ]);
-
-  const [courses] = useState([
-    {
-      id: 1,
-      title: "Curso de React desde Cero",
-      students: 120,
-      progress: 75,
-    },
-    {
-      id: 2,
-      title: "NestJS Avanzado",
-      students: 80,
-      progress: 40,
-    },
-    {
-      id: 3,
-      title: "Diseño UX/UI en Figma",
-      students: 150,
-      progress: 90,
-    },
-    {
-      id: 4,
-      title: "Introducción a TypeScript",
-      students: 200,
-      progress: 60,
-    },
-  ]);
 
   return (
     <main className="min-h-screen bg-[var(--color-bg)] text-[var(--color-text)] p-4 sm:p-6 md:p-8">
@@ -72,7 +30,7 @@ export default function ProgressReportsPage() {
                 </tr>
               </thead>
               <tbody>
-                {courses.map((course) => (
+                {progressReportsCoursesData.map((course) => (
                   <tr
                     key={course.id}
                     className="border-t border-[var(--color-muted)] hover:bg-[var(--color-card-secondary)] transition"
@@ -111,7 +69,7 @@ export default function ProgressReportsPage() {
             Estudiantes inscritos
           </h2>
 
-          {students.length === 0 ? (
+          {progressReportsStudentsData.length === 0 ? (
             <p className="text-center text-sm text-gray-500">
               No hay estudiantes inscritos todavía.
             </p>
@@ -128,7 +86,7 @@ export default function ProgressReportsPage() {
                     </tr>
                   </thead>
                   <tbody>
-                    {students.map((s) => (
+                    {progressReportsStudentsData.map((s) => (
                       <tr
                         key={s.id}
                         className="border-t hover:bg-[var(--color-surface)] transition"

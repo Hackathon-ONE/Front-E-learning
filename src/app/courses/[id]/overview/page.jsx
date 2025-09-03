@@ -4,27 +4,10 @@ import { BookOpen, Users, Clock, CheckCircle } from "lucide-react";
 import Image from "next/image";
 import Button from "@/components/ui/Button";
 import Link from "next/link";
-
-const mockCourse = {
-  title: "React desde Cero",
-  description:
-    "Aprende React desde los fundamentos hasta crear aplicaciones modernas. Incluye hooks, componentes, rutas y mejores prácticas.",
-  cover: "/courses/react.jpg",
-  lessons: 24,
-  duration: "12h 30m",
-  students: 320,
-  progress: 45,
-  objectives: [
-    "Comprender la arquitectura de React",
-    "Crear componentes reutilizables",
-    "Gestionar estado con hooks",
-    "Implementar rutas y navegación",
-    "Consumir APIs REST",
-  ],
-};
+import { overviewCourse } from "@/data/courses";    
 
 export default function CourseOverviewPage() {
-  const [course, lesson] = useState(mockCourse);
+  const [course, setCourse] = useState(overviewCourse);
 
   return (
     <main className="min-h-screen bg-[var(--color-bg)] flex flex-col items-center py-8 px-2 sm:px-4">

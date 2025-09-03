@@ -7,10 +7,10 @@ import { useInstructorStatus } from "@/hooks/useInstructorStatus";
 export default function InstructorApplyStatusPage({ params }) {
   const userId = params.id; // o desde session
   // const { status, loading, error } = useInstructorStatus(userId);
-  // 🔹 Estados disponibles de prueba
+  // Estados disponibles de prueba
   const statuses = ["pending", "approved", "rejected", "unknown"];
 
-  // 🔹 Estado actual (puedes cambiar manualmente o con el selector)
+  // Estado actual (puedes cambiar manualmente o con el selector)
   const [status, setStatus] = useState("pending");
 
   const statusInfo = {

@@ -11,35 +11,16 @@ import {
   ResponsiveContainer,
   CartesianGrid,
 } from "recharts";
+import { earningsData } from "@/data/instructors";
 
 export default function EarningsPage() {
-  const [earnings] = useState({
-    total: 12500,
-    monthly: [
-      { month: "Ene", amount: 1200 },
-      { month: "Feb", amount: 1800 },
-      { month: "Mar", amount: 1500 },
-      { month: "Abr", amount: 2000 },
-      { month: "May", amount: 2200 },
-      { month: "Jun", amount: 2800 },
-    ],
-    courses: [
-      { id: 1, title: "React desde cero", revenue: 5500 },
-      { id: 2, title: "Next.js avanzado", revenue: 4500 },
-      { id: 3, title: "UI/UX Design", revenue: 2500 },
-    ],
-    transactions: [
-      { id: 1, student: "Ana Gómez", course: "React desde cero", amount: 200, date: "2025-05-01" },
-      { id: 2, student: "Luis Pérez", course: "Next.js avanzado", amount: 250, date: "2025-05-05" },
-      { id: 3, student: "María López", course: "UI/UX Design", amount: 150, date: "2025-05-10" },
-    ],
-  });
+  const [earnings] = useState(earningsData);
 
   useEffect(() => {
     
   }, []);
 
-  const formatter = new Intl.NumberFormat("es-ES"); // 🔹 fijo, siempre igual
+  const formatter = new Intl.NumberFormat("es-ES");
 
   return (
     <main className="min-h-screen bg-[var(--color-bg)] py-8 px-4 sm:px-8">

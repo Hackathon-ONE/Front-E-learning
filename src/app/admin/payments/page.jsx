@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { paymentsDashboard } from "../../data/paymentsData";
+import { paymentsDashboard } from "@/data/paymentsData";
 
 export default function PaymentsPage() {
   const [payments] = useState(paymentsDashboard);

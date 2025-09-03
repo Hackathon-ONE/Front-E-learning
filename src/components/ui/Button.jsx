@@ -1,3 +1,5 @@
+"use client";
+
 export default function Button({ children, endIcon, variant = "primary", ...props }) {
   const base = "px-6 py-3 rounded-xl font-semibold transition-all duration-200";
   const variants = {

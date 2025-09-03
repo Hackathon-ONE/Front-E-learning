@@ -19,6 +19,7 @@ export default function Footer() {
               height={148}
               priority
               unoptimized
+              style={{ height: "auto", width: "70%" }}
             />
           </Link>
           <p className="text-gray-300 text-sm mb-4 break-words">
@@ -40,7 +41,8 @@ export default function Footer() {
             <li><Link href="/instructor" className="hover:text-[var(--color-primary)] transition">Instructores</Link></li>
             <li><Link href="/team" className="hover:text-[var(--color-primary)] transition">Equipo 4 - LATAM</Link></li>
             {/* <li><Link href="/help/faq" className="hover:text-[var(--color-primary)] transition">FAQ</Link></li> */}
-            <li><Link href="/help/contact" className="hover:text-[var(--color-primary)] transition">Contacto</Link></li>
+            {/* <li><Link href="/help/contact" className="hover:text-[var(--color-primary)] transition">Contacto</Link></li> */}
+            <li><Link href="/help/support" className="hover:text-[var(--color-primary)] transition">Soporte</Link></li>
           </ul>
         </div>
 

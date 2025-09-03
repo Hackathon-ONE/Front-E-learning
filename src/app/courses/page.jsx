@@ -5,48 +5,16 @@ import { Search, ChevronDown } from "lucide-react";
 import Card from "@/components/ui/Card";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
+import { coursesPageData } from "@/data/courses"; 
 
-// 🔐 Fake user para simular login/inscripción
+// Fake user para simular login/inscripción
 const fakeUser = {
   isLoggedIn: true, // cambia a false para probar como visitante
   enrolledCourses: [2],
 };
 
 export default function CoursesPage() {
-  const [courses] = useState([
-    {
-      id: 1,
-      title: "React Avanzado",
-      instructor: "Juan Pérez",
-      category: "Frontend",
-      description: "Construye aplicaciones modernas con React y Next.js.",
-      isFree: false,
-    },
-    {
-      id: 2,
-      title: "Node.js desde cero",
-      instructor: "María López",
-      category: "Backend",
-      description: "Aprende a crear APIs robustas con Node.js y Express.",
-      isFree: true,
-    },
-    {
-      id: 3,
-      title: "Diseño UI/UX",
-      instructor: "Ana Torres",
-      category: "Diseño",
-      description: "Fundamentos de diseño centrado en el usuario.",
-      isFree: false,
-    },
-    {
-      id: 4,
-      title: "Bases de Datos SQL",
-      instructor: "Carlos Ruiz",
-      category: "Data",
-      description: "Domina consultas SQL y gestión de datos relacionales.",
-      isFree: false,
-    },
-  ]);
+  const [courses] = useState(coursesPageData);
 
   // Estados de filtros
   const [search, setSearch] = useState("");
@@ -56,7 +24,7 @@ export default function CoursesPage() {
   const [type, setType] = useState("all");
   const router = useRouter();
 
-  /* // 🚀 Traer cursos desde el backend
+  /* // Traer cursos desde el backend
   useEffect(() => {
     const fetchCourses = async () => {
       try {

@@ -1,13 +1,10 @@
 "use client";
 import { useState /*, useEffect */ } from "react";
 import { LogOut, Moon, Sun } from "lucide-react";
+import { profileDashboard } from "@/data/users";
 
 export default function SettingsPage() {
-  // Simulación de datos de usuario
-  const [profile, setProfile] = useState({
-    name: "Juan Pérez",
-    email: "juan.perez@email.com",
-  });
+  const [profile, setProfile] = useState(profileDashboard);
   const [theme, setTheme] = useState("light");
   const [notifications, setNotifications] = useState({
     email: true,
@@ -21,7 +18,6 @@ export default function SettingsPage() {
   const [feedback, setFeedback] = useState("");
   const [saving, setSaving] = useState(false);
 
-  // Handlers
   const handleProfileChange = (e) => {
     setProfile({ ...profile, [e.target.name]: e.target.value });
   };
@@ -72,7 +68,6 @@ export default function SettingsPage() {
     setTimeout(() => setFeedback(""), 2000);
   };
 
-  // Ejemplo de cómo importar datos desde la base de datos (Java/Spring Boot):
   /*
   import { useEffect, useState } from "react";
 

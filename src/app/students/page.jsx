@@ -4,39 +4,13 @@ import { useState, useEffect } from "react";
 import { User, BookOpen, BarChart, Lightbulb } from "lucide-react";
 import Link from "next/link";
 import RecommendationsForm from "./recommendations-form";
+import { studentsData } from "@/data/students"; 
 
 export default function StudentsPage() {
   const [students, setStudents] = useState([]);
 
   useEffect(() => {
-    // 🔹 Mock data (luego reemplazas con fetch a tu backend)
-    const mockData = [
-      {
-        id: 1,
-        name: "Ana Gómez",
-        email: "ana@example.com",
-        avatar: "https://i.pravatar.cc/150?img=20",
-        enrolledCourses: 3,
-        progress: "70%",
-      },
-      {
-        id: 2,
-        name: "Luis Pérez",
-        email: "luis@example.com",
-        avatar: "https://i.pravatar.cc/150?img=15",
-        enrolledCourses: 2,
-        progress: "40%",
-      },
-      {
-        id: 3,
-        name: "María Rodríguez",
-        email: "maria@example.com",
-        avatar: "https://i.pravatar.cc/150?img=32",
-        enrolledCourses: 5,
-        progress: "85%",
-      },
-    ];
-    setStudents(mockData);
+    setStudents(studentsData);
   }, []);
 
   return (

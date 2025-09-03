@@ -34,7 +34,7 @@ export default function RegisterForm() {
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
         ...formData,
-        role: "student", // 👈 por defecto asignamos estudiante
+        role: "student", // por defecto asignamos estudiante
       }),
     });
 
@@ -115,7 +115,7 @@ export default function RegisterForm() {
         Registrarse con Google
       </button>
 
-      {/* 🔻 Pregunta de cambio */}
+      {/* Pregunta de cambio */}
       <p className="text-center mt-4 text-sm">
         ¿Ya tienes cuenta?{" "}
         <Link href="/auth/login" className="font-semibold" style={{ color: "var(--color-primary)" }}>

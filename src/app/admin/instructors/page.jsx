@@ -2,35 +2,10 @@
 
 import { useState } from "react";
 import { CheckCircle, Clock, XCircle } from "lucide-react";
+import { instructorsDashboard } from "../../data/instructors";
 
 export default function AdminInstructorsPage() {
-  const [instructors, setInstructors] = useState([
-    {
-      id: 1,
-      name: "Ana Gómez",
-      email: "ana@example.com",
-      experience: "5 años enseñando React y Node.js",
-      demoLink: "https://youtube.com/demo1",
-      status: "pending",
-    },
-    {
-      id: 2,
-      name: "Luis Pérez",
-      email: "luis@example.com",
-      experience: "Instructor en universidades, experto en NestJS",
-      demoLink: "https://youtube.com/demo2",
-      status: "approved",
-    },
-    {
-      id: 3,
-      name: "María Rodríguez",
-      email: "maria@example.com",
-      experience: "Diseñadora UX/UI freelance",
-      demoLink: "https://youtube.com/demo3",
-      status: "rejected",
-    },
-  ]);
-
+  const [instructors, setInstructors] = useState(instructorsDashboard);
   const [modalData, setModalData] = useState(null);
 
   const getStatusBadge = (status) => {

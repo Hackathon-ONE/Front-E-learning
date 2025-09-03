@@ -3,30 +3,8 @@
 import { useParams } from "next/navigation";
 import { useEffect, useState } from "react";
 import { CheckCircle } from "lucide-react";
-
-// Datos hardcodeados para demo
-const mockQuiz = {
-  title: "Quiz: Fundamentos de React",
-  description:
-    "Pon a prueba tus conocimientos sobre los conceptos básicos de React.",
-  questions: [
-    {
-      text: "¿Cuál es el hook principal para manejar estado en componentes funcionales?",
-      options: ["useState", "useEffect", "useContext", "useReducer"],
-      answer: 0,
-    },
-    {
-      text: "¿Cómo se llama el proceso de pasar datos de un componente padre a uno hijo?",
-      options: ["Props", "State", "Context", "Redux"],
-      answer: 0,
-    },
-    {
-      text: "¿Qué hook se utiliza para efectos secundarios?",
-      options: ["useEffect", "useMemo", "useCallback", "useRef"],
-      answer: 0,
-    },
-  ],
-};
+import { mockQuizData } from "@/data/quiz";
+import { resourcesQuizData } from "@/data/quiz";
 
 export default function QuizDetailPage() {
   const { quizId } = useParams();
@@ -44,7 +22,7 @@ export default function QuizDetailPage() {
   if (!quiz) return <p>Cargando quiz...</p>;
   */
   // Para demo:
-  const [quiz] = useState(mockQuiz);
+  const [quiz] = useState(mockQuizData);
 
   return (
     <main className="min-h-screen bg-[var(--color-bg)] flex flex-col items-center py-8 px-2 sm:px-4">

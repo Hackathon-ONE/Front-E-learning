@@ -5,6 +5,7 @@ import {
   BarChart, Bar, XAxis, YAxis, Tooltip, ResponsiveContainer,
   LineChart, Line, CartesianGrid, PieChart, Pie, Cell, Legend
 } from "recharts";
+import { instructorAnalytics } from "@/data/instructors";
 
 export default function AnalyticsPage() {
   const [analytics, setAnalytics] = useState([]);
@@ -15,30 +16,12 @@ export default function AnalyticsPage() {
     async function fetchAnalytics() {
       try {
         setLoading(true);
-        // 🚀 Llamada real al backend
+        // Llamada real al backend
         // const res = await fetch("http://localhost:3000/api/courses/analytics");
         // if (!res.ok) throw new Error("Error al cargar analíticas");
         // const data = await res.json();
 
-        // 🔹 Simulación de datos del backend
-        const data = [
-          {
-            id: 1,
-            title: "React Avanzado",
-            students: 120,
-            avgProgress: 68,
-            revenue: 2400,
-          },
-          {
-            id: 2,
-            title: "Node.js desde cero",
-            students: 95,
-            avgProgress: 74,
-            revenue: 1500,
-          },
-        ];
-
-        setAnalytics(data);
+        setAnalytics(instructorAnalytics);
       } catch (err) {
         setError("No se pudieron cargar las analíticas.");
       } finally {
@@ -48,8 +31,8 @@ export default function AnalyticsPage() {
     fetchAnalytics();
   }, []);
 
-   // Colores para gráficas
-   const COLORS = ["#ff5400", "#3d3f3e", "#fca311", "#6366F1", "#F59E0B", "#EF4444"];
+  // Colores para gráficas
+  const COLORS = ["#ff5400", "#3d3f3e", "#fca311", "#6366F1", "#F59E0B", "#EF4444"];
 
    return (
     <main
@@ -63,7 +46,7 @@ export default function AnalyticsPage() {
 
       {!loading && analytics.length > 0 && (
         <>
-          {/* 📋 Tabla de detalle */}
+          {/* Tabla de detalle */}
           <div className="overflow-x-auto rounded-lg border border-gray-200 dark:border-gray-700 shadow-sm">
             <table className="w-full border-collapse">
               <thead style={{ backgroundColor: "var(--color-card-primary)" }}>
@@ -96,7 +79,7 @@ export default function AnalyticsPage() {
             </table>
           </div>
 
-          {/* 📊 Gráficas */}
+          {/* Gráficas */}
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mt-10">
             {/* Estudiantes por curso */}
             <div className="h-72 bg-[var(--color-surface)] p-4 rounded-lg shadow">
@@ -106,7 +89,7 @@ export default function AnalyticsPage() {
                   <XAxis dataKey="title" stroke="var(--color-primary)" strokeDasharray="3 3" />
                   <YAxis stroke="var(--color-primary)" strokeDasharray="3 3"/>
                   <Tooltip contentStyle={{ backgroundColor: "var(--color-terciary)", color: "var(--color-card-primary-text)" }} />
-                  <Bar dataKey="students" fill="var(--color-primary)" />
+                  <Bar dataKey="students" fill={COLORS[0]} />
                 </BarChart>
               </ResponsiveContainer>
             </div>
@@ -120,7 +103,7 @@ export default function AnalyticsPage() {
                   <XAxis dataKey="title" stroke="var(--color-primary)" strokeDasharray="3 3" />
                   <YAxis stroke="var(--color-primary)" strokeDasharray="3 3"/>
                   <Tooltip contentStyle={{ backgroundColor: "var(--color-terciary)", color: "var(--color-card-primary-text)" }} />
-                  <Line type="monotone" dataKey="avgProgress" stroke="var(--color-primary)" strokeWidth={3} strokeDasharray="3 3" />
+                  <Line type="monotone" dataKey="avgProgress" stroke={COLORS[1]} strokeWidth={3} strokeDasharray="3 3" />
                 </LineChart>
               </ResponsiveContainer>
             </div>
@@ -135,14 +118,14 @@ export default function AnalyticsPage() {
                     dataKey="revenue"
                     className="mb-6 mt-4"
                     nameKey="title"
-                    stroke="var(--color-terciary)"
+                    stroke={COLORS[2]}
                     strokeDasharray="3 3"
                     strokeWidth={3}
                     cx="50%"
                     cy="50%"
                     labelLine={false}
                     outerRadius={100}
-                    fill="var(--color-terciary)"
+                    fill={COLORS[2]}
                     label
                   >
                     {analytics.map((_, index) => (

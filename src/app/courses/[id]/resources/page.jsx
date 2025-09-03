@@ -1,5 +1,7 @@
 "use client";
 
+import { resourcesQuizData } from "@/data/quiz";
+
 // Ejemplo de cómo importar datos desde la base de datos (Java/Spring Boot):
 /*
 import { useEffect, useState } from "react";
@@ -32,14 +34,7 @@ useEffect(() => {
 */
 
 export default function QuizResourcesPage() {
-  // Datos hardcodeados para demo
-  const resources = [
-    { title: "Guía de estudio de React", link: "https://react.dev" },
-    { title: "Next.js Docs", link: "https://nextjs.org/docs" },
-    { title: "MDN JavaScript", link: "https://developer.mozilla.org/es/docs/Web/JavaScript" },
-    { title: "Curso de JavaScript Moderno", link: "https://www.freecodecamp.org/espanol/news/curso-de-javascript-moderno-gratis/" },
-    { title: "Documentación de CSS", link: "https://developer.mozilla.org/es/docs/Web/CSS" },
-  ];
+
 
   return (
     <main className="min-h-screen bg-[var(--color-bg)] flex flex-col items-center py-8 px-2 sm:px-4">
@@ -53,7 +48,7 @@ export default function QuizResourcesPage() {
           </p>
         </div>
         <ul className="space-y-3">
-          {resources.map((res, idx) => (
+          {resourcesQuizData.map((res, idx) => (
             <li
               key={idx}
               className="p-4 border rounded-lg bg-[var(--color-card-primary)] hover:bg-[var(--color-primary)]/10 transition"
@@ -62,7 +57,7 @@ export default function QuizResourcesPage() {
                 href={res.link}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-[var(--color-primary)] underline font-semibold break-all"
+                className="text-[var(--color-primary)] hover:text-[var(--color-primary)] font-semibold break-all"
               >
                 {res.title}
               </a>

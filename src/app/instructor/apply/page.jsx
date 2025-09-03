@@ -27,7 +27,7 @@ export default function InstructorApplyPage() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log("📩 Datos enviados:", formData);
+    console.log("Datos enviados:", formData);
     // Aquí puedes hacer fetch("/api/instructor/apply", { ... })
     setIsModalOpen(true);
   };

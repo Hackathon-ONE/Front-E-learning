@@ -2,9 +2,11 @@
 
 import { useState } from "react";
 import { User, Lock, Bell, ChevronDown, ChevronUp } from "lucide-react";
+import { notificationsDashboard } from "@/data/notifications";
 
 export default function SettingsPage() {
   const [openSection, setOpenSection] = useState(null);
+  const [notifications, setNotifications] = useState(notificationsDashboard);
 
   const toggleSection = (section) => {
     setOpenSection(openSection === section ? null : section);

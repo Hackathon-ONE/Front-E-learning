@@ -12,7 +12,7 @@ export default function CreateCoursePage() {
     category: "",
     level: "",
     price: 0,
-    instructorId: "", // normalmente viene del login del instructor
+    instructorId: "", // viene del login del instructor
   });
 
   const [loading, setLoading] = useState(false);
@@ -39,7 +39,7 @@ export default function CreateCoursePage() {
       setLoading(true);
       setError(null);
 
-      // 🚀 Llamada real a tu backend
+      // Llamada real al backend
       // const res = await fetch("http://localhost:3000/api/courses", {
       //   method: "POST",
       //   headers: { "Content-Type": "application/json" },
@@ -48,7 +48,7 @@ export default function CreateCoursePage() {
       // if (!res.ok) throw new Error("Error al crear el curso");
       // const data = await res.json();
 
-      console.log("✅ Curso enviado al backend:", form);
+      console.log("Curso enviado al backend:", form);
 
       router.push("/instructor/courses");
     } catch (err) {

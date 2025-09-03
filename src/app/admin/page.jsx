@@ -1,21 +1,12 @@
 "use client";
 
 import {
-  LineChart,
-  Line,
-  CartesianGrid,
-  XAxis,
-  YAxis,
-  Tooltip,
-  ResponsiveContainer,
-  PieChart,
-  Pie,
-  Cell,
-  Legend,
-  BarChart,
-  Bar,
+  LineChart, Line, CartesianGrid, XAxis, YAxis, Tooltip,
+  ResponsiveContainer, PieChart, Pie, Cell, Legend,
+  BarChart, Bar
 } from "recharts";
 import Link from "next/link";
+import { lineData, pieData, barData, instructorRequests, COLORS } from "@/data/adminDashboard";
 /* import { useAdminInstructors } from "@/hooks/useAdminInstructors";
 import { useAdminDashboard } from "@/hooks/useAdminDashboard"; */
 
@@ -29,35 +20,6 @@ export default function AdminPage() {
   } = useAdminInstructors();
 
   const { metrics, lineData, barData, pieData } = useAdminDashboard(); */
-  // Datos de ejemplo
-  const lineData = [
-    { name: "Ene", usuarios: 400, ventas: 240 },
-    { name: "Feb", usuarios: 300, ventas: 139 },
-    { name: "Mar", usuarios: 200, ventas: 980 },
-    { name: "Abr", usuarios: 278, ventas: 390 },
-    { name: "May", usuarios: 189, ventas: 480 },
-  ];
-
-  const pieData = [
-    { name: "Activos", value: 65 },
-    { name: "Inactivos", value: 20 },
-    { name: "Pendientes", value: 15 },
-  ];
-
-  const barData = [
-    { name: "React Avanzado", estudiantes: 320 },
-    { name: "Node.js desde Cero", estudiantes: 280 },
-    { name: "NestJS Avanzado", estudiantes: 150 },
-    { name: "Diseño UX/UI", estudiantes: 200 },
-  ];
-
-  const instructorRequests = [
-    { id: 1, nombre: "Ana Gómez", experiencia: "3 años en React", estado: "Pendiente" },
-    { id: 2, nombre: "Luis Pérez", experiencia: "5 años en Node.js", estado: "Pendiente" },
-    { id: 3, nombre: "Carlos Ruiz", experiencia: "2 años en UX/UI", estado: "Revisión" },
-  ];
-
-  const COLORS = ["#6366F1", "#F59E0B", "#EF4444"];
 
   return (
     <div
@@ -102,11 +64,11 @@ export default function AdminPage() {
         <div className="bg-[var(--color-card-secondary)] shadow rounded-xl p-6">
           <h2 className="text-lg font-semibold mb-4 text-[var(--color-card-primary-text)]">Crecimiento de Usuarios y Ventas</h2>
           <ResponsiveContainer width="100%" height={300}>
-            <LineChart data={lineData}>
+            <LineChart data={lineData} className="text-gray-500">
               <CartesianGrid strokeDasharray="3 3" stroke="var(--color-muted)" />
               <XAxis dataKey="name" />
               <YAxis />
-              <Tooltip contentStyle={{ backgroundColor: "var(--color-terciary)", color: "var(--color-primary-text)" }} />
+              <Tooltip contentStyle={{ backgroundColor: "var(--color-terciary)", color: "var(--color-primary)", fontSize: "14px" }} />
               <Line type="monotone" dataKey="usuarios" stroke="#6366F1" strokeWidth={3} />
               <Line type="monotone" dataKey="ventas" stroke="#10B981" strokeWidth={3} />
             </LineChart>
@@ -125,13 +87,14 @@ export default function AdminPage() {
                 outerRadius={100}
                 fill="#8884d8"
                 dataKey="value"
+                className="text-gray-500"
                 label
               >
                 {pieData.map((entry, index) => (
-                  <Cell key={`cell-${index}`} fill={COLORS[index]} />
+                  <Cell key={`cell-${index}`} fill={COLORS[index]} stroke="var(--color-primary)" />
                 ))}
               </Pie>
-              <Tooltip contentStyle={{ backgroundColor: "var(--color-terciary)", color: "var(--color-primary-text)" }} />
+              <Tooltip contentStyle={{ backgroundColor: "var(--color-terciary)", color: "var(--color-primary)", fontSize: "14px" }} />
               <Legend />
             </PieChart>
           </ResponsiveContainer>
@@ -142,11 +105,11 @@ export default function AdminPage() {
       <div className="bg-[var(--color-card-secondary)] shadow rounded-xl p-6">
         <h2 className="text-lg font-semibold mb-4 text-[var(--color-card-primary-text)]">Cursos más populares</h2>
         <ResponsiveContainer width="100%" height={300}>
-          <BarChart data={barData}>
+          <BarChart data={barData} className="text-gray-500">
             <CartesianGrid strokeDasharray="3 3" stroke="var(--color-muted)" />
             <XAxis dataKey="name" />
             <YAxis />
-            <Tooltip contentStyle={{ backgroundColor: "var(--color-terciary)", color: "var(--color-primary-text)" }} />
+            <Tooltip contentStyle={{ backgroundColor: "var(--color-terciary)", color: "var(--color-progress-text)", fontSize: "14px" }} />
             <Bar dataKey="estudiantes" fill="var(--color-primary)" radius={[6, 6, 0, 0]} />
           </BarChart>
         </ResponsiveContainer>

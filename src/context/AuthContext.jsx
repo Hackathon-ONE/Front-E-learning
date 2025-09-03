@@ -6,13 +6,16 @@ import { useSession, signIn, signOut } from "next-auth/react";
 export const AuthContext = createContext(undefined);
 
 export function AuthProvider({ children }) {
-  const { data: session } = useSession();
+  const { data: session, status } = useSession();
 
   const value = useMemo(() => ({
-    session,
+    user: session?.user || null,
+    role: session?.user?.role || "guest",
+    isAuthenticated: !!session?.user,
+    loading: status === "loading",
     signIn,
     signOut,
-  }), [session]);
+  }), [session, status]);
 
   return (
     <AuthContext.Provider value={value}>

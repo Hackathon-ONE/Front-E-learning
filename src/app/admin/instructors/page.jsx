@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import { CheckCircle, Clock, XCircle } from "lucide-react";
-import { instructorsDashboard } from "../../data/instructors";
+import { instructorsDashboard } from "@/data/instructors";
 
 export default function AdminInstructorsPage() {
   const [instructors, setInstructors] = useState(instructorsDashboard);

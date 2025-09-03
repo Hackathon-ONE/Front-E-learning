@@ -14,13 +14,13 @@ export function useInstructorApplication() {
   const [status, setStatus] = useState(null); // pending, approved, rejected
   const [loading, setLoading] = useState(false);
 
-  // 📌 Actualizar inputs
+  // Actualizar inputs
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData((prev) => ({ ...prev, [name]: value }));
   };
 
-  // 📌 Validaciones básicas
+  // Validaciones básicas
   const validate = () => {
     const newErrors = {};
     if (!formData.name) newErrors.name = "El nombre es obligatorio";
@@ -30,7 +30,7 @@ export function useInstructorApplication() {
     return newErrors;
   };
 
-  // 📌 Enviar formulario
+  // nviar formulario
   const handleSubmit = async (e) => {
     e.preventDefault();
     const newErrors = validate();

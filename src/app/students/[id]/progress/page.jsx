@@ -3,48 +3,16 @@
 import { useState, useEffect } from "react";
 import { CheckCircle, Circle } from "lucide-react";
 import { useCourseProgress } from "@/hooks/useCourseProgress";
+import { studentsProgress } from "@/data/students";
 
 export default function StudentProgressPage({ params }) {
-  const { id: courseId } = params;
+  const { id } = params;
   const [student, setStudent] = useState(null);
-  const { progress, loading, error } = useCourseProgress(courseId);
+  const { progress, loading, error } = useCourseProgress(id);
 
   useEffect(() => {
-    // 🔹 Mock data (reemplaza con fetch a tu API)
-    const mockStudents = [
-      {
-        id: "1",
-        name: "Ana Gómez",
-        email: "ana@example.com",
-        avatar: "https://i.pravatar.cc/150?img=20",
-        courses: [
-          {
-            id: "c1",
-            title: "React desde cero",
-            progress: 70,
-            lessons: [
-              { id: "l1", title: "Introducción a React", completed: true },
-              { id: "l2", title: "Componentes y Props", completed: true },
-              { id: "l3", title: "Estado y Eventos", completed: false },
-              { id: "l4", title: "Hooks básicos", completed: false },
-            ],
-          },
-          {
-            id: "c2",
-            title: "Next.js avanzado",
-            progress: 40,
-            lessons: [
-              { id: "l1", title: "SSR vs SSG", completed: true },
-              { id: "l2", title: "ISR", completed: false },
-              { id: "l3", title: "Middleware", completed: false },
-            ],
-          },
-        ],
-      },
-    ];
-
-    const found = mockStudents.find((s) => s.id === id);
-    setStudent(found);
+    const foundStudent = studentsProgress.find((s) => s.id === id);
+    setStudent(foundStudent);
   }, [id]);
 
   if (!student) {

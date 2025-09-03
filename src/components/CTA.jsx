@@ -1,3 +1,5 @@
+"use client";
+
 import Button from "./ui/Button";
 import { Rocket } from "lucide-react";
 import Link from "next/link";

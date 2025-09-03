@@ -1,9 +1,9 @@
 "use client";
 
 import { useState, useEffect } from "react";
+import { coursesDashboardMock } from "@/data/courses";
 
 export default function CoursesPage() {
-  // Estado local para almacenar los cursos (de momento hardcodeados)
   const [courses, setCourses] = useState([]);
 
   // Simulación de carga de datos desde backend
@@ -22,12 +22,8 @@ export default function CoursesPage() {
     fetchCourses();
     */
 
-    // 👉 De momento trabajamos con datos hardcodeados:
-    const hardcodedCourses = [
-      { id: 1, name: "Introducción a React", description: "Curso básico de React con proyectos." },
-      { id: 2, name: "NestJS Avanzado", description: "Construcción de APIs robustas con NestJS." },
-      { id: 3, name: "Spring Boot Essentials", description: "Curso práctico de Java + Spring Boot." },
-    ];
+    // De momento trabajamos con datos hardcodeados:
+    const hardcodedCourses = coursesDashboardMock;
     setCourses(hardcodedCourses);
   }, []);
 

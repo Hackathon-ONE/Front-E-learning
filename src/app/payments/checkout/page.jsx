@@ -3,6 +3,7 @@ import { useState /*, useEffect */ } from "react";
 import { useRouter } from "next/navigation";
 import { CreditCard, CheckCircle, XCircle } from "lucide-react";
 import Button from "@/components/ui/Button";
+import { checkoutCourse, mockCard } from "@/data/paymentsData";
 
 // Ejemplo de cómo importar datos desde la base de datos (Java/Spring Boot):
 /*
@@ -37,22 +38,7 @@ useEffect(() => {
 
 export default function CheckoutPage() {
   const router = useRouter();
-  // Datos hardcodeados para demo
-  const [course] = useState({
-    title: "React Avanzado",
-    instructor: "Juan Pérez",
-    price: 49.99,
-    currency: "USD",
-    description: "Construye aplicaciones modernas con React y Next.js.",
-  });
-
-  // Datos hardcodeados de pago (simulación)
-  const mockCard = {
-    number: "4111111111111111", // Visa test
-    name: "JUAN PEREZ",
-    expiry: "12/25",
-    cvc: "123",
-  };
+  const [course] = useState(checkoutCourse);
 
   const [card, setCard] = useState({
     number: "",
@@ -89,7 +75,7 @@ export default function CheckoutPage() {
       setSuccess(true);
       setCard({ number: "", name: "", expiry: "", cvc: "" });
     } else {
-      setError("❌ Los datos de la tarjeta no son válidos.");
+      setError("Los datos de la tarjeta no son válidos.");
     }
   };
 
@@ -100,7 +86,7 @@ export default function CheckoutPage() {
           Checkout de Curso
         </h1>
 
-        {/* 📌 Info del curso */}
+        {/* Info del curso */}
         <div className="bg-[var(--color-card-primary)] rounded-xl shadow p-4 flex flex-col gap-2">
           <h2 className="text-lg font-bold text-gray-900 dark:text-gray-100">
             {course.title}
@@ -121,7 +107,7 @@ export default function CheckoutPage() {
           </div>
         </div>
 
-        {/* 📌 Formulario de pago */}
+        {/* Formulario de pago */}
         <form
           onSubmit={handleSubmit}
           className="flex flex-col gap-4 bg-[var(--color-card-primary)] rounded-xl shadow p-4"

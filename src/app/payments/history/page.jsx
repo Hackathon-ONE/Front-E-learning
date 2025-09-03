@@ -1,6 +1,7 @@
 "use client";
 import { useState /*, useEffect */ } from "react";
 import { CheckCircle, XCircle } from "lucide-react";
+import { paymentsHistory } from "@/data/paymentsData";
 
 // Ejemplo de cómo importar datos desde la base de datos (Java/Spring Boot):
 /*
@@ -34,33 +35,7 @@ useEffect(() => {
 */
 
 export default function PaymentsHistoryPage() {
-  // Datos hardcodeados para demo
-  const [payments] = useState([
-    {
-      id: 1,
-      course: "React Avanzado",
-      date: "2024-06-10",
-      amount: 49.99,
-      currency: "USD",
-      status: "success",
-    },
-    {
-      id: 2,
-      course: "Diseño UI/UX",
-      date: "2024-05-22",
-      amount: 39.99,
-      currency: "USD",
-      status: "success",
-    },
-    {
-      id: 3,
-      course: "Bases de Datos SQL",
-      date: "2024-05-10",
-      amount: 29.99,
-      currency: "USD",
-      status: "failed",
-    },
-  ]);
+  const [payments] = useState(paymentsHistory);
 
   return (
     <main className="min-h-screen bg-[var(--color-bg)] flex flex-col items-center py-8 px-2 sm:px-4">

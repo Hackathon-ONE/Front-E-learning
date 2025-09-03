@@ -6,33 +6,19 @@ import Image from "next/image";
 import Button from "@/components/ui/Button";
 import GridProjects from "@/components/GridCertificates";
 import { useSession } from "next-auth/react";
+import { profileStats, completedCourses, inProgressCourses } from "@/data/users";
 
 export default function ProfilePage() {
   const { data: session } = useSession();
   const [isEditing, setIsEditing] = useState(false);
+  const [stats, setStats] = useState(profileStats);
+  const [completed, setCompleted] = useState(completedCourses);
+  const [inProgress, setInProgress] = useState(inProgressCourses);
 
-  const bio = session?.user?.bio || "Hola! Soy desarrollador Full Stack..."; // fallback
+  const bio = session?.user?.bio || "Hola! Soy..."; 
   const avatar = session?.user?.image || "/default-avatar.png";
   const name = session?.user?.name || "Usuario";
   const [editableBio, setEditableBio] = useState(bio);
-
-  const stats = [
-    { label: "Cursos Finalizados", value: 64 },
-    { label: "Horas Estudiadas", value: 947 },
-    { label: "Certificados Obtenidos", value: 12 },
-    { label: "Proyectos Subidos", value: 5 },
-  ];
-
-  const completedCourses = [
-    { title: "Formación Desarrollo Personal", progress: 100, image: "/courses/dev.jpg" },
-    { title: "Formación Lógica de Programación", progress: 100, image: "/courses/logic.jpg" },
-    { title: "Formación Principiante en Programación", progress: 100, image: "/courses/start.jpg" },
-  ];
-
-  const inProgressCourses = [
-    { title: "Node.js Avanzado", progress: 60, image: "/courses/node.jpg" },
-    { title: "React Hooks & Context", progress: 40, image: "/courses/react.jpg" },
-  ];
 
   // Ejemplo de cómo importar datos desde la base de datos (Java/Spring Boot):
   /*
@@ -68,7 +54,7 @@ export default function ProfilePage() {
 
   return (
     <section className="py-10 px-6 container mx-auto">
-      {/* 🧑 Perfil */}
+      {/* Perfil */}
       <div className="bg-surface rounded-2xl shadow p-6 flex flex-col md:flex-row gap-6 items-start">
       <Image
         src={avatar}
@@ -99,7 +85,7 @@ export default function ProfilePage() {
         </div>
       </div>
 
-      {/* 📊 Stats */}
+      {/* Stats */}
       <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mt-8">
         {stats.map((s, idx) => (
           <motion.div
@@ -113,7 +99,7 @@ export default function ProfilePage() {
         ))}
       </div>
 
-      {/* ✅ Cursos finalizados */}
+      {/* Cursos finalizados */}
       <h2 className="text-xl md:text-2xl font-semibold mt-10 mb-4">Formaciones Finalizadas</h2>
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
         {completedCourses.map((c, i) => (
@@ -134,7 +120,7 @@ export default function ProfilePage() {
         ))}
       </div>
 
-      {/* 📚 Cursos en progreso */}
+      {/* Cursos en progreso */}
       <h2 className="text-xl md:text-2xl font-semibold mt-10 mb-4">Cursos en Progreso</h2>
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
         {inProgressCourses.map((c, i) => (

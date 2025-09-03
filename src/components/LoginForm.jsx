@@ -31,7 +31,7 @@ export default function LoginForm() {
 
     setLoading(true);
 
-    // 👇 Usamos NextAuth credentials
+    // Usamos NextAuth credentials
     const res = await signIn("credentials", {
       redirect: false,
       email: formData.email,
@@ -45,7 +45,7 @@ export default function LoginForm() {
       return;
     }
 
-    // 👇 Obtenemos el session para saber el rol
+    // Obtenemos el session para saber el rol
     const sessionRes = await fetch("/auth/session");
     const session = await sessionRes.json();
     const role = session?.user?.role || "student";
@@ -122,7 +122,7 @@ export default function LoginForm() {
         Iniciar sesión con Google
       </button>
 
-      {/* 🔻 Links extra */}
+      {/* Links extra */}
       <div className="text-center mt-4 text-sm flex flex-col gap-2">
         <p>
           ¿No tienes cuenta?{" "}

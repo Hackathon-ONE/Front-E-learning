@@ -4,20 +4,14 @@ import { useParams } from "next/navigation";
 import Link from "next/link";
 import { PlusCircle, Pencil, Trash2, PlayCircle } from "lucide-react";
 import { useState, useEffect } from "react";
+import { fakeLessonPage } from "@/data/instructors";
 
 export default function CourseLessonsPage() {
   const { id } = useParams();
-
-  // 🔹 Datos simulados (luego esto vendrá de tu API)
   const [lessons, setLessons] = useState([]);
 
   useEffect(() => {
-    // Hardcode inicial
-    setLessons([
-      { id: 1, title: "Introducción a React", duration: "10:32", status: "publicada" },
-      { id: 2, title: "Componentes y Props", duration: "15:20", status: "borrador" },
-      { id: 3, title: "Estado y Ciclo de vida", duration: "18:45", status: "publicada" },
-    ]);
+    setLessons(fakeLessonPage);
   }, [id]);
 
   return (

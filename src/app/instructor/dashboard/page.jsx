@@ -5,21 +5,10 @@ import { PlusCircle, Users, BookOpen, LineChart, Pencil, DollarSign } from "luci
 import Card from "@/components/ui/Card";
 import Button from "@/components/ui/Button";
 import Link from "next/link";
+import { instructorDashboardData } from "@/data/instructors";
 
 export default function InstructorDashboard() {
-  // Simulación de datos (esto luego lo jalas desde tu API o DB)
-  const [instructor] = useState({
-    name: "Juan Pérez",
-    bio: "Desarrollador Frontend con 8 años de experiencia. Instructor apasionado por React y Next.js.",
-    avatar: "https://i.pravatar.cc/150?img=1", 
-    stats: {
-      courses: 5,
-      students: 320,
-      progressReports: 78,
-      earnings: 12500, // 👈 Total ganado
-    },
-  });
-
+  const [instructor] = useState(instructorDashboardData);
   const [courses, setCourses] = useState([]);
   /* const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
@@ -30,7 +19,7 @@ export default function InstructorDashboard() {
         setLoading(true);
         setError(null);
 
-        // 🔹 Cambia la ruta por tu endpoint real
+        // Cambiar la ruta por endpoint real
         const res = await fetch("http://localhost:3000/api/instructor/dashboard");
         if (!res.ok) throw new Error("Error al obtener datos del dashboard");
 

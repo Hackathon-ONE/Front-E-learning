@@ -102,7 +102,7 @@ export const knowledgeBase = [
     
     // Ayuda y Soporte
     {
-      path: "/help",
+      path: "/help/support",
       keywords: ["ayuda", "soporte", "centro de ayuda", "preguntas frecuentes"],
       title: "Centro de Ayuda",
       description: "Encuentra ayuda y soporte.",

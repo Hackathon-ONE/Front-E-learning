@@ -4,27 +4,17 @@ import { useParams, useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import { Save, ArrowLeft } from "lucide-react";
 import Link from "next/link";
+import { fakeLessonEdit } from "@/data/instructors";
 
 export default function EditLessonPage() {
   const { id, lessonId } = useParams();
   const router = useRouter();
-
-  // Estado con datos de la lección
-  const [lesson, setLesson] = useState({
-    title: "",
-    description: "",
-    duration: "",
-    status: "borrador",
-  });
+  const [lesson, setLesson] = useState(fakeLessonEdit);
 
   useEffect(() => {
-    // 🔹 Hardcode simulado (esto vendría de la API)
-    setLesson({
-      title: "Componentes y Props",
-      description: "Aprenderemos cómo funcionan los componentes y props en React.",
-      duration: "15:20",
-      status: "borrador",
-    });
+    setTimeout(() => {
+      setLesson(fakeLessonEdit);
+    }, 600);
   }, [lessonId]);
 
   const handleChange = (e) => {
@@ -37,7 +27,7 @@ export default function EditLessonPage() {
     console.log("Lección actualizada:", lesson);
 
     // Simular guardado
-    alert("Lección actualizada con éxito ✅");
+    alert("Lección actualizada con éxito");
 
     // Redirigir al listado
     router.push(`/instructor/courses/${id}/lessons`);

@@ -1,19 +1,64 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { PlusCircle, Users, BookOpen, LineChart, Pencil, DollarSign } from "lucide-react";
+import {
+  PlusCircle,
+  Users,
+  BookOpen,
+  LineChart,
+  Pencil,
+  DollarSign,
+  Loader2,
+} from "lucide-react";
 import Card from "@/components/ui/Card";
 import Button from "@/components/ui/Button";
 import Link from "next/link";
 import { instructorDashboardData } from "@/data/instructors";
+// import { useFetch } from "@/hooks/useFetch";
+import withRole from "@/components/withRole";
 
-export default function InstructorDashboard() {
-  const [instructor] = useState(instructorDashboardData);
+function InstructorDashboard() {
+ /*  const { data: instructorData, loading, error } = useFetch("/api/instructor/dashboard"); */
+  const [instructor, setInstructor] = useState(null);
   const [courses, setCourses] = useState([]);
-  /* const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
+  // 🔹 Simulación de carga (con mocks)
   useEffect(() => {
+    setLoading(true);
+    const timer = setTimeout(() => {
+      try {
+        setInstructor(instructorDashboardData);
+        setCourses(instructorDashboardData.courses || []);
+      } catch {
+        setError("No se pudieron cargar los datos del instructor.");
+      } finally {
+        setLoading(false);
+      }
+    }, 1000);
+
+    return () => clearTimeout(timer);
+  }, []);
+
+  // Loader y error
+  if (loading) {
+    return (
+      <div className="flex justify-center py-20">
+        <Loader2 className="animate-spin w-12 h-12 text-primary" />
+      </div>
+    );
+  }
+  if (error) {
+    return (
+      <div className="text-center text-red-500 py-10">{error}</div>
+    );
+  }
+
+  // 🔹 Tomamos un curso de ejemplo (primer curso) para acciones
+  const firstCourseId = courses.length > 0 ? courses[0].id : 1;
+
+  /* useEffect(() => {
     async function fetchInstructor() {
       try {
         setLoading(true);
@@ -35,22 +80,7 @@ export default function InstructorDashboard() {
 
     fetchInstructor();
   }, []);
-
-  if (loading) {
-    return (
-      <section className="p-8">
-        <p className="text-center text-gray-400">Cargando datos...</p>
-      </section>
-    );
-  }
-
-  if (error) {
-    return (
-      <section className="p-8">
-        <p className="text-center text-red-500">{error}</p>
-      </section>
-    );
-  } */
+ */
 
     return (
       <section className="p-6 md:p-12 space-y-8 max-w-7xl mx-auto">
@@ -144,7 +174,7 @@ export default function InstructorDashboard() {
               <div className="flex flex-col items-center">
                 <Pencil className="w-10 h-10 text-accent mb-3" />
                 <h3 className="text-lg font-semibold">Editar curso</h3>
-                <Link href={`/instructor/courses/${courses.id || 1}/edit`}>
+                <Link href={`/instructor/courses/${firstCourseId}/edit`}>
                   <Button className="mt-3 p-2 rounded-lg border border-primary text-primary hover:bg-primary hover:text-white transition text-sm md:text-base">
                     Ver más
                   </Button>
@@ -157,7 +187,7 @@ export default function InstructorDashboard() {
               <div className="flex flex-col items-center">
                 <Users className="w-10 h-10 text-green-500 mb-3" />
                 <h3 className="text-lg font-semibold">Gestionar estudiantes</h3>
-                <Link href={`/instructor/courses/${courses.id || 1}/students`}>
+                <Link href={`/instructor/courses/${firstCourseId}/students`}>
                   <Button className="mt-3 p-2 rounded-lg border border-primary text-primary hover:bg-primary hover:text-white transition text-sm md:text-base">
                     Ver más
                   </Button>
@@ -183,7 +213,7 @@ export default function InstructorDashboard() {
               <div className="flex flex-col items-center">
                 <LineChart className="w-10 h-10 text-blue-500 mb-3" />
                 <h3 className="text-lg font-semibold">Analíticas</h3>
-                <Link href={`/instructor/courses/${courses.id || 1}/analytics`}>
+                <Link href={`/instructor/courses/${firstCourseId}/analytics`}>
                   <Button className="mt-3 p-2 rounded-lg border border-primary text-primary hover:bg-primary hover:text-white transition text-sm md:text-base">
                     Ver más
                   </Button>
@@ -195,3 +225,5 @@ export default function InstructorDashboard() {
       </section>
     );
   }
+
+  export default withRole(InstructorDashboard, ["INSTRUCTOR"]);

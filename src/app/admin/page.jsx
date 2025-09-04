@@ -9,8 +9,9 @@ import Link from "next/link";
 import { lineData, pieData, barData, instructorRequests, COLORS } from "@/data/adminDashboard";
 /* import { useAdminInstructors } from "@/hooks/useAdminInstructors";
 import { useAdminDashboard } from "@/hooks/useAdminDashboard"; */
+import withRole from "@/components/withRole";
 
-export default function AdminPage() {
+function AdminPage() {
   /* const {
     instructors,
     filter,
@@ -159,3 +160,5 @@ export default function AdminPage() {
     </div>
   );
 }
+
+export default withRole(AdminPage, ["ADMIN"]);

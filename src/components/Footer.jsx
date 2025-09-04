@@ -39,9 +39,9 @@ export default function Footer() {
           <ul className="flex flex-col gap-2 text-sm md:text-md text-gray-300 text-center md:text-left">
             <li><Link href="/courses" className="hover:text-[var(--color-primary)] transition">Cursos</Link></li>
             <li><Link href="/instructor" className="hover:text-[var(--color-primary)] transition">Instructores</Link></li>
-            <li><Link href="/team" className="hover:text-[var(--color-primary)] transition">Equipo 4 - LATAM</Link></li>
+            {/* <li><Link href="/team" className="hover:text-[var(--color-primary)] transition">Equipo 4 - LATAM</Link></li> */}
             {/* <li><Link href="/help/faq" className="hover:text-[var(--color-primary)] transition">FAQ</Link></li> */}
-            {/* <li><Link href="/help/contact" className="hover:text-[var(--color-primary)] transition">Contacto</Link></li> */}
+            <li><Link href="/help/contact" className="hover:text-[var(--color-primary)] transition">Contacto</Link></li>
             <li><Link href="/help/support" className="hover:text-[var(--color-primary)] transition">Soporte</Link></li>
           </ul>
         </div>

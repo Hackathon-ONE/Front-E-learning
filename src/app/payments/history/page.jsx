@@ -1,15 +1,16 @@
 "use client";
-import { useState /*, useEffect */ } from "react";
-import { CheckCircle, XCircle } from "lucide-react";
-import { paymentsHistory } from "@/data/paymentsData";
 
-// Ejemplo de cómo importar datos desde la base de datos (Java/Spring Boot):
-/*
 import { useEffect, useState } from "react";
-const [payments, setPayments] = useState([]);
-const [loading, setLoading] = useState(true);
-const [error, setError] = useState(null);
+import { CheckCircle, XCircle, Loader2 } from "lucide-react";
+import { paymentsHistory } from "@/data/paymentsData";
+/* import { useFetch } from "@/hooks/useFetch"; */
 
+export default function PaymentsHistoryPage() {
+  const [payments, setPayments] = useState(paymentsHistory);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+/*   const { data: paymentsData, loading, error } = useFetch("/api/payments/history"); */
+/* 
 useEffect(() => {
   async function fetchPayments() {
     try {
@@ -28,14 +29,39 @@ useEffect(() => {
   }
   fetchPayments();
 }, []);
+ */
 
-// Puedes mostrar loading y error así:
-// if (loading) return <div className="text-center py-10">Cargando historial...</div>;
-// if (error) return <div className="text-center text-red-500 py-10">{error}</div>;
-*/
+// Simulación con mocks
+useEffect(() => {
+  setLoading(true);
+  const timer = setTimeout(() => {
+    try {
+      setPayments(paymentsHistory);
+    } catch {
+      setError("No se pudo cargar el historial de pagos.");
+    } finally {
+      setLoading(false);
+    }
+  }, 1000);
 
-export default function PaymentsHistoryPage() {
-  const [payments] = useState(paymentsHistory);
+  return () => clearTimeout(timer);
+}, []);
+
+// Loader y error
+if (loading) {
+  return (
+    <div className="flex justify-center py-20">
+      <Loader2 className="animate-spin w-12 h-12 text-primary" />
+    </div>
+  );
+}
+if (error) {
+  return (
+    <div className="text-center text-red-500 py-10">
+      {error}
+    </div>
+  );
+}
 
   return (
     <main className="min-h-screen bg-[var(--color-bg)] flex flex-col items-center py-8 px-2 sm:px-4">

@@ -23,10 +23,10 @@ export default function LumiSection() {
         {/* Texto */}
         <div className="text-center md:text-left">
           <h2 className="text-3xl md:text-4xl font-bold text-gray-800 mb-4">
-            Conoce a <span className="text-primary">Lumi</span>
+            Conoce a Lumi
           </h2>
           <p className="text-base md:text-lg text-gray-600 mb-6">
-            Tu asistente en <span className="font-semibold">Lumina</span>, lista para guiarte
+            Tu asistente en <span className="font-semibold text-primary">Lumina</span>, lista para guiarte
             en cada paso de tu recorrido dentro de la plataforma.
           </p>
           {/* <button className="px-6 py-3 bg-primary hover:bg-primary/60 text-white font-semibold rounded-xl shadow-md transition">

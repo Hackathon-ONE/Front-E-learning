@@ -1,13 +1,14 @@
 "use client";
-import { useState /*, useEffect */ } from "react";
-import { BookOpen, CheckCircle, Clock, TrendingUp } from "lucide-react";
+import { useState , useEffect } from "react";
+import { BookOpen, CheckCircle, Clock, TrendingUp, Loader2 } from "lucide-react";
 import { mockProgress } from "@/data/progressDashboard";
+import { useFetch } from "@/hooks/useFetch";
 
 export default function ProgressPage() {
   // Para datos reales desde Java/Spring Boot:
-  // const [progress, setProgress] = useState(null);
-  // const [loading, setLoading] = useState(true);
-  // const [error, setError] = useState(null);
+  const [progress, setProgress] = useState(null);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
 
   // useEffect(() => {
   //   async function fetchProgress() {
@@ -31,7 +32,43 @@ export default function ProgressPage() {
   // if (loading) return <div className="text-center py-10">Cargando progreso...</div>;
   // if (error) return <div className="text-center text-red-500 py-10">{error}</div>;
 
-  const [progress] = useState(mockProgress);
+  /* const [progress] = useState(mockProgress); */
+  /* const { data: progressData, loading, error } = useFetch("/api/progress"); */
+
+  // Simulación de carga (con mocks)
+  useEffect(() => {
+    try {
+      setLoading(true);
+      const timer = setTimeout(() => {
+        setProgress(mockProgress);
+        setLoading(false);
+      }, 1000);
+
+      return () => clearTimeout(timer);
+    } catch (err) {
+      setError("No se pudo cargar el progreso.");
+      setLoading(false);
+    }
+  }, []);
+
+  // Loader y error
+  if (loading) {
+    return (
+      <div className="flex justify-center py-20">
+        <Loader2 className="animate-spin w-12 h-12 text-primary" />
+      </div>
+    );
+  }
+
+  if (error) {
+    return (
+      <div className="text-center text-red-500 py-10">
+        {error}
+      </div>
+    );
+  }
+
+  if (!progress) return null; // Evita crash si no hay datos
 
   return (
     <main className="min-h-screen bg-[var(--color-bg)] flex flex-col items-center py-8 px-2 sm:px-4">
@@ -86,7 +123,7 @@ export default function ProgressPage() {
                 </div>
                 <div className="w-full bg-gray-300 dark:bg-gray-700 rounded-full h-2 mt-2">
                   <div
-                    className="bg-blue-600 dark:bg-blue-400 h-2 rounded-full transition-all"
+                    className="bg-orange-500 dark:bg-orange-300 h-2 rounded-full transition-all"
                     style={{ width: `${c.progress}%` }}
                   />
                 </div>

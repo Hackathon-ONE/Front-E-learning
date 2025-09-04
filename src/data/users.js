@@ -26,5 +26,3 @@ export const profileDashboard = {
     name: "Juan Pérez",
     email: "juan.perez@email.com",
 };
-
-  

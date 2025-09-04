@@ -4,10 +4,17 @@ import { useState, useEffect } from "react";
 import Link from "next/link";
 import ThemeToggle from "./ThemeToggle";
 import { MenuIcon, XIcon, CircleUserRound } from "lucide-react";
-import { useSession, signOut } from "next-auth/react";
-import { useRouter } from "next/navigation";
+import { useSession, signIn, signOut } from "next-auth/react";
 import Image from "next/image";
 import Notifications from "./Notifications";
+import { useRouter } from "next/navigation";
+
+const navLinks = [
+  { href: "/team", label: "Team Lumina" },
+  { href: "/payments", label: "Planes" },
+  { href: "/help/faq", label: "FAQ" },
+  { href: "/help/contact", label: "Contacto" },
+];
 
 export default function Navbar() {
   const [mobileOpen, setMobileOpen] = useState(false);
@@ -15,14 +22,14 @@ export default function Navbar() {
   const [mounted, setMounted] = useState(false);
 
   const { data: session } = useSession();
-  const user = session?.user;
   const router = useRouter();
+  const user = session?.user;
 
   useEffect(() => setMounted(true), []);
   if (!mounted) return null;
 
   const handleSignOut = () => {
-    signOut({ callbackUrl: "/" }); // redirige a /inicio
+    signOut({ callbackUrl: "/" });
   };
 
   return (
@@ -43,20 +50,19 @@ export default function Navbar() {
 
         {/* Desktop Menu */}
         <div className="hidden md:flex gap-6 items-center">
-          {["/about", "/payments", "/help/faq", "/help/contact"].map((href, i) => (
+          {navLinks.map(({ href, label }) => (
             <Link
-              key={i}
+              key={href}
               href={href}
               className="text-foreground hover:text-primary transition"
             >
-              {href === "/about" ? "Quiénes Somos" : href === "/payments" ? "Planes" : href === "/help/faq" ? "FAQ" : href === "/help/contact" ? "Contacto" : ""}
+              {label}
             </Link>
           ))}
           <ThemeToggle />
-          <div className="flex items-center gap-4">
-            <Notifications />
-          </div>
+          <Notifications />
 
+          {/* User Dropdown */}
           <div className="relative">
             <button
               aria-label="User menu"
@@ -69,9 +75,11 @@ export default function Navbar() {
                   <img
                     src={user.image}
                     alt={user.name || "avatar"}
-                    className="w-9 h-9 sm:w-8 sm:h-8 rounded-full border"
+                    className="w-9 h-9 rounded-full border"
                   />
-                  <span className="text-sm text-foreground hidden lg:block">{user.name}</span>
+                  <span className="text-sm text-foreground hidden lg:block">
+                    {user.name}
+                  </span>
                 </>
               ) : (
                 <CircleUserRound className="w-8 h-8 text-foreground hover:text-primary transition" />
@@ -79,17 +87,43 @@ export default function Navbar() {
             </button>
 
             {dropdownOpen && (
-              <div className="absolute right-0 mt-2 w-48 max-h-72 overflow-auto bg-[var(--color-surface)] dark:bg-surface text-primary rounded-xl shadow-lg border border-muted p-2 z-50 transition-all duration-300">
+              <div className="absolute right-0 mt-2 w-52 bg-[var(--color-surface)] rounded-xl shadow-lg border border-muted p-2 z-50">
                 {!user ? (
                   <>
-                    <Link href="/auth/login" className="block rounded-md px-3 py-2 hover:bg-[var(--color-dropdown)]">Iniciar sesión</Link>
-                    <Link href="/demo" className="block rounded-md px-3 py-2 hover:bg-[var(--color-dropdown)]">Demo gratis</Link>
+                    <button
+                      onClick={() => router.push("/auth/login")}
+                      className="w-full text-left px-3 py-2 hover:bg-[var(--color-dropdown)] rounded-md"
+                    >
+                      Iniciar sesión
+                    </button>
+                    <Link
+                      href="/demo"
+                      className="block rounded-md px-3 py-2 hover:bg-[var(--color-dropdown)]"
+                    >
+                      Demo gratis
+                    </Link>
                   </>
                 ) : (
                   <>
-                    <Link href="/inicio" className="block rounded-md px-3 py-2 hover:bg-secondary">Inicio</Link>
-                    <Link href="/dashboard/settings" className="block rounded-md px-3 py-2 hover:bg-secondary">Settings</Link>
-                    <button onClick={handleSignOut} className="w-full text-left rounded-md px-3 py-2 hover:bg-secondary">Cerrar sesión</button>
+                    <p className="px-3 py-2 font-semibold">{user.name}</p>
+                    <Link
+                      href="/dashboard/profile"
+                      className="block rounded-md px-3 py-2 hover:bg-secondary"
+                    >
+                      Perfil
+                    </Link>
+                    <Link
+                      href="/dashboard/settings"
+                      className="block rounded-md px-3 py-2 hover:bg-secondary"
+                    >
+                      Configuración
+                    </Link>
+                    <button
+                      onClick={handleSignOut}
+                      className="w-full text-left rounded-md px-3 py-2 hover:bg-secondary"
+                    >
+                      Cerrar sesión
+                    </button>
                   </>
                 )}
               </div>
@@ -110,45 +144,81 @@ export default function Navbar() {
       {/* Mobile Menu */}
       <div
         className={`md:hidden bg-[var(--color-surface)] px-4 pb-4 flex flex-col gap-3 transition-all duration-300 ${
-          mobileOpen ? "max-h-screen opacity-90" : "max-h-0 opacity-0 overflow-hidden"
+          mobileOpen
+            ? "max-h-screen opacity-100"
+            : "max-h-0 opacity-0 overflow-hidden"
         }`}
       >
         {/* Usuario + ThemeToggle */}
         <div className="flex justify-between items-center py-2 border-b border-muted">
           <div className="flex items-center gap-2">
             {user?.image ? (
-              <img src={user.image} alt={user.name || "avatar"} className="w-9 h-9 rounded-full border" />
+              <img
+                src={user.image}
+                alt={user.name || "avatar"}
+                className="w-9 h-9 rounded-full border"
+              />
             ) : (
               <CircleUserRound className="w-8 h-8 text-foreground" />
             )}
-            {user && <span className="text-sm text-foreground font-medium">{user.name}</span>}
+            {user && (
+              <span className="text-sm text-foreground font-medium">
+                {user.name}
+              </span>
+            )}
           </div>
           <ThemeToggle />
         </div>
 
         {/* Links principales */}
-        <div className="flex flex-col gap-2 mt-2">
-          <Link href="/about" className="px-4 py-2 hover:bg-secondary rounded-lg">Sobre Nosotros</Link>
-          <Link href="/payments" className="px-4 py-2 hover:bg-secondary rounded-lg">Planes</Link>
-          <Link href="/help/faq" className="px-4 py-2 hover:bg-secondary rounded-lg">FAQ</Link>
-          <Link href="/help/contact" className="px-4 py-2 hover:bg-secondary rounded-lg">Contacto</Link>
-        </div>
+        {navLinks.map(({ href, label }) => (
+          <Link
+            key={href}
+            href={href}
+            className="px-4 py-2 hover:bg-secondary rounded-lg"
+          >
+            {label}
+          </Link>
+        ))}
 
         {/* Links de usuario */}
-        <div className="flex flex-col gap-2 mt-2">
-          {!user ? (
-            <>
-              <Link href="/auth/login" className="px-4 py-2 bg-[var(--color-dropdown)] rounded-lg text-center">Iniciar sesión</Link>
-              <Link href="/demo" className="px-4 py-2 bg-[var(--color-dropdown)] rounded-lg text-center">Demo gratis</Link>
-            </>
-          ) : (
-            <>
-              <Link href="/" className="px-4 py-2 hover:bg-secondary rounded-lg text-center">Inicio</Link>
-              <Link href="/dashboard/settings" className="px-4 py-2 hover:bg-secondary rounded-lg text-center">Settings</Link>
-              <button onClick={handleSignOut} className="px-4 py-2 hover:bg-secondary rounded-lg text-center w-full">Cerrar sesión</button>
-            </>
-          )}
-        </div>
+        {!user ? (
+          <>
+            <button
+              onClick={() => signIn("credentials", "google")}
+              className="px-4 py-2 bg-[var(--color-dropdown)] rounded-lg text-center"
+            >
+              Iniciar sesión
+            </button>
+            <Link
+              href="/demo"
+              className="px-4 py-2 bg-[var(--color-dropdown)] rounded-lg text-center"
+            >
+              Demo gratis
+            </Link>
+          </>
+        ) : (
+          <>
+            <Link
+              href="/dashboard/profile"
+              className="px-4 py-2 hover:bg-secondary rounded-lg text-center"
+            >
+              Perfil
+            </Link>
+            <Link
+              href="/dashboard/settings"
+              className="px-4 py-2 hover:bg-secondary rounded-lg text-center"
+            >
+              Configuración
+            </Link>
+            <button
+              onClick={handleSignOut}
+              className="px-4 py-2 hover:bg-secondary rounded-lg text-center w-full"
+            >
+              Cerrar sesión
+            </button>
+          </>
+        )}
       </div>
     </nav>
   );

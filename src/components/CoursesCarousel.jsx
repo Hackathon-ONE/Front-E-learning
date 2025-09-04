@@ -15,7 +15,7 @@ export default function CoursesCarousel() {
     <section className="py-14 bg-surface text-foreground">
       <div className="container mx-auto grid grid-cols-1 md:grid-cols-3 gap-10 items-start">
 
-        {/* 📖 Columna Izquierda */}
+        {/* Columna Izquierda */}
         <div className="md:col-span-1 flex flex-col justify-center text-left px-4 md:px-0 mt-8">
           <motion.h2
             className="text-3xl md:text-4xl font-bold mb-4 mt-12"
@@ -91,7 +91,7 @@ export default function CoursesCarousel() {
                       >
                         Ver Demo
                       </a>
-                      <Link href={`/courses/${course.id}/overview`}>
+                      <Link href={"/payments"}>
                         <Button className="w-full p-2 bg-gray-200 dark:bg-gray-900 text-sm text-foreground py-1.5 rounded-lg shadow hover:bg-[#ffdb70] dark:hover:bg-primary-hover transition">
                           Suscribirse
                         </Button>

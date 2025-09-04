@@ -6,23 +6,36 @@ import { useAuth } from "@/context/AuthContext";
 import { signIn } from "next-auth/react";
 import Link from "next/link";
 import AuthLayout from "./AuthLayout";
+import { useRouter } from "next/navigation";
 
 export default function LoginForm() {
   const [formData, setFormData] = useState({ email: "", password: "" });
   const [errors, setErrors] = useState({});
-  const { login } = useAuth();
   const [loading, setLoading] = useState(false);
+  const router = useRouter();
 
-  const handleChange = (e) => setFormData({ ...formData, [e.target.name]: e.target.value });
+  const handleChange = (e) =>
+    setFormData({ ...formData, [e.target.name]: e.target.value });
 
   const validate = () => {
     const newErrors = {};
     if (!formData.email.trim()) newErrors.email = "Email es requerido";
     else if (!/\S+@\S+\.\S+/.test(formData.email)) newErrors.email = "Email no es válido";
     if (!formData.password.trim()) newErrors.password = "Contraseña es requerida";
-    else if (formData.password.length < 6) newErrors.password = "Debe tener al menos 6 caracteres";
+    else if (formData.password.length < 6)
+      newErrors.password = "Debe tener al menos 6 caracteres";
     setErrors(newErrors);
     return Object.keys(newErrors).length === 0;
+  };
+
+  const redirectByRole = async () => {
+    const sessionRes = await fetch("/api/auth/session");
+    const session = await sessionRes.json();
+    const role = session?.user?.role;
+
+    if (role === "ADMIN") router.push("/admin/dashboard");
+    else if (role === "INSTRUCTOR") router.push("/instructor/dashboard");
+    else router.push("/students");
   };
 
   const handleSubmit = async (e) => {
@@ -31,7 +44,6 @@ export default function LoginForm() {
 
     setLoading(true);
 
-    // Usamos NextAuth credentials
     const res = await signIn("credentials", {
       redirect: false,
       email: formData.email,
@@ -45,14 +57,23 @@ export default function LoginForm() {
       return;
     }
 
-    // Obtenemos el session para saber el rol
-    const sessionRes = await fetch("/auth/session");
-    const session = await sessionRes.json();
-    const role = session?.user?.role || "student";
+    // Redirige según rol después del login con credentials
+    redirectByRole();
+  };
 
-    if (role === "instructor") router.push("/instructor/dashboard");
-    else if (role === "admin") router.push("/admin/dashboard");
-    else router.push("/students");
+  const handleGoogleLogin = async () => {
+    setLoading(true);
+
+    const res = await signIn("google", { callbackUrl: "/students", redirect: true });
+    setLoading(false);
+
+    if (res?.error) {
+      setErrors({ general: "Error al iniciar sesión con Google" });
+      return;
+    }
+
+    // Redirige según rol después del login con Google
+    redirectByRole();
   };
 
   return (
@@ -60,9 +81,7 @@ export default function LoginForm() {
       <h2 className="text-2xl font-bold mb-6 text-center">Iniciar sesión</h2>
 
       <form onSubmit={handleSubmit} className="space-y-4">
-        {errors.general && (
-          <p className="text-sm text-red-500">{errors.general}</p>
-        )}
+        {errors.general && <p className="text-sm text-red-500">{errors.general}</p>}
 
         <div>
           <label className="block mb-1">Email</label>
@@ -73,9 +92,7 @@ export default function LoginForm() {
             value={formData.email}
             onChange={handleChange}
           />
-          {errors.email && (
-            <p className="text-sm text-red-500 mt-1">{errors.email}</p>
-          )}
+          {errors.email && <p className="text-sm text-red-500 mt-1">{errors.email}</p>}
         </div>
 
         <div>
@@ -87,9 +104,7 @@ export default function LoginForm() {
             value={formData.password}
             onChange={handleChange}
           />
-          {errors.password && (
-            <p className="text-sm text-red-500 mt-1">{errors.password}</p>
-          )}
+          {errors.password && <p className="text-sm text-red-500 mt-1">{errors.password}</p>}
         </div>
 
         <button
@@ -110,7 +125,8 @@ export default function LoginForm() {
       </div>
 
       <button
-        onClick={() => signIn("google", { callbackUrl: "/students" })}
+        onClick={handleGoogleLogin}
+        disabled={loading}
         className="w-full flex items-center justify-center gap-2 py-3 rounded-lg border font-semibold hover:bg-primary hover:text-primary-text"
         style={{
           borderColor: "var(--color-secondary)",
@@ -122,24 +138,15 @@ export default function LoginForm() {
         Iniciar sesión con Google
       </button>
 
-      {/* Links extra */}
       <div className="text-center mt-4 text-sm flex flex-col gap-2">
         <p>
           ¿No tienes cuenta?{" "}
-          <Link
-            href="/auth/register"
-            className="font-semibold"
-            style={{ color: "var(--color-primary)" }}
-          >
+          <Link href="/auth/register" className="font-semibold" style={{ color: "var(--color-primary)" }}>
             Regístrate
           </Link>
         </p>
         <p>
-          <Link
-            href="/auth/forgot-password"
-            className="font-semibold"
-            style={{ color: "var(--color-primary)" }}
-          >
+          <Link href="/auth/forgot-password" className="font-semibold" style={{ color: "var(--color-primary)" }}>
             ¿Olvidaste tu contraseña?
           </Link>
         </p>

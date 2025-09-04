@@ -1,11 +1,12 @@
 import { NextResponse } from "next/server";
+import { getToken } from "next-auth/jwt";
 
-export function middleware(req) {
-  const token = req.cookies.get("token"); // suponiendo que se guarda el token en cookies
+export async function middleware(req) {
+  const token = await getToken({ req, secret: process.env.NEXTAUTH_SECRET });
   const url = req.nextUrl.clone();
 
+  // Si no hay sesión -> redirigir a login
   if (!token) {
-    // si no hay token -> redirigir a login
     if (url.pathname.startsWith("/dashboard") || url.pathname.startsWith("/admin")) {
       url.pathname = "/auth/login";
       return NextResponse.redirect(url);
@@ -13,13 +14,17 @@ export function middleware(req) {
     return NextResponse.next();
   }
 
-  // Decodificar rol (ejemplo simplificado)
-  const payload = JSON.parse(Buffer.from(token.split(".")[1], "base64").toString());
-  const role = payload.role;
+  // Obtener rol del token
+  const role = token.role || "student"; // fallback a student
 
   // Restringir rutas por rol
   if (url.pathname.startsWith("/admin") && role !== "admin") {
-    url.pathname = "/403"; // página de acceso denegado
+    url.pathname = "/403"; // tu página de acceso denegado
+    return NextResponse.redirect(url);
+  }
+
+  if (url.pathname.startsWith("/instructor") && role !== "instructor" && role !== "admin") {
+    url.pathname = "/403";
     return NextResponse.redirect(url);
   }
 
@@ -27,5 +32,9 @@ export function middleware(req) {
 }
 
 export const config = {
-  matcher: ["/dashboard/:path*", "/admin/:path*"], // rutas protegidas
+  matcher: [
+    "/dashboard/:path*",
+    "/admin/:path*",
+    "/instructor/:path*",
+  ],
 };

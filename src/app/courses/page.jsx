@@ -1,7 +1,7 @@
 "use client";
 
-import { useState } from "react";
-import { Search, ChevronDown } from "lucide-react";
+import { useState, useEffect } from "react";
+import { Search, ChevronDown, Loader2 } from "lucide-react";
 import Card from "@/components/ui/Card";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
@@ -14,7 +14,27 @@ const fakeUser = {
 };
 
 export default function CoursesPage() {
-  const [courses] = useState(coursesPageData);
+  const [courses, setCourses] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+  const router = useRouter();
+
+  // Simulación de carga (con mocks)
+  useEffect(() => {
+    try {
+      setLoading(true);
+      // Simulamos un pequeño delay (para que se vea el loader)
+      const timer = setTimeout(() => {
+        setCourses(coursesPageData);
+        setLoading(false);
+      }, 1000);
+
+      return () => clearTimeout(timer);
+    } catch (err) {
+      setError("No se pudieron cargar los cursos.");
+      setLoading(false);
+    }
+  }, []);
 
   // Estados de filtros
   const [search, setSearch] = useState("");
@@ -22,33 +42,14 @@ export default function CoursesPage() {
   const [instructor, setInstructor] = useState("all");
   const [sortOrder, setSortOrder] = useState("asc");
   const [type, setType] = useState("all");
-  const router = useRouter();
 
-  /* // Traer cursos desde el backend
-  useEffect(() => {
-    const fetchCourses = async () => {
-      try {
-        const res = await fetch("http://localhost:3000/api/courses"); // ajusta URL según tu backend
-        const data = await res.json();
-        setCourses(data);
-      } catch (error) {
-        console.error("Error cargando cursos:", error);
-      } finally {
-        setLoading(false);
-      }
-    };
-    fetchCourses();
-  }, []);
- */
   // Extraer categorías e instructores únicos
   const categories = ["all", ...new Set(courses.map((c) => c.category))];
   const instructors = ["all", ...new Set(courses.map((c) => c.instructor))];
 
   // 🔎 Filtrado de cursos
   const filteredCourses = courses
-    .filter((c) =>
-      c.title.toLowerCase().includes(search.toLowerCase())
-    )
+    .filter((c) => c.title.toLowerCase().includes(search.toLowerCase()))
     .filter((c) => (category === "all" ? true : c.category === category))
     .filter((c) => (instructor === "all" ? true : c.instructor === instructor))
     .filter((c) => {
@@ -62,7 +63,7 @@ export default function CoursesPage() {
         : b.title.localeCompare(a.title)
     );
 
-  // 📌 Componente para renderizar acceso
+  // Renderizar acceso
   const renderAccessInfo = (course) => {
     if (course.isFree) {
       return (
@@ -85,7 +86,6 @@ export default function CoursesPage() {
         </p>
       );
     }
-    // Botón que navega a /payments sin usar <Link> anidado
     return (
       <button
         type="button"
@@ -100,10 +100,23 @@ export default function CoursesPage() {
     );
   };
 
-  /* if (loading) {
-    return <p className="text-center mt-10">Cargando cursos...</p>;
-  } */
+  // Loader y error
+  if (loading) {
+    return (
+      <div className="flex justify-center py-20">
+        <Loader2 className="animate-spin w-12 h-12 text-primary" />
+      </div>
+    );
+  }
+  if (error) {
+    return (
+      <div className="text-center text-red-500 py-10">
+        {error}
+      </div>
+    );
+  }
 
+  // Render principal
   return (
     <section className="flex flex-col md:flex-row p-6 md:p-12 gap-8">
       {/* Sidebar */}
@@ -180,7 +193,7 @@ export default function CoursesPage() {
           </ul>
         </div>
 
-        {/* Tipo (gratis/pago) */}
+        {/* Tipo */}
         <div className="mb-8">
           <h3 className="text-sm font-semibold mb-3 text-gray-700 dark:text-gray-300">
             Tipo
@@ -240,9 +253,7 @@ export default function CoursesPage() {
               className="block"
               style={{ textDecoration: "none" }}
             >
-              <Card
-                className="p-6 flex flex-col justify-between bg-white dark:bg-gray-800 hover:shadow-xl transition rounded-xl border border-gray-200 dark:border-gray-700 cursor-pointer h-full"
-              >
+              <Card className="p-6 flex flex-col justify-between bg-white dark:bg-gray-800 hover:shadow-xl transition rounded-xl border border-gray-200 dark:border-gray-700 cursor-pointer h-full">
                 <div>
                   <h3 className="text-lg font-semibold mb-2">{course.title}</h3>
                   <p className="text-sm text-gray-600 dark:text-gray-300 mb-4">

@@ -3,7 +3,6 @@
 import { useState, useEffect } from 'react';
 import { BookOpen, BarChart, Lightbulb } from 'lucide-react';
 import Link from 'next/link';
-import RecommendationsForm from '@/components/SimpleRecommendationsForm';
 import { studentsData } from '@/data/students';
 
 export default function StudentsPage() {
@@ -75,21 +74,6 @@ export default function StudentsPage() {
               </div>
             </div>
           ))}
-        </div>
-
-        {/* Recomendaciones IA */}
-        <div className="space-y-6 sm:space-y-8 max-w-3xl mx-auto mt-12 sm:mt-16 px-2">
-          <div className="text-center">
-            <Lightbulb className="mx-auto h-12 w-12 sm:h-16 sm:w-16 text-primary" />
-            <h2 className="text-2xl sm:text-3xl font-bold font-headline mt-4">
-              Recomendaciones de cursos de IA
-            </h2>
-            <p className="text-gray-500 dark:text-gray-300 mt-2 text-sm sm:text-base">
-              Cuéntanos sobre ti y deja que nuestra IA te encuentre los cursos perfectos para
-              ayudarte a crecer.
-            </p>
-          </div>
-          <RecommendationsForm />
         </div>
       </section>
     </main>

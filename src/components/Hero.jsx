@@ -36,15 +36,15 @@ export default function Hero() {
 
       {/* Contenido */}
       {!loading && (
-        <div className="relative z-10 px-6 transition-opacity duration-700">
-          <h1 className="text-4xl md:text-6xl font-extrabold mb-6 leading-tight text-white">
+        <div className="relative z-10 px-4 sm:px-6 md:px-8 lg:px-12 transition-opacity duration-700">
+          <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-extrabold mb-4 sm:mb-6 leading-tight text-white">
             Aprende. <span className="text-primary">Enseña</span>. Crece.
           </h1>
-          <p className="text-lg md:text-xl max-w-2xl mx-auto mb-8 text-white">
+          <p className="text-base sm:text-lg md:text-xl max-w-2xl mx-auto mb-6 sm:mb-8 text-white">
             La plataforma donde estudiantes, instructores y administradores se
             encuentran para construir el futuro de la educación.
           </p>
-          <div className="flex flex-col sm:flex-row justify-center gap-4">
+          <div className="flex flex-col sm:flex-row justify-center gap-3 sm:gap-4">
             <Link href="/about">
               <Button variant="primary" size="lg">
                 Conoce Lumina

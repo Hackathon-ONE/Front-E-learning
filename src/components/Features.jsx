@@ -28,25 +28,25 @@ const features = [
 export default function Features() {
   return (
     <section
-      className="py-20 px-4 md:px-8 lg:px-16"
+      className="py-12 sm:py-16 md:py-20 px-4 sm:px-6 md:px-8 lg:px-12"
       style={{ backgroundColor: "var(--color-secondary)" }}
     >
       <div className="container mx-auto text-center">
         <h2
-          className="text-3xl md:text-4xl font-bold mb-16"
+          className="text-2xl sm:text-3xl md:text-4xl font-bold mb-8 sm:mb-12 md:mb-16"
           style={{ color: "var(--color-text)" }}
         >
           Servicios Educativos
         </h2>
 
-        <div className="grid gap-10 sm:grid-cols-2 lg:grid-cols-4">
+        <div className="grid gap-6 sm:gap-8 md:gap-10 grid-cols-1 sm:grid-cols-2 lg:grid-cols-4">
           {features.map((f, i) => (
             <Card
               key={i}
               title={f.title}
               description={f.description}
               icon={f.icon}
-              className="max-w-md"
+              className="max-w-md mx-auto"
             />
           ))}
         </div>

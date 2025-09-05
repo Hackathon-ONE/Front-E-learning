@@ -4,7 +4,7 @@ export default function Card({ title, description, icon, children, className = "
   return (
     <div
       className={`
-        relative p-8 rounded-[1.5rem] shadow-lg transition-transform duration-300
+        relative p-4 sm:p-6 md:p-8 rounded-[1.5rem] shadow-lg transition-transform duration-300
         hover:-translate-y-1 hover:scale-105 hover:shadow-2xl
         bg-card-secondary text-card-secondary-text
         ${className}
@@ -16,16 +16,16 @@ export default function Card({ title, description, icon, children, className = "
         perspective: "1000px",
       }}
     >
-      {icon && <div className="mb-4 text-4xl">{icon}</div>}
+      {icon && <div className="mb-3 sm:mb-4 text-3xl sm:text-4xl">{icon}</div>}
 
       {title && (
-        <h3 className="text-xl md:text-2xl font-semibold mb-4">
+        <h3 className="text-lg sm:text-xl md:text-2xl font-semibold mb-3 sm:mb-4">
           {title}
         </h3>
       )}
 
       {description && (
-        <p className="mb-6 text-muted" style={{ lineHeight: 1.6 }}>
+        <p className="mb-4 sm:mb-6 text-sm sm:text-base text-muted" style={{ lineHeight: 1.6 }}>
           {description}
         </p>
       )}

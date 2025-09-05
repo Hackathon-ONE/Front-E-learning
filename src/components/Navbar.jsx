@@ -44,18 +44,14 @@ export default function Navbar() {
             height={16}
             priority
             unoptimized
-            style={{ height: "auto", width: "30%" }}
+            style={{ height: 'auto', width: '30%' }}
           />
         </Link>
 
         {/* Desktop Menu */}
         <div className="hidden md:flex gap-6 items-center">
           {navLinks.map(({ href, label }) => (
-            <Link
-              key={href}
-              href={href}
-              className="text-foreground hover:text-primary transition"
-            >
+            <Link key={href} href={href} className="text-foreground hover:text-primary transition">
               {label}
             </Link>
           ))}
@@ -74,12 +70,10 @@ export default function Navbar() {
                 <>
                   <img
                     src={user.image}
-                    alt={user.name || "avatar"}
+                    alt={user.name || 'avatar'}
                     className="w-9 h-9 rounded-full border"
                   />
-                  <span className="text-sm text-foreground hidden lg:block">
-                    {user.name}
-                  </span>
+                  <span className="text-sm text-foreground hidden lg:block">{user.name}</span>
                 </>
               ) : (
                 <CircleUserRound className="w-8 h-8 text-foreground hover:text-primary transition" />
@@ -91,36 +85,70 @@ export default function Navbar() {
                 {!user ? (
                   <>
                     <button
-                      onClick={() => router.push("/auth/login")}
-                      className="w-full text-left px-3 py-2 hover:bg-[var(--color-dropdown)] rounded-md"
+                      onClick={() => router.push('/auth/login')}
+                      className="w-full text-left px-3 py-2 text-gray-400 hover:bg-[var(--color-dropdown)] rounded-md"
                     >
                       Iniciar sesión
                     </button>
                     <Link
                       href="/demo"
-                      className="block rounded-md px-3 py-2 hover:bg-[var(--color-dropdown)]"
+                      className="block rounded-md px-3 py-2 text-gray-400 hover:bg-[var(--color-dropdown)]"
                     >
                       Demo gratis
                     </Link>
                   </>
                 ) : (
                   <>
-                    <p className="px-3 py-2 font-semibold">{user.name}</p>
-                    <Link
-                      href="/dashboard/profile"
-                      className="block rounded-md px-3 py-2 hover:bg-secondary"
-                    >
-                      Perfil
-                    </Link>
+                    <p className="px-3 py-2 font-semibold border-b border-muted mb-2">
+                      {user.name}
+                    </p>
+
+                    {/* Opciones específicas por rol */}
+                    {user.role === 'ADMIN' && (
+                      <Link href="/admin" className="block rounded-md px-3 py-2 hover:bg-secondary">
+                        Dashboard
+                      </Link>
+                    )}
+
+                    {user.role === 'INSTRUCTOR' && (
+                      <>
+                        <Link
+                          href="/instructor/dashboard"
+                          className="block rounded-md px-3 py-2 hover:bg-secondary"
+                        >
+                          Dashboard
+                        </Link>
+                        <Link
+                          href="/dashboard/profile"
+                          className="block rounded-md px-3 py-2 hover:bg-secondary"
+                        >
+                          Perfil
+                        </Link>
+                      </>
+                    )}
+
+                    {user.role === 'STUDENT' && (
+                      <Link
+                        href="/dashboard/profile"
+                        className="block rounded-md px-3 py-2 hover:bg-secondary"
+                      >
+                        Perfil
+                      </Link>
+                    )}
+
+                    {/* Opciones comunes */}
                     <Link
                       href="/dashboard/settings"
                       className="block rounded-md px-3 py-2 hover:bg-secondary"
                     >
                       Configuración
                     </Link>
+
+                    <hr className="my-2 border-muted" />
+
                     <button
                       onClick={handleSignOut}
-                      className="w-full text-left rounded-md px-3 py-2 hover:bg-secondary"
+                      className="w-full text-left rounded-md px-3 py-2 hover:bg-secondary text-red-600"
                     >
                       Cerrar sesión
                     </button>
@@ -144,9 +172,7 @@ export default function Navbar() {
       {/* Mobile Menu */}
       <div
         className={`md:hidden bg-[var(--color-surface)] px-4 pb-4 flex flex-col gap-3 transition-all duration-300 ${
-          mobileOpen
-            ? "max-h-screen opacity-100"
-            : "max-h-0 opacity-0 overflow-hidden"
+          mobileOpen ? 'max-h-screen opacity-100' : 'max-h-0 opacity-0 overflow-hidden'
         }`}
       >
         {/* Usuario + ThemeToggle */}
@@ -155,28 +181,20 @@ export default function Navbar() {
             {user?.image ? (
               <img
                 src={user.image}
-                alt={user.name || "avatar"}
+                alt={user.name || 'avatar'}
                 className="w-9 h-9 rounded-full border"
               />
             ) : (
               <CircleUserRound className="w-8 h-8 text-foreground" />
             )}
-            {user && (
-              <span className="text-sm text-foreground font-medium">
-                {user.name}
-              </span>
-            )}
+            {user && <span className="text-sm text-foreground font-medium">{user.name}</span>}
           </div>
           <ThemeToggle />
         </div>
 
         {/* Links principales */}
         {navLinks.map(({ href, label }) => (
-          <Link
-            key={href}
-            href={href}
-            className="px-4 py-2 hover:bg-secondary rounded-lg"
-          >
+          <Link key={href} href={href} className="px-4 py-2 hover:bg-secondary rounded-lg">
             {label}
           </Link>
         ))}
@@ -185,20 +203,40 @@ export default function Navbar() {
         {!user ? (
           <>
             <button
-              onClick={() => signIn("credentials", "google")}
-              className="px-4 py-2 bg-[var(--color-dropdown)] rounded-lg text-center"
+              onClick={() => router.push('/auth/login')}
+              className="px-4 py-2 bg-[var(--color-dropdown)] text-gray-800 rounded-lg text-center"
             >
               Iniciar sesión
             </button>
             <Link
               href="/demo"
-              className="px-4 py-2 bg-[var(--color-dropdown)] rounded-lg text-center"
+              className="px-4 py-2 bg-[var(--color-dropdown)] text-gray-800 rounded-lg text-center"
             >
               Demo gratis
             </Link>
           </>
         ) : (
           <>
+            {/* Opciones específicas por rol */}
+            {user.role === 'ADMIN' && (
+              <Link
+                href="/admin/dashboard"
+                className="px-4 py-2 hover:bg-secondary rounded-lg text-center"
+              >
+                Dashboard Admin
+              </Link>
+            )}
+
+            {user.role === 'INSTRUCTOR' && (
+              <Link
+                href="/instructor/dashboard"
+                className="px-4 py-2 hover:bg-secondary rounded-lg text-center"
+              >
+                Dashboard Instructor
+              </Link>
+            )}
+
+            {/* Opciones comunes */}
             <Link
               href="/dashboard/profile"
               className="px-4 py-2 hover:bg-secondary rounded-lg text-center"
@@ -213,7 +251,7 @@ export default function Navbar() {
             </Link>
             <button
               onClick={handleSignOut}
-              className="px-4 py-2 hover:bg-secondary rounded-lg text-center w-full"
+              className="px-4 py-2 hover:bg-secondary rounded-lg text-center w-full text-red-600"
             >
               Cerrar sesión
             </button>

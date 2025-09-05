@@ -1,3 +1,4 @@
+import RoleBasedHome from "@/components/RoleBasedHome";
 import Hero from "@/components/Hero";
 import CoursesCarousel from "@/components/CoursesCarousel";
 import Features from "@/components/Features";
@@ -11,15 +12,9 @@ import LumiSection from "@/components/Lumi";
 export default function HomePage() {
   return (
     <>
-      <Hero />
-      <Stats />
-      <Features />
-      <LumiSection />
-      <Partners />
-      <CoursesCarousel />
-      <Pricing />
-      <Testimonials />
-      <CTA />
+      <RoleBasedHome />
+      {/* Componentes públicos que se mostrarán solo para usuarios no autenticados */}
+      {/* Estos se manejan dentro de RoleBasedHome */}
     </>
   );
 }

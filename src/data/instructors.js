@@ -40,9 +40,9 @@ export const instructorsDashboard = [
 export const instructorsPage = [
   {
     id: 1,
-    name: "Juan Pérez",
+    name: "Benjamín Pérez",
     bio: "Especialista en React y Next.js con 8 años de experiencia.",
-    avatar: "https://i.pravatar.cc/150?img=1",
+    avatar: "https://i.pravatar.cc/150?img=60",
     courses: 5,
     reviews: 4.7,
     students: 320,
@@ -51,7 +51,7 @@ export const instructorsPage = [
     id: 2,
     name: "María Gómez",
     bio: "Apasionada por el diseño web y UX. Instructora de Figma y Tailwind.",
-    avatar: "https://i.pravatar.cc/150?img=5",
+    avatar: "https://i.pravatar.cc/150?img=32",
     courses: 3,
     reviews: 4.9,
     students: 210,
@@ -60,7 +60,7 @@ export const instructorsPage = [
     id: 3,
     name: "Carlos López",
     bio: "Backend developer con foco en Node.js, NestJS y bases de datos.",
-    avatar: "https://i.pravatar.cc/150?img=3",
+    avatar: "https://i.pravatar.cc/150?img=14",
     courses: 7,
     reviews: 4.5,
     students: 410,
@@ -90,9 +90,9 @@ export const earningsData = {
 };
 
 export const instructorDashboardData = {
-  name: "Juan Pérez",
+  name: "Benjamín Pérez",
   bio: "Desarrollador Frontend con 8 años de experiencia. Instructor apasionado por React y Next.js.",
-  avatar: "https://i.pravatar.cc/150?img=1", 
+  avatar: "https://i.pravatar.cc/150?img=60", 
   stats: {
     courses: 5,
     students: 320,
@@ -104,8 +104,8 @@ export const instructorDashboardData = {
 export const instructorsData = [
   {
     id: "1",
-    name: "Juan Pérez",
-    avatar: "https://i.pravatar.cc/150?img=1",
+    name: "Benjamín Pérez",
+    avatar: "https://i.pravatar.cc/150?img=60",
     specialty: "Frontend Developer & React Expert",
     bio: "Desarrollador con 8+ años de experiencia en JavaScript, React y Next.js. Apasionado por enseñar y crear experiencias digitales modernas.",
     stats: { courses: 5, students: 320, rating: 4.8 },
@@ -131,7 +131,7 @@ export const instructorsData = [
   {
     id: "2",
     name: "María Gómez",
-    avatar: "https://i.pravatar.cc/150?img=5",
+    avatar: "https://i.pravatar.cc/150?img=32",
     specialty: "Fullstack Developer & Mentora",
     bio: "Apasionada por el desarrollo web moderno y la mentoría de nuevos talentos. Experiencia en React, Node.js y arquitectura cloud.",
     stats: { courses: 4, students: 210, rating: 4.9 },
@@ -210,7 +210,7 @@ export const fakeCourseEdit = {
   category: "Frontend",
   level: "Intermedio",
   price: 49,
-  instructor: "Juan Pérez",
+  instructor: "Benjamín Pérez",
 };
 
 export const fakeLessonEdit = {
@@ -245,9 +245,9 @@ export const fakeLessonPage = [
 export const studentsInstructorData = [
   {
     id: "1",
-    name: "Ana Gómez",
+    name: "Ana Hunt",
     email: "ana@example.com",
-    avatar: "https://i.pravatar.cc/150?img=20",
+    avatar: "https://i.pravatar.cc/150?img=25",
     courses: [
       {
         id: "c1",

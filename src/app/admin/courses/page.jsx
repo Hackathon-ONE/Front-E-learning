@@ -28,19 +28,25 @@ export default function CoursesPage() {
   }, []);
 
   return (
-    <div className="p-6">
-      <h1 className="text-2xl font-bold mb-4">Gestión de Cursos</h1>
-      <p className="text-gray-400 mb-6">Aquí podrás crear, editar o eliminar cursos.</p>
+    <div className="p-3 sm:p-4 md:p-6">
+      <div className="mb-4 sm:mb-6">
+        <h1 className="text-xl sm:text-2xl font-bold mb-2 sm:mb-3">Gestión de Cursos</h1>
+        <p className="text-sm sm:text-base text-gray-400">Aquí podrás crear, editar o eliminar cursos.</p>
+      </div>
 
-      {/* Lista de cursos */}
-      <div className="grid gap-4">
+      {/* Course List */}
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-4">
         {courses.map((course) => (
           <div
             key={course.id}
-            className="border rounded-lg p-4 shadow-sm bg-white hover:shadow-md transition"
+            className="border rounded-lg p-3 sm:p-4 shadow-sm bg-white hover:shadow-md transition"
           >
-            <h2 className="text-xl font-semibold text-gray-900 dark:text-gray-100">{course.name}</h2>
-            <p className="text-gray-600">{course.description}</p>
+            <h2 className="text-base sm:text-lg font-semibold text-gray-900 dark:text-gray-100 mb-1">
+              {course.name}
+            </h2>
+            <p className="text-xs sm:text-sm text-gray-600 line-clamp-2">
+              {course.description}
+            </p>
           </div>
         ))}
       </div>

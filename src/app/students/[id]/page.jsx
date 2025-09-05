@@ -19,10 +19,12 @@ import {
   FileText,
   Heart,
   TrendingUp,
+  Lightbulb,
 } from 'lucide-react';
 import Link from 'next/link';
 import { studentsProgress } from '@/data/students';
 import StudentStats from '@/components/StudentStats';
+import RecommendationsForm from '../recommendations-form';
 
 export default function StudentDetailPage() {
   const params = useParams();
@@ -157,7 +159,7 @@ export default function StudentDetailPage() {
         {/* Pestañas de navegación */}
         <div className="mb-8">
           <div className="border-b border-gray-200 dark:border-gray-700">
-            <nav className="-mb-px flex space-x-8">
+            <nav className="-mb-px flex flex-wrap space-x-2 sm:space-x-8">
               <button
                 onClick={() => setActiveTab('courses')}
                 className={`border-b-2 py-2 px-1 text-sm font-medium transition-colors ${
@@ -177,6 +179,16 @@ export default function StudentDetailPage() {
                 }`}
               >
                 Estadísticas
+              </button>
+              <button
+                onClick={() => setActiveTab('recommendations')}
+                className={`border-b-2 py-2 px-1 text-sm font-medium transition-colors ${
+                  activeTab === 'recommendations'
+                    ? 'border-primary text-primary'
+                    : 'border-transparent text-gray-400 hover:text-gray-700 hover:border-gray-300'
+                }`}
+              >
+                Recomendaciones AI
               </button>
             </nav>
           </div>
@@ -388,6 +400,22 @@ export default function StudentDetailPage() {
         {activeTab === 'stats' && (
           <div>
             <StudentStats student={student} />
+          </div>
+        )}
+        
+        {activeTab === 'recommendations' && (
+          <div className="bg-[var(--color-surface)] rounded-xl p-6 shadow-md">
+            <div className="text-center">
+              <Lightbulb className="mx-auto h-12 w-12 sm:h-16 sm:w-16 text-primary" />
+              <h2 className="text-2xl sm:text-3xl font-bold mt-4">
+                Recomendaciones de cursos de IA
+              </h2>
+              <p className="text-gray-500 dark:text-gray-300 mt-2 text-sm sm:text-base">
+                Cuéntanos sobre ti y deja que nuestra IA te encuentre los cursos perfectos para
+                ayudarte a crecer.
+              </p>
+              <RecommendationsForm />
+            </div>
           </div>
         )}
       </div>

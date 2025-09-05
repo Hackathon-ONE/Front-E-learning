@@ -44,7 +44,7 @@ export default function AdminInstructorsPage() {
 
   return (
     <main
-      className="min-h-screen p-6 md:p-10"
+      className="min-h-screen p-3 sm:p-4 md:p-6 lg:p-8"
       style={{
         backgroundColor: "var(--color-bg)",
         color: "var(--color-text)",
@@ -52,21 +52,26 @@ export default function AdminInstructorsPage() {
     >
       <section className="max-w-7xl mx-auto">
         {/* Header */}
-        <h1 className="text-2xl md:text-3xl font-bold mb-6 flex items-center gap-2">
-          Gestión de Instructores
-        </h1>
+        <div className="mb-4 sm:mb-6">
+          <h1 className="text-xl sm:text-2xl md:text-3xl font-bold mb-1 sm:mb-2">
+            Gestión de Instructores
+          </h1>
+          <p className="text-sm text-[var(--color-muted)]">
+            Administra las solicitudes de los instructores
+          </p>
+        </div>
 
-        {/* Tabla */}
-        <div className="overflow-x-auto bg-[var(--color-surface)] rounded-xl shadow-lg border border-[var(--color-muted)]">
-          <table className="w-full border-collapse text-sm md:text-base">
+        {/* Table */}
+        <div className="overflow-x-auto bg-[var(--color-surface)] rounded-lg sm:rounded-xl shadow-sm sm:shadow-md border border-[var(--color-muted)]">
+          <table className="w-full border-collapse text-xs sm:text-sm md:text-base">
             <thead className="bg-[var(--color-card-secondary)]">
               <tr>
-                <th className="p-4 text-left text-gray-500">Nombre</th>
-                <th className="p-4 text-left text-gray-500">Email</th>
-                <th className="p-4 text-left text-gray-500">Experiencia</th>
-                <th className="p-4 text-left text-gray-500">Demo</th>
-                <th className="p-4 text-left text-gray-500">Estado</th>
-                <th className="p-4 text-left text-gray-500">Acciones</th>
+                <th className="p-2 sm:p-3 md:p-4 text-left text-gray-500">Nombre</th>
+                <th className="p-2 sm:p-3 md:p-4 text-left text-gray-500 hidden sm:table-cell">Email</th>
+                <th className="p-2 sm:p-3 md:p-4 text-left text-gray-500 hidden md:table-cell">Experiencia</th>
+                <th className="p-2 sm:p-3 md:p-4 text-left text-gray-500">Demo</th>
+                <th className="p-2 sm:p-3 md:p-4 text-left text-gray-500">Estado</th>
+                <th className="p-2 sm:p-3 md:p-4 text-left text-gray-500">Acciones</th>
               </tr>
             </thead>
             <tbody>
@@ -75,63 +80,89 @@ export default function AdminInstructorsPage() {
                   key={inst.id}
                   className="border-t border-[var(--color-muted)] hover:bg-[var(--color-card-primary)] transition"
                 >
-                  <td className="p-4 font-semibold text-gray-500">{inst.name}</td>
-                  <td className="p-4 text-gray-500">{inst.email}</td>
-                  <td className="p-4 text-gray-500">{inst.experience}</td>
-                  <td className="p-4">
+                  <td className="p-2 sm:p-3 md:p-4 font-medium text-gray-500">
+                    <div className="font-semibold">{inst.name}</div>
+                    <div className="text-xs text-gray-400 sm:hidden">{inst.email}</div>
+                  </td>
+                  <td className="p-2 sm:p-3 md:p-4 text-gray-500 hidden sm:table-cell">
+                    {inst.email}
+                  </td>
+                  <td className="p-2 sm:p-3 md:p-4 text-gray-500 hidden md:table-cell">
+                    {inst.experience}
+                  </td>
+                  <td className="p-2 sm:p-3 md:p-4">
                     <a
                       href={inst.demoLink}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="text-[var(--color-primary)] hover:text-[var(--color-primary-hover)] transition"
+                      className="text-xs sm:text-sm text-[var(--color-primary)] hover:text-[var(--color-primary-hover)] transition"
                     >
                       Ver demo
                     </a>
                   </td>
-                  <td className="p-4">{getStatusBadge(inst.status)}</td>
-                  <td className="p-4 flex flex-col sm:flex-row gap-2">
-                    {inst.status === "pending" && (
-                      <>
-                        <button
-                          className="px-4 py-2 rounded-lg btn-primary text-sm"
-                          onClick={() =>
-                            setModalData({
-                              instructor: inst,
-                              action: "approved",
-                              message: `¿Aprobar a ${inst.name} como instructor?`,
-                            })
-                          }
-                        >
-                          Aprobar
-                        </button>
-                        <button
-                          className="px-4 py-2 rounded-lg text-sm bg-red-500 text-white hover:bg-red-600 transition"
-                          onClick={() =>
-                            setModalData({
-                              instructor: inst,
-                              action: "rejected",
-                              message: `¿Rechazar la solicitud de ${inst.name}?`,
-                            })
-                          }
-                        >
-                          Rechazar
-                        </button>
-                      </>
-                    )}
-                    {inst.status === "approved" && (
-                      <button
-                        className="px-4 py-2 rounded-lg text-sm bg-gray-200 text-gray-800 hover:bg-gray-300 transition"
-                        onClick={() =>
-                          setModalData({
-                            instructor: inst,
-                            action: "rejected",
-                            message: `¿Revocar acceso a ${inst.name}?`,
-                          })
-                        }
-                      >
-                        Revocar acceso
-                      </button>
-                    )}
+                  <td className="p-2 sm:p-3 md:p-4">
+                    <div className="text-xs sm:text-sm">
+                      {getStatusBadge(inst.status)}
+                    </div>
+                  </td>
+                  <td className="p-2 sm:p-3 md:p-4">
+                    <div className="flex flex-col xs:flex-row gap-1 sm:gap-2">
+                      {inst.status === "pending" ? (
+                        <>
+                          <button
+                            className="px-2 sm:px-3 py-1 sm:py-1.5 text-xs sm:text-sm rounded-lg btn-primary"
+                            onClick={() =>
+                              setModalData({
+                                instructor: inst,
+                                action: "approved",
+                                message: `¿Aprobar a ${inst.name} como instructor?`,
+                              })
+                            }
+                          >
+                            Aprobar
+                          </button>
+                          <button
+                            className="px-2 sm:px-3 py-1 sm:py-1.5 text-xs sm:text-sm rounded-lg bg-red-500 text-white hover:bg-red-600 transition"
+                            onClick={() =>
+                              setModalData({
+                                instructor: inst,
+                                action: "rejected",
+                                message: `¿Rechazar la solicitud de ${inst.name}?`,
+                              })
+                            }
+                          >
+                            Rechazar
+                          </button>
+                        </>
+                      ) : inst.status === "approved" ? (
+                        <>
+                          <button
+                            className="px-2 sm:px-3 py-1 sm:py-1.5 text-xs sm:text-sm rounded-lg bg-gray-200 text-gray-800 hover:bg-gray-300 transition"
+                            onClick={() =>
+                              setModalData({
+                                instructor: inst,
+                                action: "rejected",
+                                message: `¿Rechazar la solicitud de ${inst.name}?`,
+                              })
+                            }
+                          >
+                            Rechazar
+                          </button>
+                          <button
+                            className="px-2 sm:px-3 py-1 sm:py-1.5 text-xs sm:text-sm rounded-lg bg-red-100 text-red-700 hover:bg-red-200 transition"
+                            onClick={() =>
+                              setModalData({
+                                instructor: inst,
+                                action: "revoked",
+                                message: `¿Revocar acceso a ${inst.name}?`,
+                              })
+                            }
+                          >
+                            Revocar acceso
+                          </button>
+                        </>
+                      ) : null}
+                    </div>
                   </td>
                 </tr>
               ))}

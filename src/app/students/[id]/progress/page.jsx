@@ -84,7 +84,7 @@ export default function StudentProgressPage() {
                 <h1 className="text-2xl font-bold text-[var(--color-text)]">
                   Progreso de {student.name}
                 </h1>
-                <p className="text-gray-600 dark:text-gray-400">
+                <p className="text-gray-400 dark:text-gray-400">
                   Seguimiento detallado del aprendizaje
                 </p>
               </div>
@@ -94,25 +94,25 @@ export default function StudentProgressPage() {
             <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
               <div className="text-center">
                 <div className="text-3xl font-bold text-primary mb-1">{overallProgress}%</div>
-                <div className="text-sm text-gray-600 dark:text-gray-400">Progreso General</div>
+                <div className="text-sm text-gray-400 dark:text-gray-400">Progreso General</div>
               </div>
               <div className="text-center">
                 <div className="text-3xl font-bold text-green-500 mb-1">
                   {student.completedLessons}
                 </div>
-                <div className="text-sm text-gray-600 dark:text-gray-400">
+                <div className="text-sm text-gray-400 dark:text-gray-400">
                   Lecciones Completadas
                 </div>
               </div>
               <div className="text-center">
                 <div className="text-3xl font-bold text-blue-500 mb-1">{student.passedQuizzes}</div>
-                <div className="text-sm text-gray-600 dark:text-gray-400">Quizzes Aprobados</div>
+                <div className="text-sm text-gray-400 dark:text-gray-400">Quizzes Aprobados</div>
               </div>
               <div className="text-center">
                 <div className="text-3xl font-bold text-yellow-500 mb-1">
                   {student.achievements.length}
                 </div>
-                <div className="text-sm text-gray-600 dark:text-gray-400">Logros Obtenidos</div>
+                <div className="text-sm text-gray-400 dark:text-gray-400">Logros Obtenidos</div>
               </div>
             </div>
           </div>
@@ -140,7 +140,7 @@ export default function StudentProgressPage() {
                       className={`w-12 h-2 rounded-full ${
                         selectedCourse?.id === course.id
                           ? 'bg-white/30'
-                          : 'bg-gray-200 dark:bg-gray-700'
+                          : 'bg-gray-400 dark:bg-gray-700'
                       }`}
                     >
                       <div
@@ -167,10 +167,10 @@ export default function StudentProgressPage() {
                       <h2 className="text-2xl font-bold text-[var(--color-text)] mb-2">
                         {selectedCourse.title}
                       </h2>
-                      <p className="text-gray-600 dark:text-gray-400">
+                      <p className="text-gray-400 dark:text-gray-400">
                         Instructor: {selectedCourse.instructor} • {selectedCourse.duration}
                       </p>
-                      <p className="text-sm text-gray-500 dark:text-gray-500 mt-1">
+                      <p className="text-sm text-gray-400 dark:text-gray-400 mt-1">
                         Inscrito: {new Date(selectedCourse.enrollDate).toLocaleDateString()} •
                         Último acceso: {new Date(selectedCourse.lastAccessed).toLocaleDateString()}
                       </p>
@@ -195,31 +195,31 @@ export default function StudentProgressPage() {
                   <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
                     <div className="bg-blue-50 dark:bg-blue-900/20 rounded-lg p-3 text-center">
                       <BookOpen className="w-6 h-6 text-blue-500 mx-auto mb-2" />
-                      <div className="font-semibold text-[var(--color-text)]">
+                      <div className="font-semibold text-gray-800">
                         {selectedCourse.completedLessons}/{selectedCourse.totalLessons}
                       </div>
                       <div className="text-xs text-gray-600 dark:text-gray-400">Lecciones</div>
                     </div>
                     <div className="bg-green-50 dark:bg-green-900/20 rounded-lg p-3 text-center">
                       <Target className="w-6 h-6 text-green-500 mx-auto mb-2" />
-                      <div className="font-semibold text-[var(--color-text)]">
+                      <div className="font-semibold text-gray-800">
                         {selectedCourse.passedQuizzes}/{selectedCourse.totalQuizzes}
                       </div>
                       <div className="text-xs text-gray-600 dark:text-gray-400">Quizzes</div>
                     </div>
                     <div className="bg-purple-50 dark:bg-purple-900/20 rounded-lg p-3 text-center">
                       <BarChart3 className="w-6 h-6 text-purple-500 mx-auto mb-2" />
-                      <div className="font-semibold text-[var(--color-text)]">
+                      <div className="font-semibold text-gray-800">
                         {selectedCourse.rating}
                       </div>
                       <div className="text-xs text-gray-600 dark:text-gray-400">Rating</div>
                     </div>
                     <div className="bg-yellow-50 dark:bg-yellow-900/20 rounded-lg p-3 text-center">
                       <Award className="w-6 h-6 text-yellow-500 mx-auto mb-2" />
-                      <div className="font-semibold text-[var(--color-text)]">
+                      <div className="font-semibold text-gray-800">
                         {selectedCourse.certificate ? 'Sí' : 'No'}
                       </div>
-                      <div className="text-xs text-gray-600 dark:text-gray-400">Certificado</div>
+                      <div className="text-xs text-gray-400 dark:text-gray-400">Certificado</div>
                     </div>
                   </div>
                 </div>
@@ -250,10 +250,10 @@ export default function StudentProgressPage() {
                               <Clock className="w-5 h-5 text-gray-400" />
                             )}
                             <div>
-                              <h4 className="font-medium text-[var(--color-text)]">
+                              <h4 className="font-medium text-gray-500">
                                 {lesson.title}
                               </h4>
-                              <p className="text-sm text-gray-600 dark:text-gray-400">
+                              <p className="text-sm text-gray-400 dark:text-gray-400">
                                 Duración: {lesson.duration}
                               </p>
                             </div>
@@ -291,12 +291,12 @@ export default function StudentProgressPage() {
                         className={`border rounded-lg p-4 ${
                           resource.downloaded
                             ? 'border-green-200 bg-green-50 dark:border-green-800 dark:bg-green-900/20'
-                            : 'border-gray-200 dark:border-gray-700'
+                            : 'border-gray-400 dark:border-gray-700'
                         }`}
                       >
                         <div className="flex items-center justify-between">
                           <div>
-                            <h4 className="font-medium text-[var(--color-text)]">
+                            <h4 className="font-medium text-gray-500">
                               {resource.title}
                             </h4>
                             <p className="text-sm text-gray-600 dark:text-gray-400 capitalize">
@@ -320,7 +320,7 @@ export default function StudentProgressPage() {
                     <div className="flex items-center gap-4">
                       <Award className="w-12 h-12 text-yellow-500" />
                       <div>
-                        <h3 className="text-xl font-semibold text-[var(--color-text)]">
+                        <h3 className="text-xl font-semibold text-gray-500">
                           ¡Certificado Obtenido!
                         </h3>
                         <p className="text-gray-600 dark:text-gray-400">

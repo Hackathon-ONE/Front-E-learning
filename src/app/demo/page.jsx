@@ -29,37 +29,37 @@ export default function DemoPage() {
     <main className="min-h-screen bg-[var(--color-bg)] text-[var(--color-text)] p-4 md:p-8">
       <section className="max-w-6xl mx-auto">
         {/* Header */}
-        <h1 className="text-2xl md:text-3xl font-bold mb-6 text-center md:text-left">
+        <h1 className="text-xl sm:text-2xl md:text-3xl font-bold mb-4 sm:mb-6 text-center md:text-left">
           Demo Gratis del Curso
         </h1>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-4 sm:gap-6">
           {/* Video principal */}
           <div className="md:col-span-2 w-full bg-[var(--color-surface)] rounded-xl shadow-lg overflow-hidden">
             {lessons[currentLesson]?.video ? (
               <video
                 src={lessons[currentLesson].video}
                 controls
-                className="w-full h-64 md:h-[400px] object-cover"
+                className="w-full h-48 sm:h-64 md:h-[400px] object-cover"
               />
             ) : (
-              <div className="flex justify-center items-center h-64 md:h-[400px] text-center p-6">
-                <p className="text-lg flex items-center gap-2">
-                  <PlayCircle className="w-5 h-5" />
+              <div className="flex justify-center items-center h-48 sm:h-64 md:h-[400px] text-center p-4 sm:p-6">
+                <p className="text-base sm:text-lg flex items-center gap-2">
+                  <PlayCircle className="w-4 h-4 sm:w-5 sm:h-5" />
                   Selecciona la primera lección para comenzar
                 </p>
               </div>
             )}
-            <div className="p-4 border-t border-[var(--color-muted)]">
-              <h2 className="text-lg md:text-xl font-semibold">
+            <div className="p-3 sm:p-4 border-t border-[var(--color-muted)]">
+              <h2 className="text-base sm:text-lg md:text-xl font-semibold">
                 {lessons[currentLesson]?.title || "Lección bloqueada"}
               </h2>
             </div>
           </div>
 
           {/* Lista de lecciones */}
-          <aside className="bg-[var(--color-surface)] rounded-xl shadow-lg p-4 space-y-3">
-            <h3 className="text-lg font-semibold mb-2">Lecciones</h3>
+          <aside className="bg-[var(--color-surface)] rounded-xl shadow-lg p-3 sm:p-4 space-y-2 sm:space-y-3">
+            <h3 className="text-base sm:text-lg font-semibold mb-2">Lecciones</h3>
             <ul className="space-y-2 text-gray-500 text-sm">
               {lessons.map((lesson) => (
                 <li

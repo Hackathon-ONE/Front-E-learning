@@ -118,31 +118,31 @@ export default function CoursesPage() {
 
   // Render principal
   return (
-    <section className="flex flex-col md:flex-row p-6 md:p-12 gap-8">
+    <section className="flex flex-col md:flex-row p-4 sm:p-6 md:p-8 lg:p-12 gap-6 sm:gap-8">
       {/* Sidebar */}
-      <aside className="w-full md:w-1/4 bg-white dark:bg-gray-900 p-6 rounded-2xl shadow-md h-fit">
-        <h2 className="text-lg font-bold mb-6 text-gray-900 dark:text-gray-100">
+      <aside className="w-full md:w-1/4 bg-white dark:bg-gray-900 p-4 sm:p-6 rounded-2xl shadow-md h-fit">
+        <h2 className="text-base sm:text-lg font-bold mb-4 sm:mb-6 text-gray-900 dark:text-gray-100">
           Filtros
         </h2>
 
         {/* Búsqueda */}
-        <div className="relative mb-8">
-          <Search className="absolute left-3 top-3 text-gray-400 w-5 h-5" />
+        <div className="relative mb-6 sm:mb-8">
+          <Search className="absolute left-3 top-3 text-gray-400 w-4 h-4 sm:w-5 sm:h-5" />
           <input
             type="text"
             placeholder="Buscar cursos..."
             value={search}
             onChange={(e) => setSearch(e.target.value)}
-            className="w-full pl-10 pr-4 py-2.5 rounded-lg text-gray-900 dark:text-gray-100 border border-gray-300 dark:border-gray-700 focus:outline-none focus:ring-2 focus:ring-primary text-sm"
+            className="w-full pl-9 sm:pl-10 pr-4 py-2 sm:py-2.5 rounded-lg text-gray-900 dark:text-gray-100 border border-gray-300 dark:border-gray-700 focus:outline-none focus:ring-2 focus:ring-primary text-xs sm:text-sm"
           />
         </div>
 
         {/* Categorías */}
-        <div className="mb-8">
-          <h3 className="text-sm font-semibold mb-3 text-gray-700 dark:text-gray-300">
+        <div className="mb-6 sm:mb-8">
+          <h3 className="text-xs sm:text-sm font-semibold mb-2 sm:mb-3 text-gray-700 dark:text-gray-300">
             Categoría
           </h3>
-          <ul className="space-y-2">
+          <ul className="space-y-1 sm:space-y-2">
             {categories.map((cat, i) => (
               <li key={i} className="flex items-center gap-2">
                 <input
@@ -152,11 +152,11 @@ export default function CoursesPage() {
                   value={cat}
                   checked={category === cat}
                   onChange={(e) => setCategory(e.target.value)}
-                  className="w-4 h-4 text-primary border-gray-300 focus:ring-primary"
+                  className="w-3 h-3 sm:w-4 sm:h-4 text-primary border-gray-300 focus:ring-primary"
                 />
                 <label
                   htmlFor={`cat-${cat}`}
-                  className="text-sm text-gray-600 dark:text-gray-300 cursor-pointer"
+                  className="text-xs sm:text-sm text-gray-600 dark:text-gray-300 cursor-pointer"
                 >
                   {cat === "all" ? "Todas" : cat}
                 </label>
@@ -166,11 +166,11 @@ export default function CoursesPage() {
         </div>
 
         {/* Instructores */}
-        <div className="mb-8">
-          <h3 className="text-sm font-semibold mb-3 text-gray-700 dark:text-gray-300">
+        <div className="mb-6 sm:mb-8">
+          <h3 className="text-xs sm:text-sm font-semibold mb-2 sm:mb-3 text-gray-700 dark:text-gray-300">
             Instructor
           </h3>
-          <ul className="space-y-2">
+          <ul className="space-y-1 sm:space-y-2">
             {instructors.map((inst, i) => (
               <li key={i} className="flex items-center gap-2">
                 <input
@@ -180,11 +180,11 @@ export default function CoursesPage() {
                   value={inst}
                   checked={instructor === inst}
                   onChange={(e) => setInstructor(e.target.value)}
-                  className="w-4 h-4 text-primary border-gray-300 focus:ring-primary"
+                  className="w-3 h-3 sm:w-4 sm:h-4 text-primary border-gray-300 focus:ring-primary"
                 />
                 <label
                   htmlFor={`inst-${inst}`}
-                  className="text-sm text-gray-600 dark:text-gray-300 cursor-pointer"
+                  className="text-xs sm:text-sm text-gray-600 dark:text-gray-300 cursor-pointer"
                 >
                   {inst === "all" ? "Todos" : inst}
                 </label>
@@ -194,11 +194,11 @@ export default function CoursesPage() {
         </div>
 
         {/* Tipo */}
-        <div className="mb-8">
-          <h3 className="text-sm font-semibold mb-3 text-gray-700 dark:text-gray-300">
+        <div className="mb-6 sm:mb-8">
+          <h3 className="text-xs sm:text-sm font-semibold mb-2 sm:mb-3 text-gray-700 dark:text-gray-300">
             Tipo
           </h3>
-          <ul className="space-y-2">
+          <ul className="space-y-1 sm:space-y-2">
             {["all", "free", "paid"].map((t) => (
               <li key={t} className="flex items-center gap-2">
                 <input
@@ -208,11 +208,11 @@ export default function CoursesPage() {
                   value={t}
                   checked={type === t}
                   onChange={(e) => setType(e.target.value)}
-                  className="w-4 h-4 text-primary border-gray-300 focus:ring-primary"
+                  className="w-3 h-3 sm:w-4 sm:h-4 text-primary border-gray-300 focus:ring-primary"
                 />
                 <label
                   htmlFor={`type-${t}`}
-                  className="text-sm text-gray-600 dark:text-gray-300 cursor-pointer"
+                  className="text-xs sm:text-sm text-gray-600 dark:text-gray-300 cursor-pointer"
                 >
                   {t === "all"
                     ? "Todos"
@@ -227,25 +227,25 @@ export default function CoursesPage() {
 
         {/* Orden */}
         <div>
-          <h3 className="text-sm font-semibold mb-3 text-gray-700 dark:text-gray-300">
+          <h3 className="text-xs sm:text-sm font-semibold mb-2 sm:mb-3 text-gray-700 dark:text-gray-300">
             Ordenar por
           </h3>
           <button
             onClick={() =>
               setSortOrder((prev) => (prev === "asc" ? "desc" : "asc"))
             }
-            className="w-full flex items-center justify-between px-4 py-2 rounded-lg border border-gray-300 dark:border-gray-700 text-sm text-gray-900 dark:text-gray-100 hover:bg-gray-50 dark:hover:bg-gray-800 transition"
+            className="w-full flex items-center justify-between px-3 sm:px-4 py-2 rounded-lg border border-gray-300 dark:border-gray-700 text-xs sm:text-sm text-gray-900 dark:text-gray-100 hover:bg-gray-50 dark:hover:bg-gray-800 transition"
           >
             {sortOrder === "asc" ? "Ascendente (A-Z)" : "Descendente (Z-A)"}
-            <ChevronDown className="w-4 h-4 text-gray-400" />
+            <ChevronDown className="w-3 h-3 sm:w-4 sm:h-4 text-gray-400" />
           </button>
         </div>
       </aside>
 
       {/* Catálogo */}
       <main className="flex-1">
-        <h1 className="text-2xl font-bold mb-6">Catálogo de Cursos</h1>
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        <h1 className="text-xl sm:text-2xl font-bold mb-4 sm:mb-6">Catálogo de Cursos</h1>
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
           {filteredCourses.map((course) => (
             <Link
               key={course.id}
@@ -253,10 +253,10 @@ export default function CoursesPage() {
               className="block"
               style={{ textDecoration: "none" }}
             >
-              <Card className="p-6 flex flex-col justify-between bg-white dark:bg-gray-800 hover:shadow-xl transition rounded-xl border border-gray-200 dark:border-gray-700 cursor-pointer h-full">
+              <Card className="p-4 sm:p-6 flex flex-col justify-between bg-white dark:bg-gray-800 hover:shadow-xl transition rounded-xl border border-gray-200 dark:border-gray-700 cursor-pointer h-full">
                 <div>
-                  <h3 className="text-lg font-semibold mb-2">{course.title}</h3>
-                  <p className="text-sm text-gray-600 dark:text-gray-300 mb-4">
+                  <h3 className="text-base sm:text-lg font-semibold mb-2">{course.title}</h3>
+                  <p className="text-xs sm:text-sm text-gray-600 dark:text-gray-300 mb-3 sm:mb-4">
                     {course.description}
                   </p>
                 </div>

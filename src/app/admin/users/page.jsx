@@ -28,7 +28,7 @@ export default function UsersPage() {
               Administra los usuarios de la plataforma
             </p>
           </div>
-          <button className="w-full sm:w-auto px-4 py-2.5 bg-[var(--color-primary)] hover:bg-[var(--color-primary-hover)] text-gray-800 rounded-lg text-sm sm:text-base font-medium transition-colors">
+          <button className="w-full sm:w-auto px-4 py-2.5 bg-[var(--color-primary)] hover:bg-[var(--color-primary-hover)] text-white rounded-lg text-sm sm:text-base font-medium transition-colors">
             + Nuevo Usuario
           </button>
         </div>
@@ -37,16 +37,30 @@ export default function UsersPage() {
         <div className="mb-6 p-4 bg-[var(--color-card-primary)] rounded-xl shadow-sm border border-[var(--color-muted)]">
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4">
             <div>
-              <label className="block text-sm text-gray-800 font-medium mb-1">Buscar</label>
+              <label
+                htmlFor="search-users"
+                className="block text-sm text-[var(--color-card-primary-text)] font-medium mb-1"
+              >
+                Buscar
+              </label>
               <input
+                id="search-users"
                 type="text"
                 placeholder="Nombre o email..."
-                className="w-full p-2.5 rounded-lg border border-[var(--color-muted)] bg-[var(--color-card-secondary)] text-[var(--color-card-primary-text)] text-sm"
+                className="w-full p-2.5 rounded-lg border border-[var(--color-muted)] bg-[var(--color-card-secondary)] text-[var(--color-card-primary-text)] text-sm focus:ring-2 focus:ring-[var(--color-primary)] focus:border-transparent"
               />
             </div>
             <div>
-              <label className="block text-sm text-gray-800 font-medium mb-1">Rol</label>
-              <select className="w-full p-2.5 rounded-lg border border-[var(--color-muted)] bg-[var(--color-card-secondary)] text-[var(--color-card-primary-text)] text-sm">
+              <label
+                htmlFor="role-filter"
+                className="block text-sm text-[var(--color-card-primary-text)] font-medium mb-1"
+              >
+                Rol
+              </label>
+              <select
+                id="role-filter"
+                className="w-full p-2.5 rounded-lg border border-[var(--color-muted)] bg-[var(--color-card-secondary)] text-[var(--color-card-primary-text)] text-sm focus:ring-2 focus:ring-[var(--color-primary)] focus:border-transparent"
+              >
                 <option value="">Todos los roles</option>
                 <option value="student">Estudiante</option>
                 <option value="instructor">Instructor</option>
@@ -54,8 +68,16 @@ export default function UsersPage() {
               </select>
             </div>
             <div>
-              <label className="block text-sm text-gray-800 font-medium mb-1">Estado</label>
-              <select className="w-full p-2.5 rounded-lg border border-[var(--color-muted)] bg-[var(--color-card-secondary)] text-[var(--color-card-primary-text)] text-sm">
+              <label
+                htmlFor="status-filter"
+                className="block text-sm text-[var(--color-card-primary-text)] font-medium mb-1"
+              >
+                Estado
+              </label>
+              <select
+                id="status-filter"
+                className="w-full p-2.5 rounded-lg border border-[var(--color-muted)] bg-[var(--color-card-secondary)] text-[var(--color-card-primary-text)] text-sm focus:ring-2 focus:ring-[var(--color-primary)] focus:border-transparent"
+              >
                 <option value="">Todos los estados</option>
                 <option value="active">Activo</option>
                 <option value="inactive">Inactivo</option>
@@ -63,7 +85,7 @@ export default function UsersPage() {
               </select>
             </div>
             <div className="flex items-end">
-              <button className="w-full p-2.5 bg-[var(--color-primary)] hover:bg-[var(--color-primary-hover)] text-gray-800 rounded-lg text-sm font-medium transition-colors">
+              <button className="w-full p-2.5 bg-[var(--color-primary)] hover:bg-[var(--color-primary-hover)] text-white rounded-lg text-sm font-medium transition-colors">
                 Aplicar Filtros
               </button>
             </div>
@@ -77,16 +99,28 @@ export default function UsersPage() {
               <table className="min-w-full divide-y divide-[var(--color-muted)]">
                 <thead className="bg-[var(--color-surface)]">
                   <tr>
-                    <th scope="col" className="px-4 py-3 text-left text-xs font-medium text-gray-400 uppercase tracking-wider">
+                    <th
+                      scope="col"
+                      className="px-4 py-3 text-left text-xs font-medium text-gray-400 uppercase tracking-wider"
+                    >
                       Nombre
                     </th>
-                    <th scope="col" className="px-4 py-3 text-left text-xs font-medium text-gray-400 uppercase tracking-wider hidden sm:table-cell">
+                    <th
+                      scope="col"
+                      className="px-4 py-3 text-left text-xs font-medium text-gray-400 uppercase tracking-wider hidden sm:table-cell"
+                    >
                       Email
                     </th>
-                    <th scope="col" className="px-4 py-3 text-left text-xs font-medium text-gray-400 uppercase tracking-wider">
+                    <th
+                      scope="col"
+                      className="px-4 py-3 text-left text-xs font-medium text-gray-400 uppercase tracking-wider"
+                    >
                       Rol
                     </th>
-                    <th scope="col" className="px-4 py-3 text-right text-xs font-medium text-gray-400 uppercase tracking-wider">
+                    <th
+                      scope="col"
+                      className="px-4 py-3 text-right text-xs font-medium text-gray-400 uppercase tracking-wider"
+                    >
                       Acciones
                     </th>
                   </tr>
@@ -99,48 +133,48 @@ export default function UsersPage() {
                     >
                       <td className="px-4 py-4 whitespace-nowrap">
                         <div className="flex items-center">
-                          <div className="flex-shrink-0 h-10 w-10 rounded-full bg-primary/10 flex items-center justify-center text-primary font-medium">
+                          <div className="flex-shrink-0 h-8 w-8 sm:h-10 sm:w-10 rounded-full bg-primary/10 flex items-center justify-center text-primary font-medium text-sm sm:text-base">
                             {user.name.charAt(0)}
                           </div>
-                          <div className="ml-4">
-                            <div className="text-sm font-medium text-gray-800">
+                          <div className="ml-3 sm:ml-4">
+                            <div className="text-sm font-medium text-[var(--color-card-primary-text)]">
                               {user.name}
                             </div>
-                            <div className="text-xs text-gray-500 sm:hidden">
+                            <div className="text-xs text-black sm:hidden">
                               {user.email}
                             </div>
                           </div>
                         </div>
                       </td>
-                      <td className="px-4 py-4 whitespace-nowrap text-sm text-gray-500 hidden sm:table-cell">
+                      <td className="px-4 py-4 whitespace-nowrap text-sm text-[var(--color-muted)] hidden sm:table-cell">
                         {user.email}
                       </td>
                       <td className="px-4 py-4 whitespace-nowrap">
                         <span
                           className={`px-2.5 py-1 inline-flex text-xs leading-5 font-semibold rounded-full ${
-                            user.role === "admin"
-                              ? "bg-purple-100 text-purple-800 dark:bg-purple-900/30 dark:text-purple-300"
-                              : user.role === "instructor"
-                              ? "bg-blue-100 text-blue-800 dark:bg-blue-900/30 dark:text-blue-300"
-                              : "bg-green-100 text-green-800 dark:bg-green-900/30 dark:text-green-300"
+                            user.role === 'admin'
+                              ? 'bg-purple-100 text-purple-800 dark:bg-purple-900/30 dark:text-purple-300'
+                              : user.role === 'instructor'
+                              ? 'bg-blue-100 text-blue-800 dark:bg-blue-900/30 dark:text-blue-300'
+                              : 'bg-green-100 text-green-800 dark:bg-green-900/30 dark:text-green-300'
                           }`}
                         >
-                          {user.role === "admin"
-                            ? "Administrador"
-                            : user.role === "instructor"
-                            ? "Instructor"
-                            : "Estudiante"}
+                          {user.role === 'admin'
+                            ? 'Administrador'
+                            : user.role === 'instructor'
+                            ? 'Instructor'
+                            : 'Estudiante'}
                         </span>
                       </td>
                       <td className="px-4 py-4 whitespace-nowrap text-right text-sm font-medium">
-                        <div className="flex justify-end space-x-2">
+                        <div className="flex justify-end space-x-1 sm:space-x-2">
                           <button
                             onClick={() => handleEdit(user)}
-                            className="text-indigo-600 hover:text-indigo-900 dark:text-indigo-400 dark:hover:text-indigo-300"
+                            className="text-[var(--color-primary)] hover:text-[var(--color-primary-hover)] p-1 rounded-md hover:bg-[var(--color-card-secondary)] transition-colors"
                             title="Editar"
                           >
                             <svg
-                              className="h-5 w-5"
+                              className="h-4 w-4 sm:h-5 sm:w-5"
                               fill="none"
                               stroke="currentColor"
                               viewBox="0 0 24 24"
@@ -154,11 +188,11 @@ export default function UsersPage() {
                             </svg>
                           </button>
                           <button
-                            className="text-red-600 hover:text-red-900 dark:text-red-400 dark:hover:text-red-300"
+                            className="text-red-500 hover:text-red-600 p-1 rounded-md hover:bg-red-50 dark:hover:bg-red-900/20 transition-colors"
                             title="Eliminar"
                           >
                             <svg
-                              className="h-5 w-5"
+                              className="h-4 w-4 sm:h-5 sm:w-5"
                               fill="none"
                               stroke="currentColor"
                               viewBox="0 0 24 24"
@@ -193,9 +227,9 @@ export default function UsersPage() {
             <div className="hidden sm:flex-1 sm:flex sm:items-center sm:justify-between">
               <div>
                 <p className="text-sm text-gray-400">
-                  Mostrando <span className="font-medium">1</span> a{" "}
-                  <span className="font-medium">10</span> de{" "}
-                  <span className="font-medium">24</span> resultados
+                  Mostrando <span className="font-medium">1</span> a{' '}
+                  <span className="font-medium">10</span> de <span className="font-medium">24</span>{' '}
+                  resultados
                 </p>
               </div>
               <div>
@@ -262,12 +296,7 @@ export default function UsersPage() {
                   onClick={() => setSelectedUser(null)}
                   className="text-gray-400 hover:text-gray-500"
                 >
-                  <svg
-                    className="h-6 w-6"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                    stroke="currentColor"
-                  >
+                  <svg className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path
                       strokeLinecap="round"
                       strokeLinejoin="round"
@@ -288,23 +317,23 @@ export default function UsersPage() {
                     <h3 className="font-medium text-[var(--color-card-primary-text)]">
                       {selectedUser.name}
                     </h3>
-                    <p className="text-sm text-gray-500">
-                      {selectedUser.email}
-                    </p>
+                    <p className="text-sm text-gray-500">{selectedUser.email}</p>
                   </div>
                 </div>
 
                 {/* Nombre */}
                 <div>
-                  <label className="block text-sm font-medium text-[var(--color-card-primary-text)] mb-1.5">
+                  <label
+                    htmlFor="user-name"
+                    className="block text-sm font-medium text-[var(--color-card-primary-text)] mb-1.5"
+                  >
                     Nombre completo
                   </label>
                   <input
+                    id="user-name"
                     type="text"
                     value={selectedUser.name}
-                    onChange={(e) =>
-                      setSelectedUser({ ...selectedUser, name: e.target.value })
-                    }
+                    onChange={(e) => setSelectedUser({ ...selectedUser, name: e.target.value })}
                     className="w-full p-2.5 rounded-lg border border-[var(--color-muted)] bg-[var(--color-card-primary)] text-[var(--color-card-primary-text)] text-sm focus:ring-2 focus:ring-[var(--color-primary)] focus:border-transparent"
                     placeholder="Nombre completo"
                   />
@@ -312,15 +341,17 @@ export default function UsersPage() {
 
                 {/* Email */}
                 <div>
-                  <label className="block text-sm font-medium text-[var(--color-card-primary-text)] mb-1.5">
+                  <label
+                    htmlFor="user-email"
+                    className="block text-sm font-medium text-[var(--color-card-primary-text)] mb-1.5"
+                  >
                     Correo electrónico
                   </label>
                   <input
+                    id="user-email"
                     type="email"
                     value={selectedUser.email}
-                    onChange={(e) =>
-                      setSelectedUser({ ...selectedUser, email: e.target.value })
-                    }
+                    onChange={(e) => setSelectedUser({ ...selectedUser, email: e.target.value })}
                     className="w-full p-2.5 rounded-lg border border-[var(--color-muted)] bg-[var(--color-card-primary)] text-[var(--color-card-primary-text)] text-sm focus:ring-2 focus:ring-[var(--color-primary)] focus:border-transparent"
                     placeholder="correo@ejemplo.com"
                   />
@@ -329,14 +360,16 @@ export default function UsersPage() {
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                   {/* Rol */}
                   <div>
-                    <label className="block text-sm font-medium text-[var(--color-card-primary-text)] mb-1.5">
+                    <label
+                      htmlFor="user-role"
+                      className="block text-sm font-medium text-[var(--color-card-primary-text)] mb-1.5"
+                    >
                       Rol de usuario
                     </label>
                     <select
+                      id="user-role"
                       value={selectedUser.role}
-                      onChange={(e) =>
-                        setSelectedUser({ ...selectedUser, role: e.target.value })
-                      }
+                      onChange={(e) => setSelectedUser({ ...selectedUser, role: e.target.value })}
                       className="w-full p-2.5 rounded-lg border border-[var(--color-muted)] bg-[var(--color-card-primary)] text-[var(--color-card-primary-text)] text-sm focus:ring-2 focus:ring-[var(--color-primary)] focus:border-transparent"
                     >
                       <option value="student">Estudiante</option>
@@ -347,10 +380,14 @@ export default function UsersPage() {
 
                   {/* Estado */}
                   <div>
-                    <label className="block text-sm font-medium text-[var(--color-card-primary-text)] mb-1.5">
+                    <label
+                      htmlFor="user-status"
+                      className="block text-sm font-medium text-[var(--color-card-primary-text)] mb-1.5"
+                    >
                       Estado
                     </label>
                     <select
+                      id="user-status"
                       className="w-full p-2.5 rounded-lg border border-[var(--color-muted)] bg-[var(--color-card-primary)] text-[var(--color-card-primary-text)] text-sm focus:ring-2 focus:ring-[var(--color-primary)] focus:border-transparent"
                     >
                       <option value="active">Activo</option>

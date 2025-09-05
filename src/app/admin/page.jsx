@@ -37,7 +37,7 @@ function AdminPage() {
       </div>
 
       {/* Stats Cards */}
-      <div className="grid grid-cols-1 xs:grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4 lg:gap-6">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4 lg:gap-6">
         {/* Users Card */}
         <div className="bg-[var(--color-card-primary)] rounded-xl p-4 sm:p-5 transition-all hover:shadow-lg border border-[var(--color-border)]">
           <div className="flex items-center justify-between mb-3">
@@ -102,7 +102,7 @@ function AdminPage() {
         {/* Gráfico de línea */}
         <div className="bg-[var(--color-card-secondary)] shadow rounded-xl p-4 sm:p-6 transition-all hover:shadow-lg">
           <h2 className="text-base sm:text-lg font-semibold mb-3 sm:mb-4 text-[var(--color-card-primary-text)]">Crecimiento de Usuarios y Ventas</h2>
-          <div className="h-[250px] sm:h-[300px]">
+          <div className="h-[200px] sm:h-[250px] lg:h-[300px]">
             <ResponsiveContainer width="100%" height="100%">
               <LineChart data={lineData} className="text-gray-500" margin={{ top: 5, right: 5, left: -20, bottom: 5 }}>
                 <CartesianGrid strokeDasharray="3 3" stroke="var(--color-muted)" />
@@ -147,7 +147,7 @@ function AdminPage() {
         {/* Gráfico de pastel */}
         <div className="bg-[var(--color-card-secondary)] shadow rounded-xl p-4 sm:p-6 transition-all hover:shadow-lg">
           <h2 className="text-base sm:text-lg font-semibold mb-3 sm:mb-4 text-[var(--color-card-primary-text)]">Estado de Usuarios</h2>
-          <div className="h-[250px] sm:h-[300px]">
+          <div className="h-[200px] sm:h-[250px] lg:h-[300px]">
             <ResponsiveContainer width="100%" height="100%">
               <PieChart>
                 <Pie
@@ -203,7 +203,7 @@ function AdminPage() {
       {/* Gráfico de barras */}
       <div className="bg-[var(--color-card-secondary)] shadow rounded-xl p-4 sm:p-6 transition-all hover:shadow-lg">
         <h2 className="text-base sm:text-lg font-semibold mb-3 sm:mb-4 text-[var(--color-card-primary-text)]">Cursos más populares</h2>
-        <div className="h-[250px] sm:h-[300px]">
+        <div className="h-[200px] sm:h-[250px] lg:h-[300px]">
           <ResponsiveContainer width="100%" height="100%">
             <BarChart 
               data={barData} 
@@ -274,16 +274,16 @@ function AdminPage() {
             <table className="min-w-full divide-y divide-[var(--color-muted)]">
               <thead className="bg-[var(--color-surface)]">
                 <tr>
-                  <th scope="col" className="px-3 py-3 text-left text-xs sm:text-sm font-medium text-gray-400 uppercase tracking-wider">
+                  <th scope="col" className="px-2 sm:px-3 py-3 text-left text-xs sm:text-sm font-medium text-gray-400 uppercase tracking-wider">
                     Nombre
                   </th>
-                  <th scope="col" className="px-3 py-3 text-left text-xs sm:text-sm font-medium text-gray-400 uppercase tracking-wider hidden sm:table-cell">
+                  <th scope="col" className="px-2 sm:px-3 py-3 text-left text-xs sm:text-sm font-medium text-gray-400 uppercase tracking-wider hidden sm:table-cell">
                     Experiencia
                   </th>
-                  <th scope="col" className="px-3 py-3 text-left text-xs sm:text-sm font-medium text-gray-400 uppercase tracking-wider">
+                  <th scope="col" className="px-2 sm:px-3 py-3 text-left text-xs sm:text-sm font-medium text-gray-400 uppercase tracking-wider">
                     Estado
                   </th>
-                  <th scope="col" className="px-3 py-3 text-right text-xs sm:text-sm font-medium text-gray-400 uppercase tracking-wider">
+                  <th scope="col" className="px-2 sm:px-3 py-3 text-right text-xs sm:text-sm font-medium text-gray-400 uppercase tracking-wider">
                     Acciones
                   </th>
                 </tr>
@@ -294,9 +294,9 @@ function AdminPage() {
                     key={req.id}
                     className="hover:bg-[var(--color-surface)] transition-colors"
                   >
-                    <td className="px-3 py-3 whitespace-nowrap">
+                    <td className="px-2 sm:px-3 py-3 whitespace-nowrap">
                       <div className="flex items-center">
-                        <div className="flex-shrink-0 h-8 w-8 rounded-full bg-primary/10 flex items-center justify-center text-primary text-sm font-medium">
+                        <div className="flex-shrink-0 h-6 w-6 sm:h-8 sm:w-8 rounded-full bg-primary/10 flex items-center justify-center text-primary text-xs sm:text-sm font-medium">
                           {req.nombre.charAt(0)}
                         </div>
                         <div className="ml-2 sm:ml-4">
@@ -309,11 +309,11 @@ function AdminPage() {
                         </div>
                       </div>
                     </td>
-                    <td className="px-3 py-3 whitespace-nowrap text-xs sm:text-sm text-gray-400 hidden sm:table-cell">
+                    <td className="px-2 sm:px-3 py-3 whitespace-nowrap text-xs sm:text-sm text-gray-400 hidden sm:table-cell">
                       {req.experiencia}
                     </td>
-                    <td className="px-3 py-3 whitespace-nowrap">
-                      <span className={`px-2 py-1 inline-flex text-xs leading-5 font-semibold rounded-full ${
+                    <td className="px-2 sm:px-3 py-3 whitespace-nowrap">
+                      <span className={`px-1.5 sm:px-2 py-1 inline-flex text-xs leading-5 font-semibold rounded-full ${
                         req.estado === 'Pendiente' 
                           ? 'bg-yellow-100 text-yellow-800 dark:bg-yellow-900/30 dark:text-yellow-300' 
                           : req.estado === 'Aprobado' 
@@ -323,10 +323,10 @@ function AdminPage() {
                         {req.estado}
                       </span>
                     </td>
-                    <td className="px-3 py-3 whitespace-nowrap text-right text-gray-400 text-sm font-medium">
+                    <td className="px-2 sm:px-3 py-3 whitespace-nowrap text-right text-gray-400 text-sm font-medium">
                       <Link
                         href={`/admin/instructors/${req.id}`}
-                        className="text-primary hover:text-primary/80 text-xs sm:text-sm px-2 sm:px-3 py-1.5 rounded-md font-medium transition-colors"
+                        className="text-primary hover:text-primary/80 text-xs sm:text-sm px-1.5 sm:px-2 py-1 sm:py-1.5 rounded-md font-medium transition-colors"
                       >
                         <span className="hidden sm:inline">Ver</span> Detalles
                       </Link>

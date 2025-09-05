@@ -14,30 +14,30 @@ export default function PaymentsPage() {
   if (!mounted) return null;
 
   return (
-    <div className="bg-[var(--color-bg)] text-[var(--color-text)] min-h-screen px-4 py-10">
+    <div className="bg-[var(--color-bg)] text-[var(--color-text)] min-h-screen px-4 sm:px-6 lg:px-8 py-8 sm:py-10">
       {/* Header */}
-      <div className="max-w-4xl mx-auto text-center mb-14">
-        <h1 className="text-3xl md:text-4xl font-extrabold mb-3">
+      <div className="max-w-4xl mx-auto text-center mb-10 sm:mb-14">
+        <h1 className="text-2xl sm:text-3xl md:text-4xl font-extrabold mb-2 sm:mb-3">
           Planes de Suscripción
         </h1>
-        <p className="text-base md:text-lg text-[var(--color-muted)]">
+        <p className="text-sm sm:text-base md:text-lg text-[var(--color-muted)]">
           Accede a todos los cursos, herramientas y soporte exclusivo.
         </p>
       </div>
 
       {/* Grid de planes */}
-      <div className="max-w-6xl mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 mb-20">
+      <div className="max-w-6xl mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 mb-16 sm:mb-20">
         {plans.map((plan, index) => (
           <div
             key={plan.id}
-            className={`relative rounded-2xl p-6 shadow-lg flex flex-col justify-between 
+            className={`relative rounded-2xl p-4 sm:p-6 shadow-lg flex flex-col justify-between 
               hover:scale-105 transition-transform duration-200
               bg-[var(--color-card-primary)] text-[var(--color-card-primary-text)] 
               ${index === 1 ? "border-2 border-[var(--color-primary)]" : ""}`}
           >
             {/* Badge para el plan destacado */}
             {index === 1 && (
-              <span className="absolute top-0 right-0 bg-[var(--color-primary)] text-[var(--color-primary-text)] text-xs font-bold px-3 py-1 rounded-bl-lg rounded-tr-2xl">
+              <span className="absolute top-0 right-0 bg-[var(--color-primary)] text-[var(--color-primary-text)] text-xs font-bold px-2 sm:px-3 py-1 rounded-bl-lg rounded-tr-2xl">
                 Más popular
               </span>
             )}

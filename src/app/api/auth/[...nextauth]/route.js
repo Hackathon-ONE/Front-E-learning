@@ -1,10 +1,16 @@
 import NextAuth from "next-auth";
 import GoogleProvider from "next-auth/providers/google";
+import CredentialsProvider from "next-auth/providers/credentials";
+import { mockUsers } from "@/data/mockUsers";
 
 // Función helper para mapear roles según el email o datos del backend
 function mapUserRole(email, backendRole) {
   // Primero tomamos el rol que venga del backend si existe
   if (backendRole) return backendRole;
+
+  // Buscar en mockUsers
+  const user = mockUsers.find(u => u.email === email);
+  if (user) return user.role.toUpperCase();
 
   // Rol por defecto según email
   if (email === "admin@gmail.com") return "ADMIN";
@@ -14,6 +20,35 @@ function mapUserRole(email, backendRole) {
 
 export const authOptions = {
   providers: [
+    CredentialsProvider({
+      name: "credentials",
+      credentials: {
+        email: { label: "Email", type: "email" },
+        password: { label: "Password", type: "password" }
+      },
+      async authorize(credentials) {
+        if (!credentials?.email || !credentials?.password) {
+          return null;
+        }
+
+        // Buscar usuario en mockUsers
+        const user = mockUsers.find(
+          u => u.email === credentials.email && u.password === credentials.password
+        );
+
+        if (user) {
+          return {
+            id: user.id,
+            email: user.email,
+            name: user.name,
+            image: user.image,
+            role: user.role.toUpperCase()
+          };
+        }
+
+        return null;
+      }
+    }),
     GoogleProvider({
       clientId: process.env.GOOGLE_CLIENT_ID,
       clientSecret: process.env.GOOGLE_CLIENT_SECRET,

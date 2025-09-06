@@ -93,7 +93,7 @@ function InstructorDashboard() {
               className="w-24 h-24 rounded-full object-cover border-4 border-primary/20 shadow"
             />
           ) : (
-            <div className="w-24 h-24 rounded-full bg-gray-400 dark:bg-gray-700 flex items-center justify-center text-2xl font-bold text-gray-600 dark:text-gray-300">
+            <div className="w-24 h-24 rounded-full bg-surface flex items-center justify-center text-2xl font-bold text-[var(--color-text)]">
               {instructor.name.charAt(0)}
             </div>
           )}
@@ -101,7 +101,7 @@ function InstructorDashboard() {
             <h1 className="text-2xl font-bold">
               Bienvenido, {instructor.name}
             </h1>
-            <p className="text-gray-400 text-secondary-text">{instructor.bio}</p>
+            <p className="text-[var(--color-text)] text-secondary-text">{instructor.bio}</p>
           </div>
         </header>
   
@@ -111,21 +111,21 @@ function InstructorDashboard() {
             <div className="flex flex-col items-center">
               <BookOpen className="w-8 h-8 text-primary mb-2" />
               <p className="text-lg font-semibold">{instructor.stats.courses}</p>
-              <p className="text-gray-500 text-sm">Cursos creados</p>
+              <p className="text-[var(--color-text)] text-sm">Cursos creados</p>
             </div>
           </Card>
           <Card className="p-6">
             <div className="flex flex-col items-center">
               <Users className="w-8 h-8 text-green-500 mb-2" />
               <p className="text-lg font-semibold">{instructor.stats.students}</p>
-              <p className="text-gray-500 text-sm">Estudiantes inscritos</p>
+              <p className="text-[var(--color-text)] text-sm">Estudiantes inscritos</p>
             </div>
           </Card>
           <Card className="p-6">
             <div className="flex flex-col items-center">
               <LineChart className="w-8 h-8 text-blue-500 mb-2" />
               <p className="text-lg font-semibold">{instructor.stats.progressReports}</p>
-                <p className="text-gray-500 text-sm">Reportes de progreso</p>
+                <p className="text-[var(--color-text)] text-sm">Reportes de progreso</p>
             </div>
           </Card>
           {/* 💰 Nueva Card de Ganancias */}
@@ -133,7 +133,7 @@ function InstructorDashboard() {
             <div className="flex flex-col items-center">
               <DollarSign className="w-8 h-8 text-yellow-500 mb-2" />
               <p className="text-lg font-semibold">${instructor.stats.earnings.toLocaleString()}</p>
-                <p className="text-gray-500 text-sm">Ganancias totales</p>
+                <p className="text-[var(--color-text)] text-sm">Ganancias totales</p>
             </div>
           </Card>
         </div>
@@ -149,7 +149,7 @@ function InstructorDashboard() {
                 <BookOpen className="w-10 h-10 text-indigo-500 mb-3" />
                 <h3 className="text-lg font-semibold">Ver cursos</h3>
                 <Link href="/instructor/courses">
-                  <Button className="mt-3 p-2 rounded-lg border border-primary text-primary hover:bg-primary hover:text-white transition text-sm md:text-base">
+                  <Button className="mt-3 p-2 rounded-lg border border-primary text-[var(--color-text)] hover:bg-primary hover:text-white transition text-sm md:text-base">
                     Ver más
                   </Button>
                 </Link>
@@ -162,7 +162,7 @@ function InstructorDashboard() {
                 <PlusCircle className="w-10 h-10 text-primary mb-3" />
                 <h3 className="text-lg font-semibold">Crear nuevo curso</h3>
                 <Link href="/instructor/courses/new">
-                  <Button className="mt-3 p-2 rounded-lg border border-primary text-primary hover:bg-primary hover:text-white transition text-sm md:text-base">
+                  <Button className="mt-3 p-2 rounded-lg border border-primary text-[var(--color-text)] hover:bg-primary hover:text-white transition text-sm md:text-base">
                     Ver más
                   </Button>
                 </Link>
@@ -175,7 +175,7 @@ function InstructorDashboard() {
                 <Pencil className="w-10 h-10 text-accent mb-3" />
                 <h3 className="text-lg font-semibold">Editar curso</h3>
                 <Link href={`/instructor/courses/${firstCourseId}/edit`}>
-                  <Button className="mt-3 p-2 rounded-lg border border-primary text-primary hover:bg-primary hover:text-white transition text-sm md:text-base">
+                  <Button className="mt-3 p-2 rounded-lg border border-primary text-[var(--color-text)] hover:bg-primary hover:text-white transition text-sm md:text-base">
                     Ver más
                   </Button>
                 </Link>
@@ -188,7 +188,7 @@ function InstructorDashboard() {
                 <Users className="w-10 h-10 text-green-500 mb-3" />
                 <h3 className="text-lg font-semibold">Gestionar estudiantes</h3>
                 <Link href={`/instructor/courses/${firstCourseId}/students`}>
-                  <Button className="mt-3 p-2 rounded-lg border border-primary text-primary hover:bg-primary hover:text-white transition text-sm md:text-base">
+                  <Button className="mt-3 p-2 rounded-lg border border-primary text-[var(--color-text)] hover:bg-primary hover:text-white transition text-sm md:text-base">
                     Ver más
                   </Button>
                 </Link>
@@ -201,7 +201,7 @@ function InstructorDashboard() {
                 <DollarSign className="w-10 h-10 text-green-500 mb-3" />
                 <h3 className="text-lg font-semibold">Gestionar pagos</h3>
                 <Link href="/instructor/earnings">
-                  <Button className="mt-3 p-2 rounded-lg border border-primary text-primary hover:bg-primary hover:text-white transition text-sm md:text-base">
+                  <Button className="mt-3 p-2 rounded-lg border border-primary text-[var(--color-text)] hover:bg-primary hover:text-white transition text-sm md:text-base">
                     Ver más
                   </Button>
                 </Link>
@@ -214,7 +214,7 @@ function InstructorDashboard() {
                 <LineChart className="w-10 h-10 text-blue-500 mb-3" />
                 <h3 className="text-lg font-semibold">Analíticas</h3>
                 <Link href={`/instructor/courses/${firstCourseId}/analytics`}>
-                  <Button className="mt-3 p-2 rounded-lg border border-primary text-primary hover:bg-primary hover:text-white transition text-sm md:text-base">
+                  <Button className="mt-3 p-2 rounded-lg border border-primary text-[var(--color-text)] hover:bg-primary hover:text-white transition text-sm md:text-base">
                     Ver más
                   </Button>
                 </Link>

@@ -3,6 +3,7 @@
 import { useState, useEffect } from "react";
 import { coursesDashboardMock } from "@/data/courses";
 import { BookOpen } from 'lucide-react';
+import Link from "next/link";
 
 export default function CoursesPage() {
   const [courses, setCourses] = useState([]);
@@ -38,16 +39,18 @@ export default function CoursesPage() {
         <div className="mb-4 sm:mb-6">
           <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
             <div>
-              <h1 className="text-xl sm:text-2xl md:text-3xl font-bold mb-1 sm:mb-2 text-[var(--color-primary)]">
+              <h1 className="text-xl sm:text-2xl md:text-3xl font-bold mb-1 sm:mb-2 text-[var(--color-text)]">
                 Gestión de Cursos
               </h1>
               <p className="text-sm sm:text-base text-[var(--color-muted)]">
                 Aquí podrás crear, editar o eliminar cursos.
               </p>
             </div>
+             <Link href="/instructor/courses/new">
             <button className="w-full sm:w-auto px-4 py-2.5 bg-[var(--color-primary)] hover:bg-[var(--color-primary-hover)] text-white rounded-lg text-sm sm:text-base font-medium transition-colors">
               + Nuevo Curso
             </button>
+            </Link>
           </div>
         </div>
 
@@ -127,10 +130,10 @@ export default function CoursesPage() {
                 {course.description}
               </p>
               <div className="flex flex-col sm:flex-row gap-2">
-                <button className="flex-1 px-3 py-2 text-xs sm:text-sm bg-[var(--color-primary)] hover:bg-[var(--color-primary-hover)] text-white rounded-lg transition-colors">
+                <button className="flex-1 px-3 py-2 text-xs sm:text-sm bg-[var(--color-primary)] hover:bg-[var(--color-primary-hover)] text-[var(--color-text)] rounded-lg transition-colors">
                   Editar
                 </button>
-                <button className="flex-1 px-3 py-2 text-xs sm:text-sm border border-[var(--color-muted)] bg-red-200 hover:bg-[var(--color-muted)] text-[var(--color-card-primary-text)] rounded-lg transition-colors">
+                <button className="flex-1 px-3 py-2 text-xs sm:text-sm border border-[var(--color-muted)] bg-[var(--color-secondary)] hover:bg-[var(--color-secondary-hover)] text-[var(--color-text)] rounded-lg transition-colors">
                   Ver
                 </button>
               </div>
@@ -141,19 +144,19 @@ export default function CoursesPage() {
         {/* Paginación */}
         <div className="mt-8 flex justify-center">
           <div className="flex items-center space-x-2">
-            <button className="px-3 py-2 text-sm border border-[var(--color-muted)] text-gray-400 rounded-lg hover:bg-[var(--color-muted)] transition-colors">
+            <button className="px-3 py-2 text-sm border border-[var(--color-muted)] text-[var(--color-text)] rounded-lg hover:bg-[var(--color-muted)] transition-colors">
               Anterior
             </button>
-            <button className="px-3 py-2 text-sm bg-[var(--color-primary)] text-gray-600 rounded-lg">
+            <button className="px-3 py-2 text-sm bg-[var(--color-primary)] text-[var(--color-text)] rounded-lg">
               1
             </button>
-            <button className="px-3 py-2 text-sm border border-[var(--color-muted)] text-gray-400 rounded-lg hover:bg-[var(--color-muted)] transition-colors">
+            <button className="px-3 py-2 text-sm border border-[var(--color-muted)] text-[var(--color-text)] rounded-lg hover:bg-[var(--color-muted)] transition-colors">
               2
             </button>
-            <button className="px-3 py-2 text-sm border border-[var(--color-muted)] text-gray-400 rounded-lg hover:bg-[var(--color-muted)] transition-colors">
+            <button className="px-3 py-2 text-sm border border-[var(--color-muted)] text-[var(--color-text)] rounded-lg hover:bg-[var(--color-muted)] transition-colors">
               3
             </button>
-            <button className="px-3 py-2 text-sm border border-[var(--color-muted)] text-gray-400 rounded-lg hover:bg-[var(--color-muted)] transition-colors">
+            <button className="px-3 py-2 text-sm border border-[var(--color-muted)] text-[var(--color-text)] rounded-lg hover:bg-[var(--color-muted)] transition-colors">
               Siguiente
             </button>
           </div>

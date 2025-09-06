@@ -39,7 +39,7 @@ export default function Chatbot() {
       return (
         <Link
           href={match.path}
-          className="text-[var(--color-primary)] underline"
+          className="text-[var(--color-primary)]"
         >
           {match.response}
         </Link>
@@ -62,15 +62,24 @@ export default function Chatbot() {
     setInputValue("");
   };
 
+  const [isMounted, setIsMounted] = useState(false);
+
+  useEffect(() => {
+    setIsMounted(true);
+  }, []);
+
   if (!isOpen) {
+    if (!isMounted) return null;
+    
     return (
       <button
         onClick={() => setIsOpen(true)}
-        className="fixed bottom-5 right-5 w-14 h-14 bg-[var(--color-primary)] text-[var(--color-primary-text)] rounded-full flex items-center justify-center shadow-lg z-50 hover:scale-110 transition-transform"
+        className="fixed bottom-5 right-5 w-14 h-14 bg-[var(--color-surface)] text-[var(--color-primary-text)] rounded-full flex items-center justify-center shadow-lg z-50 hover:scale-110 transition-transform"
+        aria-label="Abrir chat"
       >
         <Image
           src="/Lumi.png"
-          alt="Logo"
+          alt="Chatbot Lumi"
           width={50}
           height={50}
           className="items-center"
@@ -91,21 +100,21 @@ export default function Chatbot() {
         </div>
         <button
           onClick={() => setIsOpen(false)}
-          className="text-[var(--color-card-primary-text)] text-xl sm:text-2xl"
+          className="text-[var(--color-primary-text)] text-xl sm:text-2xl"
         >
           <FaTimes />
         </button>
       </div>
 
       {/* Mensajes */}
-      <div className="flex-grow p-2 sm:p-4 overflow-y-auto flex flex-col gap-2 bg-[var(--color-bg)] text-gray-500">
+      <div className="flex-grow p-2 sm:p-4 overflow-y-auto flex flex-col gap-2 bg-[var(--color-surface)] text-gray-500">
         {messages.map((msg) => (
           <div
             key={msg.id}
-            className={`p-3 rounded-lg max-w-[80%] break-words text-sm text-gray-500 leading-relaxed ${
+            className={`p-3 rounded-lg max-w-[80%] break-words text-sm leading-relaxed ${
               msg.sender === "user"
                 ? "bg-[var(--color-primary)] text-[var(--color-primary-text)] self-end rounded-br-sm"
-                : "bg-[var(--color-card-primary)] text-[var(--color-text)] self-start rounded-bl-sm"
+                : "bg-[var(--color-secondary)] text-[var(--color-text)] self-start rounded-bl-sm"
             }`}
           >
             {msg.text}
@@ -115,7 +124,7 @@ export default function Chatbot() {
       </div>
 
       {/* Quick Suggestions */}
-      <div className="flex flex-wrap gap-2 p-2 sm:p-3 bg-[var(--color-bg)] border-t border-[var(--color-muted)]">
+      <div className="flex flex-wrap gap-2 p-2 sm:p-3 text-[var(--color-text)] bg-[var(--color-surface)] border-t border-[var(--color-muted)]">
         {knowledgeBase.map((item, index) => (
           <button
             key={index}
@@ -149,11 +158,11 @@ export default function Chatbot() {
           value={inputValue}
           onChange={(e) => setInputValue(e.target.value)}
           placeholder="Escribe tu pregunta..."
-          className="flex-grow border border-[var(--color-muted)] rounded-full px-3 sm:px-4 py-2 text-xs sm:text-xs outline-none focus:border-[var(--color-primary)]"
+          className="flex-grow border text-[var(--color-secondary-hover-text)] border-[var(--color-muted)] rounded-full px-3 sm:px-4 py-2 text-sm sm:text-sm outline-none focus:border-[var(--color-primary)]"
         />
         <button
           type="submit"
-          className="ml-2 w-10 h-10 sm:w-12 sm:h-12 bg-[var(--color-primary)] text-[var(--color-primary-text)] rounded-full flex items-center justify-center hover:bg-[var(--color-primary-hover)] transition-colors"
+          className="ml-2 w-10 h-10 sm:w-12 sm:h-12 bg-[var(--color-primary)] rounded-full flex items-center justify-center hover:bg-[var(--color-primary)] transition-colors"
         >
           <FaPaperPlane />
         </button>

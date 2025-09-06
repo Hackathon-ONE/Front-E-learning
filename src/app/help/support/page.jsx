@@ -16,7 +16,7 @@ export default function HelpSupportPage() {
         <h1 className="text-3xl md:text-4xl font-bold mb-4">
           Centro de Ayuda & Soporte
         </h1>
-        <p className="text-sm md:text-base text-gray-500">
+        <p className="text-sm md:text-base text-[var(--color-text)]">
           Encuentra respuestas a tus preguntas o ponte en contacto con nuestro
           equipo de soporte.
         </p>
@@ -26,8 +26,8 @@ export default function HelpSupportPage() {
       <section className="grid gap-6 md:grid-cols-3 max-w-6xl mx-auto mb-12">
         <div className="bg-[var(--color-card-primary)] p-6 rounded-xl shadow hover:shadow-lg transition">
           <Mail className="w-8 h-8 mb-3 text-[var(--color-primary)]" />
-          <h2 className="font-semibold text-black mb-2">Email</h2>
-          <p className="text-sm text-gray-500 mb-4">
+          <h2 className="font-semibold text-[var(--color-text)] mb-2">Email</h2>
+          <p className="text-sm text-[var(--color-text)] mb-4">
             Escríbenos un correo y te responderemos lo antes posible.
           </p>
           <a
@@ -40,8 +40,8 @@ export default function HelpSupportPage() {
 
         <div className="bg-[var(--color-card-primary)] p-6 rounded-xl shadow hover:shadow-lg transition">
           <MessageSquare className="w-8 h-8 mb-3 text-[var(--color-primary)]" />
-          <h2 className="font-semibold text-black mb-2">Chat en vivo</h2>
-          <p className="text-sm text-gray-500 mb-4">
+          <h2 className="font-semibold text-[var(--color-text)] mb-2">Chat en vivo</h2>
+          <p className="text-sm text-[var(--color-text)] mb-4">
             Habla con un agente en tiempo real para resolver tus dudas.
           </p>
           <Link href="/help/support/chat">
@@ -53,8 +53,8 @@ export default function HelpSupportPage() {
 
         <div className="bg-[var(--color-card-primary)] p-6 rounded-xl shadow hover:shadow-lg transition">
           <Phone className="w-8 h-8 mb-3 text-[var(--color-primary)]" />
-          <h2 className="font-semibold text-black mb-2">Teléfono</h2>
-          <p className="text-sm text-gray-500 mb-4">
+          <h2 className="font-semibold text-[var(--color-text)] mb-2">Teléfono</h2>
+          <p className="text-sm text-[var(--color-text)] mb-4">
             Llama a nuestro centro de atención de lunes a viernes.
           </p>
           <a
@@ -72,8 +72,8 @@ export default function HelpSupportPage() {
         <Link href="/help/faq">
           <div className="cursor-pointer bg-[var(--color-card-primary)] p-8 rounded-2xl shadow hover:shadow-lg transition text-center">
             <HelpCircle className="w-10 h-10 mb-4 mx-auto text-[var(--color-primary)]" />
-            <h2 className="text-xl font-semibold text-black mb-2">Preguntas frecuentes</h2>
-            <p className="text-sm text-gray-500">
+            <h2 className="text-xl font-semibold text-[var(--color-text)] mb-2">Preguntas frecuentes</h2>
+            <p className="text-sm text-[var(--color-text)]">
               Explora respuestas rápidas a las dudas más comunes.
             </p>
           </div>
@@ -83,8 +83,8 @@ export default function HelpSupportPage() {
         <Link href="/help/contact">
           <div className="cursor-pointer bg-[var(--color-card-primary)] p-8 rounded-2xl shadow hover:shadow-lg transition text-center">
             <MessageSquare className="w-10 h-10 mb-4 mx-auto text-[var(--color-primary)]" />
-            <h2 className="text-xl font-semibold text-black mb-2">Contacto directo</h2>
-            <p className="text-sm text-gray-500">
+            <h2 className="text-xl font-semibold text-[var(--color-text)] mb-2">Contacto directo</h2>
+            <p className="text-sm text-[var(--color-text)]">
               Escríbenos y nuestro equipo de soporte te ayudará personalmente.
             </p>
           </div>

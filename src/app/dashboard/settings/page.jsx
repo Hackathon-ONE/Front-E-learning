@@ -112,26 +112,26 @@ export default function SettingsPage() {
 
         {/* Datos personales */}
         <form onSubmit={handleProfileSubmit} className="flex flex-col gap-4 bg-[var(--color-card-primary)] rounded-xl shadow p-4 sm:p-6 w-full">
-          <h2 className="text-lg sm:text-xl font-bold text-gray-600 mb-2">Datos personales</h2>
-          <label className="font-semibold text-gray-600">
+          <h2 className="text-lg sm:text-xl font-bold text-[var(--color-text)] mb-2">Datos personales</h2>
+          <label className="font-semibold text-[var(--color-text)]">
             Nombre
             <input
               type="text"
               name="name"
               value={profile.name}
               onChange={handleProfileChange}
-              className="mt-1 w-full px-3 py-2 rounded border border-gray-200 focus:outline-none focus:ring-2 focus:ring-[var(--color-primary)] bg-white text-[var(--color-card-primary-text)]"
+              className="mt-1 w-full px-3 py-2 rounded border border-[var(--color-muted)] focus:outline-none focus:ring-2 focus:ring-[var(--color-primary)] text-[var(--color-text)]"
               required
             />
           </label>
-          <label className="font-semibold text-gray-600">
+          <label className="font-semibold text-[var(--color-text)]">
             Email
             <input
               type="email"
               name="email"
               value={profile.email}
               onChange={handleProfileChange}
-              className="mt-1 w-full px-3 py-2 rounded border border-gray-200 focus:outline-none focus:ring-2 focus:ring-[var(--color-primary)] bg-white text-[var(--color-card-primary-text)]"
+              className="mt-1 w-full px-3 py-2 rounded border border-[var(--color-muted)] focus:outline-none focus:ring-2 focus:ring-[var(--color-primary)] text-[var(--color-text)]"
               required
             />
           </label>
@@ -146,37 +146,37 @@ export default function SettingsPage() {
 
         {/* Cambiar contraseña */}
         <form onSubmit={handlePasswordSubmit} className="flex flex-col gap-4 bg-[var(--color-card-primary)] rounded-xl shadow p-4 sm:p-6 w-full">
-          <h2 className="text-lg sm:text-xl font-bold text-gray-600 mb-2">Cambiar contraseña</h2>
-          <label className="font-semibold text-gray-600">
+          <h2 className="text-lg sm:text-xl font-bold text-[var(--color-text)] mb-2">Cambiar contraseña</h2>
+          <label className="font-semibold text-[var(--color-text)]">
             Contraseña actual
             <input
               type="password"
               name="current"
               value={passwords.current}
               onChange={handlePasswordsChange}
-              className="mt-1 w-full px-3 py-2 rounded border border-gray-200 focus:outline-none focus:ring-2 focus:ring-[var(--color-primary)] bg-white text-[var(--color-card-primary-text)]"
+              className="mt-1 w-full px-3 py-2 rounded border border-[var(--color-muted)] focus:outline-none focus:ring-2 focus:ring-[var(--color-primary)] text-[var(--color-text)]"
               required
             />
           </label>
-          <label className="font-semibold text-gray-600">
+          <label className="font-semibold text-[var(--color-text)]">
             Nueva contraseña
             <input
               type="password"
               name="new"
               value={passwords.new}
               onChange={handlePasswordsChange}
-              className="mt-1 w-full px-3 py-2 rounded border border-gray-200 focus:outline-none focus:ring-2 focus:ring-[var(--color-primary)] bg-white text-[var(--color-card-primary-text)]"
+              className="mt-1 w-full px-3 py-2 rounded border border-[var(--color-muted)] focus:outline-none focus:ring-2 focus:ring-[var(--color-primary)] text-[var(--color-text)]"
               required
             />
           </label>
-          <label className="font-semibold text-gray-600">
+          <label className="font-semibold text-[var(--color-text)]">
             Confirmar nueva contraseña
             <input
               type="password"
               name="confirm"
               value={passwords.confirm}
               onChange={handlePasswordsChange}
-              className="mt-1 w-full px-3 py-2 rounded border border-gray-200 focus:outline-none focus:ring-2 focus:ring-[var(--color-primary)] bg-white text-[var(--color-card-primary-text)]"
+              className="mt-1 w-full px-3 py-2 rounded border border-[var(--color-muted)] focus:outline-none focus:ring-2 focus:ring-[var(--color-primary)] text-[var(--color-text)]"
               required
             />
           </label>
@@ -190,12 +190,12 @@ export default function SettingsPage() {
         </form>
 
         {/* Preferencias */}
-        <div className="flex flex-col gap-4 bg-[var(--color-card-primary)] rounded-xl shadow p-4 sm:p-6 w-full">
-          <h2 className="text-lg sm:text-xl font-bold text-gray-600 mb-2">Preferencias</h2>
+        <div className="flex flex-col gap-4 bg-[var(--color-card-primary)] border border-[var(--color-muted)] rounded-xl shadow p-4 sm:p-6 w-full">
+          <h2 className="text-lg sm:text-xl font-bold text-[var(--color-text)] mb-2">Preferencias</h2>
           <div className="flex flex-col sm:flex-row gap-6">
             {/* Notificaciones */}
             <div className="flex-1">
-              <h3 className="font-semibold text-gray-600 mb-2">Notificaciones</h3>
+              <h3 className="font-semibold text-[var(--color-text)] mb-2">Notificaciones</h3>
               <label className="flex items-center gap-2 mb-2">
                 <input
                   type="checkbox"
@@ -204,7 +204,7 @@ export default function SettingsPage() {
                   onChange={handleNotificationsChange}
                   className="accent-[var(--color-primary)]"
                 />
-                <span className="text-gray-600">Email</span>
+                <span className="text-[var(--color-text)]">Email</span>
               </label>
               <label className="flex items-center gap-2">
                 <input
@@ -214,12 +214,12 @@ export default function SettingsPage() {
                   onChange={handleNotificationsChange}
                   className="accent-[var(--color-primary)]"
                 />
-                <span className="text-gray-600">SMS</span>
+                <span className="text-[var(--color-text)]">SMS</span>
               </label>
             </div>
             {/* Tema */}
             <div className="flex-1 mt-4 sm:mt-0">
-              <h3 className="font-semibold text-gray-600 mb-2">Tema</h3>
+              <h3 className="font-semibold text-[var(--color-text)] mb-2">Tema</h3>
               <div className="flex gap-4 flex-col xs:flex-row sm:flex-row">
                 <button
                   type="button"

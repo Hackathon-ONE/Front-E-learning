@@ -24,7 +24,7 @@ export default function Stats() {
         Nuestras Estadísticas
       </h2>
 
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-8 justify-items-center">
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 text-[var(--color-text)] gap-8 justify-items-center">
         {stats.map((s, i) => (
           <div
             key={i}
@@ -38,7 +38,7 @@ export default function Stats() {
                 <CountUp end={s.value} duration={2.5} separator="." />
               ) : 0}
             </div>
-            <p className="text-[var(--color-muted)] text-center">{s.label}</p>
+            <p className="text-[var(--color-text)] text-center">{s.label}</p>
           </div>
         ))}
       </div>

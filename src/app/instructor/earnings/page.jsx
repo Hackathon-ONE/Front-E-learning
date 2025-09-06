@@ -90,12 +90,12 @@ export default function EarningsPage() {
               {earnings.transactions.map((tx) => (
                 <tr
                   key={tx.id}
-                  className="border-b border-gray-200 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-800"
+                  className="border-b border-gray-200 hover:bg-[var(--color-secondary-hover)]"
                 >
-                  <td className="py-2 px-3 text-gray-500">{tx.student}</td>
-                  <td className="py-2 px-3 text-gray-500">{tx.course}</td>
-                  <td className="py-2 px-3 font-semibold text-gray-500">${formatter.format(tx.amount)}</td>
-                  <td className="py-2 px-3 text-gray-500">{tx.date}</td>
+                  <td className="py-2 px-3 text-[var(--color-text)]">{tx.student}</td>
+                  <td className="py-2 px-3 text-[var(--color-text)]">{tx.course}</td>
+                  <td className="py-2 px-3 font-semibold text-[var(--color-text)]">${formatter.format(tx.amount)}</td>
+                  <td className="py-2 px-3 text-[var(--color-text)]">{tx.date}</td>
                 </tr>
               ))}
             </tbody>

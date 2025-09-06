@@ -91,12 +91,12 @@ export default function TestCredentials() {
           isOpen ? 'max-h-100 opacity-100' : 'max-h-0 opacity-0'
         }`}
       >
-        <div className="mt-2 bg-white dark:bg-gray-600 border border-gray-200 dark:border-gray-500 rounded-lg shadow-sm">
+        <div className="mt-2 bg-surface border border-gray-200 rounded-lg shadow-sm">
           <div className="mb-2 px-2">
             {testAccounts.map((account, index) => (
               <div
                 key={index}
-                className="border border-gray-100 dark:border-gray-700 rounded-lg p-2 hover:bg-gray-50 dark:hover:bg-gray-700/50 transition-colors"
+                className="border border-gray-100 text-[var(--color-muted)] rounded-lg p-2 hover:bg-[var(--color-primary)] transition-colors"
               >
                 {/* Header de la cuenta */}
                 <div className="flex items-center justify-between mb-3">
@@ -104,7 +104,7 @@ export default function TestCredentials() {
                     <span className={`text-xs font-medium px-2 py-1 rounded-md ${account.color}`}>
                       {account.role}
                     </span>
-                    <span className="text-xs text-gray-500 dark:text-gray-400 hidden sm:block">
+                    <span className="text-xs text-[var(--color-text)] hidden sm:block">
                       {account.description}
                     </span>
                   </div>
@@ -114,15 +114,15 @@ export default function TestCredentials() {
                 <div className="space-y-2">
                   {/* Email */}
                   <div className="flex items-center gap-2">
-                    <span className="text-xs text-gray-600 dark:text-gray-600 w-12 flex-shrink-0">
+                    <span className="text-xs text-[var(--color-text)] w-12 flex-shrink-0">
                       Email:
                     </span>
-                    <code className="bg-gray-100 dark:bg-gray-700 px-2 py-1 rounded text-xs flex-1 min-w-0 truncate">
+                    <code className="bg-gray-100  px-2 py-1 rounded text-xs flex-1 min-w-0 truncate">
                       {account.email}
                     </code>
                     <button
                       onClick={() => copyToClipboard(account.email, `email-${index}`)}
-                      className="p-1 hover:bg-gray-200 dark:hover:bg-gray-600 rounded transition-colors flex-shrink-0"
+                      className="p-1 rounded transition-colors flex-shrink-0"
                       title="Copiar email"
                     >
                       {copiedField === `email-${index}` ? (
@@ -135,15 +135,15 @@ export default function TestCredentials() {
 
                   {/* Password */}
                   <div className="flex items-center gap-2">
-                    <span className="text-xs text-gray-600 dark:text-gray-400 w-12 flex-shrink-0">
+                    <span className="text-xs text-[var(--color-text)] w-12 flex-shrink-0">
                       Pass:
                     </span>
-                    <code className="bg-gray-100 dark:bg-gray-700 px-2 py-1 rounded text-xs flex-1 min-w-0">
+                    <code className="bg-gray-100 px-2 py-1 rounded text-xs flex-1 min-w-0">
                       {showPasswords[index] ? account.password : '••••••••'}
                     </code>
                     <button
                       onClick={() => togglePassword(index)}
-                      className="p-1 hover:bg-gray-200 dark:hover:bg-gray-600 rounded transition-colors flex-shrink-0"
+                      className="p-1 rounded transition-colors flex-shrink-0"
                       title={showPasswords[index] ? 'Ocultar contraseña' : 'Mostrar contraseña'}
                     >
                       {showPasswords[index] ? (
@@ -154,7 +154,7 @@ export default function TestCredentials() {
                     </button>
                     <button
                       onClick={() => copyToClipboard(account.password, `pass-${index}`)}
-                      className="p-1 hover:bg-gray-200 dark:hover:bg-gray-600 rounded transition-colors flex-shrink-0"
+                      className="p-1 rounded transition-colors flex-shrink-0"
                       title="Copiar contraseña"
                     >
                       {copiedField === `pass-${index}` ? (
@@ -170,9 +170,9 @@ export default function TestCredentials() {
           </div>
 
           {/* Footer con instrucciones */}
-          <div className="px-4 pb-4 space-y-2">
+          <div className="px-4 pb-2 space-y-2">
             <div className="bg-orange-50 mb-2 dark:bg-orange-900/20 border border-orange-200 dark:border-orange-800 rounded-lg">
-              <p className="text-xs text-orange-700 dark:text-orange-300 flex items-center gap-2">
+              <p className="text-xs text-orange-700 dark:text-orange-300 flex items-center gap-2 ">
                 <Copy className="w-3 h-3" />
                 Haz clic en los iconos para copiar o mostrar/ocultar contraseñas
               </p>

@@ -35,9 +35,9 @@ export default function ProgressReportsPage() {
                     key={course.id}
                     className="border-t border-[var(--color-muted)] hover:bg-[var(--color-card-secondary)] transition"
                   >
-                    <td className="p-4 font-medium text-gray-500">{course.title}</td>
-                    <td className="p-4 flex items-center gap-2 text-gray-500">
-                      <Users className="w-4 h-4 text-gray-500" />
+                    <td className="p-4 font-medium text-[var(--color-text)]">{course.title}</td>
+                    <td className="p-4 flex items-center gap-2 text-[var(--color-text)]">
+                      <Users className="w-4 h-4 text-[var(--color-text)]" />
                       {course.students}
                     </td>
                     <td className="p-4 w-64">
@@ -70,7 +70,7 @@ export default function ProgressReportsPage() {
           </h2>
 
           {progressReportsStudentsData.length === 0 ? (
-            <p className="text-center text-sm text-gray-500">
+            <p className="text-center text-sm text-[var(--color-text)]">
               No hay estudiantes inscritos todavía.
             </p>
           ) : (
@@ -92,11 +92,11 @@ export default function ProgressReportsPage() {
                         className="border-t hover:bg-[var(--color-surface)] transition"
                         style={{ borderColor: "var(--color-surface)" }}
                       >
-                        <td className="p-3 text-gray-500">{s.name}</td>
-                        <td className="p-3 text-gray-500">{s.email}</td>
-                        <td className="p-3 text-gray-500">
+                        <td className="p-3 text-[var(--color-text)]">{s.name}</td>
+                        <td className="p-3 text-[var(--color-text)]">{s.email}</td>
+                        <td className="p-3 text-[var(--color-text)]">
                           {s.courseTitle || (
-                            <span className="text-gray-400">
+                            <span className="text-[var(--color-text)]">
                               Sin curso asignado
                             </span>
                           )}

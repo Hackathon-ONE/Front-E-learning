@@ -18,7 +18,7 @@ export default function StudentsPage() {
         {/* Título */}
         <header className="mb-10 text-center">
           <h1 className="text-2xl sm:text-3xl font-bold text-[var(--color-text)]">Estudiantes</h1>
-          <p className="text-gray-500 dark:text-gray-300 mt-2 text-sm sm:text-base">
+          <p className="text-[var(--color-text)] mt-2 text-sm sm:text-base">
             Gestiona y revisa el progreso de los estudiantes inscritos en tus cursos.
           </p>
         </header>
@@ -41,7 +41,7 @@ export default function StudentsPage() {
               <h2 className="text-base sm:text-lg font-bold text-[var(--color-text)]">
                 {student.name}
               </h2>
-              <p className="text-xs sm:text-sm text-gray-500 dark:text-gray-400 break-words">
+              <p className="text-xs sm:text-sm text-[var(--color-text)] break-words">
                 {student.email}
               </p>
 

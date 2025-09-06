@@ -71,7 +71,7 @@ export default function LoginForm() {
 
   return (
     <AuthLayout>
-      <h2 className="text-2xl font-bold mb-6 text-center">Iniciar sesión</h2>
+      <h2 className="text-2xl font-bold mb-6 text-[var(--color-text)] text-center">Iniciar sesión</h2>
 
       <TestCredentials />
 
@@ -86,7 +86,7 @@ export default function LoginForm() {
             id="email"
             type="email"
             name="email"
-            className="w-full p-3 rounded-lg border border-gray-400 dark:border-gray-700"
+            className="w-full p-3 rounded-lg border border-gray-400 dark:border-gray-700 text-[var(--color-text)]"
             value={formData.email}
             onChange={handleChange}
           />
@@ -101,7 +101,7 @@ export default function LoginForm() {
             id="password"
             type="password"
             name="password"
-            className="w-full p-3 rounded-lg border border-gray-400 dark:border-gray-700"
+            className="w-full p-3 rounded-lg border border-gray-400 dark:border-gray-700 text-[var(--color-text)]"
             value={formData.password}
             onChange={handleChange}
           />
@@ -111,7 +111,7 @@ export default function LoginForm() {
         <button
           type="submit"
           disabled={loading}
-          className="w-full py-3 rounded-lg font-semibold disabled:opacity-50"
+          className="w-full py-3 rounded-lg font-semibold disabled:opacity-50 text-[var(--color-text)]"
           style={{
             backgroundColor: 'var(--color-primary)',
             color: 'var(--color-primary-text)',
@@ -128,7 +128,7 @@ export default function LoginForm() {
       <button
         onClick={handleGoogleLogin}
         disabled={loading}
-        className="w-full flex items-center justify-center gap-2 py-3 rounded-lg border font-semibold hover:bg-primary hover:text-primary-text"
+        className="w-full flex items-center justify-center gap-2 py-3 rounded-lg border font-semibold hover:bg-primary hover:text-primary-text text-[var(--color-text)]"
         style={{
           borderColor: 'var(--color-secondary)',
           backgroundColor: 'var(--color-terciary)',
@@ -144,7 +144,7 @@ export default function LoginForm() {
           ¿No tienes cuenta?{' '}
           <Link
             href="/auth/register"
-            className="font-semibold"
+            className="font-semibold text-[var(--color-text)]"
             style={{ color: 'var(--color-primary)' }}
           >
             Regístrate

@@ -6,8 +6,8 @@ export default function AuthLayout({ children }) {
       <div
         className="w-full max-w-md rounded-xl p-6"
         style={{
-          backgroundColor: "var(--color-card-primary)",
-          color: "var(--color-card-primary-text)",
+          backgroundColor: "var(--color-surface)",
+          color: "var(--color-text)",
           boxShadow: "0 4px 4px rgba(0,0,0,0.05)",
         }}
       >

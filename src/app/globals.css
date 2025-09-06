@@ -30,6 +30,7 @@
   --color-secondary-text: #e7e1e1;
   --color-secondary-hover: #afabab;        /* Hover secondary */
   --color-secondary-hover-text: #333333;
+  --color-outline: #eb9d70;
 
   --color-dropdown: #f2f8d6;
 
@@ -38,6 +39,7 @@
   --color-progress: #ff5400;
   --color-progress-text: #131212;
   --color-terciary: rgb(241, 240, 224);
+  --color-bg-hover: #e9c4b2;
 
   --font-heading: var(--font-ubuntu);
   --font-body: var(--font-inter);
@@ -45,34 +47,38 @@
 
 .dark {
   /* 🌙 Dark Mode */
-  --color-bg: #1e293ff5;
-  --color-surface: #2a2e3b;
+  --color-bg: #1a1e2e;
+  --color-surface: #252a3a;
   
-  --color-text: #ffffff;
-  --color-muted: #dfdfe6;
+  --color-text: #e2e8f0;
+  --color-muted: #94a3b8;
 
   /* Cards */
-  --color-card-primary: #e1e4e7;
-  --color-card-primary-text: #3f3a3a;
-  --color-card-secondary: #ededf0;
-  --color-card-secondary-text: #080707;
+  --color-card-primary: #1e293b;
+  --color-card-primary-text: #e2e8f0;
+  --color-card-secondary: #1e293b;
+  --color-card-secondary-text: #e2e8f0;
 
   /* Buttons */
-  --color-primary: #fca311;
-  --color-primary-text: #333333;
-  --color-primary-hover: #ffdb70;          /* Hover primary */
-  --color-primary-hover-text: #080707;     /* Texto sobre hover primary */
+  --color-primary: #f59e0b;
+  --color-primary-text: #1e293b;
+  --color-primary-hover: #fbbf24;
+  --color-primary-hover-text: #1e293b;
 
-  --color-secondary: #5c6c8d;
-  --color-secondary-text: #ffffff;
-  --color-secondary-hover: #3a4a6a;        /* Hover secondary */
+  --color-secondary: #334155;
+  --color-secondary-text: #e2e8f0;
+  --color-secondary-hover: #475569;
   --color-secondary-hover-text: #ffffff;
+  --color-outline: #f2f3b3;
 
-  --color-dropdown: #f2f8d6;
+  --color-dropdown: #1e293b;
 
   /* Accents */
-  --color-accent: #c9ce89ff;
-  --color-terciary: rgb(241, 240, 224);
+  --color-accent: #f59e0b;
+  --color-terciary: #1e293b;
+  --color-progress: #f59e0b;
+  --color-progress-text: #1e293b;
+  --color-bg-hover: #e9c4b2;
 
   --font-heading: var(--font-ubuntu);
   --font-body: var(--font-inter);

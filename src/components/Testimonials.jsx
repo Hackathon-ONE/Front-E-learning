@@ -77,15 +77,15 @@ export default function Testimonials() {
         >
           {testimonials.map((t, i) => (
             <SwiperSlide key={i} className="h-full flex mt-6 mb-6">
-              <Card className="flex flex-col justify-between items-center p-2 text-center bg-[var(--color-card-secondary)] dark:bg-[var(--color-card-secondary-dark)] rounded-2xl shadow-lg w-full h-[300px] transition-transform transform hover:scale-105">
+              <Card className="flex flex-col justify-between items-center p-2 text-center bg-[var(--color-card-primary)] rounded-2xl shadow-lg w-full h-[300px] transition-transform transform hover:scale-105">
                 <div className="flex flex-col items-center">
                   <img
                     src={t.avatar}
                     alt={t.name}
                     className="w-24 h-24 rounded-full mb-2 object-cover"
                   />
-                  <h4 className="font-semibold text-md text-[var(--color-primary)] dark:text-[var(--color-primary-dark)]">{t.name}</h4>
-                  <p className="text-[var(--color-card-secondary-text)] text-sm mb-2">{t.profession}</p>
+                  <h4 className="font-semibold text-md text-[var(--color-primary)]">{t.name}</h4>
+                  <p className="text-[var(--color-muted)] text-sm mb-2">{t.profession}</p>
                   <div className="flex">
                     {Array.from({ length: 5 }, (_, index) => (
                       <Star
@@ -96,7 +96,7 @@ export default function Testimonials() {
                     ))}
                   </div>
                 </div>
-                <p className="text-[var(--color-card-secondary-text)] text-sm overflow-auto">{t.review}</p>
+                <p className="text-[var(--color-card-primary-text)] text-sm overflow-auto">{t.review}</p>
               </Card>
             </SwiperSlide>
           ))}
@@ -106,19 +106,21 @@ export default function Testimonials() {
       <style jsx global>{`
         .swiper-button-next,
         .swiper-button-prev {
-          background-color: var(--color-surface);
+          background-color: var(--color-card-primary);
           width: 36px;
           height: 36px;
           border-radius: 50%;
           color: var(--color-primary);
           top: 50%;
           transform: translateY(-50%);
-          transition: background-color 0.3s;
+          transition: all 0.3s;
+          border: 1px solid var(--color-muted);
         }
         .swiper-button-next:hover,
         .swiper-button-prev:hover {
           background-color: var(--color-primary);
-          color: #fff;
+          color: var(--color-primary-text);
+          border-color: var(--color-primary);
         }
         .swiper-button-next::after,
         .swiper-button-prev::after {

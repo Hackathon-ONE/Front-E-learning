@@ -56,7 +56,7 @@ export default function CoursesCarousel() {
             {coursesCarouselMock.map((course) => (
               <SwiperSlide key={course.id} className="flex justify-center">
                 <motion.div
-                  className="bg-white dark:bg-bg rounded-xl shadow-md overflow-hidden flex flex-col w-full max-w-sm min-h-[360px] p-4 mb-12"
+                  className="bg-bg rounded-xl border border-[var(--color-muted)] shadow-md overflow-hidden flex flex-col w-full max-w-sm min-h-[360px] p-4 mb-12"
                   whileHover={{ scale: 1.02 }}
                 >
                   {/* Imagen */}
@@ -64,20 +64,20 @@ export default function CoursesCarousel() {
                     <img
                       src={course.image}
                       alt={course.title}
-                      className="w-full h-full object-cover"
+                      className="w-full h-full text-[var(--color-text)] object-cover"
                     />
                   </div>
 
                   {/* Contenido */}
-                  <div className="p-4 flex-1 flex flex-col justify-between text-gray-600 dark:text-gray-300">
+                  <div className="p-4 flex-1 flex flex-col justify-between text-[var(--color-text)] dark:text-gray-300">
                     <div>
-                      <h3 className="text-lg font-semibold mb-1 text-foreground">
+                      <h3 className="text-lg font-semibold mb-1 text-[var(--color-text)]">
                         {course.title}
                       </h3>
-                      <p className="text-sm text-gray-600 dark:text-gray-300 mb-3 leading-snug">
+                      <p className="text-sm text-[var(--color-text)] dark:text-gray-300 mb-3 leading-snug">
                         {course.description}
                       </p>
-                      <p className="text-xs font-medium text-yellow-500">
+                      <p className="text-xs font-medium text-[var(--color-text)]">
                         {course.reviews}
                       </p>
                     </div>
@@ -87,12 +87,12 @@ export default function CoursesCarousel() {
                       <a
                         href={course.demo}
                         target="_blank"
-                        className="w-full sm:w-1/2 bg-primary text-white text-sm text-center py-1.5 rounded-lg shadow hover:bg-[#3f3e3c] transition"
+                        className="w-full sm:w-1/2 bg-primary text-primary-text text-sm text-center py-1.5 rounded-lg shadow hover:bg-[var(--color-secondary)] transition"
                       >
                         Ver Demo
                       </a>
                       <Link href={"/payments"}>
-                        <Button className="w-full p-2 bg-gray-200 dark:bg-gray-900 text-sm text-foreground py-1.5 rounded-lg shadow hover:bg-[#ffdb70] dark:hover:bg-primary-hover transition">
+                        <Button className="w-full p-2 bg-outline text-hover-text text-sm text-foreground py-1.5 rounded-lg shadow hover:bg-[var(--color-secondary-hover)] transition">
                           Suscribirse
                         </Button>
                       </Link>

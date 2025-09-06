@@ -63,13 +63,13 @@ export default function SimpleRecommendationsForm() {
         <form onSubmit={handleSubmit} className="space-y-6">
           {/* Skills */}
           <div>
-            <label className="block font-semibold mb-1 text-sm sm:text-base">Tus Habilidades</label>
+            <label className="block font-semibold mb-1 text-[var(--color-text)] text-sm sm:text-base">Tus Habilidades</label>
             <textarea
               name="skills"
               value={formData.skills}
               onChange={handleChange}
               placeholder="ej. JavaScript, Python, UI Design, Project Management"
-              className="w-full p-3 rounded-md border text-sm sm:text-base resize-y"
+              className="w-full p-3 rounded-md border text-[var(--color-text)] bg-[var(--color-surface)] sm:text-base resize-y"
               rows={3}
               required
             />
@@ -77,13 +77,13 @@ export default function SimpleRecommendationsForm() {
 
           {/* Experience */}
           <div>
-            <label className="block font-semibold mb-1 text-sm sm:text-base">Tu Experiencia</label>
+            <label className="block font-semibold mb-1 text-[var(--color-text)] text-sm sm:text-base">Tu Experiencia</label>
             <textarea
               name="experience"
               value={formData.experience}
               onChange={handleChange}
               placeholder="ej. 2 años como desarrollador junior, pasante de marketing y fotógrafo aficionado."
-              className="w-full p-3 rounded-md border text-sm sm:text-base resize-y"
+              className="w-full p-3 rounded-md border text-[var(--color-text)] bg-[var(--color-surface)] sm:text-base resize-y"
               rows={3}
               required
             />
@@ -91,13 +91,13 @@ export default function SimpleRecommendationsForm() {
 
           {/* Interests */}
           <div>
-            <label className="block font-semibold mb-1 text-sm sm:text-base">Tus Intereses</label>
+            <label className="block font-semibold mb-1 text-[var(--color-text)] text-sm sm:text-base">Tus Intereses</label>
             <textarea
               name="interests"
               value={formData.interests}
               onChange={handleChange}
               placeholder="ej. Me apasiona la visualización de datos, la creación de aplicaciones móviles y la escritura creativa."
-              className="w-full p-3 rounded-md border text-sm sm:text-base resize-y"
+              className="w-full p-3 rounded-md border text-[var(--color-text)] bg-[var(--color-surface)] sm:text-base resize-y"
               rows={3}
               required
             />
@@ -126,9 +126,9 @@ export default function SimpleRecommendationsForm() {
         >
           <h2 className="text-lg sm:text-xl font-bold mb-4">Recomendaciones AI</h2>
           <div className="space-y-4 animate-pulse">
-            <div className="h-4 sm:h-5 w-1/3 bg-gray-300 rounded" />
-            <div className="h-3 sm:h-4 w-full bg-gray-300 rounded" />
-            <div className="h-3 sm:h-4 w-4/5 bg-gray-300 rounded" />
+            <div className="h-4 sm:h-5 w-1/3 rounded" />
+            <div className="h-3 sm:h-4 w-full rounded" />
+            <div className="h-3 sm:h-4 w-4/5 rounded" />
           </div>
         </div>
       )}
@@ -150,7 +150,7 @@ export default function SimpleRecommendationsForm() {
                   <ArrowRight className="h-4 w-4 mr-2 text-[var(--color-primary)]" />
                   {rec.courseName}
                 </h3>
-                <p className="mt-1 pl-6 text-xs sm:text-sm text-gray-500">{rec.reason}</p>
+                <p className="mt-1 pl-6 text-xs sm:text-sm text-[var(--color-text)]">{rec.reason}</p>
               </div>
             ))}
           </div>

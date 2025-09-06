@@ -36,29 +36,29 @@ function StudentDashboard({ user }) {
   // Asumiendo que el user tiene un ID
   const studentId = user?.id || '1'; // Fallback a '1' si no hay ID
   return (
-    <div className="container mx-auto px-4 py-8">
+    <div className="container mx-auto px-4 py-8 bg-surface">
       <div className="mb-8">
         <h1 className="text-3xl font-bold mb-2">¡Hola, {user.name}! </h1>
-        <p className="text-gray-400 dark:text-gray-400">Continúa tu aprendizaje donde lo dejaste</p>
+        <p className="text-[var(--color-text)]">Continúa tu aprendizaje donde lo dejaste</p>
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-8">
         <Link
           href={`/students/${studentId}`}
-          className="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-md hover:shadow-lg transition-shadow"
+          className="bg-[var(--color-card-primary)] p-6 rounded-lg shadow-md hover:shadow-lg transition-shadow"
         >
           <BookOpen className="w-8 h-8 text-blue-600 mb-4" />
           <h3 className="text-xl font-semibold text-gray-800 mb-2">Mis Cursos</h3>
-          <p className="text-gray-600 dark:text-gray-400">Accede a todos tus cursos matriculados</p>
+          <p className="text-[var(--color-text)]">Accede a todos tus cursos matriculados</p>
         </Link>
 
         <Link
           href="/dashboard/profile"
-          className="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-md hover:shadow-lg transition-shadow"
+          className="bg-[var(--color-card-primary)] p-6 rounded-lg shadow-md hover:shadow-lg transition-shadow"
         >
           <User className="w-8 h-8 text-green-600 mb-4" />
           <h3 className="text-xl font-semibold text-gray-800 mb-2">Mi Perfil</h3>
-          <p className="text-gray-600 dark:text-gray-400">Gestiona tu información personal</p>
+          <p className="text-[var(--color-text)]">Gestiona tu información personal</p>
         </Link>
 
         <Link
@@ -67,7 +67,7 @@ function StudentDashboard({ user }) {
         >
           <Settings className="w-8 h-8 text-purple-600 mb-4" />
           <h3 className="text-xl font-semibold text-gray-800 mb-2">Configuración</h3>
-          <p className="text-gray-600 dark:text-gray-400">Personaliza tu experiencia</p>
+          <p className="text-[var(--color-text)]">Personaliza tu experiencia</p>
         </Link>
       </div>
 
@@ -91,44 +91,44 @@ function InstructorDashboard({ user }) {
     <div className="container mx-auto px-4 py-8">
       <div className="mb-8">
         <h1 className="text-3xl font-bold mb-2">Panel de Instructor - {user.name} </h1>
-        <p className="text-gray-400 dark:text-gray-400">Gestiona tus cursos y estudiantes</p>
+        <p className="text-[var(--color-text)]">Gestiona tus cursos y estudiantes</p>
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
         <Link
           href="/instructor/dashboard"
-          className="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-md hover:shadow-lg transition-shadow"
+          className="bg-[var(--color-card-primary)] p-6 rounded-lg shadow-md hover:shadow-lg transition-shadow"
         >
           <BarChart3 className="w-8 h-8 text-blue-600 mb-4" />
-          <h3 className="text-xl font-semibold text-gray-800 mb-2">Dashboard</h3>
-          <p className="text-gray-600 dark:text-gray-400">Estadísticas y métricas</p>
+          <h3 className="text-xl font-semibold text-[var(--color-text)] mb-2">Dashboard</h3>
+          <p className="text-[var(--color-text)]">Estadísticas y métricas</p>
         </Link>
 
         <Link
           href="/instructor/courses"
-          className="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-md hover:shadow-lg transition-shadow"
+          className="bg-[var(--color-card-primary)] p-6 rounded-lg shadow-md hover:shadow-lg transition-shadow"
         >
           <BookOpen className="w-8 h-8 text-green-600 mb-4" />
-          <h3 className="text-xl font-semibold text-gray-800 mb-2">Mis Cursos</h3>
-          <p className="text-gray-600 dark:text-gray-400">Crear y gestionar cursos</p>
+          <h3 className="text-xl font-semibold text-[var(--color-text)] mb-2">Mis Cursos</h3>
+          <p className="text-[var(--color-text)]">Crear y gestionar cursos</p>
         </Link>
 
         <Link
           href="/instructor/students"
-          className="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-md hover:shadow-lg transition-shadow"
+          className="bg-[var(--color-card-primary)] p-6 rounded-lg shadow-md hover:shadow-lg transition-shadow"
         >
           <Users className="w-8 h-8 text-purple-600 mb-4" />
-          <h3 className="text-xl font-semibold text-gray-800 mb-2">Estudiantes</h3>
-          <p className="text-gray-600 dark:text-gray-400">Gestionar estudiantes</p>
+          <h3 className="text-xl font-semibold text-[var(--color-text)] mb-2">Estudiantes</h3>
+          <p className="text-[var(--color-text)]">Gestionar estudiantes</p>
         </Link>
 
         <Link
           href="/dashboard/profile"
-          className="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-md hover:shadow-lg transition-shadow"
+          className="bg-[var(--color-card-primary)] p-6 rounded-lg shadow-md hover:shadow-lg transition-shadow"
         >
           <User className="w-8 h-8 text-orange-600 mb-4" />
-          <h3 className="text-xl font-semibold text-gray-800 mb-2">Perfil</h3>
-          <p className="text-gray-600 dark:text-gray-400">Información personal</p>
+          <h3 className="text-xl font-semibold text-[var(--color-text)] mb-2">Perfil</h3>
+          <p className="text-[var(--color-text)]">Información personal</p>
         </Link>
       </div>
 
@@ -137,7 +137,7 @@ function InstructorDashboard({ user }) {
         <p className="mb-4">Comparte tu conocimiento con estudiantes de todo el mundo</p>
         <Link
           href="/instructor/courses/new"
-          className="bg-white text-orange-600 px-6 py-2 rounded-lg font-semibold hover:bg-gray-100"
+          className="bg-[var(--color-text)] text-[var(--color-primary)] px-6 py-2 rounded-lg font-semibold hover:bg-gray-50"
         >
           Crear Nuevo Curso
         </Link>
@@ -152,53 +152,53 @@ function AdminDashboard({ user }) {
     <div className="container mx-auto px-4 py-8">
       <div className="mb-8">
         <h1 className="text-3xl font-bold mb-2">Panel de Administración - {user.name}</h1>
-        <p className="text-gray-400 dark:text-gray-400">Control total del sistema</p>
+        <p className="text-[var(--color-text)]">Control total del sistema</p>
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 gap-6 mb-8">
+      <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 gap-6 mb-8 bg-surface">
         <Link
           href="/admin"
-          className="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-md hover:shadow-lg transition-shadow"
+          className="bg-[var(--color-card-primary)] p-6 rounded-lg shadow-md hover:shadow-lg transition-shadow"
         >
           <BarChart3 className="w-8 h-8 text-red-600 mb-4" />
-          <h3 className="text-xl font-semibold text-gray-800 mb-2">Dashboard</h3>
-          <p className="text-gray-600 dark:text-gray-400">Métricas del sistema</p>
+          <h3 className="text-xl font-semibold text-[var(--color-text)] mb-2">Dashboard</h3>
+          <p className="text-[var(--color-text)]">Métricas del sistema</p>
         </Link>
 
         <Link
           href="/admin/users"
-          className="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-md hover:shadow-lg transition-shadow"
+          className="bg-[var(--color-card-primary)] p-6 rounded-lg shadow-md hover:shadow-lg transition-shadow"
         >
           <Users className="w-8 h-8 text-blue-600 mb-4" />
-          <h3 className="text-xl font-semibold text-gray-800 mb-2">Usuarios</h3>
-          <p className="text-gray-600 dark:text-gray-400">Gestionar usuarios</p>
+          <h3 className="text-xl font-semibold text-[var(--color-text)] mb-2">Usuarios</h3>
+          <p className="text-[var(--color-text)]">Gestionar usuarios</p>
         </Link>
 
         <Link
           href="/admin/courses"
-          className="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-md hover:shadow-lg transition-shadow"
+          className="bg-[var(--color-card-primary)] p-6 rounded-lg shadow-md hover:shadow-lg transition-shadow"
         >
           <BookOpen className="w-8 h-8 text-green-600 mb-4" />
-          <h3 className="text-xl font-semibold text-gray-800 mb-2">Cursos</h3>
-          <p className="text-gray-600 dark:text-gray-400">Administrar cursos</p>
+          <h3 className="text-xl font-semibold text-[var(--color-text)] mb-2">Cursos</h3>
+          <p className="text-[var(--color-text)]">Administrar cursos</p>
         </Link>
 
         <Link
           href="/admin/payments"
-          className="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-md hover:shadow-lg transition-shadow"
+          className="bg-[var(--color-card-primary)] p-6 rounded-lg shadow-md hover:shadow-lg transition-shadow"
         >
           <Wallet className="w-8 h-8 text-cyan-600 mb-4" />
-          <h3 className="text-xl font-semibold text-gray-800 mb-2">Pagos</h3>
-          <p className="text-gray-600 dark:text-gray-400">Administrar pagos</p>
+          <h3 className="text-xl font-semibold text-[var(--color-text)] mb-2">Pagos</h3>
+          <p className="text-[var(--color-text)]">Administrar pagos</p>
         </Link>
 
         <Link
           href="/admin/settings"
-          className="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-md hover:shadow-lg transition-shadow"
+          className="bg-[var(--color-card-primary)] p-6 rounded-lg shadow-md hover:shadow-lg transition-shadow"
         >
           <Settings className="w-8 h-8 text-purple-600 mb-4" />
-          <h3 className="text-xl font-semibold text-gray-800 mb-2">Configuración</h3>
-          <p className="text-gray-600 dark:text-gray-400">Configuración del sistema</p>
+          <h3 className="text-xl font-semibold text-[var(--color-text)] mb-2">Configuración</h3>
+          <p className="text-[var(--color-text)]">Configuración del sistema</p>
         </Link>
       </div>
 
@@ -207,7 +207,7 @@ function AdminDashboard({ user }) {
         <p className="mb-4">Todos los servicios están operativos y el sistema está actualizado</p>
         <Link
           href="/admin"
-          className="bg-white text-orange-600 px-6 py-2 rounded-lg font-semibold hover:bg-gray-100"
+          className="bg-[var(--color-card-primary)] text-[var(--color-primary)] px-6 py-2 rounded-lg font-semibold hover:bg-[var(--color-secondary-hover)]"
         >
           Ver Detalles
         </Link>

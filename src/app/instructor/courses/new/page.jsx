@@ -79,7 +79,7 @@ export default function CreateCoursePage() {
       >
         {/* Título */}
         <div>
-        <label className="block mb-1 font-medium text-gray-700 dark:text-gray-300">
+        <label className="block mb-1 font-medium text-[var(--color-text)]">
             Título del curso
           </label>
           <input
@@ -87,13 +87,13 @@ export default function CreateCoursePage() {
             name="title"
             value={form.title}
             onChange={handleChange}
-            className="w-full p-3 border rounded-lg text-sm text-gray-900 dark:text-gray-100"
+            className="w-full p-3 border rounded-lg text-sm text-[var(--color-text)]"
           />
         </div>
 
         {/* Descripción */}
         <div>
-          <label className="block mb-1 font-medium text-gray-700 dark:text-gray-300">
+          <label className="block mb-1 font-medium text-[var(--color-text)]">
             Descripción
           </label>
           <textarea
@@ -101,13 +101,13 @@ export default function CreateCoursePage() {
             value={form.description}
             onChange={handleChange}
             rows={4}
-            className="w-full p-3 border rounded-lg text-sm text-gray-900 dark:text-gray-100"
+            className="w-full p-3 border rounded-lg text-sm text-[var(--color-text)]"
           />
         </div>
 
         {/* Categoría */}
         <div>
-          <label className="block mb-1 font-medium text-gray-700 dark:text-gray-300">
+          <label className="block mb-1 font-medium text-[var(--color-text)]">
             Categoría
           </label>
           <input
@@ -115,20 +115,20 @@ export default function CreateCoursePage() {
             name="category"
             value={form.category}
             onChange={handleChange}
-            className="w-full p-3 border rounded-lg text-sm text-gray-900 dark:text-gray-100"
+            className="w-full p-3 border rounded-lg text-sm text-[var(--color-text)]"
           />
         </div>
 
         {/* Nivel */}
         <div>
-          <label className="block mb-1 font-medium text-gray-700 dark:text-gray-300">
+          <label className="block mb-1 font-medium text-[var(--color-text)]">
             Nivel
           </label>
           <select
             name="level"
             value={form.level}
             onChange={handleChange}
-            className="w-full p-3 border rounded-lg text-sm text-gray-900 dark:text-gray-100"
+            className="w-full p-3 border border-[var(--color-muted)] rounded-lg text-sm text-[var(--color-text)]"
           >
             <option value="">Selecciona nivel</option>
             <option value="Principiante">Principiante</option>
@@ -139,7 +139,7 @@ export default function CreateCoursePage() {
 
         {/* Precio */}
         <div>
-          <label className="block mb-1 font-medium text-gray-700 dark:text-gray-300">
+          <label className="block mb-1 font-medium text-[var(--color-text)]">
             Precio (USD)
           </label>
           <input
@@ -148,13 +148,13 @@ export default function CreateCoursePage() {
             value={form.price}
             onChange={handleChange}
             min="0"
-            className="w-full p-3 border rounded-lg text-sm text-gray-900 dark:text-gray-100"
+            className="w-full p-3 border border-[var(--color-muted)] rounded-lg text-sm text-[var(--color-text)]"
           />
         </div>
 
         {/* Instructor (puede venir del login) */}
         <div>
-          <label className="block mb-1 font-medium text-gray-700 dark:text-gray-300">
+          <label className="block mb-1 font-medium text-[var(--color-text)]">
             ID Instructor
           </label>
           <input
@@ -163,7 +163,7 @@ export default function CreateCoursePage() {
             value={form.instructorId}
             onChange={handleChange}
             placeholder="Se obtiene del login"
-            className="w-full p-3 border rounded-lg text-sm text-gray-900 dark:text-gray-100"
+            className="w-full p-3 border border-[var(--color-muted)] rounded-lg text-sm text-[var(--color-text)]"
           />
         </div>
 
@@ -171,7 +171,7 @@ export default function CreateCoursePage() {
         <button
           type="submit"
           disabled={loading}
-          className="w-full py-3 rounded-lg font-semibold bg-primary text-white text-sm font-medium hover:bg-gray-800"
+          className="w-full py-3 rounded-lg font-semibold bg-[var(--color-primary)] text-white text-sm font-medium hover:bg-[var(--color-primary-hover)]"
         >
           {loading ? "Creando curso..." : "Crear curso"}
         </button>

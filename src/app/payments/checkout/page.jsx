@@ -80,7 +80,7 @@ export default function CheckoutPage() {
   };
 
   return (
-    <main className="min-h-screen bg-[var(--color-bg)] flex flex-col items-center py-8 px-2 sm:px-4">
+    <main className="min-h-screen text-[var(--color-text)] bg-[var(--color-bg)] flex flex-col items-center py-8 px-2 sm:px-4">
       <section className="w-full max-w-lg bg-[var(--color-surface)] rounded-2xl shadow-xl p-4 sm:p-8 flex flex-col gap-8">
         <h1 className="text-2xl sm:text-3xl font-bold text-[var(--color-primary)] text-center mb-2">
           Checkout de Curso
@@ -88,16 +88,16 @@ export default function CheckoutPage() {
 
         {/* Info del curso */}
         <div className="bg-[var(--color-card-primary)] rounded-xl shadow p-4 flex flex-col gap-2">
-          <h2 className="text-lg font-bold text-gray-900 dark:text-gray-100">
+          <h2 className="text-lg font-bold text-[var(--color-text)]">
             {course.title}
           </h2>
-          <p className="text-gray-900 dark:text-gray-100 text-sm">
+          <p className="text-[var(--color-text)] text-sm">
             {course.description}
           </p>
           <div className="flex flex-wrap gap-4 mt-2 items-center">
-            <span className="text-sm text-gray-900 dark:text-gray-100">
+            <span className="text-sm text-[var(--color-text)]">
               Instructor:{" "}
-              <span className="font-semibold text-gray-900 dark:text-gray-100">
+              <span className="font-semibold text-[var(--color-text)]">
                 {course.instructor}
               </span>
             </span>
@@ -112,7 +112,7 @@ export default function CheckoutPage() {
           onSubmit={handleSubmit}
           className="flex flex-col gap-4 bg-[var(--color-card-primary)] rounded-xl shadow p-4"
         >
-          <h3 className="text-lg font-semibold text-gray-900 dark:text-gray-100 flex items-center gap-2 mb-2">
+          <h3 className="text-lg font-semibold text-[var(--color-text)] flex items-center gap-2 mb-2">
             <CreditCard size={20} /> Datos de la tarjeta
           </h3>
 
@@ -121,7 +121,7 @@ export default function CheckoutPage() {
             name="number"
             value={card.number}
             onChange={handleChange}
-            className="w-full px-3 py-2 rounded border border-gray-200 focus:outline-none focus:ring-2 focus:ring-[var(--color-primary)] bg-white text-gray-900 dark:text-gray-100"
+            className="w-full px-3 py-2 rounded border border-gray-200 focus:outline-none focus:ring-2 focus:ring-[var(--color-primary)] text-[var(--color-text)]"
             placeholder="Número de tarjeta"
             autoComplete="on"
             required
@@ -133,7 +133,7 @@ export default function CheckoutPage() {
             name="name"
             value={card.name}
             onChange={handleChange}
-            className="w-full px-3 py-2 rounded border border-gray-200 focus:outline-none focus:ring-2 focus:ring-[var(--color-primary)] bg-white text-gray-900 dark:text-gray-100"
+            className="w-full px-3 py-2 rounded border border-gray-200 focus:outline-none focus:ring-2 focus:ring-[var(--color-primary)] text-[var(--color-text)]"
             placeholder="Nombre en la tarjeta"
             autoComplete="on"
             required
@@ -144,7 +144,7 @@ export default function CheckoutPage() {
               name="expiry"
               value={card.expiry}
               onChange={handleChange}
-              className="w-1/2 px-3 py-2 rounded border border-gray-200 focus:outline-none focus:ring-2 focus:ring-[var(--color-primary)] bg-white text-gray-900 dark:text-gray-100"
+              className="w-1/2 px-3 py-2 rounded border border-gray-200 focus:outline-none focus:ring-2 focus:ring-[var(--color-primary)] text-[var(--color-text)]"
               placeholder="MM/AA"
               autoComplete="on"
               required
@@ -155,7 +155,7 @@ export default function CheckoutPage() {
               name="cvc"
               value={card.cvc}
               onChange={handleChange}
-              className="w-1/2 px-3 py-2 rounded border border-gray-200 focus:outline-none focus:ring-2 focus:ring-[var(--color-primary)] bg-white text-gray-900 dark:text-gray-100"
+              className="w-1/2 px-3 py-2 rounded border border-gray-200 focus:outline-none focus:ring-2 focus:ring-[var(--color-primary)] text-[var(--color-text)]"
               placeholder="CVC"
               autoComplete="on"
               required

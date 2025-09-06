@@ -28,7 +28,7 @@ export default function CourseDetailPage({ courseId }) {
         </div>
         <div className="mt-4 md:mt-0 flex gap-4">
           <Link href={`/courses/${courseId}/lessons/${lessons[0].id}`}>
-            <button className="px-6 py-2 rounded-lg shadow transition bg-accent text-secondary hover:scale-105">
+            <button className="px-6 py-2 rounded-lg shadow transition bg-[var(--color-muted)] text-[var(--color-primary-text)] hover:scale-105">
               Acceder Curso
             </button>
           </Link>
@@ -39,7 +39,7 @@ export default function CourseDetailPage({ courseId }) {
       <div className="rounded-xl shadow p-6 bg-surface">
         <h2 className="text-lg font-semibold mb-4">Progreso del curso</h2>
         <div className="w-full rounded-full h-3 bg-card-secondary">
-          <div className="h-3 rounded-full bg-accent" style={{ width: `${progress}%` }}></div>
+          <div className="h-3 rounded-full bg-primary" style={{ width: `${progress}%` }}></div>
         </div>
         <p className="text-sm mt-2 text-muted">{progress}% completado</p>
       </div>
@@ -53,9 +53,9 @@ export default function CourseDetailPage({ courseId }) {
             <h3 className="text-lg font-semibold mb-4">Formaciones con este curso</h3>
             <ul className="space-y-3">
               {linkedCourses.map((c) => (
-                <li key={c.id} className="p-3 rounded-lg hover:shadow-md transition bg-card-secondary">
+                <li key={c.id} className="p-3 rounded-lg hover:bg-[var(--color-surface)] transition bg-card-secondary">
                   <p className="text-sm font-semibold">{c.title}</p>
-                  <p className="text-xs">{c.description}</p>
+                  <p className="text-xs hover:text-primary">{c.description}</p>
                 </li>
               ))}
             </ul>
@@ -67,9 +67,9 @@ export default function CourseDetailPage({ courseId }) {
             <h3 className="text-lg font-bold">{instructor.name}</h3>
             <p className="text-sm mb-4 text-muted">{instructor.bio}</p>
             <div className="flex justify-center gap-4">
-              <a href={instructor.social.linkedin} target="_blank"><Linkedin className="w-5 h-5" /></a>
-              <a href={instructor.social.github} target="_blank"><Github className="w-5 h-5" /></a>
-              <a href={instructor.social.twitter} target="_blank"><Twitter className="w-5 h-5" /></a>
+              <a href={instructor.social.linkedin} target="_blank"><Linkedin className="w-5 h-5 hover:text-primary" /></a>
+              <a href={instructor.social.github} target="_blank"><Github className="w-5 h-5 hover:text-primary" /></a>
+              <a href={instructor.social.twitter} target="_blank"><Twitter className="w-5 h-5 hover:text-primary" /></a>
             </div>
           </div>
         </aside>
@@ -79,7 +79,7 @@ export default function CourseDetailPage({ courseId }) {
           <h2 className="text-xl font-bold mb-4">Aulas</h2>
           <div className="space-y-4">
             {lessons.map((lesson) => (
-              <Card key={lesson.id} className="flex items-center justify-between p-4 rounded-xl hover:shadow-lg transition bg-card-primary">
+              <Card key={lesson.id} className="flex items-center justify-between p-4 rounded-xl hover:shadow-lg transition bg-[var(--color-card-primary)]">
                 <div className="flex items-center gap-3">
                   {lesson.completed ? (
                     <CheckCircle className="w-5 h-5 text-accent" />

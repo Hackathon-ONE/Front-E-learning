@@ -45,7 +45,7 @@ export default function LiveSupportChatPage() {
   return (
     <main
       className="min-h-screen flex items-center justify-center p-4"
-      style={{ backgroundColor: "var(--color-bg)", color: "var(--color-text)" }}
+      style={{ backgroundColor: "var(--color-surface)", color: "var(--color-text)" }}
     >
       <div className="w-full max-w-md h-[80vh] flex flex-col bg-[var(--color-surface)] rounded-2xl shadow-lg overflow-hidden">
         <header className="p-4 bg-[var(--color-primary)] text-[var(--color-primary-text)] font-bold text-lg flex items-center gap-2">
@@ -62,12 +62,12 @@ export default function LiveSupportChatPage() {
               }`}
             >
               {msg.sender === "agent" && (
-                <div className="w-8 h-8 rounded-full bg-[var(--color-secondary)] text-gray-500 flex items-center justify-center">
+                <div className="w-8 h-8 rounded-full bg-[var(--color-secondary)] text-[var(--color-text)] flex items-center justify-center">
                   <FaHeadset className="text-[var(--color-text)] w-4 h-4" />
                 </div>
               )}
               <div
-                className={`p-3 rounded-xl max-w-[70%] text-sm text-gray-500 ${
+                className={`p-3 rounded-xl max-w-[70%] text-sm text-[var(--color-text)] ${
                   msg.sender === "user"
                     ? "bg-[var(--color-primary)] text-[var(--color-primary-text)]"
                     : "bg-[var(--color-card-primary)] text-[var(--color-text)]"
@@ -76,7 +76,7 @@ export default function LiveSupportChatPage() {
                 {msg.text}
               </div>
               {msg.sender === "user" && (
-                <div className="w-8 h-8 rounded-full bg-[var(--color-accent)] text-gray-500 flex items-center justify-center">
+                <div className="w-8 h-8 rounded-full bg-[var(--color-accent)] text-[var(--color-text)] flex items-center justify-center">
                   <FaUser className="text-[var(--color-card-primary-text)] w-4 h-4" />
                 </div>
               )}
@@ -87,7 +87,7 @@ export default function LiveSupportChatPage() {
 
         <form
           onSubmit={handleSendMessage}
-          className="p-3 border-t border-[var(--color-muted)] flex gap-2 bg-[var(--color-surface)]"
+          className="p-3 border-t border-[var(--color-muted)] flex gap-2 bg-[var(--color-bg)]"
         >
           <input
             type="text"

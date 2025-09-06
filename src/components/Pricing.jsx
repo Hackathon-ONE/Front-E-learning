@@ -71,6 +71,9 @@ export default function PricingCards() {
                 display: "flex",
                 flexDirection: "column",
                 justifyContent: "space-between",
+                backgroundColor: "var(--color-surface)",
+                color: "var(--color-text)",
+                border: "1px solid var(--color-primary)",
                 p: 4,
                 minHeight: 420,
                 maxWidth: 350,
@@ -81,13 +84,13 @@ export default function PricingCards() {
               }}
             >
               {plan.popular && <Chip size="sm" color="warning">POPULAR</Chip>}
-              <Typography level="h4" sx={{ mt: 2, mb: 2 }}>
+              <Typography level="h4" sx={{ mt: 2, mb: 2 }} style={{ color: "var(--color-text)" }}>
                 {plan.title}
               </Typography>
-              <Divider sx={{ width: "100%", my: 1 }} />
-              <List size="sm" sx={{ width: "100%", flex: 1 }}>
+              <Divider sx={{ width: "100%", my: 1 }} style={{ color: "var(--color-text)" }} />
+              <List size="sm" sx={{ width: "100%", flex: 1 }} style={{ color: "var(--color-text)" }}>
                 {plan.features.map((f, i) => (
-                  <ListItem key={i}>
+                  <ListItem key={i} style={{ color: "var(--color-text)" }}>
                     <ListItemDecorator>
                       <Check fontSize="small" />
                     </ListItemDecorator>
@@ -95,11 +98,11 @@ export default function PricingCards() {
                   </ListItem>
                 ))}
               </List>
-              <Divider sx={{ width: "100%", my: 1 }} />
-              <CardActions sx={{ width: "100%", justifyContent: "space-between" }}>
+              <Divider sx={{ width: "100%", my: 1 }} style={{ color: "var(--color-text)" }} />
+              <CardActions sx={{ width: "100%", justifyContent: "space-between", backgroundColor: "var(--color-surface)", color: "var(--color-text)" }}>
                 <Typography level="h6">
                   {plan.price}{" "}
-                  <Typography textColor="text.tertiary" sx={{ fontSize: "sm" }}>
+                  <Typography textColor="text-var(--color-card-primary-text)" sx={{ fontSize: "sm" }} style={{ color: "var(--color-text)" }}>
                     / mes
                   </Typography>
                 </Typography>

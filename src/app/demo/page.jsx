@@ -59,23 +59,23 @@ export default function DemoPage() {
 
           {/* Lista de lecciones */}
           <aside className="bg-[var(--color-surface)] rounded-xl shadow-lg p-3 sm:p-4 space-y-2 sm:space-y-3">
-            <h3 className="text-base sm:text-lg font-semibold mb-2">Lecciones</h3>
-            <ul className="space-y-2 text-gray-500 text-sm">
+            <h3 className="text-base sm:text-lg font-semibold mb-6">Lecciones</h3>
+            <ul className="space-y-2 text-[var(--color-text)] text-sm">
               {lessons.map((lesson) => (
                 <li
                   key={lesson.id}
                   onClick={() => handleLessonClick(lesson)}
-                  className={`flex items-center text-gray-500 justify-between p-3 rounded-lg cursor-pointer transition ${
+                  className={`flex items-center text-[var(--color-text)] justify-between p-3 rounded-lg cursor-pointer transition ${
                     lesson.free
-                      ? "bg-[var(--color-card-primary)] hover:bg-[var(--color-card-secondary)]"
-                      : "bg-[var(--color-card-secondary)] opacity-80"
+                      ? "bg-[var(--color-card-primary)] hover:bg-[var(--color-secondary-hover)]"
+                      : "bg-[var(--color-card-secondary)] hover:bg-[var(--color-secondary-hover)] opacity-80"
                   }`}
                 >
-                  <span className="text-xs md:text-sm flex items-center gap-2 text-gray-500">
+                  <span className="text-xs md:text-sm flex items-center gap-2 text-[var(--color-text)]">
                     {lesson.free ? (
                       <PlayCircle className="w-4 h-4 text-[var(--color-primary)]" />
                     ) : (
-                      <Lock className="w-4 h-4 text-gray-500" />
+                      <Lock className="w-4 h-4 text-[var(--color-text)]" />
                     )}
                     {lesson.title}
                   </span>
@@ -84,7 +84,7 @@ export default function DemoPage() {
                       <Star className="w-4 h-4" /> Gratis
                     </span>
                   ) : (
-                    <span className="text-gray-500 text-sm flex items-center gap-1">
+                    <span className="text-[var(--color-text)] text-sm flex items-center gap-1">
                       <Lock className="w-4 h-4" /> Suscripción
                     </span>
                   )}
@@ -93,7 +93,7 @@ export default function DemoPage() {
             </ul>
 
             {/* CTA para suscribirse */}
-            <div className="mt-6 text-center">
+            <div className="mt-6 mb-6 text-center">
               <Link href="/payments">
                 <button className="w-full py-2 rounded-lg btn-primary text-xs sm:text-base flex items-center justify-center">
                   Suscríbete para desbloquear todas las lecciones

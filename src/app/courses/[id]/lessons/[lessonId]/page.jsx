@@ -19,7 +19,7 @@ export default function LessonPlayerPage() {
         className="w-full md:w-1/4 p-4 md:p-6 overflow-y-auto border-b md:border-b-0 md:border-r"
         style={{ backgroundColor: "var(--color-card-primary)" }}
       >
-        <h2 className="text-lg font-bold mb-4 text-gray-900 dark:text-gray-100">
+        <h2 className="text-lg font-bold mb-4 text-[var(--color-text)]">
           Contenido del curso
         </h2>
         <ul className="space-y-3">
@@ -27,7 +27,7 @@ export default function LessonPlayerPage() {
             <li
               key={lesson.id}
               onClick={() => setCurrentLesson(lesson.id)}
-              className={`p-3 rounded-lg cursor-pointer transition text-sm sm:text-base ${
+              className={`p-3 rounded-lg cursor-pointer transition text-[var(--color-text)] text-sm sm:text-base ${
                 currentLesson === lesson.id
                   ? "font-semibold"
                   : "opacity-80 hover:opacity-100"
@@ -45,7 +45,7 @@ export default function LessonPlayerPage() {
             >
               <div className="flex justify-between items-center">
                 <span>{lesson.title}</span>
-                <span className="text-xs sm:text-sm opacity-70">
+                <span className="text-xs sm:text-sm opacity-70 text-[var(--color-text)]">
                   {lesson.duration}
                 </span>
               </div>
@@ -71,10 +71,10 @@ export default function LessonPlayerPage() {
           className="p-4 sm:p-6"
           style={{ backgroundColor: "var(--color-card-primary)" }}
         >
-          <h1 className="text-lg sm:text-xl font-semibold text-gray-900 dark:text-gray-100">
+          <h1 className="text-lg sm:text-xl font-semibold text-[var(--color-text)]">
             {lessons.find((l) => l.id === currentLesson)?.title}
           </h1>
-          <p className="text-xs sm:text-sm opacity-75 mt-1 text-gray-900 dark:text-gray-100">
+          <p className="text-xs sm:text-sm opacity-75 mt-1 text-[var(--color-text)]">
             Curso {courseId} · Lección {currentLesson}
           </p>
         </div>

@@ -51,7 +51,7 @@ export default function Navbar() {
         {/* Desktop Menu */}
         <div className="hidden md:flex gap-6 items-center">
           {navLinks.map(({ href, label }) => (
-            <Link key={href} href={href} className="text-foreground hover:text-primary transition">
+            <Link key={href} href={href} className="text-[var(--color-text)] hover:text-primary transition">
               {label}
             </Link>
           ))}
@@ -73,26 +73,26 @@ export default function Navbar() {
                     alt={user.name || 'avatar'}
                     className="w-9 h-9 rounded-full border"
                   />
-                  <span className="text-sm text-foreground hidden lg:block">{user.name}</span>
+                  <span className="text-sm text-[var(--color-text)] hidden lg:block">{user.name}</span>
                 </>
               ) : (
-                <CircleUserRound className="w-8 h-8 text-foreground hover:text-primary transition" />
+                <CircleUserRound className="w-8 h-8 text-[var(--color-text)] hover:text-primary transition" />
               )}
             </button>
 
             {dropdownOpen && (
-              <div className="absolute right-0 mt-2 w-52 bg-[var(--color-surface)] rounded-xl shadow-lg border border-muted p-2 z-50">
+              <div className="absolute right-0 mt-2 w-52 bg-[var(--color-surface)] rounded-xl shadow-lg border border-muted bg-[var(--color-card-secondary)] p-2 z-50">
                 {!user ? (
                   <>
                     <button
                       onClick={() => router.push('/auth/login')}
-                      className="w-full text-left px-3 py-2 text-gray-400 hover:bg-[var(--color-dropdown)] rounded-md"
+                      className="w-full text-left px-3 py-2 text-[var(--color-text)] hover:text-primary rounded-md"
                     >
                       Iniciar sesión
                     </button>
                     <Link
                       href="/demo"
-                      className="block rounded-md px-3 py-2 text-gray-400 hover:bg-[var(--color-dropdown)]"
+                      className="block rounded-md px-3 py-2 text-[var(--color-text)] hover:text-primary"
                     >
                       Demo gratis
                     </Link>
@@ -105,7 +105,7 @@ export default function Navbar() {
 
                     {/* Opciones específicas por rol */}
                     {user.role === 'ADMIN' && (
-                      <Link href="/admin" className="block rounded-md px-3 py-2 hover:bg-secondary">
+                      <Link href="/admin" className="block rounded-md px-3 py-2 text-[var(--color-text)] hover:bg-secondary">
                         Dashboard
                       </Link>
                     )}
@@ -114,13 +114,13 @@ export default function Navbar() {
                       <>
                         <Link
                           href="/instructor/dashboard"
-                          className="block rounded-md px-3 py-2 hover:bg-secondary"
+                          className="block rounded-md px-3 py-2 text-[var(--color-text)] hover:bg-secondary"
                         >
                           Dashboard
                         </Link>
                         <Link
                           href="/dashboard/profile"
-                          className="block rounded-md px-3 py-2 hover:bg-secondary"
+                          className="block rounded-md px-3 py-2 text-[var(--color-text)] hover:bg-secondary"
                         >
                           Perfil
                         </Link>
@@ -130,7 +130,7 @@ export default function Navbar() {
                     {user.role === 'STUDENT' && (
                       <Link
                         href="/dashboard/profile"
-                        className="block rounded-md px-3 py-2 hover:bg-secondary"
+                        className="block rounded-md px-3 py-2 text-[var(--color-text)] hover:bg-secondary"
                       >
                         Perfil
                       </Link>
@@ -139,7 +139,7 @@ export default function Navbar() {
                     {/* Opciones comunes */}
                     <Link
                       href="/dashboard/settings"
-                      className="block rounded-md px-3 py-2 hover:bg-secondary"
+                      className="block rounded-md px-3 py-2 text-[var(--color-text)] hover:bg-secondary"
                     >
                       Configuración
                     </Link>
@@ -148,7 +148,7 @@ export default function Navbar() {
 
                     <button
                       onClick={handleSignOut}
-                      className="w-full text-left rounded-md px-3 py-2 hover:bg-secondary text-red-600"
+                      className="w-full text-left rounded-md px-3 py-2 text-[var(--color-text)] hover:bg-secondary text-red-600"
                     >
                       Cerrar sesión
                     </button>

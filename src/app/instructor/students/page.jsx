@@ -13,22 +13,22 @@ export default function StudentsPage() {
   }, []);
 
   return (
-    <main className="min-h-screen bg-[var(--color-bg)] py-8 sm:py-12 px-4 sm:px-6 lg:px-8">
+    <main className="min-h-screen bg-surface py-8 sm:py-12 px-4 sm:px-6 lg:px-8">
       <section className="max-w-7xl mx-auto">
         {/* Título */}
         <header className="mb-10 text-center">
           <h1 className="text-2xl sm:text-3xl font-bold text-[var(--color-text)]">Estudiantes</h1>
-          <p className="text-gray-500 dark:text-gray-300 mt-2 text-sm sm:text-base">
+          <p className="text-[var(--color-text)] mt-2 text-sm sm:text-base">
             Gestiona y revisa el progreso de los estudiantes inscritos en tus cursos.
           </p>
         </header>
 
         {/* Grid de estudiantes */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
+        <div className="grid grid-cols-1 text-[var(--color-text)] sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
           {students.map((student) => (
             <div
               key={student.id}
-              className="bg-[var(--color-surface)] shadow-md rounded-2xl p-6 flex flex-col items-center text-center transition hover:shadow-xl"
+              className="bg-surface shadow-md rounded-2xl p-6 flex flex-col items-center text-center transition hover:shadow-xl"
             >
               {/* Avatar */}
               <img
@@ -41,7 +41,7 @@ export default function StudentsPage() {
               <h2 className="text-base sm:text-lg font-bold text-[var(--color-text)]">
                 {student.name}
               </h2>
-              <p className="text-xs sm:text-sm text-gray-500 dark:text-gray-400 break-words">
+              <p className="text-xs sm:text-sm text-[var(--color-text)] bg-surface break-words">
                 {student.email}
               </p>
 
@@ -61,7 +61,7 @@ export default function StudentsPage() {
               <div className="mt-6 flex flex-col sm:flex-row gap-3 w-full sm:w-auto">
                 <Link
                   href={`/instructor/students/${student.id}/progress`}
-                  className="w-full sm:w-auto text-center btn-primary px-4 py-2 rounded-lg text-xs sm:text-sm font-semibold"
+                  className="w-full sm:w-auto text-center btn-primary px-4 py-2 rounded-lg text-xs sm:text-sm font-semibold bg-surface"
                 >
                   Ver progreso
                 </Link>

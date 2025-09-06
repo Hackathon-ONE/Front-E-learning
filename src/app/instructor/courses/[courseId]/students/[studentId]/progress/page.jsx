@@ -29,10 +29,10 @@ export default function StudentProgressPage() {
           className="w-24 h-24 sm:w-28 sm:h-28 rounded-full border-4 border-primary/30 shadow-md object-cover mx-auto sm:mx-0"
         />
         <div className="text-center sm:text-left">
-          <h1 className="text-2xl sm:text-3xl font-bold text-gray-400">
+          <h1 className="text-2xl sm:text-3xl font-bold text-[var(--color-text)]">
             {student.name}
           </h1>
-          <p className="text-gray-500 text-sm sm:text-base text-center sm:text-left">{student.email}</p>
+          <p className="text-[var(--color-text)] text-sm sm:text-base text-center sm:text-left">{student.email}</p>
         </div>
       </section>
 
@@ -48,14 +48,14 @@ export default function StudentProgressPage() {
             className="bg-[var(--color-surface)] rounded-xl shadow p-6 flex flex-col gap-4"
           >
             <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2">
-              <h3 className="text-lg font-semibold text-center sm:text-left text-gray-400">{course.title}</h3>
-              <span className="text-sm text-gray-500 text-center sm:text-right text-gray-400">
+              <h3 className="text-lg font-semibold text-center sm:text-left text-[var(--color-text)]">{course.title}</h3>
+              <span className="text-sm text-[var(--color-text)] text-center sm:text-right">
                 {course.progress}% completado
               </span>
             </div>
 
             {/* Barra de progreso */}
-            <div className="w-full bg-gray-200 dark:bg-gray-700 h-3 rounded-lg overflow-hidden">
+            <div className="w-full bg-gray-200 h-3 rounded-lg overflow-hidden">
               <div
                 className="bg-primary h-3 rounded-lg transition-all duration-300 ease-in-out"
                 style={{ width: `${course.progress}%` }}
@@ -67,18 +67,18 @@ export default function StudentProgressPage() {
               {course.lessons.map((lesson) => (
                 <li
                   key={lesson.id}
-                  className="flex items-center gap-3 p-3 rounded-lg bg-gray-50 dark:bg-gray-800"
+                  className="flex items-center gap-3 p-3 rounded-lg bg-[var(--color-surface)] border border-[var(--color-text)]"
                 >
                   {lesson.completed ? (
                     <CheckCircle className="text-green-400 flex-shrink-0" size={20} />
                   ) : (
-                    <Circle className="text-gray-400 flex-shrink-0" size={20} />
+                    <Circle className="text-[var(--color-text)] flex-shrink-0" size={20} />
                   )}
                   <span
                     className={`text-sm sm:text-base ${
                       lesson.completed
-                        ? "line-through text-gray-400"
-                        : "text-gray-400"
+                        ? "line-through text-[var(--color-text)]"
+                        : "text-[var(--color-text)]"
                     }`}
                   >
                     {lesson.title}

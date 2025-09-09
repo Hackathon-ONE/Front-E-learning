@@ -20,6 +20,7 @@ export function useAdminDashboard() {
         setLoading(true);
         // backend: /api/admin/dashboard
         const res = await fetch("/api/admin/dashboard");
+        // const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/admin/dashboard`);
         if (!res.ok) throw new Error("Error al cargar métricas");
 
         const data = await res.json();

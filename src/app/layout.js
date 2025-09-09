@@ -18,7 +18,7 @@ const inter = Inter({
 });
 
 export const metadata = {
-  title: "Lumina Platform",
+  title: "Lumina Platform 💡",
   description: "Aprende y enseña en línea con facilidad 🚀",
 };
 

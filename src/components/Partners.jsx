@@ -2,6 +2,7 @@
 
 import { useEffect, useRef, useState } from "react";
 import { motion } from "framer-motion";
+import Image from "next/image";
 
 const partners = [
   { name: "Udemy", logo: "/logos/udemy.png" },
@@ -53,10 +54,14 @@ export default function Partners() {
                 key={i}
                 className="w-32 h-16 flex items-center justify-center cursor-pointer transition-transform transform hover:scale-110"
               >
-                <img
+                <Image
                   src={p.logo}
                   alt={p.name}
-                  className="max-h-full max-w-full object-contain"
+                  width={128}
+                  height={48}
+                  className="object-contain w-24 sm:w-28 md:w-32 h-auto"
+                  unoptimized
+                  priority
                 />
               </div>
             ))}

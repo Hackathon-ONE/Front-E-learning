@@ -17,7 +17,7 @@ export function useCourses() {
       try {
         setLoading(true);
         const res = await fetch(
-          `/api/courses?search=${search}&page=${page}`
+          `${process.env.NEXT_PUBLIC_API_URL}/courses?search=${search}&page=${page}`
         );
         if (!res.ok) throw new Error("Error al cargar cursos");
         const data = await res.json();

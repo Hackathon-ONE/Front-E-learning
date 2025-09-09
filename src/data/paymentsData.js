@@ -73,7 +73,7 @@ export const checkoutCourse = {
 // Tarjeta mock (simulación)
 export const mockCard = {
     number: "4111111111111111", // Visa test
-    name: "JUAN PEREZ",
+    name: "Juan Pérez",
     expiry: "12/25",
     cvc: "123",
   };

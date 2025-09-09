@@ -96,7 +96,7 @@ export default function CookiePolicyPage() {
             href="https://www.aboutcookies.org/"
             target="_blank"
             rel="noopener noreferrer"
-            className="text-primary hover:text-primary/80 font-medium underline-offset-2"
+            className="text-primary hover:text-primary/80 font-medium"
           >
             aboutcookies.org
           </a>{" "}

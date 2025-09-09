@@ -8,6 +8,7 @@ import { courseDetailMock } from "@/data/courses";
 import { lessonsMock } from "@/data/lessons";
 import { linkedCoursesMock } from "@/data/linkedCourses";
 import { instructorMock } from "@/data/instructors";
+import Image from "next/image";
 
 export default function CourseDetailPage({ courseId }) {
   const [course] = useState(courseDetailMock);
@@ -63,7 +64,7 @@ export default function CourseDetailPage({ courseId }) {
 
           {/* Instructor */}
           <div className="rounded-xl shadow p-6 text-center bg-surface">
-            <img src={instructor.avatar} alt={instructor.name} className="w-20 h-20 rounded-full mx-auto mb-4" />
+            <Image src={instructor.avatar} alt={instructor.name} width={128} height={64} unoptimized priority className="w-20 h-20 rounded-full mx-auto mb-4" />
             <h3 className="text-lg font-bold">{instructor.name}</h3>
             <p className="text-sm mb-4 text-muted">{instructor.bio}</p>
             <div className="flex justify-center gap-4">

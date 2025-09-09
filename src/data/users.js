@@ -1,7 +1,7 @@
 export const usersData = [
-    { id: 1, name: "Juan Pérez", email: "juan@example.com", role: "student" },
-    { id: 2, name: "María López", email: "maria@example.com", role: "instructor" },
-    { id: 3, name: "Carlos Admin", email: "admin@example.com", role: "admin" },
+    { id: 1, name: "María Aponte", email: "marian@example.com", role: "student" },
+    { id: 2, name: "Fernanda López", email: "fernanda@example.com", role: "instructor" },
+    { id: 3, name: "José Martínez", email: "jose@example.com", role: "admin" },
   ];
   
   export const profileStats = [

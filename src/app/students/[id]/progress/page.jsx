@@ -16,6 +16,7 @@ import {
 } from 'lucide-react';
 import Link from 'next/link';
 import { studentsProgress } from '@/data/students';
+import Image from 'next/image';
 
 export default function StudentProgressPage() {
   const params = useParams();
@@ -35,7 +36,7 @@ export default function StudentProgressPage() {
 
   if (loading) {
     return (
-      <div className="min-h-screen bg-[var(--color-bg)] flex items-center justify-center">
+      <div className="min-h-screen bg-[var(--color-surface)] flex items-center justify-center">
         <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-primary"></div>
       </div>
     );
@@ -43,12 +44,12 @@ export default function StudentProgressPage() {
 
   if (!student) {
     return (
-      <div className="min-h-screen bg-[var(--color-bg)] flex items-center justify-center">
+      <div className="min-h-screen bg-[var(--color-surface)] flex items-center justify-center">
         <div className="text-center">
-          <h1 className="text-2xl font-bold text-gray-600 dark:text-gray-400">
+          <h1 className="text-2xl font-bold text-[var(--color-text)]">
             Estudiante no encontrado
           </h1>
-          <Link href="/students" className="text-primary hover:underline mt-4 inline-block">
+          <Link href="/students" className="text-primary hover:text-primary/80 mt-4 inline-block">
             Volver a estudiantes
           </Link>
         </div>
@@ -75,16 +76,20 @@ export default function StudentProgressPage() {
 
           <div className="bg-[var(--color-surface)] rounded-2xl p-6 shadow-lg">
             <div className="flex items-center gap-4 mb-6">
-              <img
+              <Image
                 src={student.avatar}
                 alt={student.name}
+                width={128}
+                height={64}
+                unoptimized
+                priority
                 className="w-16 h-16 rounded-full border-4 border-primary/30"
               />
               <div>
                 <h1 className="text-2xl font-bold text-[var(--color-text)]">
                   Progreso de {student.name}
                 </h1>
-                <p className="text-gray-400 dark:text-gray-400">
+                <p className="text-[var(--color-text)]">
                   Seguimiento detallado del aprendizaje
                 </p>
               </div>
@@ -94,25 +99,25 @@ export default function StudentProgressPage() {
             <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
               <div className="text-center">
                 <div className="text-3xl font-bold text-primary mb-1">{overallProgress}%</div>
-                <div className="text-sm text-gray-400 dark:text-gray-400">Progreso General</div>
+                <div className="text-sm text-">Progreso General</div>
               </div>
               <div className="text-center">
                 <div className="text-3xl font-bold text-green-500 mb-1">
                   {student.completedLessons}
                 </div>
-                <div className="text-sm text-gray-400 dark:text-gray-400">
+                <div className="text-sm text-[var(--color-text)]">
                   Lecciones Completadas
                 </div>
               </div>
               <div className="text-center">
                 <div className="text-3xl font-bold text-blue-500 mb-1">{student.passedQuizzes}</div>
-                <div className="text-sm text-gray-400 dark:text-gray-400">Quizzes Aprobados</div>
+                <div className="text-sm text-[var(--color-text)]">Quizzes Aprobados</div>
               </div>
               <div className="text-center">
                 <div className="text-3xl font-bold text-yellow-500 mb-1">
                   {student.achievements.length}
                 </div>
-                <div className="text-sm text-gray-400 dark:text-gray-400">Logros Obtenidos</div>
+                <div className="text-sm text-[var(--color-text)]">Logros Obtenidos</div>
               </div>
             </div>
           </div>
@@ -139,8 +144,8 @@ export default function StudentProgressPage() {
                     <div
                       className={`w-12 h-2 rounded-full ${
                         selectedCourse?.id === course.id
-                          ? 'bg-white/30'
-                          : 'bg-gray-400 dark:bg-gray-700'
+                          ? 'bg-[var(--color-text)]/30'
+                          : 'bg-[var(--color-text)]/30'
                       }`}
                     >
                       <div
@@ -167,10 +172,10 @@ export default function StudentProgressPage() {
                       <h2 className="text-2xl font-bold text-[var(--color-text)] mb-2">
                         {selectedCourse.title}
                       </h2>
-                      <p className="text-gray-400 dark:text-gray-400">
+                      <p className="text-[var(--color-text)]">
                         Instructor: {selectedCourse.instructor} • {selectedCourse.duration}
                       </p>
-                      <p className="text-sm text-gray-400 dark:text-gray-400 mt-1">
+                      <p className="text-sm text-[var(--color-text)] mt-1">
                         Inscrito: {new Date(selectedCourse.enrollDate).toLocaleDateString()} •
                         Último acceso: {new Date(selectedCourse.lastAccessed).toLocaleDateString()}
                       </p>
@@ -195,31 +200,31 @@ export default function StudentProgressPage() {
                   <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
                     <div className="bg-blue-50 dark:bg-blue-900/20 rounded-lg p-3 text-center">
                       <BookOpen className="w-6 h-6 text-blue-500 mx-auto mb-2" />
-                      <div className="font-semibold text-gray-800">
+                      <div className="font-semibold text-[var(--color-text)]">
                         {selectedCourse.completedLessons}/{selectedCourse.totalLessons}
                       </div>
-                      <div className="text-xs text-gray-600 dark:text-gray-400">Lecciones</div>
+                      <div className="text-xs text-[var(--color-text)]">Lecciones</div>
                     </div>
                     <div className="bg-green-50 dark:bg-green-900/20 rounded-lg p-3 text-center">
                       <Target className="w-6 h-6 text-green-500 mx-auto mb-2" />
-                      <div className="font-semibold text-gray-800">
+                      <div className="font-semibold text-[var(--color-text)]">
                         {selectedCourse.passedQuizzes}/{selectedCourse.totalQuizzes}
                       </div>
-                      <div className="text-xs text-gray-600 dark:text-gray-400">Quizzes</div>
+                      <div className="text-xs text-[var(--color-text)]">Quizzes</div>
                     </div>
                     <div className="bg-purple-50 dark:bg-purple-900/20 rounded-lg p-3 text-center">
                       <BarChart3 className="w-6 h-6 text-purple-500 mx-auto mb-2" />
-                      <div className="font-semibold text-gray-800">
+                      <div className="font-semibold text-[var(--color-text)]">
                         {selectedCourse.rating}
                       </div>
-                      <div className="text-xs text-gray-600 dark:text-gray-400">Rating</div>
+                      <div className="text-xs text-[var(--color-text)]">Rating</div>
                     </div>
                     <div className="bg-yellow-50 dark:bg-yellow-900/20 rounded-lg p-3 text-center">
                       <Award className="w-6 h-6 text-yellow-500 mx-auto mb-2" />
-                      <div className="font-semibold text-gray-800">
+                      <div className="font-semibold text-[var(--color-text)]">
                         {selectedCourse.certificate ? 'Sí' : 'No'}
                       </div>
-                      <div className="text-xs text-gray-400 dark:text-gray-400">Certificado</div>
+                      <div className="text-xs text-[var(--color-text)]">Certificado</div>
                     </div>
                   </div>
                 </div>
@@ -236,24 +241,24 @@ export default function StudentProgressPage() {
                         className={`border rounded-lg p-4 transition-all ${
                           lesson.completed
                             ? 'border-green-200 bg-green-50 dark:border-green-800 dark:bg-green-900/20'
-                            : 'border-gray-200 dark:border-gray-700'
+                            : 'border-[var(--color-text)] dark:border-[var(--color-text)]'
                         }`}
                       >
                         <div className="flex items-center justify-between">
                           <div className="flex items-center gap-3">
-                            <div className="flex items-center justify-center w-8 h-8 rounded-full bg-gray-100 dark:bg-gray-800 text-sm font-medium">
+                            <div className="flex items-center justify-center w-8 h-8 rounded-full bg-[var(--color-text)] dark:bg-[var(--color-text)] text-sm font-medium">
                               {index + 1}
                             </div>
                             {lesson.completed ? (
                               <CheckCircle className="w-5 h-5 text-green-500" />
                             ) : (
-                              <Clock className="w-5 h-5 text-gray-400" />
+                              <Clock className="w-5 h-5 text-[var(--color-text)]" />
                             )}
                             <div>
-                              <h4 className="font-medium text-gray-500">
+                              <h4 className="font-medium text-[var(--color-text)]">
                                 {lesson.title}
                               </h4>
-                              <p className="text-sm text-gray-400 dark:text-gray-400">
+                              <p className="text-sm text-[var(--color-text)]">
                                 Duración: {lesson.duration}
                               </p>
                             </div>
@@ -263,7 +268,7 @@ export default function StudentProgressPage() {
                             {lesson.quiz && (
                               <div
                                 className={`px-3 py-1 rounded-full text-sm font-medium ${
-                                  lesson.quiz.passed
+                                  lesson.quiz.passed 
                                     ? 'bg-green-100 text-green-800 dark:bg-green-900/30 dark:text-green-300'
                                     : 'bg-red-100 text-red-800 dark:bg-red-900/30 dark:text-red-300'
                                 }`}
@@ -271,7 +276,7 @@ export default function StudentProgressPage() {
                                 Quiz: {lesson.quiz.score}%
                               </div>
                             )}
-                            {lesson.completed && <CheckCircle className="w-6 h-6 text-green-500" />}
+                            {lesson.completed && <CheckCircle className="w-6 h-6 text-[var(--color-text)]" />}
                           </div>
                         </div>
                       </div>
@@ -291,22 +296,22 @@ export default function StudentProgressPage() {
                         className={`border rounded-lg p-4 ${
                           resource.downloaded
                             ? 'border-green-200 bg-green-50 dark:border-green-800 dark:bg-green-900/20'
-                            : 'border-gray-400 dark:border-gray-700'
+                            : 'border-[var(--color-text)] dark:border-[var(--color-text)]'
                         }`}
                       >
                         <div className="flex items-center justify-between">
                           <div>
-                            <h4 className="font-medium text-gray-500">
+                            <h4 className="font-medium text-[var(--color-text)]">
                               {resource.title}
                             </h4>
-                            <p className="text-sm text-gray-600 dark:text-gray-400 capitalize">
+                            <p className="text-sm text-[var(--color-text)] capitalize">
                               Tipo: {resource.type}
                             </p>
                           </div>
                           {resource.downloaded ? (
-                            <CheckCircle className="w-5 h-5 text-green-500" />
+                            <CheckCircle className="w-5 h-5 text-[var(--color-text)]" />
                           ) : (
-                            <XCircle className="w-5 h-5 text-gray-400" />
+                            <XCircle className="w-5 h-5 text-[var(--color-text)]" />
                           )}
                         </div>
                       </div>
@@ -320,10 +325,10 @@ export default function StudentProgressPage() {
                     <div className="flex items-center gap-4">
                       <Award className="w-12 h-12 text-yellow-500" />
                       <div>
-                        <h3 className="text-xl font-semibold text-gray-500">
+                        <h3 className="text-xl font-semibold text-[var(--color-text)]">
                           ¡Certificado Obtenido!
                         </h3>
-                        <p className="text-gray-600 dark:text-gray-400">
+                        <p className="text-[var(--color-text)]">
                           Emitido el{' '}
                           {new Date(selectedCourse.certificate.issued).toLocaleDateString()}
                         </p>

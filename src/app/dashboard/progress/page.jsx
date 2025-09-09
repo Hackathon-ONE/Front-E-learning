@@ -16,7 +16,7 @@ export default function ProgressPage() {
   //       setLoading(true);
   //       setError(null);
   //       // Cambia la URL por tu endpoint real de Spring Boot
-  //       const res = await fetch("http://localhost:8080/api/progress");
+  //       const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/progress`);
   //       if (!res.ok) throw new Error("Error al obtener el progreso");
   //       const data = await res.json();
   //       setProgress(data);

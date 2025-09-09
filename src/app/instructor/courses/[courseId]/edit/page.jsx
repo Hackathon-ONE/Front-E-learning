@@ -52,7 +52,7 @@ export default function EditCoursePage() {
       setError(null);
 
       // Aquí harías el PUT real al backend
-      // await fetch(`/api/courses/${id}`, {
+      // await fetch(`${process.env.NEXT_PUBLIC_API_URL}/courses/${id}`, {
       //   method: "PUT",
       //   headers: { "Content-Type": "application/json" },
       //   body: JSON.stringify(formData),

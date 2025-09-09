@@ -17,10 +17,10 @@ export default function AnalyticsPage() {
       try {
         setLoading(true);
         // Llamada real al backend
-        // const res = await fetch("http://localhost:3000/api/courses/analytics");
+        // const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/courses/analytics`);
         // if (!res.ok) throw new Error("Error al cargar analíticas");
         // const data = await res.json();
-
+        // setAnalytics(data);
         setAnalytics(instructorAnalytics);
       } catch (err) {
         setError("No se pudieron cargar las analíticas.");

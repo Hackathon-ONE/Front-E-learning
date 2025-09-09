@@ -1,3 +1,5 @@
+"use client";
+
 import RoleBasedHome from "@/components/RoleBasedHome";
 import Hero from "@/components/Hero";
 import CoursesCarousel from "@/components/CoursesCarousel";

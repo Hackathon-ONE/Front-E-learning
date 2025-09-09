@@ -9,6 +9,7 @@ import "swiper/css/navigation";
 import Button from "./ui/Button";
 import Link from "next/link";
 import { coursesCarouselMock } from "@/data/coursesCarousel";
+import Image from "next/image";
 
 export default function CoursesCarousel() {
   return (
@@ -61,9 +62,13 @@ export default function CoursesCarousel() {
                 >
                   {/* Imagen */}
                   <div className="h-40 w-full relative overflow-hidden rounded-lg">
-                    <img
+                    <Image
                       src={course.image}
                       alt={course.title}
+                      width={128}
+                      height={64}
+                      unoptimized
+                      priority
                       className="w-full h-full text-[var(--color-text)] object-cover"
                     />
                   </div>

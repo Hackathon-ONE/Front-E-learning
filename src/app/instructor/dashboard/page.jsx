@@ -16,6 +16,7 @@ import Link from "next/link";
 import { instructorDashboardData } from "@/data/instructors";
 // import { useFetch } from "@/hooks/useFetch";
 import withRole from "@/components/withRole";
+import Image from "next/image";
 
 function InstructorDashboard() {
  /*  const { data: instructorData, loading, error } = useFetch("/api/instructor/dashboard"); */
@@ -65,7 +66,7 @@ function InstructorDashboard() {
         setError(null);
 
         // Cambiar la ruta por endpoint real
-        const res = await fetch("http://localhost:3000/api/instructor/dashboard");
+        const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/instructor/dashboard`);
         if (!res.ok) throw new Error("Error al obtener datos del dashboard");
 
         const data = await res.json();
@@ -87,9 +88,13 @@ function InstructorDashboard() {
         {/* Perfil del Instructor */}
         <header className="flex flex-col md:flex-row items-center gap-6">
           {instructor.avatar ? (
-            <img
+            <Image
               src={instructor.avatar}
               alt={instructor.name}
+              width={128}
+              height={64}
+              unoptimized
+              priority
               className="w-24 h-24 rounded-full object-cover border-4 border-primary/20 shadow"
             />
           ) : (

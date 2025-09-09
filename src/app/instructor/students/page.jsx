@@ -4,6 +4,7 @@ import { useState, useEffect } from "react";
 import { User, BookOpen, BarChart } from "lucide-react";
 import Link from "next/link";
 import { studentsData } from "@/data/students"; 
+import Image from "next/image";
 
 export default function StudentsPage() {
   const [students, setStudents] = useState([]);
@@ -31,9 +32,13 @@ export default function StudentsPage() {
               className="bg-surface shadow-md rounded-2xl p-6 flex flex-col items-center text-center transition hover:shadow-xl"
             >
               {/* Avatar */}
-              <img
+              <Image
                 src={student.avatar}
                 alt={student.name}
+                width={128}
+                height={64}
+                unoptimized
+                priority
                 className="w-20 h-20 sm:w-24 sm:h-24 rounded-full border-4 border-primary/30 shadow mb-4 object-cover"
               />
 

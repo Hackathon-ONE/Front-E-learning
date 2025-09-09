@@ -4,6 +4,7 @@ import { useState, useEffect } from "react";
 import { coursesDashboardMock } from "@/data/courses";
 import { BookOpen } from 'lucide-react';
 import Link from "next/link";
+// import { UserEntity, CourseEntity } from '@/types/index';
 
 export default function CoursesPage() {
   const [courses, setCourses] = useState([]);
@@ -13,15 +14,10 @@ export default function CoursesPage() {
     // ⚡ En el futuro, aquí llamarás a tu API de Spring Boot
     /*
     async function fetchCourses() {
-      try {
-        const response = await fetch("http://localhost:8080/api/courses"); // endpoint de tu backend
-        const data = await response.json();
-        setCourses(data);
-      } catch (error) {
-        console.error("Error al traer los cursos:", error);
-      }
+      const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/courses`);
+      const data = await res.json();
+      return data.map(CourseEntity); // asegura que cada curso tenga la estructura esperada
     }
-    fetchCourses();
     */
 
     // De momento trabajamos con datos hardcodeados:

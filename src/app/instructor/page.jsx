@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import Link from "next/link";
 import { Users, BookOpen, Star } from "lucide-react";
 import { instructorsPage } from "@/data/instructors";
+import Image from "next/image";
 
 export default function InstructorsPage() {
   const [instructors, setInstructors] = useState(instructorsPage);
@@ -25,9 +26,13 @@ export default function InstructorsPage() {
             className="bg-[var(--color-surface)] rounded-2xl shadow-lg hover:shadow-xl transition p-4 sm:p-6 flex flex-col items-center text-center"
           >
             {/* Avatar */}
-            <img
+            <Image
               src={instructor.avatar}
               alt={instructor.name}
+              width={128}
+              height={64}
+              unoptimized
+              priority
               className="w-16 h-16 sm:w-20 sm:h-20 md:w-24 md:h-24 lg:w-28 lg:h-28 rounded-full border-4 border-primary/30 object-cover shadow-md mb-3 sm:mb-4"
             />
 

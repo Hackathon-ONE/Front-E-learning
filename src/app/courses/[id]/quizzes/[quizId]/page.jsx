@@ -13,7 +13,7 @@ export default function QuizDetailPage() {
   const [quiz, setQuiz] = useState(null);
   useEffect(() => {
     async function fetchQuiz() {
-      const res = await fetch(`/api/quizzes/${quizId}`);
+      const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/quizzes/${quizId}`);
       const data = await res.json();
       setQuiz(data);
     }

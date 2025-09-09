@@ -83,9 +83,9 @@ export const earningsData = {
       { id: 3, title: "UI/UX Design", revenue: 2500 },
     ],
     transactions: [
-      { id: 1, student: "Ana Gómez", course: "React desde cero", amount: 200, date: "2025-05-01" },
-      { id: 2, student: "Luis Pérez", course: "Next.js avanzado", amount: 250, date: "2025-05-05" },
-      { id: 3, student: "María López", course: "UI/UX Design", amount: 150, date: "2025-05-10" },
+      { id: 1, student: "Carla Martínez", course: "React desde cero", amount: 200, date: "2025-05-01" },
+      { id: 2, student: "Gustavo Pérez", course: "Next.js avanzado", amount: 250, date: "2025-05-05" },
+      { id: 3, student: "Fernanda López", course: "UI/UX Design", amount: 150, date: "2025-05-10" },
     ],
 };
 
@@ -116,13 +116,13 @@ export const instructorsData = [
     reviews: [
       {
         id: 1,
-        student: "Ana Gómez",
+        student: "Carla Martínez",
         comment: "Excelente instructor, explica muy claro y con ejemplos prácticos.",
         rating: 5,
       },
       {
         id: 2,
-        student: "Luis Pérez",
+        student: "Gustavo Pérez",
         comment: "Me ayudó a entender Next.js de forma sencilla.",
         rating: 4,
       },
@@ -283,8 +283,8 @@ export const progressReportsStudentsData = [
     },
     {
       id: 2,
-      name: "Luis Pérez",
-      email: "luis@example.com",
+      name: "Gustavo Pérez",
+      email: "gustavo@example.com",
       courseTitle: "Node.js desde cero",
     },
 ];

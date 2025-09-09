@@ -40,7 +40,7 @@ export default function CreateCoursePage() {
       setError(null);
 
       // Llamada real al backend
-      // const res = await fetch("http://localhost:3000/api/courses", {
+      // const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/courses`, {
       //   method: "POST",
       //   headers: { "Content-Type": "application/json" },
       //   body: JSON.stringify(form),

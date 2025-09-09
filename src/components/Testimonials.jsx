@@ -7,12 +7,13 @@ import SwiperCore from 'swiper';
 import { Navigation, Autoplay } from 'swiper/modules';
 import Card from '@/components/ui/Card';
 import { Star } from 'lucide-react';
+import Image from 'next/image';
 
 SwiperCore.use([Navigation, Autoplay]);
 
 const testimonials = [
   {
-    name: "Ana Gómez",
+    name: "Ana Peralta",
     profession: "Desarrolladora Frontend",
     avatar: "/avatars/ana.jpg",
     review: "Esta plataforma ha transformado la manera en que aprendo y aplico nuevas tecnologías. ¡Recomendada al 100%!",
@@ -40,7 +41,7 @@ const testimonials = [
     rating: 5
   },
   {
-    name: "María López",
+    name: "Sofía López",
     profession: "Marketing Specialist",
     avatar: "/avatars/maria.jpg",
     review: "Aprender aquí es fácil y dinámico. La interfaz y los recursos son muy amigables.",
@@ -79,9 +80,13 @@ export default function Testimonials() {
             <SwiperSlide key={i} className="h-full flex mt-6 mb-6">
               <Card className="flex flex-col justify-between items-center p-2 text-center bg-[var(--color-card-primary)] rounded-2xl shadow-lg w-full h-[300px] transition-transform transform hover:scale-105">
                 <div className="flex flex-col items-center">
-                  <img
+                  <Image
                     src={t.avatar}
                     alt={t.name}
+                    width={128}
+                    height={64}
+                    unoptimized
+                    priority
                     className="w-24 h-24 rounded-full mb-2 object-cover"
                   />
                   <h4 className="font-semibold text-md text-[var(--color-primary)]">{t.name}</h4>

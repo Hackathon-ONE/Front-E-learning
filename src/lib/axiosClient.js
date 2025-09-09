@@ -3,6 +3,7 @@ import { useRouter } from "next/navigation";
 
 const api = axios.create({
   baseURL: process.env.NEXT_PUBLIC_API_URL || "http://localhost:4000/api",
+  // baseURL: process.env.NEXT_PUBLIC_API_URL || "https://back-e-learning-1.onrender.com/api",
   headers: {
     "Content-Type": "application/json",
   },

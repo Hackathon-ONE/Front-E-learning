@@ -25,6 +25,7 @@ import Link from 'next/link';
 import { studentsProgress } from '@/data/students';
 import StudentStats from '@/components/StudentStats';
 import RecommendationsForm from '../recommendations-form';
+import Image from 'next/image';
 
 export default function StudentDetailPage() {
   const params = useParams();
@@ -51,10 +52,10 @@ export default function StudentDetailPage() {
     return (
       <div className="min-h-screen bg-[var(--color-bg)] flex items-center justify-center">
         <div className="text-center">
-          <h1 className="text-2xl font-bold text-gray-600 dark:text-gray-400">
+          <h1 className="text-2xl font-bold text-[var(--color-text)]">
             Estudiante no encontrado
           </h1>
-          <Link href="/students" className="text-primary hover:underline mt-4 inline-block">
+          <Link href="/students" className="text-primary hover:text-primary/80 mt-4 inline-block">
             Volver a estudiantes
           </Link>
         </div>
@@ -82,14 +83,18 @@ export default function StudentDetailPage() {
           {/* Perfil del estudiante */}
           <div className="bg-[var(--color-surface)] rounded-2xl p-6 shadow-lg">
             <div className="flex flex-col md:flex-row items-start md:items-center gap-6">
-              <img
+              <Image
                 src={student.avatar}
                 alt={student.name}
+                width={128}
+                height={64}
+                unoptimized
+                priority
                 className="w-24 h-24 rounded-full border-4 border-primary/30 shadow-lg"
               />
               <div className="flex-1">
                 <h1 className="text-3xl font-bold text-[var(--color-text)] mb-2">{student.name}</h1>
-                <p className="text-gray-400 dark:text-gray-400 mb-4">{student.email}</p>
+                <p className="text-[var(--color-text)] mb-4">{student.email}</p>
                 <div className="flex flex-wrap gap-4 text-sm">
                   <div className="flex items-center gap-2">
                     <Calendar className="w-4 h-4 text-blue-500" />
@@ -114,7 +119,7 @@ export default function StudentDetailPage() {
                 <p className="text-2xl font-bold text-[var(--color-text)]">
                   {student.totalCourses}
                 </p>
-                <p className="text-sm text-gray-400 dark:text-gray-400">Cursos Inscritos</p>
+                <p className="text-sm text-[var(--color-text)]">Cursos Inscritos</p>
               </div>
             </div>
           </div>
@@ -126,7 +131,7 @@ export default function StudentDetailPage() {
                 <p className="text-2xl font-bold text-[var(--color-text)]">
                   {student.completedCourses}
                 </p>
-                <p className="text-sm text-gray-400 dark:text-gray-400">Cursos Completados</p>
+                <p className="text-sm text-[var(--color-text)]">Cursos Completados</p>
               </div>
             </div>
           </div>
@@ -138,7 +143,7 @@ export default function StudentDetailPage() {
                 <p className="text-2xl font-bold text-[var(--color-text)]">
                   {student.completedLessons}/{student.totalLessons}
                 </p>
-                <p className="text-sm text-gray-400 dark:text-gray-400">Lecciones</p>
+                <p className="text-sm text-[var(--color-text)]">Lecciones</p>
               </div>
             </div>
           </div>
@@ -150,7 +155,7 @@ export default function StudentDetailPage() {
                 <p className="text-2xl font-bold text-[var(--color-text)]">
                   {student.passedQuizzes}/{student.totalQuizzes}
                 </p>
-                <p className="text-sm text-gray-400 dark:text-gray-400">Quizzes Aprobados</p>
+                <p className="text-sm text-[var(--color-text)]">Quizzes Aprobados</p>
               </div>
             </div>
           </div>
@@ -165,7 +170,7 @@ export default function StudentDetailPage() {
                 className={`border-b-2 py-2 px-1 text-sm font-medium transition-colors ${
                   activeTab === 'courses'
                     ? 'border-primary text-primary'
-                    : 'border-transparent text-gray-400 hover:text-gray-700 hover:border-gray-300'
+                    : 'border-transparent text-[var(--color-text)] hover:text-[var(--color-text)] hover:border-gray-300'
                 }`}
               >
                 Cursos
@@ -175,7 +180,7 @@ export default function StudentDetailPage() {
                 className={`border-b-2 py-2 px-1 text-sm font-medium transition-colors ${
                   activeTab === 'stats'
                     ? 'border-primary text-primary'
-                    : 'border-transparent text-gray-400 hover:text-gray-700 hover:border-gray-300'
+                    : 'border-transparent text-[var(--color-text)] hover:text-[var(--color-text)] hover:border-gray-300'
                 }`}
               >
                 Estadísticas
@@ -185,7 +190,7 @@ export default function StudentDetailPage() {
                 className={`border-b-2 py-2 px-1 text-sm font-medium transition-colors ${
                   activeTab === 'recommendations'
                     ? 'border-primary text-primary'
-                    : 'border-transparent text-gray-400 hover:text-gray-700 hover:border-gray-300'
+                    : 'border-transparent text-[var(--color-text)] hover:text-[var(--color-text)] hover:border-gray-300'
                 }`}
               >
                 Recomendaciones AI
@@ -211,7 +216,7 @@ export default function StudentDetailPage() {
                         <h3 className="text-xl font-semibold text-[var(--color-text)] mb-2">
                           {course.title}
                         </h3>
-                        <p className="text-sm text-gray-400 dark:text-gray-400">
+                        <p className="text-sm text-[var(--color-text)]">
                           Instructor: {course.instructor} • {course.duration} • {course.difficulty}
                         </p>
                         <div className="flex items-center gap-2 mt-2">
@@ -232,7 +237,7 @@ export default function StudentDetailPage() {
                         <div className="text-2xl font-bold text-[var(--color-text)]">
                           {course.progress}%
                         </div>
-                        <div className="w-20 bg-gray-400 text-gray-400 dark:bg-gray-700 rounded-full h-2 mt-2">
+                        <div className="w-20 bg-[var(--color-text)] text-[var(--color-text)] dark:bg-gray-700 rounded-full h-2 mt-2">
                           <div
                             className="bg-primary h-2 text-gray-400 rounded-full transition-all duration-300"
                             style={{ width: `${course.progress}%` }}
@@ -247,25 +252,25 @@ export default function StudentDetailPage() {
                         <div className="text-lg font-semibold text-[var(--color-text)]">
                           {course.completedLessons}/{course.totalLessons}
                         </div>
-                        <div className="text-xs text-gray-400 dark:text-gray-400">Lecciones</div>
+                        <div className="text-xs text-[var(--color-text)]">Lecciones</div>
                       </div>
                       <div className="text-center">
                         <div className="text-lg font-semibold text-[var(--color-text)]">
                           {course.passedQuizzes}/{course.totalQuizzes}
                         </div>
-                        <div className="text-xs text-gray-400 dark:text-gray-400">Quizzes</div>
+                        <div className="text-xs text-[var(--color-text)]">Quizzes</div>
                       </div>
                       <div className="text-center">
                         <div className="text-lg font-semibold text-[var(--color-text)]">
                           {course.resources.filter((r) => r.downloaded).length}
                         </div>
-                        <div className="text-xs text-gray-400 dark:text-gray-400">Recursos</div>
+                        <div className="text-xs text-[var(--color-text)]">Recursos</div>
                       </div>
                       <div className="text-center">
                         <div className="text-lg font-semibold text-[var(--color-text)]">
                           {course.certificate ? '✓' : '-'}
                         </div>
-                        <div className="text-xs text-gray-400 dark:text-gray-400">Certificado</div>
+                        <div className="text-xs text-[var(--color-text)]">Certificado</div>
                       </div>
                     </div>
 
@@ -285,7 +290,7 @@ export default function StudentDetailPage() {
                               )}
                               <span className="text-sm">{lesson.title}</span>
                             </div>
-                            <div className="flex items-center gap-2 text-xs text-gray-400 dark:text-gray-400">
+                            <div className="flex items-center gap-2 text-xs text-[var(--color-text)] dark:text-gray-400">
                               <span>{lesson.duration}</span>
                               {lesson.quiz && (
                                 <span
@@ -329,7 +334,7 @@ export default function StudentDetailPage() {
                       <span className="text-2xl">{achievement.icon}</span>
                       <div>
                         <p className="font-medium text-sm">{achievement.title}</p>
-                        <p className="text-xs text-gray-400 dark:text-gray-400">
+                        <p className="text-xs text-[var(--color-text)]">
                           {new Date(achievement.date).toLocaleDateString()}
                         </p>
                       </div>
@@ -366,7 +371,7 @@ export default function StudentDetailPage() {
                   {student.upcomingCourses.map((course) => (
                     <div key={course.id} className="border-l-4 border-primary pl-3">
                       <p className="font-medium text-sm">{course.title}</p>
-                      <p className="text-xs text-gray-400 dark:text-gray-400">
+                      <p className="text-xs text-[var(--color-text)]">
                         {course.instructor} • Inicia{' '}
                         {new Date(course.startDate).toLocaleDateString()}
                       </p>
@@ -387,7 +392,7 @@ export default function StudentDetailPage() {
                     .slice(0, 5)
                     .map((resource, index) => (
                       <div key={index} className="flex items-center gap-2 text-sm">
-                        <Download className="w-4 h-4 text-gray-400" />
+                        <Download className="w-4 h-4 text-[var(--color-text)]" />
                         <span className="truncate">{resource.title}</span>
                       </div>
                     ))}
@@ -410,7 +415,7 @@ export default function StudentDetailPage() {
               <h2 className="text-2xl sm:text-3xl font-bold mt-4">
                 Recomendaciones de cursos de IA
               </h2>
-              <p className="text-gray-500 dark:text-gray-300 mt-2 text-sm sm:text-base">
+              <p className="text-[var(--color-text)] mt-2 text-sm sm:text-base">
                 Cuéntanos sobre ti y deja que nuestra IA te encuentre los cursos perfectos para
                 ayudarte a crecer.
               </p>

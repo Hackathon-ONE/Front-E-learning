@@ -4,6 +4,7 @@ import { useParams } from "next/navigation";
 import { useEffect, useState } from "react";
 import { CheckCircle, Circle } from "lucide-react";
 import { studentsInstructorData } from "@/data/instructors";
+import Image from "next/image";
 
 export default function StudentProgressPage() {
   const { studentId } = useParams();
@@ -23,9 +24,13 @@ export default function StudentProgressPage() {
     <main className="min-h-screen bg-[var(--color-bg)] py-6 px-3 sm:px-6 lg:px-12">
       {/* Perfil del estudiante */}
       <section className="max-w-6xl mx-auto bg-[var(--color-surface)] rounded-2xl shadow-lg p-6 flex flex-col sm:flex-row sm:items-center gap-6">
-        <img
+        <Image
           src={student.avatar}
           alt={student.name}
+          width={128}
+          height={64}
+          unoptimized
+          priority
           className="w-24 h-24 sm:w-28 sm:h-28 rounded-full border-4 border-primary/30 shadow-md object-cover mx-auto sm:mx-0"
         />
         <div className="text-center sm:text-left">

@@ -81,7 +81,7 @@ export default function SettingsPage() {
         setLoading(true);
         setError(null);
         // Cambia la URL por tu endpoint real de Spring Boot
-        const res = await fetch("http://localhost:8080/api/user/profile");
+        const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/user/profile`);
         if (!res.ok) throw new Error("Error al obtener datos del usuario");
         const data = await res.json();
         setProfile(data);

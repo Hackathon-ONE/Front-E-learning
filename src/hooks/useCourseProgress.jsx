@@ -18,6 +18,7 @@ export function useCourseProgress(courseId) {
       try {
         setLoading(true);
         const res = await fetch(`/api/courses/${courseId}/progress`);
+        // const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/courses/${courseId}/progress`);
         if (!res.ok) throw new Error("Error al cargar progreso");
         const data = await res.json();
 

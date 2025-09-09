@@ -6,6 +6,7 @@ import { BookOpen, Users, Star, Lightbulb } from "lucide-react";
 import Link from "next/link";
 import SuggestionsForm from "./suggestions-form";
 import { instructorsData } from "@/data/instructors";
+import Image from "next/image";
 
 export default function InstructorProfilePage() {
   const { id } = useParams();
@@ -25,10 +26,14 @@ export default function InstructorProfilePage() {
     <main className="min-h-screen bg-[var(--color-bg)] px-4 sm:px-6 lg:px-10 py-6">
       {/* Perfil principal */}
       <section className="max-w-6xl mx-auto bg-[var(--color-surface)] rounded-2xl shadow-xl p-6 sm:p-10 flex flex-col sm:flex-row items-center sm:items-start gap-6 sm:gap-10">
-        <img
+        <Image
           src={instructor.avatar}
           alt={instructor.name}
           className="w-28 h-28 sm:w-36 sm:h-36 rounded-full object-cover border-4 border-primary/30 shadow-md"
+          width={128}
+          height={64}
+          unoptimized
+          priority
         />
         <div className="flex-1 text-center sm:text-left">
           <h1 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-[var(--color-primary)]">

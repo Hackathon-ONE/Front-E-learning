@@ -17,7 +17,7 @@ useEffect(() => {
       setLoading(true);
       setError(null);
       // Cambia la URL por tu endpoint real de Spring Boot
-      const res = await fetch("http://localhost:8080/api/payments/history");
+      const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/payments/history`);
       if (!res.ok) throw new Error("Error al obtener historial de pagos");
       const data = await res.json();
       setPayments(data);

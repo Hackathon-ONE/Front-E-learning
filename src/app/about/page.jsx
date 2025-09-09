@@ -2,6 +2,7 @@
 
 import { motion } from "framer-motion";
 import { Users, Target, Rocket, Lightbulb } from "lucide-react";
+import Image from "next/image";
 
 export default function AboutPage() {
   return (
@@ -11,10 +12,14 @@ export default function AboutPage() {
         <div className="container mx-auto grid md:grid-cols-2 gap-12 items-center px-6">
           {/* Imagen */}
           <div className="relative">
-            <img
+            <Image
               src="/images/about-preview.jpg"
               alt="Sobre nosotros"
               className="rounded-2xl shadow-lg w-full object-cover"
+              width={1280}   
+              height={640}
+              unoptimized
+              priority
             />
             <div className="absolute inset-0 bg-gradient-to-tr from-primary/20 to-transparent rounded-2xl" />
           </div>

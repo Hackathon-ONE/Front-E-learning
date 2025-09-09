@@ -77,7 +77,7 @@ export const coursesPageData = [
 {
   id: 2,
   title: "Node.js desde cero",
-  instructor: "María López",
+  instructor: "Fernanda López",
   category: "Backend",
   description: "Aprende a crear APIs robustas con Node.js y Express.",
   isFree: true,
@@ -93,7 +93,7 @@ export const coursesPageData = [
 {
   id: 4,
   title: "Bases de Datos SQL",
-  instructor: "Carlos Ruiz",
+  instructor: "Carlos Mora",
   category: "Data",
   description: "Domina consultas SQL y gestión de datos relacionales.",
   isFree: false,

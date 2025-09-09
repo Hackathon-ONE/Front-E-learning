@@ -18,7 +18,7 @@ useEffect(() => {
       setLoading(true);
       setError(null);
       // Cambia la URL por tu endpoint real de Spring Boot
-      const res = await fetch("http://localhost:8080/api/payments/checkout");
+      const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/payments/checkout`);
       if (!res.ok) throw new Error("Error al obtener datos de checkout");
       const data = await res.json();
       setCheckout(data);

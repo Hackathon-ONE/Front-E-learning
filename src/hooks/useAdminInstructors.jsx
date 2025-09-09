@@ -15,6 +15,7 @@ export function useAdminInstructors() {
         setLoading(true);
         // backend: /api/admin/instructors
         const res = await fetch("/api/admin/instructors");
+        // const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/admin/instructors`);
         if (!res.ok) throw new Error("Error al cargar instructores");
 
         const data = await res.json();

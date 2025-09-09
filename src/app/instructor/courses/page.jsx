@@ -41,7 +41,7 @@ useEffect(() => {
       setLoading(true);
       setError(null);
       // Cambia la URL por tu endpoint real de Spring Boot
-      const res = await fetch("http://localhost:8080/api/instructor/courses");
+      const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/instructor/courses`);
       if (!res.ok) throw new Error("Error al obtener cursos");
       const data = await res.json();
       setCourses(data);

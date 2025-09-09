@@ -14,6 +14,7 @@ export function useInstructorStatus(userId) {
       try {
         setLoading(true);
         const res = await fetch(`/api/instructor/${userId}/status`);
+        // const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/instructor/${userId}/status`);
         if (!res.ok) throw new Error("Error al obtener estado");
         const data = await res.json();
         setStatus(data.status || "unknown");

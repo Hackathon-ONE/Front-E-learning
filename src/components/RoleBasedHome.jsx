@@ -48,7 +48,7 @@ function StudentDashboard({ user }) {
           className="bg-[var(--color-card-primary)] p-6 rounded-lg shadow-md hover:shadow-lg transition-shadow"
         >
           <BookOpen className="w-8 h-8 text-blue-600 mb-4" />
-          <h3 className="text-xl font-semibold text-gray-800 mb-2">Mis Cursos</h3>
+          <h3 className="text-xl font-semibold text-[var(--color-text)] mb-2">Mis Cursos</h3>
           <p className="text-[var(--color-text)]">Accede a todos tus cursos matriculados</p>
         </Link>
 
@@ -57,16 +57,16 @@ function StudentDashboard({ user }) {
           className="bg-[var(--color-card-primary)] p-6 rounded-lg shadow-md hover:shadow-lg transition-shadow"
         >
           <User className="w-8 h-8 text-green-600 mb-4" />
-          <h3 className="text-xl font-semibold text-gray-800 mb-2">Mi Perfil</h3>
+          <h3 className="text-xl font-semibold text-[var(--color-text)] mb-2">Mi Perfil</h3>
           <p className="text-[var(--color-text)]">Gestiona tu información personal</p>
         </Link>
 
         <Link
           href="/dashboard/settings"
-          className="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-md hover:shadow-lg transition-shadow"
+          className="bg-[var(--color-card-primary)] p-6 rounded-lg shadow-md hover:shadow-lg transition-shadow"
         >
           <Settings className="w-8 h-8 text-purple-600 mb-4" />
-          <h3 className="text-xl font-semibold text-gray-800 mb-2">Configuración</h3>
+          <h3 className="text-xl font-semibold text-[var(--color-text)] mb-2">Configuración</h3>
           <p className="text-[var(--color-text)]">Personaliza tu experiencia</p>
         </Link>
       </div>
@@ -233,7 +233,7 @@ export default function RoleBasedHome() {
     return <PublicHome />;
   }
 
-  switch (role) {
+  switch (user?.role) {
     case 'ADMIN':
       return <AdminDashboard user={user} />;
     case 'INSTRUCTOR':

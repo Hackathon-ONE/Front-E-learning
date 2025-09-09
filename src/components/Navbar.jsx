@@ -68,9 +68,13 @@ export default function Navbar() {
             >
               {user?.image ? (
                 <>
-                  <img
+                  <Image
                     src={user.image}
                     alt={user.name || 'avatar'}
+                    width={128}
+                    height={64}
+                    unoptimized
+                    priority
                     className="w-9 h-9 rounded-full border"
                   />
                   <span className="text-sm text-[var(--color-text)] hidden lg:block">{user.name}</span>
@@ -179,9 +183,13 @@ export default function Navbar() {
         <div className="flex justify-between items-center py-2 border-b border-muted">
           <div className="flex items-center gap-2">
             {user?.image ? (
-              <img
+              <Image
                 src={user.image}
                 alt={user.name || 'avatar'}
+                width={128}
+                height={64}
+                unoptimized
+                priority
                 className="w-9 h-9 rounded-full border"
               />
             ) : (

@@ -39,13 +39,22 @@ export default function RegisterForm() {
 
     try {
       const res = await fetch('/api/auth/register', {
+      //const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/auth/register`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
           ...formData,
-          role: 'student', // por defecto asignamos estudiante
+          /* name: formData.name.trim(),
+          email: formData.email.trim().toLowerCase(),
+          password: formData.password.trim(), */
+          role: 'STUDENT', // por defecto
         }),
       });
+
+      /* if (!res.ok) {
+        const errorData = await res.json();
+        setErrors({ general: errorData.message || 'Error al registrarse' });
+      } */
 
       if (res.ok) {
         router.push('/auth/login');

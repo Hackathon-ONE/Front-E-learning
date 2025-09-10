@@ -1,5 +1,5 @@
 export const usersData = [
-  { id: 10, full_name: "María Aponte", email: "marian@example.com", password_hash, role: "STUDENT", active: true, avatar: "https://i.pravatar.cc/150?img=32", is_subscribed: false },
+  { id: 10, full_name: "María Aponte", email: "marian@example.com", role: "STUDENT", active: true, avatar: "https://i.pravatar.cc/150?img=32", is_subscribed: false },
   { id: 11, full_name: "Fernanda López", email: "fernanda@lumina.com", role: "INSTRUCTOR", active: true, avatar: "https://i.pravatar.cc/150?img=38", is_subscribed: false },
   { id: 12, full_name: "José Martínez", email: "jose@lumina.com", role: "ADMIN", active: true, avatar: "https://i.pravatar.cc/150?img=11", is_subscribed: false },
 ];

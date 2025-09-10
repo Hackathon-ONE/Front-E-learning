@@ -212,13 +212,13 @@ export default function Navbar() {
           <>
             <button
               onClick={() => router.push('/auth/login')}
-              className="px-4 py-2 bg-[var(--color-dropdown)] text-gray-800 rounded-lg text-center"
+              className="px-4 py-2 bg-primary text-[var(--color-primary-text)] rounded-lg text-center"
             >
               Iniciar sesión
             </button>
             <Link
               href="/demo"
-              className="px-4 py-2 bg-[var(--color-dropdown)] text-gray-800 rounded-lg text-center"
+              className="px-4 py-2 bg-primary text-[var(--color-primary-text)] rounded-lg text-center"
             >
               Demo gratis
             </Link>

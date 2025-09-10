@@ -11,7 +11,7 @@ export const studentsData = [
     id: 2,
     name: 'Gustavo Pérez',
     email: 'gustavo@example.com',
-    avatar: 'https://i.pravatar.cc/150?img=12',
+    avatar: 'https://i.pravatar.cc/150?img=15',
     enrolledCourses: 2,
     progress: '40%',
   },
@@ -50,7 +50,7 @@ export const studentsProgress = [
         title: 'React desde cero',
         progress: 70,
         status: 'in_progress',
-        instructor: 'Carlos Mendez',
+        instructor: 'Marco Alonzo',
         duration: '8 semanas',
         difficulty: 'Intermedio',
         rating: 4.8,
@@ -114,7 +114,7 @@ export const studentsProgress = [
       },
       {
         id: 'c2',
-        title: 'Next.js avanzado',
+        title: 'Nest.js avanzado',
         progress: 40,
         status: 'in_progress',
         instructor: 'Carlos Mora',
@@ -128,7 +128,7 @@ export const studentsProgress = [
         totalQuizzes: 3,
         passedQuizzes: 2,
         resources: [
-          { id: 'r4', title: 'Next.js Documentation', type: 'link', downloaded: false },
+          { id: 'r4', title: 'Nest.js Documentation', type: 'link', downloaded: false },
           { id: 'r5', title: 'Deployment Guide', type: 'pdf', downloaded: true },
         ],
         lessons: [
@@ -181,7 +181,7 @@ export const studentsProgress = [
         title: 'JavaScript Moderno',
         progress: 100,
         status: 'completed',
-        instructor: 'Pedro Sánchez',
+        instructor: 'Marco Alonzo',
         duration: '4 semanas',
         difficulty: 'Básico',
         rating: 4.7,
@@ -244,11 +244,11 @@ export const studentsProgress = [
     upcomingCourses: [
       {
         id: 'uc1',
-        title: 'TypeScript Fundamentals',
+        title: 'Node.js Fundamentals',
         startDate: '2024-04-01',
         instructor: 'Fernanda López',
       },
-      { id: 'uc2', title: 'Node.js Backend', startDate: '2024-04-15', instructor: 'Luis García' },
+      { id: 'uc2', title: 'Express.js Fundamentals', startDate: '2024-04-15', instructor: 'Carlos Mora' },
     ],
   },
 ];

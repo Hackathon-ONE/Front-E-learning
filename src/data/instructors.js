@@ -2,7 +2,7 @@ export const instructorMock = {
     id: 1,
     name: "Christian Velasco",
     bio: "Ingeniero en sistemas, especializado en Ciencia de Datos e Inteligencia Artificial.",
-    avatar: "/images/instructor.jpg",
+    avatar: "https://storage.cloud.google.com/luminamp4/instructor.jpg",
     social: {
       linkedin: "https://linkedin.com",
       github: "https://github.com",
@@ -13,25 +13,25 @@ export const instructorMock = {
 export const instructorsDashboard = [
   {
     id: 1,
-    name: "Ana Gómez",
-    email: "ana@example.com",
-    experience: "5 años enseñando React y Node.js",
-    demoLink: "https://youtube.com/demo1",
+    name: "Aylen Reyes",
+    email: "aylen@example.com",
+    experience: "Software Engineer, 5 años enseñando React y Node.js",
+    demoLink: "https://storage.cloud.google.com/luminamp4/video5.mp4",
     status: "pending",
   },
   {
     id: 2,
-    name: "Luis Pérez",
-    email: "luis@example.com",
+    name: "Carlos Mora",
+    email: "carlos@lumina.com",
     experience: "Instructor en universidades, experto en NestJS",
-    demoLink: "https://youtube.com/demo2",
+    demoLink: "https://storage.cloud.google.com/luminamp4/video8.mp4",
     status: "approved",
   },
   {
     id: 3,
-    name: "María Rodríguez",
-    email: "maria@example.com",
-    experience: "Diseñadora UX/UI freelance",
+    name: "Luis Beltrán",
+    email: "luis@example.com",
+    experience: "Diseñador UX/UI freelance",
     demoLink: "https://youtube.com/demo3",
     status: "rejected",
   },
@@ -50,7 +50,7 @@ export const instructorsPage = [
   {
     id: 2,
     name: "María Gómez",
-    bio: "Apasionada por el diseño web y UX. Instructora de Figma y Tailwind.",
+    bio: "Apasionada por el desarrollo web moderno y la mentoría de nuevos talentos. Experiencia en React, Node.js y arquitectura cloud.",
     avatar: "https://i.pravatar.cc/150?img=32",
     courses: 3,
     reviews: 4.9,
@@ -58,9 +58,9 @@ export const instructorsPage = [
   },
   {
     id: 3,
-    name: "Carlos López",
+    name: "Carlos Mora",
     bio: "Backend developer con foco en Node.js, NestJS y bases de datos.",
-    avatar: "https://i.pravatar.cc/150?img=14",
+    avatar: "https://i.pravatar.cc/150?img=55",
     courses: 7,
     reviews: 4.5,
     students: 410,
@@ -83,9 +83,9 @@ export const earningsData = {
       { id: 3, title: "UI/UX Design", revenue: 2500 },
     ],
     transactions: [
-      { id: 1, student: "Carla Martínez", course: "React desde cero", amount: 200, date: "2025-05-01" },
+      { id: 1, student: "María Aponte", course: "React desde cero", amount: 200, date: "2025-05-01" },
       { id: 2, student: "Gustavo Pérez", course: "Next.js avanzado", amount: 250, date: "2025-05-05" },
-      { id: 3, student: "Fernanda López", course: "UI/UX Design", amount: 150, date: "2025-05-10" },
+      { id: 3, student: "Samuel Jimenez", course: "UI/UX Design", amount: 150, date: "2025-05-10" },
     ],
 };
 
@@ -133,11 +133,12 @@ export const instructorsData = [
     name: "María Gómez",
     avatar: "https://i.pravatar.cc/150?img=32",
     specialty: "Fullstack Developer & Mentora",
-    bio: "Apasionada por el desarrollo web moderno y la mentoría de nuevos talentos. Experiencia en React, Node.js y arquitectura cloud.",
+    bio: "Apasionada por el desarrollo web moderno y la mentoría de nuevos talentos.",
     stats: { courses: 4, students: 210, rating: 4.9 },
     courses: [
-      { id: 103, title: "Node.js para principiantes", lessons: 15, students: 90 },
-      { id: 104, title: "Arquitectura web moderna", lessons: 25, students: 120 },
+      { id: 103, title: "React-Nextjs para principiantes", lessons: 15, students: 90 },
+      { id: 104, title: "Responsive Design", lessons: 25, students: 120 },
+      { id: 105, title: "React-Nextjs avanzado", lessons: 20, students: 150 },
     ],
     reviews: [
       {
@@ -154,6 +155,26 @@ export const instructorsData = [
       },
     ],
   },
+  {
+    id: "3",
+    name: "Carlos Mora",
+    avatar: "https://i.pravatar.cc/150?img=55",
+    specialty: "Backend Developer & NestJS Expert",
+    bio: "Backend developer con foco en Node.js, NestJS y bases de datos.",
+    stats: { courses: 4, students: 210, rating: 4.9 },
+    courses: [
+      { id: 113, title: "Node.js para principiantes", lessons: 5, students: 90 },
+      { id: 114, title: "Arquitectura web moderna", lessons: 20, students: 150 },
+    ],
+    reviews: [
+      {
+        id: 1,
+        student: "Pedro Sánchez",
+        comment: "Muy buen curso.",
+        rating: 5,
+      },
+    ],
+  }
 ];
 
 export const instructorCourses = [
@@ -246,7 +267,7 @@ export const studentsInstructorData = [
   {
     id: "1",
     name: "Ana Hunt",
-    email: "ana@example.com",
+    email: "anah@example.com",
     avatar: "https://i.pravatar.cc/150?img=25",
     courses: [
       {
@@ -277,8 +298,8 @@ export const studentsInstructorData = [
 export const progressReportsStudentsData = [
     {
       id: 1,
-      name: "Ana Gómez",
-      email: "ana@example.com",
+      name: "Carla Martinez",
+      email: "carla@example.com",
       courseTitle: "React Avanzado",
     },
     {

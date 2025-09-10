@@ -27,7 +27,7 @@ const testimonials = [
     rating: 4
   },
   {
-    name: "Laura Fernández",
+    name: "María Laura Fernández",
     profession: "Project Manager",
     avatar: "/avatars/laura.jpg",
     review: "Gracias a esta plataforma mejoré mis habilidades en gestión de proyectos y herramientas digitales.",

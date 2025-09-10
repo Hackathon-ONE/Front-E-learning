@@ -19,21 +19,45 @@ export default function InstructorsPage() {
         Nuestros Instructores
       </h1>
 
-      <div className="grid gap-6 sm:gap-8 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 max-w-7xl mx-auto">
+      <div
+        className="
+          grid gap-6 sm:gap-8 
+          grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 
+          max-w-7xl mx-auto
+          auto-rows-fr
+        "
+      >
         {instructors.map((instructor) => (
           <div
             key={instructor.id}
-            className="bg-[var(--color-surface)] rounded-2xl shadow-lg hover:shadow-xl transition p-4 sm:p-6 flex flex-col items-center text-center"
+            className="
+              bg-[var(--color-surface)] 
+              rounded-2xl 
+              shadow-lg hover:shadow-xl 
+              transition 
+              p-4 sm:p-6 
+              flex flex-col 
+              items-center 
+              text-center
+              h-full
+            "
           >
             {/* Avatar */}
             <Image
               src={instructor.avatar}
               alt={instructor.name}
               width={128}
-              height={64}
+              height={128}
               unoptimized
               priority
-              className="w-16 h-16 sm:w-20 sm:h-20 md:w-24 md:h-24 lg:w-28 lg:h-28 rounded-full border-4 border-primary/30 object-cover shadow-md mb-3 sm:mb-4"
+              className="
+                w-16 h-16 sm:w-20 sm:h-20 md:w-24 md:h-24 lg:w-28 lg:h-28 
+                rounded-full 
+                border-4 border-primary/30 
+                object-cover 
+                shadow-md 
+                mb-3 sm:mb-4
+              "
             />
 
             {/* Nombre y bio */}
@@ -75,11 +99,13 @@ export default function InstructorsPage() {
             </div>
 
             {/* Botón Ver perfil */}
-            <Link href={`/instructor/${instructor.id}`} className="w-full">
-              <button className="w-full py-2 sm:py-3 rounded-lg bg-primary text-white font-semibold text-xs sm:text-sm md:text-base hover:opacity-80 transition">
-                Ver perfil
-              </button>
-            </Link>
+            <div className="mt-auto w-full">
+              <Link href={`/instructor/${instructor.id}`} className="w-full">
+                <button className="w-full py-2 sm:py-3 rounded-lg bg-primary text-white font-semibold text-xs sm:text-sm md:text-base hover:opacity-80 transition">
+                  Ver perfil
+                </button>
+              </Link>
+            </div>
           </div>
         ))}
       </div>

@@ -2,7 +2,7 @@
 
 import { useAuth } from '@/context/AuthContext';
 import Link from 'next/link';
-import { BookOpen, Users, BarChart3, Settings, User, Wallet } from 'lucide-react';
+import { BookOpen, Users, BarChart3, Settings, User, Wallet, GraduationCap } from 'lucide-react';
 
 import Hero from '@/components/Hero';
 import CoursesCarousel from '@/components/CoursesCarousel';
@@ -155,7 +155,7 @@ function AdminDashboard({ user }) {
         <p className="text-[var(--color-text)]">Control total del sistema</p>
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 gap-6 mb-8 bg-surface">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-8 bg-surface">
         <Link
           href="/admin"
           className="bg-[var(--color-card-primary)] p-6 rounded-lg shadow-md hover:shadow-lg transition-shadow"
@@ -181,6 +181,15 @@ function AdminDashboard({ user }) {
           <BookOpen className="w-8 h-8 text-green-600 mb-4" />
           <h3 className="text-xl font-semibold text-[var(--color-text)] mb-2">Cursos</h3>
           <p className="text-[var(--color-text)]">Administrar cursos</p>
+        </Link>
+
+        <Link
+          href="/students"
+          className="bg-[var(--color-card-primary)] p-6 rounded-lg shadow-md hover:shadow-lg transition-shadow"
+        >
+          <GraduationCap className="w-8 h-8 text-yellow-600 mb-4" />
+          <h3 className="text-xl font-semibold text-[var(--color-text)] mb-2">Inscritos</h3>
+          <p className="text-[var(--color-text)]">Gestionar estudiantes inscritos</p>
         </Link>
 
         <Link

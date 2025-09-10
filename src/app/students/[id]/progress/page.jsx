@@ -198,28 +198,28 @@ export default function StudentProgressPage() {
 
                   {/* Estadísticas del curso */}
                   <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-                    <div className="bg-blue-50 dark:bg-blue-900/20 rounded-lg p-3 text-center">
+                    <div className="bg-[var(--color-bg)] rounded-lg p-3 text-center">
                       <BookOpen className="w-6 h-6 text-blue-500 mx-auto mb-2" />
                       <div className="font-semibold text-[var(--color-text)]">
                         {selectedCourse.completedLessons}/{selectedCourse.totalLessons}
                       </div>
                       <div className="text-xs text-[var(--color-text)]">Lecciones</div>
                     </div>
-                    <div className="bg-green-50 dark:bg-green-900/20 rounded-lg p-3 text-center">
+                    <div className="bg-[var(--color-bg)] rounded-lg p-3 text-center">
                       <Target className="w-6 h-6 text-green-500 mx-auto mb-2" />
                       <div className="font-semibold text-[var(--color-text)]">
                         {selectedCourse.passedQuizzes}/{selectedCourse.totalQuizzes}
                       </div>
                       <div className="text-xs text-[var(--color-text)]">Quizzes</div>
                     </div>
-                    <div className="bg-purple-50 dark:bg-purple-900/20 rounded-lg p-3 text-center">
+                    <div className="bg-[var(--color-bg)] rounded-lg p-3 text-center">
                       <BarChart3 className="w-6 h-6 text-purple-500 mx-auto mb-2" />
                       <div className="font-semibold text-[var(--color-text)]">
                         {selectedCourse.rating}
                       </div>
                       <div className="text-xs text-[var(--color-text)]">Rating</div>
                     </div>
-                    <div className="bg-yellow-50 dark:bg-yellow-900/20 rounded-lg p-3 text-center">
+                    <div className="bg-[var(--color-bg)] rounded-lg p-3 text-center">
                       <Award className="w-6 h-6 text-yellow-500 mx-auto mb-2" />
                       <div className="font-semibold text-[var(--color-text)]">
                         {selectedCourse.certificate ? 'Sí' : 'No'}
@@ -240,13 +240,13 @@ export default function StudentProgressPage() {
                         key={lesson.id}
                         className={`border rounded-lg p-4 transition-all ${
                           lesson.completed
-                            ? 'border-green-200 bg-green-50 dark:border-green-800 dark:bg-green-900/20'
-                            : 'border-[var(--color-text)] dark:border-[var(--color-text)]'
+                            ? 'bg-[var(--color-bg)] text-[var(--color-text)]'
+                            : 'bg-[var(--color-surface)] text-[var(--color-text)]'
                         }`}
                       >
                         <div className="flex items-center justify-between">
                           <div className="flex items-center gap-3">
-                            <div className="flex items-center justify-center w-8 h-8 rounded-full bg-[var(--color-text)] dark:bg-[var(--color-text)] text-sm font-medium">
+                            <div className="flex items-center justify-center w-8 h-8 rounded-full bg-[var(--color-surface)] text-sm font-medium">
                               {index + 1}
                             </div>
                             {lesson.completed ? (
@@ -295,7 +295,7 @@ export default function StudentProgressPage() {
                         key={resource.id}
                         className={`border rounded-lg p-4 ${
                           resource.downloaded
-                            ? 'border-green-200 bg-green-50 dark:border-green-800 dark:bg-green-900/20'
+                            ? 'border-[var(--color-text)] bg-[var(--color-surface)]'
                             : 'border-[var(--color-text)] dark:border-[var(--color-text)]'
                         }`}
                       >
@@ -321,7 +321,7 @@ export default function StudentProgressPage() {
 
                 {/* Certificado si está disponible */}
                 {selectedCourse.certificate && (
-                  <div className="bg-gradient-to-r from-yellow-50 to-orange-50 dark:from-yellow-900/20 dark:to-orange-900/20 border border-yellow-200 dark:border-yellow-800 rounded-xl p-6">
+                  <div className="border border-[var(--color-text)] rounded-xl p-6">
                     <div className="flex items-center gap-4">
                       <Award className="w-12 h-12 text-yellow-500" />
                       <div>

@@ -35,16 +35,17 @@ export const coursesDashboardMock = [
   ];
 
 export const lessonsPlayerData = [
-    { id: "1", title: "Presentación", duration: "08 min" },
-    { id: "2", title: "Preparando el ambiente", duration: "12 min" },
-    { id: "3", title: "Mi primer prompt", duration: "10 min" },
-];
+    { id: "1", title: "Creando los primeros prompts", videoUrl: "/video/video1.mp4", duration: "08 min" },
+    { id: "2", title: "Mejorando la confiabilidad de los resultados", videoUrl: "/video/video2.mp4", duration: "12 min" },
+    { id: "3", title: "Explorando aplicaciones", videoUrl: "/video/video3.mp4", duration: "10 min" },
+    /* { id: "4", title: "Estrategias para textos largos", videoUrl: "/video/video4.mp4", duration: "27 min" }, */
+  ];
 
 export const lessonsCoursesData = [
-  { id: 1, title: "Introducción al curso", duration: "5:32", completed: true },
-  { id: 2, title: "Fundamentos básicos", duration: "12:15", completed: false },
-  { id: 3, title: "Tema intermedio", duration: "18:47", completed: false },
-  { id: 4, title: "Ejercicios prácticos", duration: "22:05", completed: false },
+  { id: 1, title: "Introducción al curso", videoUrl: "/video/video5.mp4", duration: "5:32", completed: true },
+  { id: 2, title: "Fundamentos básicos", videoUrl: "/video/video6.mp4", duration: "12:15", completed: false },
+  { id: 3, title: "Tema intermedio", videoUrl: "/video/video7.mp4", duration: "18:47", completed: false },
+  /* { id: 4, title: "Ejercicios prácticos", videoUrl: "/video/video7.mp4", duration: "22:05", completed: false }, */
 ];
 
 export const overviewCourse = {

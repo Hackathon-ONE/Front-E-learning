@@ -7,11 +7,17 @@ import { lessonsPlayerData } from "@/data/courses";
 export default function LessonPlayerPage() {
   const { courseId, lessonId } = useParams();
   const lessons = lessonsPlayerData;
-  const [currentLesson, setCurrentLesson] = useState(lessonId || "1");
+ 
+  // convertimos todo a string para evitar problemas de comparación
+  const [currentLesson, setCurrentLesson] = useState(
+    lessonId?.toString() || "1"
+  );
+
+  const activeLesson = lessons.find((l) => l.id.toString() === currentLesson);
 
   return (
     <div
-      className="flex flex-col md:flex-row h-screen"
+      className="flex flex-col md:flex-row h-auto"
       style={{ backgroundColor: "var(--color-bg)", color: "var(--color-text)" }}
     >
       {/* Sidebar lecciones */}
@@ -61,8 +67,9 @@ export default function LessonPlayerPage() {
           <video
             key={currentLesson}
             controls
-            className="w-full h-full object-contain sm:object-cover"
-            src={`/videos/${currentLesson}.mp4`} // conectar con backend/CDN real
+            className="w-full h-auto max-h-full object-contain"
+            src={activeLesson?.videoUrl || "/video/video1.mp4"}
+            // `/video/${currentLesson}.mp4` // conectar con backend/CDN real
           />
         </div>
 
@@ -72,7 +79,8 @@ export default function LessonPlayerPage() {
           style={{ backgroundColor: "var(--color-card-primary)" }}
         >
           <h1 className="text-lg sm:text-xl font-semibold text-[var(--color-text)]">
-            {lessons.find((l) => l.id === currentLesson)?.title}
+          {activeLesson?.title}
+          {/* {lessons.find((l) => l.id === currentLesson)?.title} */}
           </h1>
           <p className="text-xs sm:text-sm opacity-75 mt-1 text-[var(--color-text)]">
             Curso {courseId} · Lección {currentLesson}

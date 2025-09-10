@@ -7,6 +7,7 @@ import Button from "@/components/ui/Button";
 import GridProjects from "@/components/GridCertificates";
 import { useSession } from "next-auth/react";
 import { profileStats, completedCourses, inProgressCourses } from "@/data/users";
+import Link from "next/link";
 
 export default function ProfilePage() {
   const { data: session } = useSession();
@@ -150,6 +151,14 @@ export default function ProfilePage() {
       </div>
       <div className="text-xl font-semibold mt-10 mb-4">
         <GridProjects />
+      </div>
+     {/* Botón Ver Progreso */}
+     <div className="mt-10">
+        <Link href="/dashboard/progress">
+          <button className="px-6 py-2 bg-primary text-white rounded-lg hover:bg-primary/80 transition">
+            Ver Progreso
+          </button>
+        </Link>
       </div>
     </section>
   );

@@ -8,9 +8,15 @@ import GridProjects from "@/components/GridCertificates";
 import { useSession } from "next-auth/react";
 import { profileStats, completedCourses, inProgressCourses } from "@/data/users";
 import Link from "next/link";
+import { getServerSession } from "next-auth";
 
-export default function ProfilePage() {
-  const { data: session } = useSession();
+export default async function ProfilePage() {
+  const session = await getServerSession();
+
+  if (!session) {
+    return <p>No autenticado</p>;
+  }
+
   const [isEditing, setIsEditing] = useState(false);
   const [stats, setStats] = useState(profileStats);
   const [completed, setCompleted] = useState(completedCourses);

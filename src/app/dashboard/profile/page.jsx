@@ -8,10 +8,13 @@ import GridProjects from "@/components/GridCertificates";
 import { useSession } from "next-auth/react";
 import { profileStats, completedCourses, inProgressCourses } from "@/data/users";
 import Link from "next/link";
-import { getServerSession } from "next-auth";
 
-export default async function ProfilePage() {
-  const session = await getServerSession();
+export default function ProfilePage() {
+  const { data: session, status } = useSession();
+
+  if (status === "loading") {
+    return <p>Cargando...</p>;
+  }
 
   if (!session) {
     return <p>No autenticado</p>;
@@ -29,7 +32,6 @@ export default async function ProfilePage() {
 
   // Ejemplo de cómo importar datos desde la base de datos (Java/Spring Boot):
   /*
-  import { useEffect, useState } from "react";
 
   const [profile, setProfile] = useState(null);
   const [loading, setLoading] = useState(true);
@@ -64,7 +66,7 @@ export default async function ProfilePage() {
       {/* Perfil */}
       <div className="bg-surface rounded-2xl shadow p-6 flex flex-col md:flex-row gap-6 items-start">
       <Image
-        src={session.user.image}
+        src={avatar}
         alt={name}
         width={120}
         height={120}
@@ -115,6 +117,7 @@ export default async function ProfilePage() {
             className="bg-surface shadow rounded-xl p-4 flex flex-col items-center"
           >
             <Image
+              aria-label={c.title}
               src={c.image}
               alt={c.title}
               width={120}
@@ -136,6 +139,7 @@ export default async function ProfilePage() {
             className="bg-surface shadow rounded-xl p-4 flex gap-4 items-center"
           >
             <Image
+              aria-label={c.title}
               src={c.image}
               alt={c.title}
               width={100}

@@ -8,6 +8,7 @@ export default function Dropdown() {
   return (
     <div className="relative inline-block">
       <button
+        aria-label="Dropdown"
         onClick={() => setOpen(!open)}
         className="px-4 py-2 rounded-md bg-[var(--color-primary)] text-white"
       >

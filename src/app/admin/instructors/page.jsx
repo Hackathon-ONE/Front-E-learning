@@ -130,6 +130,7 @@ export default function AdminInstructorsPage() {
                         {inst.status === 'pending' ? (
                           <>
                             <button
+                              aria-label="Aprobar instructor"
                               className="px-2 sm:px-3 py-1 sm:py-1.5 text-xs sm:text-sm rounded-lg bg-[var(--color-primary)] hover:bg-[var(--color-primary-hover)] text-white transition"
                               onClick={() =>
                                 setModalData({
@@ -142,6 +143,7 @@ export default function AdminInstructorsPage() {
                               Aprobar
                             </button>
                             <button
+                              aria-label="Rechazar instructor"
                               className="px-2 sm:px-3 py-1 sm:py-1.5 text-xs sm:text-sm rounded-lg bg-red-500 text-white hover:bg-red-600 transition"
                               onClick={() =>
                                 setModalData({
@@ -157,6 +159,7 @@ export default function AdminInstructorsPage() {
                         ) : inst.status === 'approved' ? (
                           <>
                             <button
+                              aria-label="Rechazar instructor"
                               className="px-2 sm:px-3 py-1 sm:py-1.5 text-xs sm:text-sm rounded-lg bg-gray-200 text-gray-800 hover:bg-gray-300 transition"
                               onClick={() =>
                                 setModalData({
@@ -169,6 +172,7 @@ export default function AdminInstructorsPage() {
                               Rechazar
                             </button>
                             <button
+                              aria-label="Revocar acceso instructor"
                               className="px-2 sm:px-3 py-1 sm:py-1.5 text-xs sm:text-sm rounded-lg bg-red-100 text-red-700 hover:bg-red-200 transition"
                               onClick={() =>
                                 setModalData({
@@ -200,12 +204,14 @@ export default function AdminInstructorsPage() {
             <p className="mb-6 text-sm">{modalData.message}</p>
             <div className="flex flex-col sm:flex-row gap-2">
               <button
+                aria-label="Cancelar"
                 className="px-4 py-2 rounded-lg text-sm bg-gray-300 hover:bg-gray-400 transition-colors w-full"
                 onClick={() => setModalData(null)}
               >
                 Cancelar
               </button>
               <button
+                aria-label="Confirmar"
                 className="px-4 py-2 rounded-lg text-sm bg-[var(--color-primary)] hover:bg-[var(--color-primary-hover)] text-white transition-colors w-full"
                 onClick={() => handleAction(modalData.instructor.id, modalData.action)}
               >

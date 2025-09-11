@@ -93,6 +93,8 @@ export default function RegisterForm() {
             className="w-full p-3 rounded-lg border border-gray-400 dark:border-gray-700"
             value={formData.name}
             onChange={handleChange}
+            autoComplete="on"
+            required
           />
           {errors.name && <p className="text-sm text-red-500 mt-1">{errors.name}</p>}
         </div>
@@ -108,6 +110,8 @@ export default function RegisterForm() {
             className="w-full p-3 rounded-lg border border-gray-400 dark:border-gray-700"
             value={formData.email}
             onChange={handleChange}
+            autoComplete="on"
+            required
           />
           {errors.email && <p className="text-sm text-red-500 mt-1">{errors.email}</p>}
         </div>
@@ -123,11 +127,14 @@ export default function RegisterForm() {
             className="w-full p-3 rounded-lg border border-gray-400 dark:border-gray-700"
             value={formData.password}
             onChange={handleChange}
+            autoComplete="off"
+            required
           />
           {errors.password && <p className="text-sm text-red-500 mt-1">{errors.password}</p>}
         </div>
 
         <button
+          aria-label="Registrarse"
           type="submit"
           disabled={loading}
           className="w-full py-3 rounded-lg font-semibold disabled:opacity-50"
@@ -145,6 +152,7 @@ export default function RegisterForm() {
       </div>
 
       <button
+        aria-label="Registrarse con Google"
         onClick={handleGoogleRegister}
         disabled={loading}
         className="w-full flex items-center justify-center gap-2 py-3 rounded-lg border font-semibold disabled:opacity-50"

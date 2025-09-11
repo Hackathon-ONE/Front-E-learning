@@ -13,6 +13,7 @@ export default function Toast() {
   return (
     <div className="relative h-screen flex items-center justify-center bg-gray-100">
       <button
+        aria-label="Mostrar Toast"
         onClick={() => showToast("¡Acción completada con éxito!")}
         className="px-6 py-3 bg-indigo-600 hover:bg-indigo-500 text-white font-semibold rounded-lg shadow-md transition"
       >

@@ -91,12 +91,14 @@ export default function LiveSupportChatPage() {
         >
           <input
             type="text"
+            name="message"
             value={inputValue}
             onChange={(e) => setInputValue(e.target.value)}
             placeholder="Escribe tu mensaje..."
             className="flex-1 px-4 py-2 rounded-full border border-[var(--color-muted)] bg-[var(--color-card-primary)] text-[var(--color-card-primary-text)] outline-none focus:border-[var(--color-primary)]"
           />
           <button
+            aria-label="Enviar mensaje"
             type="submit"
             className="w-12 h-12 rounded-full bg-[var(--color-primary)] text-[var(--color-primary-text)] flex items-center justify-center hover:bg-[var(--color-primary-hover)] transition-colors"
           >

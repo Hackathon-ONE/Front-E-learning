@@ -28,6 +28,7 @@ export default function SettingsPage() {
         {/* Sección Perfil */}
         <div className="bg-[var(--color-card-primary)] border border-[var(--color-muted)] rounded-xl mb-4 shadow-sm">
           <button
+            aria-label="Perfil"
             className="w-full flex justify-between items-center p-4 sm:p-6 hover:bg-[var(--color-card-secondary)] rounded-t-xl transition-colors"
             onClick={() => toggleSection("perfil")}
           >
@@ -50,6 +51,7 @@ export default function SettingsPage() {
                   </label>
                   <input
                     id="profile-name"
+                    name="profile-name" 
                     type="text"
                     defaultValue="Juan Pérez"
                     className="w-full p-3 border border-[var(--color-muted)] rounded-lg bg-[var(--color-card-secondary)] text-[var(--color-card-primary-text)] text-sm focus:ring-2 focus:ring-[var(--color-primary)] focus:border-transparent"
@@ -61,13 +63,14 @@ export default function SettingsPage() {
                   </label>
                   <input
                     id="profile-email"
+                    name="profile-email"  
                     type="email"
                     defaultValue="juan@example.com"
                     className="w-full p-3 border border-[var(--color-muted)] rounded-lg bg-[var(--color-card-secondary)] text-[var(--color-card-primary-text)] text-sm focus:ring-2 focus:ring-[var(--color-primary)] focus:border-transparent"
                   />
                 </div>
               </div>
-              <button className="px-4 py-2.5 bg-[var(--color-primary)] hover:bg-[var(--color-primary-hover)] text-white rounded-lg text-sm font-medium transition-colors">
+              <button aria-label="Guardar cambios" className="px-4 py-2.5 bg-[var(--color-primary)] hover:bg-[var(--color-primary-hover)] text-white rounded-lg text-sm font-medium transition-colors">
                 Guardar cambios
               </button>
             </div>
@@ -77,6 +80,7 @@ export default function SettingsPage() {
         {/* Sección Seguridad */}
         <div className="bg-[var(--color-card-primary)] border border-[var(--color-muted)] rounded-xl mb-4 shadow-sm">
           <button
+            aria-label="Seguridad"
             className="w-full flex justify-between items-center p-4 sm:p-6 hover:bg-[var(--color-card-secondary)] rounded-t-xl transition-colors"
             onClick={() => toggleSection("seguridad")}
           >
@@ -99,6 +103,7 @@ export default function SettingsPage() {
                   </label>
                   <input
                     id="current-password"
+                    name="current-password"
                     type="password"
                     className="w-full p-3 border border-[var(--color-muted)] rounded-lg bg-[var(--color-card-secondary)] text-[var(--color-card-primary-text)] text-sm focus:ring-2 focus:ring-[var(--color-primary)] focus:border-transparent"
                   />
@@ -109,12 +114,13 @@ export default function SettingsPage() {
                   </label>
                   <input
                     id="new-password"
+                    name="new-password"
                     type="password"
                     className="w-full p-3 border border-[var(--color-muted)] rounded-lg bg-[var(--color-card-secondary)] text-[var(--color-card-primary-text)] text-sm focus:ring-2 focus:ring-[var(--color-primary)] focus:border-transparent"
                   />
                 </div>
               </div>
-              <button className="px-4 py-2.5 bg-[var(--color-primary)] hover:bg-[var(--color-primary-hover)] text-white rounded-lg text-sm font-medium transition-colors">
+              <button aria-label="Actualizar contraseña" className="px-4 py-2.5 bg-[var(--color-primary)] hover:bg-[var(--color-primary-hover)] text-white rounded-lg text-sm font-medium transition-colors">
                 Actualizar contraseña
               </button>
             </div>
@@ -124,6 +130,7 @@ export default function SettingsPage() {
         {/* Sección Notificaciones */}
         <div className="bg-[var(--color-card-primary)] border border-[var(--color-muted)] rounded-xl mb-4 shadow-sm">
           <button
+            aria-label="Notificaciones"
             className="w-full flex justify-between items-center p-4 sm:p-6 hover:bg-[var(--color-card-secondary)] rounded-t-xl transition-colors"
             onClick={() => toggleSection("notificaciones")}
           >
@@ -141,29 +148,35 @@ export default function SettingsPage() {
             <div className="p-4 sm:p-6 border-t border-[var(--color-muted)] space-y-4">
               <div className="space-y-3">
                 <label className="flex items-center gap-3 p-3 rounded-lg hover:bg-[var(--color-card-secondary)] transition-colors">
-                  <input 
-                    type="checkbox" 
+                  <input
+                    id="notifications-activity"
+                    type="checkbox"
+                    name="notifications-activity"
                     defaultChecked 
                     className="w-4 h-4 text-[var(--color-primary)] border-[var(--color-muted)] rounded focus:ring-[var(--color-primary)]"
                   />
                   <span className="text-sm text-[var(--color-card-primary-text)]">Recibir correos de actividad</span>
                 </label>
                 <label className="flex items-center gap-3 p-3 rounded-lg hover:bg-[var(--color-card-secondary)] transition-colors">
-                  <input 
-                    type="checkbox" 
+                  <input
+                    id="notifications-push"
+                    type="checkbox"
+                    name="notifications-push" 
                     className="w-4 h-4 text-[var(--color-primary)] border-[var(--color-muted)] rounded focus:ring-[var(--color-primary)]"
                   />
                   <span className="text-sm text-[var(--color-card-primary-text)]">Notificaciones push</span>
                 </label>
                 <label className="flex items-center gap-3 p-3 rounded-lg hover:bg-[var(--color-card-secondary)] transition-colors">
-                  <input 
-                    type="checkbox" 
+                  <input
+                    id="notifications-security"
+                    type="checkbox"
+                    name="notifications-security" 
                     className="w-4 h-4 text-[var(--color-primary)] border-[var(--color-muted)] rounded focus:ring-[var(--color-primary)]"
                   />
                   <span className="text-sm text-[var(--color-card-primary-text)]">Notificaciones de seguridad</span>
                 </label>
               </div>
-              <button className="px-4 py-2.5 bg-[var(--color-primary)] hover:bg-[var(--color-primary-hover)] text-white rounded-lg text-sm font-medium transition-colors">
+              <button aria-label="Guardar preferencias" className="px-4 py-2.5 bg-[var(--color-primary)] hover:bg-[var(--color-primary-hover)] text-white rounded-lg text-sm font-medium transition-colors">
                 Guardar preferencias
               </button>
             </div>

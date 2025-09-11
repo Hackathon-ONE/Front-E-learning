@@ -5,7 +5,8 @@ import { Search, ChevronDown, Loader2 } from "lucide-react";
 import Card from "@/components/ui/Card";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import { coursesPageData } from "@/data/courses"; 
+import { coursesPageData } from "@/data/courses";
+import Image from "next/image";
 
 // Fake user para simular login/inscripción
 const fakeUser = {
@@ -88,6 +89,7 @@ export default function CoursesPage() {
     }
     return (
       <button
+        aria-label="Inscribirse"
         type="button"
         className="mt-2 px-4 py-2 rounded-lg bg-primary text-white hover:bg-gray-800 transition text-sm"
         onClick={(e) => {
@@ -129,8 +131,10 @@ export default function CoursesPage() {
         <div className="relative mb-6 sm:mb-8">
           <Search className="absolute left-3 top-3 text-gray-400 w-4 h-4 sm:w-5 sm:h-5" />
           <input
+            id="search-courses"
             type="text"
             placeholder="Buscar cursos..."
+            name="search-courses"
             value={search}
             onChange={(e) => setSearch(e.target.value)}
             className="w-full pl-9 sm:pl-10 pr-4 py-2 sm:py-2.5 rounded-lg text-[var(--color-text)] border border-gray-300 dark:border-gray-700 focus:outline-none focus:ring-2 focus:ring-primary text-xs sm:text-sm"
@@ -231,6 +235,7 @@ export default function CoursesPage() {
             Ordenar por
           </h3>
           <button
+            aria-label="Ordenar por"
             onClick={() =>
               setSortOrder((prev) => (prev === "asc" ? "desc" : "asc"))
             }
@@ -245,34 +250,32 @@ export default function CoursesPage() {
       {/* Catálogo */}
       <main className="flex-1">
         <h1 className="text-xl sm:text-2xl font-bold mb-4 sm:mb-6">Catálogo de Cursos</h1>
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
-          {filteredCourses.map((course) => (
-            <Link
-              key={course.id}
-              href={`/courses/${course.id}/overview`}
-              className="block"
-              style={{ textDecoration: "none" }}
-            >
-              <Card className="p-4 sm:p-6 flex flex-col justify-between text-[var(--color-text)] hover:shadow-xl transition rounded-xl border border-gray-200 dark:border-gray-700 cursor-pointer h-full">
-                <div>
-                  <h3 className="text-base sm:text-lg font-semibold mb-2 text-[var(--color-text)]">{course.title}</h3>
-                  <p className="text-xs sm:text-sm text-[var(--color-text)] mb-3 sm:mb-4">
-                    {course.description}
-                  </p>
-                </div>
-                <div className="text-xs text-[var(--color-text)]">
-                  <p>
-                    <span className="font-medium text-[var(--color-text)]">Instructor:</span>{" "}
-                    {course.instructor}
-                  </p>
-                  <p>
-                    <span className="font-medium text-[var(--color-text)]">Categoría:</span>{" "}
-                    {course.category}
-                  </p>
-                  {renderAccessInfo(course)}
-                </div>
-              </Card>
-            </Link>
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 items-stretch">
+        {filteredCourses.map((course) => (
+        <Link key={course.id} href={`/courses/${course.id}/overview`} className="block h-full">
+          <Card className="group relative flex flex-col rounded-2xl overflow-hidden border border-gray-200 dark:border-gray-700 shadow-md bg-surface h-full transition-transform transform hover:scale-105 hover:-rotate-1 hover:shadow-2xl">
+          {/* Imagen cuadrada */}
+          <div className="relative w-full aspect-square">
+            <Image
+              src={course.cover}
+              alt={course.title}
+              fill
+              className="object-cover transition-transform duration-300 group-hover:scale-110"
+              priority
+            />
+          </div>
+
+          {/* Overlay estilo Netflix */}
+          <div className="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition flex flex-col justify-end p-4">
+            <h3 className="text-white font-bold text-lg mb-2 line-clamp-2">
+              {course.title}
+            </h3>
+            <p className="text-gray-200 text-sm line-clamp-2">
+              {course.description}
+            </p>
+          </div>
+        </Card>
+      </Link>
           ))}
         </div>
       </main>

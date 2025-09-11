@@ -11,7 +11,7 @@ export function AuthProvider({ children }) {
   const value = useMemo(() => ({
     user: session?.user || null,
     role: session?.user?.role || "guest",
-    isAuthenticated: !!session?.user,
+    isAuthenticated: status === "authenticated",
     loading: status === "loading",
     signIn,
     signOut,

@@ -51,6 +51,7 @@ export default function NewLessonPage() {
         <div>
           <label className="block font-semibold mb-2">Título</label>
           <input
+            id="title"
             type="text"
             name="title"
             value={lesson.title}
@@ -65,6 +66,7 @@ export default function NewLessonPage() {
         <div>
           <label className="block font-semibold mb-2">Descripción</label>
           <textarea
+            id="description"
             name="description"
             value={lesson.description}
             onChange={handleChange}
@@ -79,19 +81,21 @@ export default function NewLessonPage() {
         <div>
           <label className="block font-semibold mb-2">URL del Video</label>
           <input
+            id="videoUrl"
             type="url"
             name="videoUrl"
             value={lesson.videoUrl}
             onChange={handleChange}
             required
             className="w-full px-4 py-2 rounded-lg border border-gray-300 dark:border-gray-700 dark:bg-gray-900 dark:text-white focus:ring-2 focus:ring-primary"
-            placeholder="https://www.youtube.com/watch?v=..."
+            placeholder="https://storage.cloud.google.com/luminamp4/video9.mp4"
           />
         </div>
 
         {/* Botones */}
         <div className="flex flex-col md:flex-row gap-4 justify-end">
           <button
+            aria-label="Cancelar"
             type="button"
             onClick={() => router.push(`/instructor/courses/${id}/lessons`)}
             className="px-6 py-2 rounded-lg border border-gray-400 hover:bg-gray-100 dark:border-gray-600 dark:hover:bg-gray-700"
@@ -99,6 +103,7 @@ export default function NewLessonPage() {
             Cancelar
           </button>
           <button
+            aria-label="Guardar lección"
             type="submit"
             disabled={loading}
             className="px-6 py-2 rounded-lg bg-primary text-white hover:bg-primary/90 transition disabled:opacity-50"

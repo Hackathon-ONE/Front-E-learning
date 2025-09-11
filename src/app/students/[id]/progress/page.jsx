@@ -130,6 +130,7 @@ export default function StudentProgressPage() {
             <div className="space-y-3">
               {student.courses.map((course) => (
                 <button
+                  aria-label="Ver curso"
                   key={course.id}
                   onClick={() => setSelectedCourse(course)}
                   className={`w-full text-left p-4 rounded-xl transition-all ${
@@ -332,7 +333,10 @@ export default function StudentProgressPage() {
                           Emitido el{' '}
                           {new Date(selectedCourse.certificate.issued).toLocaleDateString()}
                         </p>
-                        <button className="mt-2 px-4 py-2 bg-yellow-500 text-white rounded-lg hover:bg-yellow-600 transition-colors">
+                        <button 
+                          aria-label="Descargar certificado"
+                          className="mt-2 px-4 py-2 bg-yellow-500 text-white rounded-lg hover:bg-yellow-600 transition-colors"
+                        >
                           Descargar Certificado
                         </button>
                       </div>

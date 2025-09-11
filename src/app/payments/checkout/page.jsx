@@ -117,6 +117,7 @@ export default function CheckoutPage() {
           </h3>
 
           <input
+            id="number"
             type="text"
             name="number"
             value={card.number}
@@ -129,6 +130,7 @@ export default function CheckoutPage() {
             inputMode="numeric"
           />
           <input
+            id="name"
             type="text"
             name="name"
             value={card.name}
@@ -140,6 +142,7 @@ export default function CheckoutPage() {
           />
           <div className="flex gap-4">
             <input
+              id="expiry"
               type="text"
               name="expiry"
               value={card.expiry}
@@ -151,6 +154,7 @@ export default function CheckoutPage() {
               maxLength={5}
             />
             <input
+              id="cvc"
               type="text"
               name="cvc"
               value={card.cvc}
@@ -174,6 +178,7 @@ export default function CheckoutPage() {
           {/* Botón de pagar */}
           {!success && (
             <Button
+              aria-label="Pagar"
               type="submit"
               className="btn-primary py-2 px-6 rounded-lg font-bold text-lg mt-2"
             >
@@ -188,8 +193,9 @@ export default function CheckoutPage() {
                 <CheckCircle size={20} /> ¡Pago realizado con éxito!
               </div>
               <Button
+                aria-label="Ir al curso"
                 onClick={() => router.push(`/courses/${course.id}/overview`)}
-                className="btn-secondary py-2 px-6 rounded-lg font-bold text-lg"
+                className="btn-primary text-[var(--color-text)] hover:bg-[var(--color-primary)] hover:text-white py-2 px-6 rounded-lg font-bold text-lg"
               >
                 Ir al curso
               </Button>

@@ -92,6 +92,7 @@ export default function EditCoursePage() {
             Título
           </label>
           <input
+            id="title"
             type="text"
             name="title"
             value={formData.title}
@@ -159,6 +160,7 @@ export default function EditCoursePage() {
             Precio (USD)
           </label>
           <input
+            id="price"
             type="number"
             name="price"
             value={formData.price}
@@ -174,6 +176,7 @@ export default function EditCoursePage() {
             Instructor
           </label>
           <input
+            id="instructor"
             type="text"
             name="instructor"
             value={formData.instructor}
@@ -186,6 +189,7 @@ export default function EditCoursePage() {
         {/* Botón */}
         <div className="flex justify-end">
           <button
+            aria-label="Guardar cambios"
             type="submit"
             disabled={saving}
             className="px-6 py-3 rounded-lg bg-[var(--color-primary)] text-[var(--color-text)] hover:text-[var(--color-primary-text)] hover:bg-[var(--color-primary-hover)]"

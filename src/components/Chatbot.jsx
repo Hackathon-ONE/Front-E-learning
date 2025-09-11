@@ -127,6 +127,7 @@ export default function Chatbot() {
       <div className="flex flex-wrap gap-2 p-2 sm:p-3 text-[var(--color-text)] bg-[var(--color-surface)] border-t border-[var(--color-muted)]">
         {knowledgeBase.map((item, index) => (
           <button
+            aria-label="Sugerencia de chat"
             key={index}
             onClick={() => {
               setInputValue(item.keywords[0]);
@@ -154,6 +155,8 @@ export default function Chatbot() {
         onSubmit={handleSendMessage}
       >
         <input
+          id="inputValue"
+          name="inputValue"
           type="text"
           value={inputValue}
           onChange={(e) => setInputValue(e.target.value)}
@@ -161,6 +164,7 @@ export default function Chatbot() {
           className="flex-grow border text-[var(--color-secondary-hover-text)] border-[var(--color-muted)] rounded-full px-3 sm:px-4 py-2 text-sm sm:text-sm outline-none focus:border-[var(--color-primary)]"
         />
         <button
+          aria-label="Enviar mensaje"
           type="submit"
           className="ml-2 w-10 h-10 sm:w-12 sm:h-12 bg-[var(--color-primary)] rounded-full flex items-center justify-center hover:bg-[var(--color-primary)] transition-colors"
         >

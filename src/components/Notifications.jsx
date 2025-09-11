@@ -31,6 +31,7 @@ export default function Notifications() {
   return (
     <div className="relative">
       <button
+        aria-label="Notificaciones"
         onClick={() => setOpen((prev) => !prev)}
         className="relative p-2 rounded-full hover:bg-[var(--color-surface)] transition"
       >
@@ -69,6 +70,7 @@ export default function Notifications() {
           {notifications.length > 0 && (
             <div className="p-3 text-center">
               <button
+                aria-label="Marcar todas como leídas"
                 onClick={() =>
                   setNotifications((prev) => prev.map((n) => ({ ...n, read: true })))
                 }

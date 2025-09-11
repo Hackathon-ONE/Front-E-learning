@@ -58,7 +58,7 @@ export default function ProfilePage() {
       {/* Perfil */}
       <div className="bg-surface rounded-2xl shadow p-6 flex flex-col md:flex-row gap-6 items-start">
       <Image
-        src={avatar}
+        src={session.user.image}
         alt={name}
         width={120}
         height={120}
@@ -79,7 +79,7 @@ export default function ProfilePage() {
           )}
 
           <div className="mt-3 flex gap-3">
-            <Button onClick={() => setIsEditing(!isEditing)} variant="primary">
+            <Button aria-label="Editar Perfil" onClick={() => setIsEditing(!isEditing)} variant="primary">
               {isEditing ? "Guardar" : "Editar Perfil"}
             </Button>
           </div>
@@ -155,7 +155,7 @@ export default function ProfilePage() {
      {/* Botón Ver Progreso */}
      <div className="mt-10">
         <Link href="/dashboard/progress">
-          <button className="px-6 py-2 bg-primary text-white rounded-lg hover:bg-primary/80 transition">
+          <button aria-label="Ver Progreso" className="px-6 py-2 bg-primary text-white rounded-lg hover:bg-primary/80 transition">
             Ver Progreso
           </button>
         </Link>

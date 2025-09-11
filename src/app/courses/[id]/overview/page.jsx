@@ -14,13 +14,15 @@ export default function CourseOverviewPage() {
       <section className="w-full max-w-4xl bg-[var(--color-surface)] rounded-2xl shadow-xl p-4 sm:p-8 flex flex-col gap-8">
         {/* Portada y título */}
         <div className="flex flex-col md:flex-row gap-6 items-center">
-          <div className="w-full md:w-56 flex-shrink-0">
+          <div className="w-full md:w-56 flex-shrink-0 aspect-video relative">
             <Image
               src={course.cover}
               alt={course.title}
               width={224}
               height={224}
               className="rounded-xl object-cover w-full h-40 md:h-56"
+              placeholder="blur"
+              blurDataURL="/placeholder.png"
               priority
             />
           </div>
@@ -68,7 +70,7 @@ export default function CourseOverviewPage() {
         {/* Acción */}
         <div className="flex flex-col sm:flex-row gap-4 justify-end items-center">
           <Link href={`/courses/${course.id}/lessons`}>
-            <Button className="btn-primary px-8 py-3 rounded-lg text-lg font-bold w-full sm:w-auto">
+            <Button aria-label="Continuar curso" className="btn-primary px-8 py-3 rounded-lg text-lg font-bold w-full sm:w-auto">
               Continuar curso
             </Button>
           </Link>

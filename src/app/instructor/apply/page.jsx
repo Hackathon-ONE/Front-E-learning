@@ -51,6 +51,7 @@ export default function InstructorApplyPage() {
           <div>
             <label className="block text-sm font-medium mb-2">Nombre completo</label>
             <input
+              id="name"
               type="text"
               name="name"
               value={formData.name}
@@ -64,6 +65,7 @@ export default function InstructorApplyPage() {
           <div>
             <label className="block text-sm font-medium mb-2">LinkedIn</label>
             <input
+              id="linkedin"
               type="url"
               name="linkedin"
               value={formData.linkedin}
@@ -78,6 +80,7 @@ export default function InstructorApplyPage() {
           <div>
             <label className="block text-sm font-medium mb-2">GitHub / Portafolio</label>
             <input
+              id="github"
               type="url"
               name="github"
               value={formData.github}
@@ -91,6 +94,7 @@ export default function InstructorApplyPage() {
           <div>
             <label className="block text-sm font-medium mb-2">Experiencia</label>
             <textarea
+              id="experience"
               name="experience"
               value={formData.experience}
               onChange={handleChange}
@@ -105,6 +109,7 @@ export default function InstructorApplyPage() {
           <div>
             <label className="block text-sm font-medium mb-2">Categoría de enseñanza</label>
             <select
+              id="category"
               name="category"
               value={formData.category}
               onChange={handleChange}
@@ -144,6 +149,7 @@ export default function InstructorApplyPage() {
 
           {/* Botón enviar */}
           <button
+            aria-label="Enviar solicitud"
             type="submit"
             className="w-full flex items-center justify-center gap-2 px-6 py-3 rounded-lg btn-primary text-lg font-semibold"
           >
@@ -163,6 +169,7 @@ export default function InstructorApplyPage() {
               cuando nuestro equipo la revise.
             </p>
             <button
+              aria-label="Cerrar modal"
               onClick={() => setIsModalOpen(false)}
               className="w-full py-3 rounded-lg btn-primary font-semibold"
             >
@@ -170,7 +177,7 @@ export default function InstructorApplyPage() {
             </button>
             <div className="flex flex-col mt-4 gap-2">
             <Link href="/instructor/apply/status">
-              <button className="w-full py-3 rounded-lg btn-primary font-semibold">
+              <button aria-label="Ver estado de solicitud" className="w-full py-3 rounded-lg btn-primary font-semibold">
                 Ver estado de solicitud
               </button>
             </Link>

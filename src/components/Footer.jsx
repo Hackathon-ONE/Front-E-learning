@@ -68,7 +68,7 @@ export default function Footer() {
               placeholder="Tu correo electrónico"
               className="flex-1 min-w-0 p-2 text-sm rounded-lg border border-gray-600 bg-black text-white placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-[var(--color-primary)]"
             />
-            <Button type="submit">
+            <Button aria-label="Suscribirse a la newsletter" type="submit">
               Suscribirse
             </Button>
           </form>

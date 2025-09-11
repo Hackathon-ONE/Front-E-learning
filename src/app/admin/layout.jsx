@@ -38,6 +38,7 @@ export default function AdminLayout({ children }) {
     >
       {/* Mobile menu button */}
       <button
+        aria-label="Abrir menú"
         className="lg:hidden fixed top-4 left-4 z-50 p-2 rounded-md bg-[var(--color-primary)] text-gray-500 shadow-lg"
         onClick={() => setSidebarOpen(!sidebarOpen)}
       >
@@ -47,10 +48,10 @@ export default function AdminLayout({ children }) {
       {/* Mobile overlay */}
       {sidebarOpen && (
         <button
+          aria-label="Cerrar menú"
           className="lg:hidden fixed inset-0 bg-black bg-opacity-50 z-40 w-full h-full"
           onClick={() => setSidebarOpen(false)}
           onKeyDown={(e) => e.key === 'Escape' && setSidebarOpen(false)}
-          aria-label="Cerrar menú"
         />
       )}
 
@@ -83,6 +84,7 @@ export default function AdminLayout({ children }) {
             <div className="flex items-center gap-2">
               {/* Botón para colapsar/expandir sidebar */}
               <button
+                aria-label="Colapsar/expandir sidebar"
                 className="hidden lg:flex p-1.5 rounded-md bg-[var(--color-primary)] transition-colors"
                 onClick={() => setSidebarCollapsed(!sidebarCollapsed)}
                 title={sidebarCollapsed ? 'Expandir sidebar' : 'Colapsar sidebar'}
@@ -91,6 +93,7 @@ export default function AdminLayout({ children }) {
               </button>
               {/* Botón para cerrar en móvil */}
               <button
+                aria-label="Cerrar menú"
                 className="lg:hidden p-1 rounded-md hover:bg-[var(--color-primary)]"
                 onClick={() => setSidebarOpen(false)}
               >
@@ -115,6 +118,7 @@ export default function AdminLayout({ children }) {
                   }}
                   onClick={() => setSidebarOpen(false)}
                   title={sidebarCollapsed ? name : ''}
+                  aria-label="Abrir menú"
                 >
                   <div
                     className={`${

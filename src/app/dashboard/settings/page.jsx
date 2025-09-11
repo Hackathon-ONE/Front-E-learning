@@ -118,6 +118,7 @@ export default function SettingsPage() {
             <input
               type="text"
               name="name"
+              id="name"
               value={profile.name}
               onChange={handleProfileChange}
               className="mt-1 w-full px-3 py-2 rounded border border-[var(--color-muted)] focus:outline-none focus:ring-2 focus:ring-[var(--color-primary)] text-[var(--color-text)]"
@@ -129,6 +130,7 @@ export default function SettingsPage() {
             <input
               type="email"
               name="email"
+              id="email"
               value={profile.email}
               onChange={handleProfileChange}
               className="mt-1 w-full px-3 py-2 rounded border border-[var(--color-muted)] focus:outline-none focus:ring-2 focus:ring-[var(--color-primary)] text-[var(--color-text)]"
@@ -136,6 +138,7 @@ export default function SettingsPage() {
             />
           </label>
           <button
+            aria-label="Guardar cambios"
             type="submit"
             className="btn-primary py-2 px-6 rounded-lg font-bold text-base sm:text-lg mt-2 self-end"
             disabled={saving}
@@ -150,6 +153,7 @@ export default function SettingsPage() {
           <label className="font-semibold text-[var(--color-text)]">
             Contraseña actual
             <input
+              id="current-password"
               type="password"
               name="current"
               value={passwords.current}
@@ -161,6 +165,7 @@ export default function SettingsPage() {
           <label className="font-semibold text-[var(--color-text)]">
             Nueva contraseña
             <input
+              id="new-password"
               type="password"
               name="new"
               value={passwords.new}
@@ -172,6 +177,7 @@ export default function SettingsPage() {
           <label className="font-semibold text-[var(--color-text)]">
             Confirmar nueva contraseña
             <input
+              id="confirm-password"
               type="password"
               name="confirm"
               value={passwords.confirm}
@@ -181,6 +187,7 @@ export default function SettingsPage() {
             />
           </label>
           <button
+            aria-label="Actualizar contraseña"
             type="submit"
             className="btn-primary py-2 px-6 rounded-lg font-bold text-base sm:text-lg mt-2 self-end"
             disabled={saving}
@@ -198,6 +205,7 @@ export default function SettingsPage() {
               <h3 className="font-semibold text-[var(--color-text)] mb-2">Notificaciones</h3>
               <label className="flex items-center gap-2 mb-2">
                 <input
+                  id="email-notifications"
                   type="checkbox"
                   name="email"
                   checked={notifications.email}
@@ -208,6 +216,7 @@ export default function SettingsPage() {
               </label>
               <label className="flex items-center gap-2">
                 <input
+                  id="sms-notifications"
                   type="checkbox"
                   name="sms"
                   checked={notifications.sms}
@@ -222,6 +231,8 @@ export default function SettingsPage() {
               <h3 className="font-semibold text-[var(--color-text)] mb-2">Tema</h3>
               <div className="flex gap-4 flex-col xs:flex-row sm:flex-row">
                 <button
+                  aria-label="Tema claro"
+                  id="light-theme"
                   type="button"
                   className={`flex items-center gap-2 px-4 py-2 rounded-lg border font-semibold transition ${
                     theme === "light"
@@ -233,6 +244,8 @@ export default function SettingsPage() {
                   <Sun size={18} /> Claro
                 </button>
                 <button
+                  aria-label="Tema oscuro"
+                  id="dark-theme"
                   type="button"
                   className={`flex items-center gap-2 px-4 py-2 rounded-lg border font-semibold transition ${
                     theme === "dark"
@@ -251,6 +264,7 @@ export default function SettingsPage() {
         {/* Cerrar sesión */}
         <div className="flex justify-end w-full">
           <button
+            aria-label="Cerrar sesión"
             onClick={handleLogout}
             className="flex items-center gap-2 px-5 py-2 rounded-lg bg-red-600 text-white font-bold hover:bg-red-700 transition w-full sm:w-auto"
           >

@@ -52,14 +52,13 @@ export default function Partners() {
             {[...partners, ...partners].map((p, i) => (
               <div
                 key={i}
-                className="w-32 h-16 flex items-center justify-center cursor-pointer transition-transform transform hover:scale-110"
+                className="relative w-32 h-16 flex items-center justify-center cursor-pointer transition-transform transform hover:scale-110"
               >
                 <Image
                   src={p.logo}
                   alt={p.name}
-                  width={128}
-                  height={48}
-                  className="object-contain w-24 sm:w-28 md:w-32 h-auto"
+                  fill
+                  className="object-contain"
                   unoptimized
                   priority
                 />

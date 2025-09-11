@@ -89,6 +89,7 @@ export default function Navbar() {
                 {!user ? (
                   <>
                     <button
+                      aria-label="Iniciar sesión"
                       onClick={() => router.push('/auth/login')}
                       className="w-full text-left px-3 py-2 text-[var(--color-text)] hover:text-primary rounded-md"
                     >
@@ -151,6 +152,7 @@ export default function Navbar() {
                     <hr className="my-2 border-muted" />
 
                     <button
+                      aria-label="Cerrar sesión"
                       onClick={handleSignOut}
                       className="w-full text-left rounded-md px-3 py-2 text-[var(--color-text)] hover:bg-secondary text-red-600"
                     >
@@ -211,6 +213,7 @@ export default function Navbar() {
         {!user ? (
           <>
             <button
+              aria-label="Iniciar sesión"
               onClick={() => router.push('/auth/login')}
               className="px-4 py-2 bg-primary text-[var(--color-primary-text)] rounded-lg text-center"
             >
@@ -258,6 +261,7 @@ export default function Navbar() {
               Configuración
             </Link>
             <button
+              aria-label="Cerrar sesión"
               onClick={handleSignOut}
               className="px-4 py-2 hover:bg-secondary rounded-lg text-center w-full text-red-600"
             >

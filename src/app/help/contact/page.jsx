@@ -84,6 +84,7 @@ export default function ContactPage() {
             <label className="font-semibold text-[var(--color-text)]">
               Nombre
               <input
+                id="name"
                 type="text"
                 name="name"
                 required
@@ -96,6 +97,7 @@ export default function ContactPage() {
             <label className="font-semibold text-[var(--color-text)]">
               Email
               <input
+                id="email"
                 type="email"
                 name="email"
                 required
@@ -108,6 +110,7 @@ export default function ContactPage() {
             <label className="font-semibold text-[var(--color-text)]">
               Mensaje
               <textarea
+                id="message"
                 name="message"
                 required
                 value={form.message}
@@ -118,6 +121,7 @@ export default function ContactPage() {
               />
             </label>
             <button
+              aria-label="Enviar mensaje"
               type="submit"
               className="btn-primary py-2 px-6 rounded-lg font-bold text-lg mt-2"
               disabled={sent}

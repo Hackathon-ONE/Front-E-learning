@@ -41,7 +41,7 @@ export default function EditLessonPage() {
           Editar lección #{lessonId}
         </h1>
         <Link href={`/instructor/courses/${id}/lessons`}>
-          <button className="flex items-center gap-2 text-gray-600 hover:text-gray-900">
+          <button aria-label="Volver al listado de lecciones" className="flex items-center gap-2 text-gray-600 hover:text-gray-900">
             <ArrowLeft size={18} /> Volver
           </button>
         </Link>
@@ -56,6 +56,7 @@ export default function EditLessonPage() {
         <div>
           <label className="block text-sm font-medium mb-1">Título</label>
           <input
+            id="title"
             type="text"
             name="title"
             value={lesson.title}
@@ -82,6 +83,7 @@ export default function EditLessonPage() {
         <div>
           <label className="block text-sm font-medium mb-1">Duración (mm:ss)</label>
           <input
+            id="duration"
             type="text"
             name="duration"
             value={lesson.duration}
@@ -108,6 +110,7 @@ export default function EditLessonPage() {
 
         {/* Botón Guardar */}
         <button
+          aria-label="Guardar cambios"
           type="submit"
           className="flex items-center gap-2 px-5 py-2 bg-primary text-white rounded-lg hover:bg-primary/90 transition"
         >

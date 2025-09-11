@@ -57,6 +57,7 @@ export default function TestCredentials() {
     <div className="mb-6">
       {/* Header del dropdown */}
       <button
+        aria-label="Credenciales de Prueba"
         onClick={toggleDropdown}
         className="w-full bg-gradient-to-r from-orange-50 to-yellow-50 dark:from-orange-900/20 dark:to-yellow-900/20 border border-orange-200 dark:border-orange-800 rounded-lg p-4 hover:from-orange-100 hover:to-yellow-100 dark:hover:from-orange-900/30 dark:hover:to-yellow-900/30 transition-all duration-200"
       >
@@ -121,6 +122,7 @@ export default function TestCredentials() {
                       {account.email}
                     </code>
                     <button
+                      aria-label="Copiar email"
                       onClick={() => copyToClipboard(account.email, `email-${index}`)}
                       className="p-1 rounded transition-colors flex-shrink-0"
                       title="Copiar email"
@@ -142,6 +144,7 @@ export default function TestCredentials() {
                       {showPasswords[index] ? account.password : '••••••••'}
                     </code>
                     <button
+                      aria-label="Mostrar/ocultar contraseña"
                       onClick={() => togglePassword(index)}
                       className="p-1 rounded transition-colors flex-shrink-0"
                       title={showPasswords[index] ? 'Ocultar contraseña' : 'Mostrar contraseña'}
@@ -153,6 +156,7 @@ export default function TestCredentials() {
                       )}
                     </button>
                     <button
+                      aria-label="Copiar contraseña"
                       onClick={() => copyToClipboard(account.password, `pass-${index}`)}
                       className="p-1 rounded transition-colors flex-shrink-0"
                       title="Copiar contraseña"

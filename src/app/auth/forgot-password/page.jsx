@@ -25,6 +25,7 @@ export default function ForgotPasswordPage() {
         <label className="font-semibold text-sm">
           Correo electrónico
           <input
+            id="email"
             type="email"
             name="email"
             required
@@ -35,6 +36,7 @@ export default function ForgotPasswordPage() {
           />
         </label>
         <button
+          aria-label="Enviar instrucciones"
           type="submit"
           className="w-full py-2 rounded-lg font-bold text-lg"
           style={{ backgroundColor: "var(--color-primary)", color: "var(--color-primary-text)" }}

@@ -31,7 +31,7 @@ export default function LumiSection() {
             Tu asistente en <span className="font-semibold text-[var(--color-primary)]">Lumina</span>, lista para guiarte
             en cada paso de tu recorrido dentro de la plataforma.
           </p>
-          {/* <button aria-label="Empezar con Lumi" className="px-6 py-3 bg-primary hover:bg-primary/60 text-white font-semibold rounded-xl shadow-md transition">
+          {/* <button type="button" aria-label="Empezar con Lumi" className="px-6 py-3 bg-primary hover:bg-primary/60 text-white font-semibold rounded-xl shadow-md transition">
             Empezar con Lumi
           </button> */}
         </div>

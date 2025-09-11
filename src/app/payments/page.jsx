@@ -60,6 +60,7 @@ export default function PaymentsPage() {
             </div>
 
             <Button
+              type="button"
               aria-label="Suscribirse"  
               onClick={() => router.push("/payments/checkout")}
               className="mt-6 w-full py-3 rounded-lg font-semibold btn-primary"

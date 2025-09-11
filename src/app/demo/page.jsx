@@ -100,7 +100,7 @@ export default function DemoPage() {
             {/* CTA para suscribirse */}
             <div className="mt-6 mb-6 text-center">
               <Link href="/payments">
-                <button aria-label="Suscríbete para desbloquear todas las lecciones" className="w-full py-2 rounded-lg btn-primary text-xs sm:text-base flex items-center justify-center">
+                <button type="button" aria-label="Suscríbete para desbloquear todas las lecciones" className="w-full py-2 rounded-lg btn-primary text-xs sm:text-base flex items-center justify-center">
                   Suscríbete para desbloquear todas las lecciones
                 </button>
               </Link>
@@ -114,6 +114,7 @@ export default function DemoPage() {
         <div className="fixed inset-0 bg-black/60 flex justify-center items-center z-50 p-4">
           <div className="bg-[var(--color-surface)] rounded-xl shadow-xl max-w-md w-full p-6 relative">
             <button
+              type="button"
               aria-label="Cerrar modal"
               onClick={() => setShowModal(false)}
               className="absolute top-3 right-3 text-[var(--color-muted)] hover:text-[var(--color-primary)]"
@@ -132,11 +133,12 @@ export default function DemoPage() {
 
             <div className="flex flex-col gap-3">
               <Link href="/payments" onClick={() => setShowModal(false)}>
-                <button aria-label="Suscríbete para desbloquear todas las lecciones" className="w-full py-3 rounded-lg btn-primary flex items-center justify-center gap-2">
+                <button type="button" aria-label="Suscríbete para desbloquear todas las lecciones" className="w-full py-3 rounded-lg btn-primary flex items-center justify-center gap-2">
                   <Star className="w-5 h-5" /> Suscribirme ahora
                 </button>
               </Link>
               <button
+                type="button"
                 aria-label="Seguir explorando"
                 onClick={() => setShowModal(false)}
                 className="w-full py-3 rounded-lg bg-[var(--color-secondary)] text-[var(--color-secondary-text)] hover:bg-[var(--color-secondary-hover)] hover:text-[var(--color-secondary-hover-text)] flex items-center justify-center gap-2"

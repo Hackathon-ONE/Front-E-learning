@@ -81,6 +81,7 @@ export default function Testimonials() {
               <Card className="flex flex-col justify-between items-center p-2 text-center bg-[var(--color-card-primary)] rounded-2xl shadow-lg w-full h-[300px] transition-transform transform hover:scale-105">
                 <div className="flex flex-col items-center">
                   <Image
+                    aria-label={t.name}
                     src={t.avatar}
                     alt={t.name}
                     width={128}

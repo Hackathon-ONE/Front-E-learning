@@ -137,13 +137,14 @@ export default function LoginForm() {
       </div>
 
       <button
+        type="button"
         aria-label="Iniciar sesión con Google"
         onClick={handleGoogleLogin}
         disabled={loading}
         className="w-full flex items-center justify-center gap-2 py-3 rounded-lg border font-semibold hover:bg-primary hover:text-primary-text text-[var(--color-text)]"
         style={{
-          borderColor: "var(--color-secondary)",
-          backgroundColor: "var(--color-terciary)",
+          borderColor: "var(--color-primary)",
+          backgroundColor: "var(--color-surface)",
           color: "var(--color-text-primary)",
         }}
       >

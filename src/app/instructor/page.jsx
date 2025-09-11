@@ -44,6 +44,7 @@ export default function InstructorsPage() {
           >
             {/* Avatar */}
             <Image
+              aria-label={instructor.name}
               src={instructor.avatar}
               alt={instructor.name}
               width={128}
@@ -101,7 +102,7 @@ export default function InstructorsPage() {
             {/* Botón Ver perfil */}
             <div className="mt-auto w-full">
               <Link href={`/instructor/${instructor.id}`} className="w-full">
-                <button aria-label="Ver perfil" className="w-full py-2 sm:py-3 rounded-lg bg-primary text-white font-semibold text-xs sm:text-sm md:text-base hover:opacity-80 transition">
+                <button type="button" aria-label="Ver perfil" className="w-full py-2 sm:py-3 rounded-lg bg-primary text-white font-semibold text-xs sm:text-sm md:text-base hover:opacity-80 transition">
                   Ver perfil
                 </button>
               </Link>

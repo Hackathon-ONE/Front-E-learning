@@ -89,6 +89,7 @@ function InstructorDashboard() {
         <header className="flex flex-col md:flex-row items-center gap-6">
           {instructor.avatar ? (
             <Image
+              aria-label={instructor.name}
               src={instructor.avatar}
               alt={instructor.name}
               width={128}
@@ -154,7 +155,7 @@ function InstructorDashboard() {
                 <BookOpen className="w-10 h-10 text-indigo-500 mb-3" />
                 <h3 className="text-lg font-semibold">Ver cursos</h3>
                 <Link href="/instructor/courses">
-                  <Button aria-label="Ver cursos" className="mt-3 p-2 rounded-lg border border-primary text-[var(--color-text)] hover:bg-primary hover:text-white transition text-sm md:text-base">
+                  <Button type="button" aria-label="Ver cursos" className="mt-3 p-2 rounded-lg border border-primary text-[var(--color-text)] hover:bg-primary hover:text-white transition text-sm md:text-base">
                     Ver más
                   </Button>
                 </Link>
@@ -167,7 +168,7 @@ function InstructorDashboard() {
                 <PlusCircle className="w-10 h-10 text-primary mb-3" />
                 <h3 className="text-lg font-semibold">Crear nuevo curso</h3>
                 <Link href="/instructor/courses/new">
-                  <Button aria-label="Crear nuevo curso" className="mt-3 p-2 rounded-lg border border-primary text-[var(--color-text)] hover:bg-primary hover:text-white transition text-sm md:text-base">
+                  <Button type="button" aria-label="Crear nuevo curso" className="mt-3 p-2 rounded-lg border border-primary text-[var(--color-text)] hover:bg-primary hover:text-white transition text-sm md:text-base">
                     Ver más
                   </Button>
                 </Link>
@@ -180,7 +181,7 @@ function InstructorDashboard() {
                 <Pencil className="w-10 h-10 text-accent mb-3" />
                 <h3 className="text-lg font-semibold">Editar curso</h3>
                 <Link href={`/instructor/courses/${firstCourseId}/edit`}>
-                  <Button aria-label="Editar curso" className="mt-3 p-2 rounded-lg border border-primary text-[var(--color-text)] hover:bg-primary hover:text-white transition text-sm md:text-base">
+                  <Button type="button" aria-label="Editar curso" className="mt-3 p-2 rounded-lg border border-primary text-[var(--color-text)] hover:bg-primary hover:text-white transition text-sm md:text-base">
                     Ver más
                   </Button>
                 </Link>
@@ -193,7 +194,7 @@ function InstructorDashboard() {
                 <Users className="w-10 h-10 text-green-500 mb-3" />
                 <h3 className="text-lg font-semibold">Gestionar estudiantes</h3>
                 <Link href={`/instructor/courses/${firstCourseId}/students`}>
-                  <Button aria-label="Gestionar estudiantes" className="mt-3 p-2 rounded-lg border border-primary text-[var(--color-text)] hover:bg-primary hover:text-white transition text-sm md:text-base">
+                  <Button type="button" aria-label="Gestionar estudiantes" className="mt-3 p-2 rounded-lg border border-primary text-[var(--color-text)] hover:bg-primary hover:text-white transition text-sm md:text-base">
                     Ver más
                   </Button>
                 </Link>
@@ -206,7 +207,7 @@ function InstructorDashboard() {
                 <DollarSign className="w-10 h-10 text-green-500 mb-3" />
                 <h3 className="text-lg font-semibold">Gestionar pagos</h3>
                 <Link href="/instructor/earnings">
-                  <Button aria-label="Gestionar pagos" className="mt-3 p-2 rounded-lg border border-primary text-[var(--color-text)] hover:bg-primary hover:text-white transition text-sm md:text-base">
+                  <Button type="button" aria-label="Gestionar pagos" className="mt-3 p-2 rounded-lg border border-primary text-[var(--color-text)] hover:bg-primary hover:text-white transition text-sm md:text-base">
                     Ver más
                   </Button>
                 </Link>
@@ -219,7 +220,7 @@ function InstructorDashboard() {
                 <LineChart className="w-10 h-10 text-blue-500 mb-3" />
                 <h3 className="text-lg font-semibold">Analíticas</h3>
                 <Link href={`/instructor/courses/${firstCourseId}/analytics`}>
-                  <Button aria-label="Analíticas" className="mt-3 p-2 rounded-lg border border-primary text-[var(--color-text)] hover:bg-primary hover:text-white transition text-sm md:text-base">
+                  <Button type="button" aria-label="Analíticas" className="mt-3 p-2 rounded-lg border border-primary text-[var(--color-text)] hover:bg-primary hover:text-white transition text-sm md:text-base">
                     Ver más
                   </Button>
                 </Link>

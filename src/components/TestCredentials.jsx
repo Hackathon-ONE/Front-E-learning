@@ -7,21 +7,21 @@ const testAccounts = [
   {
     role: 'Admin',
     email: 'admin@lumina.com',
-    password: 'admin123',
+    password: '$2a$10$6FK7a2uaJIXsbR9I1lYFqOIEv6XONYH15CXmtlND1To/nglGiB95G',
     description: 'Acceso completo al sistema',
     color: 'bg-red-100 text-red-800 dark:bg-red-900/30 dark:text-red-300',
   },
   {
     role: 'Instructor',
     email: 'instructor@lumina.com',
-    password: 'instructor123',
+    password: '$2a$10$d7kLgw0uHWjt394GqNHhJuW17Je94ywfRY/7aDcvBTjhw8.FpC8yS',
     description: 'Crear y gestionar cursos',
     color: 'bg-orange-100 text-orange-800 dark:bg-orange-900/30 dark:text-orange-300',
   },
   {
     role: 'Student',
-    email: 'student@lumina.com',
-    password: 'student123',
+    email: 'student@example.com',
+    password: '$2a$10$ylja2.hajOQt1NlFubeSJejCpK1sk9qXYr8EsgFZBRF0RCIoZaK1u',
     description: 'Acceso a cursos matriculados',
     color: 'bg-green-100 text-green-800 dark:bg-green-900/30 dark:text-green-300',
   },
@@ -57,6 +57,7 @@ export default function TestCredentials() {
     <div className="mb-6">
       {/* Header del dropdown */}
       <button
+        type="button"
         aria-label="Credenciales de Prueba"
         onClick={toggleDropdown}
         className="w-full bg-gradient-to-r from-orange-50 to-yellow-50 dark:from-orange-900/20 dark:to-yellow-900/20 border border-orange-200 dark:border-orange-800 rounded-lg p-4 hover:from-orange-100 hover:to-yellow-100 dark:hover:from-orange-900/30 dark:hover:to-yellow-900/30 transition-all duration-200"
@@ -122,6 +123,7 @@ export default function TestCredentials() {
                       {account.email}
                     </code>
                     <button
+                      type="button"
                       aria-label="Copiar email"
                       onClick={() => copyToClipboard(account.email, `email-${index}`)}
                       className="p-1 rounded transition-colors flex-shrink-0"
@@ -144,6 +146,7 @@ export default function TestCredentials() {
                       {showPasswords[index] ? account.password : '••••••••'}
                     </code>
                     <button
+                      type="button"
                       aria-label="Mostrar/ocultar contraseña"
                       onClick={() => togglePassword(index)}
                       className="p-1 rounded transition-colors flex-shrink-0"
@@ -156,6 +159,7 @@ export default function TestCredentials() {
                       )}
                     </button>
                     <button
+                      type="button"
                       aria-label="Copiar contraseña"
                       onClick={() => copyToClipboard(account.password, `pass-${index}`)}
                       className="p-1 rounded transition-colors flex-shrink-0"

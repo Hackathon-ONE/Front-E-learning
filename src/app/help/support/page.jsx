@@ -45,7 +45,7 @@ export default function HelpSupportPage() {
             Habla con un agente en tiempo real para resolver tus dudas.
           </p>
           <Link href="/help/support/chat">
-            <button aria-label="Iniciar chat" className="btn-primary px-4 py-2 rounded-lg text-sm font-medium">
+            <button type="button" aria-label="Iniciar chat" className="btn-primary px-4 py-2 rounded-lg text-sm font-medium">
               Iniciar chat
             </button>
           </Link>

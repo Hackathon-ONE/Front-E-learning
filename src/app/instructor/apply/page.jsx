@@ -169,6 +169,7 @@ export default function InstructorApplyPage() {
               cuando nuestro equipo la revise.
             </p>
             <button
+              type="button"
               aria-label="Cerrar modal"
               onClick={() => setIsModalOpen(false)}
               className="w-full py-3 rounded-lg btn-primary font-semibold"
@@ -177,7 +178,7 @@ export default function InstructorApplyPage() {
             </button>
             <div className="flex flex-col mt-4 gap-2">
             <Link href="/instructor/apply/status">
-              <button aria-label="Ver estado de solicitud" className="w-full py-3 rounded-lg btn-primary font-semibold">
+              <button type="button" aria-label="Ver estado de solicitud" className="w-full py-3 rounded-lg btn-primary font-semibold">
                 Ver estado de solicitud
               </button>
             </Link>

@@ -84,6 +84,7 @@ export default function StudentDetailPage() {
           <div className="bg-[var(--color-surface)] rounded-2xl p-6 shadow-lg">
             <div className="flex flex-col md:flex-row items-start md:items-center gap-6">
               <Image
+                aria-label={student.name}
                 src={student.avatar}
                 alt={student.name}
                 width={128}
@@ -166,6 +167,7 @@ export default function StudentDetailPage() {
           <div className="border-b border-gray-200 dark:border-gray-700">
             <nav className="-mb-px flex flex-wrap space-x-2 sm:space-x-8">
               <button
+                type="button"
                 aria-label="Cursos"
                 onClick={() => setActiveTab('courses')}
                 className={`border-b-2 py-2 px-1 text-sm font-medium transition-colors ${
@@ -178,6 +180,7 @@ export default function StudentDetailPage() {
               </button>
               
               <button
+                type="button"
                 aria-label="Estadísticas"
                 onClick={() => setActiveTab('stats')}
                 className={`border-b-2 py-2 px-1 text-sm font-medium transition-colors ${
@@ -189,6 +192,7 @@ export default function StudentDetailPage() {
                 Estadísticas
               </button>
               <button
+                type="button"
                 aria-label="Recomendaciones AI"
                 onClick={() => setActiveTab('recommendations')}
                 className={`border-b-2 py-2 px-1 text-sm font-medium transition-colors ${
@@ -313,6 +317,7 @@ export default function StudentDetailPage() {
                         {course.lessons.length > 3 && (
                           <div className="text-center pt-2">
                             <button 
+                              type="button"
                               aria-label="Ver todas las lecciones"
                               className="text-primary hover:text-primary/80 text-sm"
                             >

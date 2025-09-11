@@ -27,6 +27,7 @@ export default function InstructorProfilePage() {
       {/* Perfil principal */}
       <section className="max-w-6xl mx-auto bg-[var(--color-surface)] rounded-2xl shadow-xl p-6 sm:p-10 flex flex-col sm:flex-row items-center sm:items-start gap-6 sm:gap-10">
         <Image
+          aria-label={instructor.name}
           src={instructor.avatar}
           alt={instructor.name}
           className="w-28 h-28 sm:w-36 sm:h-36 rounded-full object-cover border-4 border-primary/30 shadow-md"

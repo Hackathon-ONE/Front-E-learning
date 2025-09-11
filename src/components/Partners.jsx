@@ -55,6 +55,7 @@ export default function Partners() {
                 className="relative w-32 h-16 flex items-center justify-center cursor-pointer transition-transform transform hover:scale-110"
               >
                 <Image
+                  aria-label={p.name}
                   src={p.logo}
                   alt={p.name}
                   fill

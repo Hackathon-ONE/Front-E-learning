@@ -152,6 +152,7 @@ export default function RegisterForm() {
       </div>
 
       <button
+        type="button"
         aria-label="Registrarse con Google"
         onClick={handleGoogleRegister}
         disabled={loading}

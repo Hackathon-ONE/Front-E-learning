@@ -21,6 +21,7 @@ export default function CTA() {
         </p>
         <Link href="/auth/login">
           <Button
+            type="button"
             aria-label="Empezar ahora"
             className="flex items-center gap-2 px-8 py-4 text-lg font-semibold rounded-xl transition-transform transform hover:scale-105 hover:shadow-xl shadow-primary/50"
             style={{

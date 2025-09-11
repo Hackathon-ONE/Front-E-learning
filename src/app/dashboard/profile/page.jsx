@@ -66,6 +66,7 @@ export default function ProfilePage() {
       {/* Perfil */}
       <div className="bg-surface rounded-2xl shadow p-6 flex flex-col md:flex-row gap-6 items-start">
       <Image
+        aria-label={name}
         src={avatar}
         alt={name}
         width={120}
@@ -165,7 +166,7 @@ export default function ProfilePage() {
      {/* Botón Ver Progreso */}
      <div className="mt-10">
         <Link href="/dashboard/progress">
-          <button aria-label="Ver Progreso" className="px-6 py-2 bg-primary text-white rounded-lg hover:bg-primary/80 transition">
+          <button type="button" aria-label="Ver Progreso" className="px-6 py-2 bg-primary text-white rounded-lg hover:bg-primary/80 transition">
             Ver Progreso
           </button>
         </Link>

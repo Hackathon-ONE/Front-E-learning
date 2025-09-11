@@ -16,6 +16,7 @@
 //       <h1>Hola {session?.user?.name}</h1>
 //       {session?.user?.image && (
 //         <Image
+//           aria-label="Avatar"    
 //           src={session.user.image}
 //           alt="Avatar"
 //           width={80}

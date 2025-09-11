@@ -56,6 +56,7 @@ export default function TeamPage() {
             {/* Imagen circular */}
             <div className="w-40 h-40 relative mb-4">
               <Image
+                aria-label={member.name}
                 src={member.image}
                 alt={member.name}
                 fill

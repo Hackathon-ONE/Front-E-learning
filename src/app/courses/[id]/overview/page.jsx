@@ -16,6 +16,7 @@ export default function CourseOverviewPage() {
         <div className="flex flex-col md:flex-row gap-6 items-center">
           <div className="w-full md:w-56 flex-shrink-0 aspect-video relative">
             <Image
+              aria-label={course.title}
               src={course.cover}
               alt={course.title}
               width={224}

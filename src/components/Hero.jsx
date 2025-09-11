@@ -47,12 +47,12 @@ export default function Hero() {
           </p>
           <div className="flex flex-col sm:flex-row justify-center gap-3 sm:gap-4">
             <Link href="/about">
-              <Button aria-label="Conoce Lumina" variant="primary" size="lg">
+              <Button type="button" aria-label="Conoce Lumina" variant="primary" size="lg">
                 Conoce Lumina
               </Button>
             </Link>
             <Link href="/instructor/apply">
-              <Button aria-label="Quiero ser instructor" variant="outline" size="lg">
+              <Button type="button" aria-label="Quiero ser instructor" variant="outline" size="lg">
                 Quiero ser instructor
               </Button>
             </Link>

@@ -264,6 +264,7 @@ export default function SettingsPage() {
         {/* Cerrar sesión */}
         <div className="flex justify-end w-full">
           <button
+            type="button"
             aria-label="Cerrar sesión"
             onClick={handleLogout}
             className="flex items-center gap-2 px-5 py-2 rounded-lg bg-red-600 text-white font-bold hover:bg-red-700 transition w-full sm:w-auto"

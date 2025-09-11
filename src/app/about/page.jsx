@@ -13,6 +13,7 @@ export default function AboutPage() {
           {/* Imagen */}
           <div className="relative">
             <Image
+              aria-label="Sobre nosotros"
               src="/images/about-preview.jpg"
               alt="Sobre nosotros"
               className="rounded-2xl shadow-lg w-full object-cover"

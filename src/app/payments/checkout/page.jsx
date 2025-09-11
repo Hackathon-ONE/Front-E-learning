@@ -193,6 +193,7 @@ export default function CheckoutPage() {
                 <CheckCircle size={20} /> ¡Pago realizado con éxito!
               </div>
               <Button
+                type="button"
                 aria-label="Ir al curso"
                 onClick={() => router.push(`/courses/${course.id}/overview`)}
                 className="btn-primary text-[var(--color-text)] hover:bg-[var(--color-primary)] hover:text-white py-2 px-6 rounded-lg font-bold text-lg"

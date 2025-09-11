@@ -31,12 +31,12 @@ export default function InstructorApplyConfirmationPage() {
         {/* Botones de acción */}
         <div className="flex flex-col sm:flex-row justify-center gap-4">
           <Link href="/">
-            <button aria-label="Ir al inicio" className="w-full sm:w-auto px-6 py-3 rounded-lg btn-primary font-semibold flex items-center justify-center gap-2">
+            <button type="button" aria-label="Ir al inicio" className="w-full sm:w-auto px-6 py-3 rounded-lg btn-primary font-semibold flex items-center justify-center gap-2">
               Ir al inicio <ArrowRight className="w-5 h-5" />
             </button>
           </Link>
           <Link href="/courses">
-            <button aria-label="Explorar cursos" className="w-full sm:w-auto px-6 py-3 rounded-lg border border-[var(--color-muted)] bg-[var(--color-card-secondary)] hover:bg-[var(--color-card-primary)] transition font-semibold">
+            <button type="button" aria-label="Explorar cursos" className="w-full sm:w-auto px-6 py-3 rounded-lg border border-[var(--color-muted)] bg-[var(--color-card-secondary)] hover:bg-[var(--color-card-primary)] transition font-semibold">
               Explorar cursos
             </button>
           </Link>

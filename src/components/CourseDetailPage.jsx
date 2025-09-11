@@ -17,6 +17,51 @@ export default function CourseDetailPage({ courseId }) {
   const [instructor] = useState(instructorMock);
   const [progress] = useState(100);
 
+/*   const [course, setCourse] = useState(null);
+  const [lessons, setLessons] = useState([]);
+  const [instructor, setInstructor] = useState(null);
+  const [loading, setLoading] = useState(true);
+  const [progress, setProgress] = useState(0);
+
+  useEffect(() => {
+    async function fetchData() {
+      try {
+        // 👇 ajusta estas URLs según tu backend
+        const courseRes = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/courses/${courseId}`);
+        const courseData = await courseRes.json();
+
+        const lessonsRes = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/courses/${courseId}/lessons`);
+        const lessonsData = await lessonsRes.json();
+
+        const instructorRes = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/instructors/${courseData.instructorId}`);
+        const instructorData = await instructorRes.json();
+
+        setCourse(courseData);
+        setLessons(lessonsData);
+        setInstructor(instructorData);
+
+        // ejemplo simple de progreso (lecciones completadas / total)
+        const completed = lessonsData.filter(l => l.completed).length;
+        setProgress(Math.round((completed / lessonsData.length) * 100));
+      } catch (err) {
+        console.error("Error cargando curso:", err);
+      } finally {
+        setLoading(false);
+      }
+    }
+
+    fetchData();
+  }, [courseId]);
+
+  if (loading) {
+    return <p className="p-6">Cargando curso...</p>;
+  }
+
+  if (!course) {
+    return <p className="p-6">Curso no encontrado.</p>;
+  } */
+
+
   return (
     <section className="p-6 md:p-12 space-y-8">
       {/* Header */}
@@ -29,7 +74,7 @@ export default function CourseDetailPage({ courseId }) {
         </div>
         <div className="mt-4 md:mt-0 flex gap-4">
           <Link href={`/courses/${courseId}/lessons/${lessons[0].id}`}>
-            <button aria-label="Acceder al curso" className="px-6 py-2 rounded-lg shadow transition bg-[var(--color-muted)] text-[var(--color-primary-text)] hover:scale-105">
+            <button type="button" aria-label="Acceder al curso" className="px-6 py-2 rounded-lg shadow transition bg-[var(--color-muted)] text-[var(--color-primary-text)] hover:scale-105">
               Acceder Curso
             </button>
           </Link>
@@ -64,7 +109,16 @@ export default function CourseDetailPage({ courseId }) {
 
           {/* Instructor */}
           <div className="rounded-xl shadow p-6 text-center bg-surface">
-            <Image src={instructor.avatar} alt={instructor.name} width={128} height={64} unoptimized priority className="w-20 h-20 rounded-full mx-auto mb-4" />
+            <Image
+              aria-label={instructor.name}
+              src={instructor.avatar}
+              alt={instructor.name}
+              width={128}
+              height={64}
+              unoptimized
+              priority
+              className="w-20 h-20 rounded-full mx-auto mb-4"
+            />
             <h3 className="text-lg font-bold">{instructor.name}</h3>
             <p className="text-sm mb-4 text-muted">{instructor.bio}</p>
             <div className="flex justify-center gap-4">
@@ -95,7 +149,7 @@ export default function CourseDetailPage({ courseId }) {
                   </div>
                 </div>
                 <Link href={`/courses/${course.id}/lessons/${lesson.id}`}>
-                  <button aria-label="Ver lección" className="text-sm text-primary hover:scale-110 transition">
+                  <button type="button" aria-label="Ver lección" className="text-sm text-primary hover:scale-110 transition">
                     {lesson.completed ? "Revisar" : "Ver ahora"}
                   </button>
                 </Link>

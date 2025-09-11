@@ -77,6 +77,7 @@ export default function StudentProgressPage() {
           <div className="bg-[var(--color-surface)] rounded-2xl p-6 shadow-lg">
             <div className="flex items-center gap-4 mb-6">
               <Image
+                aria-label={student.name}
                 src={student.avatar}
                 alt={student.name}
                 width={128}
@@ -130,6 +131,7 @@ export default function StudentProgressPage() {
             <div className="space-y-3">
               {student.courses.map((course) => (
                 <button
+                  type="button"
                   aria-label="Ver curso"
                   key={course.id}
                   onClick={() => setSelectedCourse(course)}
@@ -334,6 +336,7 @@ export default function StudentProgressPage() {
                           {new Date(selectedCourse.certificate.issued).toLocaleDateString()}
                         </p>
                         <button 
+                          type="button"
                           aria-label="Descargar certificado"
                           className="mt-2 px-4 py-2 bg-yellow-500 text-white rounded-lg hover:bg-yellow-600 transition-colors"
                         >

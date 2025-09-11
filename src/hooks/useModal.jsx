@@ -15,6 +15,7 @@ export default function useModal({ isOpen, title, content, onClose }) {
       >
         {/* Botón cerrar */}
         <button
+          type="button"
           aria-label="Cerrar modal"
           onClick={onClose}
           className="absolute top-4 right-4 text-[var(--color-muted)] hover:text-[var(--color-accent)]"
@@ -31,6 +32,7 @@ export default function useModal({ isOpen, title, content, onClose }) {
         {/* CTA */}
         <div className="mt-6 flex justify-end">
           <button
+            type="button"
             aria-label="Cerrar modal"
             onClick={onClose}
             className="px-4 py-2 rounded-lg btn-primary"

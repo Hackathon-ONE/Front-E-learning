@@ -32,18 +32,22 @@ export default function Navbar() {
     signOut({ callbackUrl: "/" });
   };
 
+  const closeDropdown = () => setDropdownOpen(false);
+
   return (
     <nav className="sticky top-0 z-50 bg-[var(--color-surface)] shadow-md border-b border-primary">
       <div className="container mx-auto flex justify-between items-center p-4">
         {/* Logo */}
         <Link href="/" className="flex items-center space-x-2">
           <Image
+            aria-label="Logo"
             src="/Logo.png"
             alt="Logo"
-            width={16}
-            height={16}
+            width={80}
+            height={80}
             priority
             unoptimized
+            className="hover:scale-110 hover:shadow-lg hover:shadow-primary/20 rounded-xl"
             style={{ height: 'auto', width: '30%' }}
           />
         </Link>
@@ -61,6 +65,7 @@ export default function Navbar() {
           {/* User Dropdown */}
           <div className="relative">
             <button
+              type="button"
               aria-label="User menu"
               aria-expanded={dropdownOpen}
               onClick={() => setDropdownOpen(!dropdownOpen)}
@@ -69,6 +74,7 @@ export default function Navbar() {
               {user?.image ? (
                 <>
                   <Image
+                    aria-label="Avatar"
                     src={user.image}
                     alt={user.name || 'avatar'}
                     width={128}
@@ -89,14 +95,19 @@ export default function Navbar() {
                 {!user ? (
                   <>
                     <button
+                      type="button"
                       aria-label="Iniciar sesión"
-                      onClick={() => router.push('/auth/login')}
+                      onClick={() => {
+                        closeDropdown();
+                        router.push("/auth/login");
+                      }}
                       className="w-full text-left px-3 py-2 text-[var(--color-text)] hover:text-primary rounded-md"
                     >
                       Iniciar sesión
                     </button>
                     <Link
                       href="/demo"
+                      onClick={closeDropdown}
                       className="block rounded-md px-3 py-2 text-[var(--color-text)] hover:text-primary"
                     >
                       Demo gratis
@@ -119,12 +130,14 @@ export default function Navbar() {
                       <>
                         <Link
                           href="/instructor/dashboard"
+                          onClick={closeDropdown}
                           className="block rounded-md px-3 py-2 text-[var(--color-text)] hover:bg-secondary"
                         >
                           Dashboard
                         </Link>
                         <Link
                           href="/dashboard/profile"
+                          onClick={closeDropdown}
                           className="block rounded-md px-3 py-2 text-[var(--color-text)] hover:bg-secondary"
                         >
                           Perfil
@@ -135,6 +148,7 @@ export default function Navbar() {
                     {user.role === 'STUDENT' && (
                       <Link
                         href="/dashboard/profile"
+                        onClick={closeDropdown}
                         className="block rounded-md px-3 py-2 text-[var(--color-text)] hover:bg-secondary"
                       >
                         Perfil
@@ -144,6 +158,7 @@ export default function Navbar() {
                     {/* Opciones comunes */}
                     <Link
                       href="/dashboard/settings"
+                      onClick={closeDropdown}
                       className="block rounded-md px-3 py-2 text-[var(--color-text)] hover:bg-secondary"
                     >
                       Configuración
@@ -152,8 +167,12 @@ export default function Navbar() {
                     <hr className="my-2 border-muted" />
 
                     <button
+                      type="button"
                       aria-label="Cerrar sesión"
-                      onClick={handleSignOut}
+                      onClick={() => {
+                        closeDropdown();
+                        handleSignOut();
+                      }}
                       className="w-full text-left rounded-md px-3 py-2 text-[var(--color-text)] hover:bg-secondary text-red-600"
                     >
                       Cerrar sesión
@@ -167,6 +186,7 @@ export default function Navbar() {
 
         {/* Mobile Button */}
         <button
+          type="button"
           aria-label="Toggle menu"
           className="md:hidden text-2xl"
           onClick={() => setMobileOpen(!mobileOpen)}
@@ -186,6 +206,7 @@ export default function Navbar() {
           <div className="flex items-center gap-2">
             {user?.image ? (
               <Image
+                aria-label="Avatar"
                 src={user.image}
                 alt={user.name || 'avatar'}
                 width={128}
@@ -213,14 +234,19 @@ export default function Navbar() {
         {!user ? (
           <>
             <button
+              type="button"
               aria-label="Iniciar sesión"
-              onClick={() => router.push('/auth/login')}
+              onClick={() => {
+                setMobileOpen(false);
+                router.push("/auth/login");
+              }}
               className="px-4 py-2 bg-primary text-[var(--color-primary-text)] rounded-lg text-center"
             >
               Iniciar sesión
             </button>
             <Link
               href="/demo"
+              onClick={() => setMobileOpen(false)}
               className="px-4 py-2 bg-primary text-[var(--color-primary-text)] rounded-lg text-center"
             >
               Demo gratis
@@ -232,6 +258,7 @@ export default function Navbar() {
             {user.role === 'ADMIN' && (
               <Link
                 href="/admin/dashboard"
+                onClick={() => setMobileOpen(false)}
                 className="px-4 py-2 hover:bg-secondary rounded-lg text-center"
               >
                 Dashboard Admin
@@ -241,6 +268,7 @@ export default function Navbar() {
             {user.role === 'INSTRUCTOR' && (
               <Link
                 href="/instructor/dashboard"
+                onClick={() => setMobileOpen(false)}
                 className="px-4 py-2 hover:bg-secondary rounded-lg text-center"
               >
                 Dashboard Instructor
@@ -250,19 +278,25 @@ export default function Navbar() {
             {/* Opciones comunes */}
             <Link
               href="/dashboard/profile"
+              onClick={() => setMobileOpen(false)}
               className="px-4 py-2 hover:bg-secondary rounded-lg text-center"
             >
               Perfil
             </Link>
             <Link
               href="/dashboard/settings"
+              onClick={() => setMobileOpen(false)}
               className="px-4 py-2 hover:bg-secondary rounded-lg text-center"
             >
               Configuración
             </Link>
             <button
+              type="button"
               aria-label="Cerrar sesión"
-              onClick={handleSignOut}
+              onClick={() => {
+                setMobileOpen(false);
+                handleSignOut();
+              }}
               className="px-4 py-2 hover:bg-secondary rounded-lg text-center w-full text-red-600"
             >
               Cerrar sesión

@@ -28,6 +28,7 @@ export default function SettingsPage() {
         {/* Sección Perfil */}
         <div className="bg-[var(--color-card-primary)] border border-[var(--color-muted)] rounded-xl mb-4 shadow-sm">
           <button
+            type="button" 
             aria-label="Perfil"
             className="w-full flex justify-between items-center p-4 sm:p-6 hover:bg-[var(--color-card-secondary)] rounded-t-xl transition-colors"
             onClick={() => toggleSection("perfil")}
@@ -70,7 +71,7 @@ export default function SettingsPage() {
                   />
                 </div>
               </div>
-              <button aria-label="Guardar cambios" className="px-4 py-2.5 bg-[var(--color-primary)] hover:bg-[var(--color-primary-hover)] text-white rounded-lg text-sm font-medium transition-colors">
+              <button type="button" aria-label="Guardar cambios" className="px-4 py-2.5 bg-[var(--color-primary)] hover:bg-[var(--color-primary-hover)] text-white rounded-lg text-sm font-medium transition-colors">
                 Guardar cambios
               </button>
             </div>
@@ -80,6 +81,7 @@ export default function SettingsPage() {
         {/* Sección Seguridad */}
         <div className="bg-[var(--color-card-primary)] border border-[var(--color-muted)] rounded-xl mb-4 shadow-sm">
           <button
+            type="button"
             aria-label="Seguridad"
             className="w-full flex justify-between items-center p-4 sm:p-6 hover:bg-[var(--color-card-secondary)] rounded-t-xl transition-colors"
             onClick={() => toggleSection("seguridad")}
@@ -120,7 +122,7 @@ export default function SettingsPage() {
                   />
                 </div>
               </div>
-              <button aria-label="Actualizar contraseña" className="px-4 py-2.5 bg-[var(--color-primary)] hover:bg-[var(--color-primary-hover)] text-white rounded-lg text-sm font-medium transition-colors">
+              <button type="button" aria-label="Actualizar contraseña" className="px-4 py-2.5 bg-[var(--color-primary)] hover:bg-[var(--color-primary-hover)] text-white rounded-lg text-sm font-medium transition-colors">
                 Actualizar contraseña
               </button>
             </div>
@@ -130,6 +132,7 @@ export default function SettingsPage() {
         {/* Sección Notificaciones */}
         <div className="bg-[var(--color-card-primary)] border border-[var(--color-muted)] rounded-xl mb-4 shadow-sm">
           <button
+            type="button"
             aria-label="Notificaciones"
             className="w-full flex justify-between items-center p-4 sm:p-6 hover:bg-[var(--color-card-secondary)] rounded-t-xl transition-colors"
             onClick={() => toggleSection("notificaciones")}
@@ -176,7 +179,7 @@ export default function SettingsPage() {
                   <span className="text-sm text-[var(--color-card-primary-text)]">Notificaciones de seguridad</span>
                 </label>
               </div>
-              <button aria-label="Guardar preferencias" className="px-4 py-2.5 bg-[var(--color-primary)] hover:bg-[var(--color-primary-hover)] text-white rounded-lg text-sm font-medium transition-colors">
+              <button type="button" aria-label="Guardar preferencias" className="px-4 py-2.5 bg-[var(--color-primary)] hover:bg-[var(--color-primary-hover)] text-white rounded-lg text-sm font-medium transition-colors">
                 Guardar preferencias
               </button>
             </div>

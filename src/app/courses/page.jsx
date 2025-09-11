@@ -235,6 +235,7 @@ export default function CoursesPage() {
             Ordenar por
           </h3>
           <button
+            type="button"
             aria-label="Ordenar por"
             onClick={() =>
               setSortOrder((prev) => (prev === "asc" ? "desc" : "asc"))
@@ -257,6 +258,7 @@ export default function CoursesPage() {
           {/* Imagen cuadrada */}
           <div className="relative w-full aspect-square">
             <Image
+              aria-label={course.title}
               src={course.cover}
               alt={course.title}
               fill

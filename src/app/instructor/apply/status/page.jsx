@@ -3,6 +3,8 @@
 import { useState, use } from 'react';
 import { Clock, CheckCircle, XCircle, HelpCircle } from 'lucide-react';
 import { useInstructorStatus } from '@/hooks/useInstructorStatus';
+import { useRouter } from "next/navigation";
+import Link from "next/link";
 
 export default function InstructorApplyStatusPage({ params }) {
   // Note: This page doesn't actually use dynamic params, but if it did:
@@ -11,6 +13,7 @@ export default function InstructorApplyStatusPage({ params }) {
   // const { status, loading, error } = useInstructorStatus(userId);
   // Estados disponibles de prueba
   const statuses = ['pending', 'approved', 'rejected', 'unknown'];
+  const router = useRouter();
 
   // Estado actual (puedes cambiar manualmente o con el selector)
   const [status, setStatus] = useState('pending');
@@ -81,13 +84,13 @@ export default function InstructorApplyStatusPage({ params }) {
         <p className="text-sm md:text-base text-[var(--color-muted)] mb-6">{message}</p>
 
         {/* CTA según estado */}
-        {status === 'approved' && (
-          <a
-            href="/instructor/dashboard"
+        {status === "approved" && (
+          <Link
+            href="/auth/login"
             className="w-full px-6 py-3 rounded-lg btn-primary font-semibold inline-block"
           >
-            Ir a mi dashboard
-          </a>
+            Inicia sesión para acceder a tu dashboard
+          </Link>
         )}
 
         {status === 'rejected' && (

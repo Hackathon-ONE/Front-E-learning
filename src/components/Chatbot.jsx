@@ -73,16 +73,18 @@ export default function Chatbot() {
     
     return (
       <button
+        type="button"
         onClick={() => setIsOpen(true)}
         className="fixed bottom-5 right-5 w-14 h-14 bg-[var(--color-surface)] text-[var(--color-primary-text)] rounded-full flex items-center justify-center shadow-lg z-50 hover:scale-110 transition-transform"
         aria-label="Abrir chat"
       >
         <Image
+          aria-label="Chatbot Lumi"
           src="/Lumi.png"
           alt="Chatbot Lumi"
           width={50}
           height={50}
-          className="items-center"
+          className="items-center border-[4px] border-primary rounded-full"
           priority
           unoptimized
         />
@@ -95,10 +97,21 @@ export default function Chatbot() {
       {/* Header */}
       <div className="flex items-center justify-between bg-[var(--color-primary)] text-[var(--color-primary-text)] p-3 sm:p-4 font-bold">
         <div className="flex items-center space-x-2">
-          <Image src="/Lumi.png" alt="Logo" width={40} height={40} unoptimized />
+          <Image
+            aria-label="Chatbot Lumi"
+            src="/Lumi.png"
+            alt="Logo"
+            width={50}
+            height={50}
+            className="items-center border-[2px] border-[var(--color-outline)] rounded-full"
+            unoptimized
+            priority
+          />
           <span className="text-sm sm:text-base md:text-lg">Lumi</span>
         </div>
         <button
+          type="button"
+          aria-label="Cerrar chat"
           onClick={() => setIsOpen(false)}
           className="text-[var(--color-primary-text)] text-xl sm:text-2xl"
         >
@@ -127,6 +140,7 @@ export default function Chatbot() {
       <div className="flex flex-wrap gap-2 p-2 sm:p-3 text-[var(--color-text)] bg-[var(--color-surface)] border-t border-[var(--color-muted)]">
         {knowledgeBase.map((item, index) => (
           <button
+            type="button"
             aria-label="Sugerencia de chat"
             key={index}
             onClick={() => {

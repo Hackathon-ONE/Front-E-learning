@@ -7,7 +7,7 @@ export default function Button({ children, endIcon, variant = "primary", ...prop
     outline: `${base} border border-[var(--color-primary)] text-[var(--color-primary)] hover:bg-[var(--color-primary)] hover:text-[var(--color-primary-text)]`,
   };
   return (
-    <button aria-label="Botón" className={variants[variant]} {...props}>
+    <button type="button" aria-label="Botón" className={variants[variant]} {...props}>
       {children}
       {endIcon && <span className="ml-2 inline-block">{endIcon}</span>}
     </button>

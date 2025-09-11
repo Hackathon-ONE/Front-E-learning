@@ -13,12 +13,14 @@ export default function Footer() {
         <div className="flex flex-col items-start min-w-0">
           <Link href="/" className="text-xl mt-6 mb-6 font-bold text-[var(--color-primary)] whitespace-nowrap">
             <Image
+              aria-label="Logo"
               src="/Logo.png"
               alt="Logo"
               width={148}
               height={148}
               priority
               unoptimized
+              className="hover:scale-110 hover:shadow-xl hover:shadow-primary/20 rounded-2xl"
               style={{ height: "auto", width: "70%" }}
             />
           </Link>

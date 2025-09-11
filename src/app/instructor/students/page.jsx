@@ -33,6 +33,7 @@ export default function StudentsPage() {
             >
               {/* Avatar */}
               <Image
+                aria-label={student.name} 
                 src={student.avatar}
                 alt={student.name}
                 width={128}

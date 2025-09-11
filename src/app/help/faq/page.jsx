@@ -50,6 +50,7 @@ export default function FAQPage() {
               className="border border-gray-200 dark:border-gray-700 rounded-xl shadow-sm hover:shadow-md transition-all dark:border-gray-700"
             >
               <button
+                type="button"
                 aria-label="Pregunta frecuente"
                 className="w-full text-left px-6 py-4 flex justify-between items-center focus:outline-none"
                 onClick={() => toggleFAQ(index)}

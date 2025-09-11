@@ -105,6 +105,7 @@ export default function SimpleRecommendationsForm() {
 
           {/* Button */}
           <button
+            aria-label="Obtener Recomendaciones"
             type="submit"
             disabled={isLoading}
             className="w-full sm:w-auto btn-primary px-5 py-3 rounded-lg shadow-md flex items-center justify-center text-sm sm:text-base disabled:opacity-50"

@@ -19,6 +19,7 @@ export default function Hero() {
         autoPlay
         loop
         muted
+        aria-label="Video hero"
         playsInline
         poster="https://storage.cloud.google.com/luminamp4/demo_inicial.jpg"
         onLoadedData={() => setLoading(false)} // cuando el video carga, quitamos el loader
@@ -46,12 +47,12 @@ export default function Hero() {
           </p>
           <div className="flex flex-col sm:flex-row justify-center gap-3 sm:gap-4">
             <Link href="/about">
-              <Button variant="primary" size="lg">
+              <Button aria-label="Conoce Lumina" variant="primary" size="lg">
                 Conoce Lumina
               </Button>
             </Link>
             <Link href="/instructor/apply">
-              <Button variant="outline" size="lg">
+              <Button aria-label="Quiero ser instructor" variant="outline" size="lg">
                 Quiero ser instructor
               </Button>
             </Link>

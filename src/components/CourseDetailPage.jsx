@@ -29,7 +29,7 @@ export default function CourseDetailPage({ courseId }) {
         </div>
         <div className="mt-4 md:mt-0 flex gap-4">
           <Link href={`/courses/${courseId}/lessons/${lessons[0].id}`}>
-            <button className="px-6 py-2 rounded-lg shadow transition bg-[var(--color-muted)] text-[var(--color-primary-text)] hover:scale-105">
+            <button aria-label="Acceder al curso" className="px-6 py-2 rounded-lg shadow transition bg-[var(--color-muted)] text-[var(--color-primary-text)] hover:scale-105">
               Acceder Curso
             </button>
           </Link>
@@ -95,7 +95,7 @@ export default function CourseDetailPage({ courseId }) {
                   </div>
                 </div>
                 <Link href={`/courses/${course.id}/lessons/${lesson.id}`}>
-                  <button className="text-sm text-primary hover:scale-110 transition">
+                  <button aria-label="Ver lección" className="text-sm text-primary hover:scale-110 transition">
                     {lesson.completed ? "Revisar" : "Ver ahora"}
                   </button>
                 </Link>

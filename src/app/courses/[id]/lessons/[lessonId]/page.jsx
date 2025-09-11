@@ -49,9 +49,9 @@ export default function LessonPlayerPage() {
                     : "var(--color-text)",
               }}
             >
-              <div className="flex justify-between items-center">
+              <div className="flex justify-between items-center text-sm md:text-base">
                 <span>{lesson.title}</span>
-                <span className="text-xs sm:text-sm opacity-70 text-[var(--color-text)]">
+                <span className="text-xs sm:text-xs justify-end text-end opacity-90 text-[var(--color-text)]">
                   {lesson.duration}
                 </span>
               </div>
@@ -63,12 +63,17 @@ export default function LessonPlayerPage() {
       {/* Player */}
       <main className="flex-1 flex flex-col">
         {/* Video Player */}
-        <div className="flex-1 flex items-center justify-center bg-black relative">
+        <div className="w-full bg-black relative aspect-video">
           <video
             key={currentLesson}
             controls
-            className="w-full h-auto max-h-full object-contain"
+            loop
+            playsInline
+            className="w-full h-full object-contain"
             src={activeLesson?.videoUrl || "/video/video1.mp4"}
+            // poster={activeLesson?.posterUrl || "/video/video1.jpg"}
+            autoPlay
+            aria-label="Video player 1"
             // `/video/${currentLesson}.mp4` // conectar con backend/CDN real
           />
         </div>

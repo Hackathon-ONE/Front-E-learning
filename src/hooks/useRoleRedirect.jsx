@@ -25,7 +25,7 @@ export function useRoleRedirect(options = {}) {
     if (loading) return; // Esperar a que cargue la sesión
 
     // Si requiere autenticación y no está autenticado
-    if (requireAuth && !isAuthenticated) {
+    if (requireAuth && !loading && !isAuthenticated) {
       router.push("/auth/login");
       return;
     }

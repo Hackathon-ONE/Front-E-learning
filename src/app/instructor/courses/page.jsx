@@ -69,7 +69,7 @@ return (
       {/* Botón Crear curso */}
       <div className="flex justify-end mb-4">
         <Link href="/instructor/courses/new">
-          <Button className="btn-primary px-6 py-2 rounded-lg font-bold">
+          <Button aria-label="Crear nuevo curso" className="btn-primary px-6 py-2 rounded-lg font-bold">
             Crear nuevo curso
           </Button>
         </Link>
@@ -137,12 +137,12 @@ return (
                   </td>
                   <td className="px-3 py-2 flex gap-2 justify-center items-center">
                     <Link href={`/instructor/courses/${c.id}`}>
-                      <Button className="flex items-center gap-1 px-3 py-1 rounded-lg text-sm border border-primary text-primary hover:bg-primary hover:text-white transition">
+                      <Button aria-label="Ver detalles" className="flex items-center gap-1 px-3 py-1 rounded-lg text-sm border border-primary text-primary hover:bg-primary hover:text-white transition">
                         Ver detalles
                       </Button>
                     </Link>
                     <Link href={`/instructor/courses/${c.id}/edit`}>
-                      <Button className="flex items-center gap-1 px-3 py-1 rounded-lg text-sm">
+                      <Button aria-label="Editar curso" className="flex items-center gap-1 px-3 py-1 rounded-lg text-sm">
                         <Edit size={16} /> Editar
                       </Button>
                     </Link>

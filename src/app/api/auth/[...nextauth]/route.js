@@ -60,9 +60,10 @@ export const authOptions = {
   callbacks: {
     // Validación de inicio de sesión
     async signIn({ account, profile }) {
-      if (account.provider === "google") {
-        // Solo correos verificados
-        return profile.email_verified;
+      if (account?.provider === "google") {
+        if (profile?.email_verified) return true;
+        console.error("Google profile inválido:", profile);
+        return false;
       }
       return true;
     },
@@ -81,7 +82,11 @@ export const authOptions = {
 
     // Pasar rol del token a la sesión
     async session({ session, token }) {
-      session.user.role = token.role || "STUDENT";
+      if (session.user) {
+        session.user.id = token.sub;
+        session.user.image = token.picture;
+        session.user.role = token.role || "STUDENT";
+      }
       return session;
     },
   },

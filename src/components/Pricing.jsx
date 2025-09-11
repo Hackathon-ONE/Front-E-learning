@@ -108,6 +108,7 @@ export default function PricingCards() {
                 </Typography>
                 <Link href="/payments">
                   <Button
+                    aria-label="Suscribirme"
                     variant={plan.popular ? "primary" : "outline"}
                   >
                     Suscribirme

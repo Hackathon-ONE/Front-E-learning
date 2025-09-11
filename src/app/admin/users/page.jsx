@@ -28,7 +28,7 @@ export default function UsersPage() {
               Administra los usuarios de la plataforma
             </p>
           </div>
-          <button className="w-full sm:w-auto px-4 py-2.5 bg-[var(--color-primary)] hover:bg-[var(--color-primary-hover)] text-white rounded-lg text-sm sm:text-base font-medium transition-colors">
+          <button aria-label="Nuevo usuario" className="w-full sm:w-auto px-4 py-2.5 bg-[var(--color-primary)] hover:bg-[var(--color-primary-hover)] text-white rounded-lg text-sm sm:text-base font-medium transition-colors">
             + Nuevo Usuario
           </button>
         </div>
@@ -45,6 +45,7 @@ export default function UsersPage() {
               </label>
               <input
                 id="search-users"
+                name="search-users"
                 type="text"
                 placeholder="Nombre o email..."
                 className="w-full p-2.5 rounded-lg border border-[var(--color-muted)] bg-[var(--color-card-secondary)] text-[var(--color-card-primary-text)] text-sm focus:ring-2 focus:ring-[var(--color-primary)] focus:border-transparent"
@@ -85,7 +86,7 @@ export default function UsersPage() {
               </select>
             </div>
             <div className="flex items-end">
-              <button className="w-full p-2.5 bg-[var(--color-primary)] hover:bg-[var(--color-primary-hover)] text-white rounded-lg text-sm font-medium transition-colors">
+              <button aria-label="Aplicar filtros" className="w-full p-2.5 bg-[var(--color-primary)] hover:bg-[var(--color-primary-hover)] text-white rounded-lg text-sm font-medium transition-colors">
                 Aplicar Filtros
               </button>
             </div>
@@ -169,6 +170,7 @@ export default function UsersPage() {
                       <td className="px-4 py-4 whitespace-nowrap text-right text-sm font-medium">
                         <div className="flex justify-end space-x-1 sm:space-x-2">
                           <button
+                            aria-label="Editar"
                             onClick={() => handleEdit(user)}
                             className="text-[var(--color-primary)] hover:text-[var(--color-primary-hover)] p-1 rounded-md hover:bg-[var(--color-card-secondary)] transition-colors"
                             title="Editar"
@@ -188,6 +190,7 @@ export default function UsersPage() {
                             </svg>
                           </button>
                           <button
+                            aria-label="Eliminar"
                             className="text-red-500 hover:text-red-600 p-1 rounded-md hover:bg-red-50 dark:hover:bg-red-900/20 transition-colors"
                             title="Eliminar"
                           >
@@ -217,10 +220,10 @@ export default function UsersPage() {
           {/* Paginación */}
           <div className="bg-[var(--color-surface)] px-4 py-3 flex items-center justify-between border-t border-[var(--color-muted)] sm:px-6">
             <div className="flex-1 flex justify-between sm:hidden">
-              <button className="relative inline-flex items-center px-4 py-2 border border-[var(--color-muted)] text-sm font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50">
+              <button aria-label="Anterior" className="relative inline-flex items-center px-4 py-2 border border-[var(--color-muted)] text-sm font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50">
                 Anterior
               </button>
-              <button className="ml-3 relative inline-flex items-center px-4 py-2 border border-[var(--color-muted)] text-sm font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50">
+              <button aria-label="Siguiente" className="ml-3 relative inline-flex items-center px-4 py-2 border border-[var(--color-muted)] text-sm font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50">
                 Siguiente
               </button>
             </div>
@@ -237,7 +240,7 @@ export default function UsersPage() {
                   className="relative z-0 inline-flex rounded-md shadow-sm -space-x-px"
                   aria-label="Pagination"
                 >
-                  <button className="relative inline-flex items-center px-2 py-2 rounded-l-md border border-[var(--color-muted)] bg-white text-sm font-medium text-gray-500 hover:bg-gray-50">
+                  <button aria-label="Anterior" className="relative inline-flex items-center px-2 py-2 rounded-l-md border border-[var(--color-muted)] bg-white text-sm font-medium text-gray-500 hover:bg-gray-50">
                     <span className="sr-only">Anterior</span>
                     <svg
                       className="h-5 w-5"
@@ -253,16 +256,16 @@ export default function UsersPage() {
                       />
                     </svg>
                   </button>
-                  <button className="z-10 bg-[var(--color-primary)] border-[var(--color-primary)] text-white relative inline-flex items-center px-4 py-2 border text-sm font-medium">
+                  <button aria-label="Página 1" className="z-10 bg-[var(--color-primary)] border-[var(--color-primary)] text-white relative inline-flex items-center px-4 py-2 border text-sm font-medium">
                     1
                   </button>
-                  <button className="bg-white border-[var(--color-muted)] text-gray-500 hover:bg-gray-50 relative inline-flex items-center px-4 py-2 border text-sm font-medium">
+                  <button aria-label="Página 2" className="bg-white border-[var(--color-muted)] text-gray-500 hover:bg-gray-50 relative inline-flex items-center px-4 py-2 border text-sm font-medium">
                     2
                   </button>
-                  <button className="bg-white border-[var(--color-muted)] text-gray-500 hover:bg-gray-50 relative inline-flex items-center px-4 py-2 border text-sm font-medium">
+                  <button aria-label="Página 3" className="bg-white border-[var(--color-muted)] text-gray-500 hover:bg-gray-50 relative inline-flex items-center px-4 py-2 border text-sm font-medium">
                     3
                   </button>
-                  <button className="relative inline-flex items-center px-2 py-2 rounded-r-md border border-[var(--color-muted)] bg-white text-sm font-medium text-gray-500 hover:bg-gray-50">
+                  <button aria-label="Siguiente" className="relative inline-flex items-center px-2 py-2 rounded-r-md border border-[var(--color-muted)] bg-white text-sm font-medium text-gray-500 hover:bg-gray-50">
                     <span className="sr-only">Siguiente</span>
                     <svg
                       className="h-5 w-5"
@@ -293,6 +296,7 @@ export default function UsersPage() {
                   Editar Usuario
                 </h2>
                 <button
+                  aria-label="Cerrar modal"
                   onClick={() => setSelectedUser(null)}
                   className="text-gray-400 hover:text-gray-500"
                 >
@@ -331,6 +335,7 @@ export default function UsersPage() {
                   </label>
                   <input
                     id="user-name"
+                    name="user-name"
                     type="text"
                     value={selectedUser.name}
                     onChange={(e) => setSelectedUser({ ...selectedUser, name: e.target.value })}
@@ -349,6 +354,7 @@ export default function UsersPage() {
                   </label>
                   <input
                     id="user-email"
+                    name="user-email"
                     type="email"
                     value={selectedUser.email}
                     onChange={(e) => setSelectedUser({ ...selectedUser, email: e.target.value })}
@@ -401,12 +407,14 @@ export default function UsersPage() {
               {/* Botones */}
               <div className="flex flex-col-reverse sm:flex-row justify-end gap-3 mt-8 pt-4 border-t border-[var(--color-muted)]">
                 <button
+                  aria-label="Cancelar"
                   onClick={() => setSelectedUser(null)}
                   className="px-4 py-2.5 rounded-lg border border-[var(--color-muted)] bg-transparent text-[var(--color-card-primary-text)] hover:bg-[var(--color-muted)] transition-colors text-sm font-medium w-full sm:w-auto"
                 >
                   Cancelar
                 </button>
                 <button
+                  aria-label="Guardar cambios"
                   onClick={handleSave}
                   className="px-4 py-2.5 rounded-lg bg-[var(--color-primary)] hover:bg-[var(--color-primary-hover)] text-white transition-colors text-sm font-medium w-full sm:w-auto"
                 >

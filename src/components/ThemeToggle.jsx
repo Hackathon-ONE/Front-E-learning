@@ -17,6 +17,7 @@ export default function ThemeToggle() {
 
   return (
     <Button
+      aria-label="Alternar tema"
       onClick={() => setTheme(currentTheme === "dark" ? "light" : "dark")}
       className="p-2 rounded-full bg-surface shadow hover:bg-primary transition"
     >

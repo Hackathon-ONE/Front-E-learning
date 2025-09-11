@@ -103,6 +103,7 @@ export default function ProgressReportsPage() {
                         </td>
                         <td className="p-3">
                           <button
+                            aria-label="Ver progreso"
                             onClick={() =>
                               router.push(
                                 `/instructor/courses/${courseId}/students/${s.id}/progress`

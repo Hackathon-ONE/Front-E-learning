@@ -83,6 +83,7 @@ export default function CreateCoursePage() {
             Título del curso
           </label>
           <input
+            id="title"
             type="text"
             name="title"
             value={form.title}
@@ -97,6 +98,7 @@ export default function CreateCoursePage() {
             Descripción
           </label>
           <textarea
+            id="description"
             name="description"
             value={form.description}
             onChange={handleChange}
@@ -111,6 +113,7 @@ export default function CreateCoursePage() {
             Categoría
           </label>
           <input
+            id="category"
             type="text"
             name="category"
             value={form.category}
@@ -125,6 +128,7 @@ export default function CreateCoursePage() {
             Nivel
           </label>
           <select
+            id="level"
             name="level"
             value={form.level}
             onChange={handleChange}
@@ -143,6 +147,7 @@ export default function CreateCoursePage() {
             Precio (USD)
           </label>
           <input
+            id="price"
             type="number"
             name="price"
             value={form.price}
@@ -158,6 +163,7 @@ export default function CreateCoursePage() {
             ID Instructor
           </label>
           <input
+            id="instructorId"
             type="text"
             name="instructorId"
             value={form.instructorId}
@@ -169,6 +175,7 @@ export default function CreateCoursePage() {
 
         {/* Botón */}
         <button
+          aria-label="Crear curso"
           type="submit"
           disabled={loading}
           className="w-full py-3 rounded-lg font-semibold bg-[var(--color-primary)] text-white text-sm font-medium hover:bg-[var(--color-primary-hover)]"

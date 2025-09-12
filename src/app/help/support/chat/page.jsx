@@ -100,7 +100,7 @@ export default function LiveSupportChatPage() {
           <button
             aria-label="Enviar mensaje"
             type="submit"
-            className="w-12 h-12 rounded-full bg-[var(--color-primary)] text-[var(--color-primary-text)] flex items-center justify-center hover:bg-[var(--color-primary-hover)] transition-colors"
+            className="cursor-pointer w-12 h-12 rounded-full bg-[var(--color-primary)] text-[var(--color-primary-text)] flex items-center justify-center hover:bg-[var(--color-primary-hover)] transition-colors"
           >
             <FaPaperPlane />
           </button>

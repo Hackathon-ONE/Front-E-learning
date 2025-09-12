@@ -1,14 +1,15 @@
 "use client";
 
-import { useParams } from "next/navigation";
+import { useParams, useRouter } from "next/navigation";
 import { useState } from "react";
 import { lessonsPlayerData } from "@/data/courses";
+import { ArrowLeft } from "lucide-react";
 
 export default function LessonPlayerPage() {
   const { courseId, lessonId } = useParams();
+  const router = useRouter();
   const lessons = lessonsPlayerData;
- 
-  // convertimos todo a string para evitar problemas de comparación
+
   const [currentLesson, setCurrentLesson] = useState(
     lessonId?.toString() || "1"
   );
@@ -25,6 +26,18 @@ export default function LessonPlayerPage() {
         className="w-full md:w-1/4 p-4 md:p-6 overflow-y-auto border-b md:border-b-0 md:border-r"
         style={{ backgroundColor: "var(--color-card-primary)" }}
       >
+        {/* Botón volver */}
+        <button
+          onClick={() => router.back()}
+          className="flex items-center gap-2 px-4 py-2 mb-4 rounded-lg font-medium 
+                     bg-[var(--color-surface)] text-[var(--color-text)] 
+                     hover:bg-[var(--color-primary)] hover:text-[var(--color-primary-text)]
+                     transition w-full sm:w-auto"
+        >
+          <ArrowLeft className="w-5 h-5" />
+          <span className="text-sm sm:text-base">Volver</span>
+        </button>
+
         <h2 className="text-lg font-bold mb-4 text-[var(--color-text)]">
           Contenido del curso
         </h2>
@@ -71,10 +84,9 @@ export default function LessonPlayerPage() {
             playsInline
             className="w-full h-full object-contain"
             src={activeLesson?.videoUrl || "/video/video1.mp4"}
-            // poster={activeLesson?.posterUrl || "/video/video1.jpg"}
+            poster={activeLesson?.posterUrl || "/video/video1.jpg"}
             autoPlay
             aria-label="Video player 1"
-            // `/video/${currentLesson}.mp4` // conectar con backend/CDN real
           />
         </div>
 
@@ -84,8 +96,7 @@ export default function LessonPlayerPage() {
           style={{ backgroundColor: "var(--color-card-primary)" }}
         >
           <h1 className="text-lg sm:text-xl font-semibold text-[var(--color-text)]">
-          {activeLesson?.title}
-          {/* {lessons.find((l) => l.id === currentLesson)?.title} */}
+            {activeLesson?.title}
           </h1>
           <p className="text-xs sm:text-sm opacity-75 mt-1 text-[var(--color-text)]">
             Curso {courseId} · Lección {currentLesson}

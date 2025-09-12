@@ -170,7 +170,7 @@ export default function StudentDetailPage() {
                 type="button"
                 aria-label="Cursos"
                 onClick={() => setActiveTab('courses')}
-                className={`border-b-2 py-2 px-1 text-sm font-medium transition-colors ${
+                className={`border-b-2 py-2 px-1 text-sm cursor-pointer font-medium transition-colors ${
                   activeTab === 'courses'
                     ? 'border-primary text-primary'
                     : 'border-transparent text-[var(--color-text)] hover:text-[var(--color-text)] hover:border-gray-300'
@@ -183,7 +183,7 @@ export default function StudentDetailPage() {
                 type="button"
                 aria-label="Estadísticas"
                 onClick={() => setActiveTab('stats')}
-                className={`border-b-2 py-2 px-1 text-sm font-medium transition-colors ${
+                className={`border-b-2 py-2 px-1 text-sm cursor-pointer font-medium transition-colors ${
                   activeTab === 'stats'
                     ? 'border-primary text-primary'
                     : 'border-transparent text-[var(--color-text)] hover:text-[var(--color-text)] hover:border-gray-300'
@@ -195,7 +195,7 @@ export default function StudentDetailPage() {
                 type="button"
                 aria-label="Recomendaciones AI"
                 onClick={() => setActiveTab('recommendations')}
-                className={`border-b-2 py-2 px-1 text-sm font-medium transition-colors ${
+                className={`border-b-2 py-2 px-1 text-sm cursor-pointer font-medium transition-colors ${
                   activeTab === 'recommendations'
                     ? 'border-primary text-primary'
                     : 'border-transparent text-[var(--color-text)] hover:text-[var(--color-text)] hover:border-gray-300'
@@ -319,7 +319,7 @@ export default function StudentDetailPage() {
                             <button 
                               type="button"
                               aria-label="Ver todas las lecciones"
-                              className="text-primary hover:text-primary/80 text-sm"
+                              className="text-primary cursor-pointer hover:text-primary/80 text-sm"
                             >
                               Ver todas las lecciones ({course.lessons.length})
                             </button>

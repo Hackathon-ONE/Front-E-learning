@@ -108,7 +108,7 @@ export default function SimpleRecommendationsForm() {
             aria-label="Obtener Recomendaciones"
             type="submit"
             disabled={isLoading}
-            className="w-full sm:w-auto btn-primary px-5 py-3 rounded-lg shadow-md flex items-center justify-center text-sm sm:text-base disabled:opacity-50"
+            className="w-full sm:w-auto btn-primary cursor-pointer px-5 py-3 rounded-lg shadow-md flex items-center justify-center text-sm sm:text-base disabled:opacity-50"
           >
             {isLoading ? 'Generando...' : 'Obtener Recomendaciones'}
             <Sparkles className="ml-2 h-4 w-4" />

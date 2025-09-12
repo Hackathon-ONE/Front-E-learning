@@ -41,7 +41,7 @@ export default function EditLessonPage() {
           Editar lección #{lessonId}
         </h1>
         <Link href={`/instructor/courses/${id}/lessons`}>
-          <button type="button" aria-label="Volver al listado de lecciones" className="flex items-center gap-2 text-gray-600 hover:text-gray-900">
+          <button type="button" aria-label="Volver al listado de lecciones" className="cursor-pointer flex items-center gap-2 text-gray-600 hover:text-gray-900">
             <ArrowLeft size={18} /> Volver
           </button>
         </Link>
@@ -112,7 +112,7 @@ export default function EditLessonPage() {
         <button
           aria-label="Guardar cambios"
           type="submit"
-          className="flex items-center gap-2 px-5 py-2 bg-primary text-white rounded-lg hover:bg-primary/90 transition"
+          className="cursor-pointer flex items-center gap-2 px-5 py-2 bg-primary text-white rounded-lg hover:bg-primary/90 transition"
         >
           <Save size={18} /> Guardar cambios
         </button>

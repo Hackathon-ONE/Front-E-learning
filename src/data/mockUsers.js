@@ -102,7 +102,7 @@ export const mockUsers = [
       email: "christian@lumina.com",
       role: "INSTRUCTOR",
       password: "christian123",
-      image: "https://storage.cloud.google.com/luminamp4/instructor.jpg",
+      image: "/images/instructor.jpg",
     },
     {
       id: "14",

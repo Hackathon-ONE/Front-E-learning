@@ -15,15 +15,17 @@ export default function Hero() {
         className={`absolute top-0 left-0 w-full h-full object-cover transition-opacity duration-700 ${
           loading ? "opacity-0" : "opacity-50"
         }`}
-        src="https://storage.cloud.google.com/luminamp4/demo_inicial.mp4"
+        src="/video/demo_inicial.mp4"
         autoPlay
         loop
         muted
-        aria-label="Video hero"
         playsInline
-        poster="https://storage.cloud.google.com/luminamp4/demo_inicial.jpg"
-        onLoadedData={() => setLoading(false)} // cuando el video carga, quitamos el loader
+        preload="auto"                // Pre-carga el video
+        poster="/video/demo_poster.jpg" // Imagen estática inicial
+        aria-label="Video hero"
+        onCanPlayThrough={() => setLoading(false)} // Más rápido que onLoadedData
       />
+
 
       {/* Overlay para contraste */}
       <div className="absolute inset-0 bg-black/50"></div>
@@ -45,7 +47,7 @@ export default function Hero() {
             La plataforma donde estudiantes, instructores y administradores se
             encuentran para construir el futuro de la educación.
           </p>
-          <div className="flex flex-col sm:flex-row justify-center gap-3 sm:gap-4">
+          <div className="flex flex-col cursor-pointer sm:flex-row justify-center gap-3 sm:gap-4">
             <Link href="/about">
               <Button type="button" aria-label="Conoce Lumina" variant="primary" size="lg">
                 Conoce Lumina

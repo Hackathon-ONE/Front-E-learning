@@ -18,7 +18,7 @@ export default function useModal({ isOpen, title, content, onClose }) {
           type="button"
           aria-label="Cerrar modal"
           onClick={onClose}
-          className="absolute top-4 right-4 text-[var(--color-muted)] hover:text-[var(--color-accent)]"
+          className="absolute top-4 cursor-pointer right-4 text-[var(--color-muted)] hover:text-[var(--color-accent)]"
         >
           <X className="w-6 h-6" />
         </button>
@@ -35,7 +35,7 @@ export default function useModal({ isOpen, title, content, onClose }) {
             type="button"
             aria-label="Cerrar modal"
             onClick={onClose}
-            className="px-4 py-2 rounded-lg btn-primary"
+            className="px-4 py-2 cursor-pointer rounded-lg btn-primary"
           >
             Cerrar
           </button>

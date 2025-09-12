@@ -122,7 +122,7 @@ export default function LoginForm() {
           aria-label="Iniciar sesión"
           type="submit"
           disabled={loading}
-          className="w-full py-3 rounded-lg font-semibold disabled:opacity-50 text-[var(--color-text)]"
+          className="w-full cursor-pointer py-3 rounded-lg font-semibold disabled:opacity-50 text-[var(--color-text)]"
           style={{
             backgroundColor: "var(--color-primary)",
             color: "var(--color-primary-text)",
@@ -141,7 +141,7 @@ export default function LoginForm() {
         aria-label="Iniciar sesión con Google"
         onClick={handleGoogleLogin}
         disabled={loading}
-        className="w-full flex items-center justify-center gap-2 py-3 rounded-lg border font-semibold hover:bg-primary hover:text-primary-text text-[var(--color-text)]"
+        className="w-full cursor-pointer flex items-center justify-center gap-2 py-3 rounded-lg border font-semibold hover:bg-primary hover:text-primary-text text-[var(--color-text)]"
         style={{
           borderColor: "var(--color-primary)",
           backgroundColor: "var(--color-surface)",

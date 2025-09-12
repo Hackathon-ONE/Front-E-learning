@@ -12,14 +12,14 @@ export const usersData = [
   ];
   
   export const completedCourses = [
-    { title: "Formación Desarrollo Personal", progress: 100, image: "https://storage.cloud.google.com/luminamp4/dev.jpg" },
-    { title: "Formación Lógica de Programación", progress: 100, image: "https://storage.cloud.google.com/luminamp4/logic.jpg" },
-    { title: "Formación Fundamentos Data Science", progress: 100, image: "https://storage.cloud.google.com/luminamp4/start.jpg" },
+    { title: "Formación Desarrollo Personal", progress: 100, image: "/images/dev.jpg" },
+    { title: "Formación Lógica de Programación", progress: 100, image: "/images/logic.png" },
+    { title: "Formación Fundamentos Data Science", progress: 100, image: "/images/start.jpg" },
   ];
   
   export const inProgressCourses = [
-    { title: "Node.js Avanzado", progress: 60, image: "https://storage.cloud.google.com/luminamp4/node.jpg" },
-    { title: "React Hooks & Context", progress: 40, image: "https://storage.cloud.google.com/luminamp4/react.png" },
+    { title: "Node.js Avanzado", progress: 60, image: "/images/node.png" },
+    { title: "React Hooks & Context", progress: 40, image: "/images/react.png" },
   ];
 
 export const profileDashboard = {

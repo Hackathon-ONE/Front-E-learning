@@ -63,24 +63,24 @@ export default function AdminInstructorsPage() {
         <div className="bg-[var(--color-card-primary)] rounded-lg sm:rounded-xl shadow-sm sm:shadow-md border border-[var(--color-muted)] overflow-x-auto">
           <div className="min-w-[600px] md:min-w-0">
             <table className="w-full border-collapse text-xs sm:text-sm">
-              <thead className="bg-[var(--color-surface)]">
+              <thead className="bg-[var(--color-surface)] justify-center items-center">
                 <tr>
-                  <th className="px-2 sm:px-3 py-3 text-left text-xs font-medium text-gray-400 uppercase tracking-wider">
+                  <th className="px-2 sm:px-3 py-3 text-left text-sm font-medium text-[var(--color-text)] uppercase tracking-wider">
                     Nombre
                   </th>
-                  <th className="px-2 sm:px-3 py-3 text-left text-xs font-medium text-gray-400 uppercase tracking-wider hidden sm:table-cell">
+                  <th className="px-2 sm:px-3 py-3 text-left text-sm font-medium text-[var(--color-text)] uppercase tracking-wider hidden sm:table-cell">
                     Email
                   </th>
-                  <th className="px-2 sm:px-3 py-3 text-left text-xs font-medium text-gray-400 uppercase tracking-wider hidden md:table-cell">
+                  <th className="px-2 sm:px-3 py-3 text-left text-sm font-medium text-[var(--color-text)] uppercase tracking-wider hidden md:table-cell">
                     Experiencia
                   </th>
-                  <th className="px-2 sm:px-3 py-3 text-left text-xs font-medium text-gray-400 uppercase tracking-wider">
+                  <th className="px-2 sm:px-3 py-3 text-left text-sm font-medium text-[var(--color-text)] uppercase tracking-wider">
                     Demo
                   </th>
-                  <th className="px-2 sm:px-3 py-3 text-left text-xs font-medium text-gray-400 uppercase tracking-wider">
+                  <th className="px-2 sm:px-3 py-3 text-left text-sm font-medium text-[var(--color-text)] uppercase tracking-wider">
                     Estado
                   </th>
-                  <th className="px-2 sm:px-3 py-3 text-left text-xs font-medium text-gray-400 uppercase tracking-wider">
+                  <th className="px-2 sm:px-3 py-3 text-left text-sm font-medium text-[var(--color-text)] uppercase tracking-wider">
                     Acciones
                   </th>
                 </tr>
@@ -106,10 +106,10 @@ export default function AdminInstructorsPage() {
                         </div>
                       </div>
                     </td>
-                    <td className="px-2 py-3 whitespace-nowrap text-xs text-gray-800 hidden sm:table-cell">
+                    <td className="px-2 py-3 whitespace-nowrap text-sm text-[var(--color-text)] hidden sm:table-cell">
                       <div className="line-clamp-1">{inst.email}</div>
                     </td>
-                    <td className="px-2 py-3 whitespace-nowrap text-xs text-gray-800 hidden md:table-cell">
+                    <td className="px-2 py-3 whitespace-nowrap text-sm text-[var(--color-text)] hidden md:table-cell">
                       <div className="line-clamp-1">{inst.experience}</div>
                     </td>
                     <td className="px-2 py-3 whitespace-nowrap">
@@ -125,14 +125,14 @@ export default function AdminInstructorsPage() {
                     <td className="px-2 py-3 whitespace-nowrap">
                       <div className="text-xs">{getStatusBadge(inst.status)}</div>
                     </td>
-                    <td className="px-2 py-3 whitespace-nowrap text-right text-xs font-medium">
+                    <td className="px-2 py-3 whitespace-nowrap text-right text-sm font-medium">
                       <div className="flex flex-col xs:flex-row gap-1 flex-wrap">
                         {inst.status === 'pending' ? (
                           <>
                             <button
                               type="button"
                               aria-label="Aprobar instructor"
-                              className="px-2 sm:px-3 py-1 sm:py-1.5 text-xs sm:text-sm rounded-lg bg-[var(--color-primary)] hover:bg-[var(--color-primary-hover)] text-white transition"
+                              className="px-2 sm:px-3 cursor-pointer py-1 sm:py-1.5 text-xs sm:text-sm rounded-lg bg-[var(--color-primary)] hover:bg-[var(--color-primary-hover)] text-white transition"
                               onClick={() =>
                                 setModalData({
                                   instructor: inst,
@@ -146,7 +146,7 @@ export default function AdminInstructorsPage() {
                             <button
                               type="button"
                               aria-label="Rechazar instructor"
-                              className="px-2 sm:px-3 py-1 sm:py-1.5 text-xs sm:text-sm rounded-lg bg-red-500 text-white hover:bg-red-600 transition"
+                              className="px-2 sm:px-3 cursor-pointer py-1 sm:py-1.5 text-xs sm:text-sm rounded-lg bg-red-500 text-white hover:bg-red-600 transition"
                               onClick={() =>
                                 setModalData({
                                   instructor: inst,
@@ -163,7 +163,7 @@ export default function AdminInstructorsPage() {
                             <button
                               type="button"
                               aria-label="Rechazar instructor"
-                              className="px-2 sm:px-3 py-1 sm:py-1.5 text-xs sm:text-sm rounded-lg bg-gray-200 text-gray-800 hover:bg-gray-300 transition"
+                              className="px-2 sm:px-3 cursor-pointer py-1 sm:py-1.5 text-xs sm:text-sm rounded-lg bg-gray-200 text-gray-800 hover:bg-gray-300 transition"
                               onClick={() =>
                                 setModalData({
                                   instructor: inst,
@@ -177,7 +177,7 @@ export default function AdminInstructorsPage() {
                             <button
                               type="button"
                               aria-label="Revocar acceso instructor"
-                              className="px-2 sm:px-3 py-1 sm:py-1.5 text-xs sm:text-sm rounded-lg bg-red-100 text-red-700 hover:bg-red-200 transition"
+                              className="px-2 sm:px-3 cursor-pointer py-1 sm:py-1.5 text-xs sm:text-sm rounded-lg bg-red-100 text-red-700 hover:bg-red-200 transition"
                               onClick={() =>
                                 setModalData({
                                   instructor: inst,
@@ -210,7 +210,7 @@ export default function AdminInstructorsPage() {
               <button
                 type="button"
                 aria-label="Cancelar"
-                className="px-4 py-2 rounded-lg text-sm bg-gray-300 hover:bg-gray-400 transition-colors w-full"
+                className="px-4 py-2 cursor-pointer rounded-lg text-sm bg-gray-300 hover:bg-gray-400 transition-colors w-full"
                 onClick={() => setModalData(null)}
               >
                 Cancelar
@@ -218,7 +218,7 @@ export default function AdminInstructorsPage() {
               <button
                 type="button"
                 aria-label="Confirmar"
-                className="px-4 py-2 rounded-lg text-sm bg-[var(--color-primary)] hover:bg-[var(--color-primary-hover)] text-white transition-colors w-full"
+                className="px-4 py-2 cursor-pointer rounded-lg text-sm bg-[var(--color-primary)] hover:bg-[var(--color-primary-hover)] text-white transition-colors w-full"
                 onClick={() => handleAction(modalData.instructor.id, modalData.action)}
               >
                 Confirmar

@@ -70,9 +70,9 @@ export const checkoutCourse = {
     description: "Construye aplicaciones modernas con React y Next.js.",
   };
   
-// Tarjeta mock (simulación)
+
 export const mockCard = {
-    number: "4111111111111111", // Visa test
+    number: "4242424242424242", // Visa test
     name: "Juan Pérez",
     expiry: "12/25",
     cvc: "123",

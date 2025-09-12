@@ -52,7 +52,7 @@ export default function FAQPage() {
               <button
                 type="button"
                 aria-label="Pregunta frecuente"
-                className="w-full text-left px-6 py-4 flex justify-between items-center focus:outline-none"
+                className="cursor-pointer w-full text-left px-6 py-4 flex justify-between items-center focus:outline-none"
                 onClick={() => toggleFAQ(index)}
               >
                 <span className="text-lg font-medium">{faq.question}</span>

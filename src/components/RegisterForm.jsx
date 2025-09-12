@@ -137,7 +137,7 @@ export default function RegisterForm() {
           aria-label="Registrarse"
           type="submit"
           disabled={loading}
-          className="w-full py-3 rounded-lg font-semibold disabled:opacity-50"
+          className="w-full py-3 cursor-pointer rounded-lg font-semibold disabled:opacity-50"
           style={{
             backgroundColor: 'var(--color-primary)',
             color: 'var(--color-primary-text)',
@@ -156,7 +156,7 @@ export default function RegisterForm() {
         aria-label="Registrarse con Google"
         onClick={handleGoogleRegister}
         disabled={loading}
-        className="w-full flex items-center justify-center gap-2 py-3 rounded-lg border font-semibold disabled:opacity-50"
+        className="w-full flex items-center justify-center gap-2 py-3 cursor-pointer rounded-lg border font-semibold disabled:opacity-50"
         style={{
           borderColor: 'var(--color-secondary)',
           backgroundColor: 'var(--color-terciary)',

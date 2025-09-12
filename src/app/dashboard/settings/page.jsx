@@ -140,7 +140,7 @@ export default function SettingsPage() {
           <button
             aria-label="Guardar cambios"
             type="submit"
-            className="btn-primary py-2 px-6 rounded-lg font-bold text-base sm:text-lg mt-2 self-end"
+            className="cursor-pointer btn-primary py-2 px-6 rounded-lg font-bold text-base sm:text-lg mt-2 self-end"
             disabled={saving}
           >
             {saving ? "Guardando..." : "Guardar cambios"}
@@ -189,7 +189,7 @@ export default function SettingsPage() {
           <button
             aria-label="Actualizar contraseña"
             type="submit"
-            className="btn-primary py-2 px-6 rounded-lg font-bold text-base sm:text-lg mt-2 self-end"
+            className="cursor-pointer btn-primary py-2 px-6 rounded-lg font-bold text-base sm:text-lg mt-2 self-end"
             disabled={saving}
           >
             {saving ? "Guardando..." : "Actualizar contraseña"}
@@ -234,7 +234,7 @@ export default function SettingsPage() {
                   aria-label="Tema claro"
                   id="light-theme"
                   type="button"
-                  className={`flex items-center gap-2 px-4 py-2 rounded-lg border font-semibold transition ${
+                  className={`cursor-pointer flex items-center gap-2 px-4 py-2 rounded-lg border font-semibold transition ${
                     theme === "light"
                       ? "bg-[var(--color-primary)] text-white border-[var(--color-primary)]"
                       : "bg-white text-[var(--color-primary)] border-gray-200"
@@ -247,7 +247,7 @@ export default function SettingsPage() {
                   aria-label="Tema oscuro"
                   id="dark-theme"
                   type="button"
-                  className={`flex items-center gap-2 px-4 py-2 rounded-lg border font-semibold transition ${
+                  className={`cursor-pointer flex items-center gap-2 px-4 py-2 rounded-lg border font-semibold transition ${
                     theme === "dark"
                       ? "bg-[var(--color-primary)] text-white border-[var(--color-primary)]"
                       : "bg-white text-[var(--color-primary)] border-gray-200"
@@ -267,7 +267,7 @@ export default function SettingsPage() {
             type="button"
             aria-label="Cerrar sesión"
             onClick={handleLogout}
-            className="flex items-center gap-2 px-5 py-2 rounded-lg bg-red-600 text-white font-bold hover:bg-red-700 transition w-full sm:w-auto"
+            className="cursor-pointer flex items-center gap-2 px-5 py-2 rounded-lg bg-red-600 text-white font-bold hover:bg-red-700 transition w-full sm:w-auto"
           >
             <LogOut size={18} /> Cerrar sesión
           </button>

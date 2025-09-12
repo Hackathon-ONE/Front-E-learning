@@ -71,7 +71,7 @@ export default function CourseOverviewPage() {
         {/* Acción */}
         <div className="flex flex-col sm:flex-row gap-4 justify-end items-center">
           <Link href={`/courses/${course.id}/lessons`}>
-            <Button aria-label="Continuar curso" className="btn-primary px-8 py-3 rounded-lg text-lg font-bold w-full sm:w-auto">
+            <Button aria-label="Continuar curso" className="cursor-pointer btn-primary px-8 py-3 rounded-lg text-lg font-bold w-full sm:w-auto">
               Continuar curso
             </Button>
           </Link>

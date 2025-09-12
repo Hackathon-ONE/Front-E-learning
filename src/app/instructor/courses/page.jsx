@@ -5,11 +5,15 @@ import { PlusCircle, BookOpen, Users, Edit } from "lucide-react";
 import Link from "next/link";
 import Button from "@/components/ui/Button";
 import { instructorCourses } from "@/data/instructors";
+import { useRouter } from "next/navigation";
+import { ArrowLeft } from "lucide-react";
 
 export default function InstructorCoursesPage() {
   const [courses, setCourses] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+
+  const router = useRouter();
 
   useEffect(() => {
     setTimeout(() => {
@@ -61,6 +65,16 @@ useEffect(() => {
 
 return (
   <main className="min-h-screen bg-[var(--color-bg)] flex flex-col items-center py-8 px-2 sm:px-4">
+    <button
+          onClick={() => router.back()}
+          className="flex items-center gap-2 px-4 py-2 mb-4 rounded-lg font-medium 
+                     bg-[var(--color-surface)] text-[var(--color-text)] 
+                     hover:bg-[var(--color-primary)] hover:text-[var(--color-primary-text)]
+                     transition w-full sm:w-auto"
+        >
+          <ArrowLeft className="w-5 h-5" />
+          <span className="text-sm sm:text-base">Volver</span>
+    </button>
     <section className="w-full max-w-4xl bg-[var(--color-surface)] rounded-2xl shadow-xl p-4 sm:p-8 flex flex-col gap-8">
       <h1 className="text-2xl sm:text-3xl font-bold text-center mb-2">
         Mis Cursos como Instructor
@@ -69,7 +83,7 @@ return (
       {/* Botón Crear curso */}
       <div className="flex justify-end mb-4">
         <Link href="/instructor/courses/new">
-          <Button type="button" aria-label="Crear nuevo curso" className="btn-primary px-6 py-2 rounded-lg font-bold">
+          <Button type="button" aria-label="Crear nuevo curso" className="cursor-pointer btn-primary px-6 py-2 rounded-lg font-bold">
             Crear nuevo curso
           </Button>
         </Link>
@@ -137,12 +151,12 @@ return (
                   </td>
                   <td className="px-3 py-2 flex gap-2 justify-center items-center">
                     <Link href={`/instructor/courses/${c.id}`}>
-                      <Button type="button" aria-label="Ver detalles" className="flex items-center gap-1 px-3 py-1 rounded-lg text-sm border border-primary text-primary hover:bg-primary hover:text-white transition">
+                      <Button type="button" aria-label="Ver detalles" className="cursor-pointer flex items-center gap-1 px-3 py-1 rounded-lg text-sm border border-primary text-primary hover:bg-primary hover:text-white transition">
                         Ver detalles
                       </Button>
                     </Link>
                     <Link href={`/instructor/courses/${c.id}/edit`}>
-                      <Button type="button" aria-label="Editar curso" className="flex items-center gap-1 px-3 py-1 rounded-lg text-sm">
+                      <Button type="button" aria-label="Editar curso" className="cursor-pointer flex items-center gap-1 px-3 py-1 rounded-lg text-sm">
                         <Edit size={16} /> Editar
                       </Button>
                     </Link>

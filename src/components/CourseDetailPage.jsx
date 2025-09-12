@@ -9,13 +9,18 @@ import { lessonsMock } from "@/data/lessons";
 import { linkedCoursesMock } from "@/data/linkedCourses";
 import { instructorMock } from "@/data/instructors";
 import Image from "next/image";
+import { useRouter } from "next/navigation";
+import { ArrowLeft } from "lucide-react";
 
 export default function CourseDetailPage({ courseId }) {
+  const router = useRouter();
   const [course] = useState(courseDetailMock);
   const [lessons] = useState(lessonsMock);
   const [linkedCourses] = useState(linkedCoursesMock);
   const [instructor] = useState(instructorMock);
   const [progress] = useState(100);
+
+
 
 /*   const [course, setCourse] = useState(null);
   const [lessons, setLessons] = useState([]);
@@ -64,6 +69,16 @@ export default function CourseDetailPage({ courseId }) {
 
   return (
     <section className="p-6 md:p-12 space-y-8">
+          <button
+                onClick={() => router.back()}
+                className="flex items-center gap-2 px-4 py-2 mb-4 rounded-lg font-medium 
+                           bg-[var(--color-surface)] text-[var(--color-text)] 
+                           hover:bg-[var(--color-primary)] hover:text-[var(--color-primary-text)]
+                           transition w-full sm:w-auto"
+              >
+                <ArrowLeft className="w-5 h-5" />
+                <span className="text-sm sm:text-base">Volver</span>
+          </button>
       {/* Header */}
       <header className="rounded-2xl p-8 shadow-md flex flex-col md:flex-row md:items-center md:justify-between bg-primary text-primary-text">
         <div>
@@ -74,7 +89,7 @@ export default function CourseDetailPage({ courseId }) {
         </div>
         <div className="mt-4 md:mt-0 flex gap-4">
           <Link href={`/courses/${courseId}/lessons/${lessons[0].id}`}>
-            <button type="button" aria-label="Acceder al curso" className="px-6 py-2 rounded-lg shadow transition bg-[var(--color-muted)] text-[var(--color-primary-text)] hover:scale-105">
+            <button type="button" aria-label="Acceder al curso" className="px-6 cursor-pointer py-2 rounded-lg shadow transition bg-[var(--color-muted)] text-[var(--color-primary-text)] hover:scale-105">
               Acceder Curso
             </button>
           </Link>
@@ -149,7 +164,7 @@ export default function CourseDetailPage({ courseId }) {
                   </div>
                 </div>
                 <Link href={`/courses/${course.id}/lessons/${lesson.id}`}>
-                  <button type="button" aria-label="Ver lección" className="text-sm text-primary hover:scale-110 transition">
+                  <button type="button" aria-label="Ver lección" className="text-sm cursor-pointer text-primary hover:scale-110 transition">
                     {lesson.completed ? "Revisar" : "Ver ahora"}
                   </button>
                 </Link>

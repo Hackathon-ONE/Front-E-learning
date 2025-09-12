@@ -108,7 +108,7 @@ export default function SuggestionsForm() {
             aria-label="Obtener sugerencias"
             type="submit"
             disabled={isLoading}
-            className="w-full sm:w-auto px-6 py-3 bg-[var(--color-primary)] hover:bg-[var(--color-primary-hover)] text-[var(--color-text)] hover:text-[var(--color-surface)] font-semibold rounded-lg shadow-md transition flex items-center justify-center sm:justify-start"
+            className="w-full cursor-pointer sm:w-auto px-6 py-3 bg-[var(--color-primary)] hover:bg-[var(--color-primary-hover)] text-[var(--color-text)] hover:text-[var(--color-surface)] font-semibold rounded-lg shadow-md transition flex items-center justify-center sm:justify-start"
           >
             {isLoading ? "Generando..." : "Obtener sugerencias"}
             <Sparkles className="ml-2 h-4 w-4" />

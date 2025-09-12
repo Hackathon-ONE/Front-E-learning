@@ -2,7 +2,7 @@ export const courseDetailMock = {
     id: 1,
     title: "Curso de ChatGPT: optimizando la calidad de los resultados",
     description: "Domina la integración de IA con APIs.",
-    cover: "https://storage.cloud.google.com/luminamp4/chatgpt.png",
+    cover: "/images/chatgpt.jpg",
     lessons: 24,
     duration: "12h 30m",
     students: 320,
@@ -35,24 +35,24 @@ export const coursesDashboardMock = [
   ];
 
 export const lessonsPlayerData = [
-    { id: "1", title: "Creando los primeros prompts", videoUrl: "https://storage.cloud.google.com/luminamp4/video1.mp4", duration: "08 min" },
-    { id: "2", title: "Mejorando la confiabilidad de los resultados", videoUrl: "https://storage.cloud.google.com/luminamp4/video2.mp4", duration: "12 min" },
-    { id: "3", title: "Explorando aplicaciones", videoUrl: "https://storage.cloud.google.com/luminamp4/video3.mp4", duration: "10 min" },
-    /* { id: "4", title: "Estrategias para textos largos", videoUrl: "https://storage.cloud.google.com/luminamp4/vide4.mp4", duration: "27 min" }, */
+    { id: "1", title: "Creando los primeros prompts", videoUrl: "/video/video1.mp4", duration: "08 min" },
+    { id: "2", title: "Mejorando la confiabilidad de los resultados", videoUrl: "/video/video2.mp4", duration: "12 min" },
+    { id: "3", title: "Explorando aplicaciones", videoUrl: "/video/video3.mp4", duration: "10 min" },
+    /* { id: "4", title: "Estrategias para textos largos", videoUrl: "/video/video4.mp4", duration: "27 min" }, */
   ];
 
 export const lessonsCoursesData = [
-  { id: 1, title: "Introducción al curso", videoUrl: "https://storage.cloud.google.com/luminamp4/video5.mp4", duration: "5:32", completed: true },
-  { id: 2, title: "Fundamentos básicos", videoUrl: "https://storage.cloud.google.com/luminamp4/video6.mp4", duration: "12:15", completed: false },
-  { id: 3, title: "Tema intermedio", videoUrl: "https://storage.cloud.google.com/luminamp4/video7.mp4", duration: "18:47", completed: false },
-  /* { id: 4, title: "Ejercicios prácticos", videoUrl: "https://storage.cloud.google.com/luminamp4/video8.mp4", duration: "22:05", completed: false }, */
+  { id: 1, title: "Introducción al curso", videoUrl: "/video/video5.mp4", duration: "5:32", completed: true },
+  { id: 2, title: "Fundamentos básicos", videoUrl: "/video/video6.mp4", duration: "12:15", completed: false },
+  { id: 3, title: "Tema intermedio", videoUrl: "/video/video7.mp4", duration: "18:47", completed: false },
+  /* { id: 4, title: "Ejercicios prácticos", videoUrl: "/video/video8.mp4", duration: "22:05", completed: false }, */
 ];
 
 export const overviewCourse = {
   title: "Introducción a React",
   description:
     "Aprende React desde los fundamentos hasta crear aplicaciones modernas. Incluye hooks, componentes, rutas y mejores prácticas.",
-  cover: "https://storage.cloud.google.com/luminamp4/react.png",
+  cover: "/images/react.png",
   lessons: 24,
   duration: "12h 30m",
   students: 320,
@@ -73,7 +73,7 @@ export const coursesPageData = [
   instructor: "Marco Alonzo",
   category: "Frontend",
   description: "Construye aplicaciones modernas con React y Next.js.",
-  cover: "https://storage.cloud.google.com/luminamp4/react-nextjs.png",
+  cover: "/images/react-nextjs.png",
   isFree: false,
 },
 {
@@ -82,7 +82,7 @@ export const coursesPageData = [
   instructor: "Benjamín Pérez",
   category: "Frontend",
   description: "Aprende los fundamentos de React para construir aplicaciones web.",
-  cover: "https://storage.cloud.google.com/luminamp4/react.png",
+  cover: "/images/react.png",
   isFree: true,
 },
 {
@@ -91,7 +91,7 @@ export const coursesPageData = [
   instructor: "Ana Torres",
   category: "Diseño",
   description: "Fundamentos de diseño centrado en el usuario.",
-  cover: "https://storage.cloud.google.com/luminamp4/design-user.png",
+  cover: "/images/design-user.png",
   isFree: false,
 },
 {
@@ -100,7 +100,7 @@ export const coursesPageData = [
   instructor: "Carlos Mora",
   category: "Data",
   description: "Domina consultas SQL y gestión de datos relacionales.",
-  cover: "https://storage.cloud.google.com/luminamp4/sql.png",
+  cover: "/images/sql.png",
   isFree: false,
 },
 {
@@ -109,7 +109,7 @@ export const coursesPageData = [
   instructor: "Fernanda López",
   category: "Backend",
   description: "Aprende a crear APIs robustas con Node.js y Express.",
-  cover: "https://storage.cloud.google.com/luminamp4/node-express.png",
+  cover: "/images/node-express.png",
   isFree: false,
 },
 {
@@ -118,7 +118,7 @@ export const coursesPageData = [
   instructor: "Carlos Mora",
   category: "Backend",
   description: "Aprende los fundamentos de Python para construir aplicaciones web.",
-  cover: "https://storage.cloud.google.com/luminamp4/python.jpg",
+  cover: "/images/python.png",
   isFree: false,
 },
 ];

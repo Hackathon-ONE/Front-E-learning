@@ -15,10 +15,12 @@ import {
   X,
   ChevronLeft,
   ChevronRight,
+  ChartArea,
 } from 'lucide-react';
 
 const navItems = [
-  { name: 'Panel', href: '/admin', icon: Home },
+  { name: 'Inicio', href: '/', icon: Home },
+  { name: 'Panel', href: '/admin', icon: ChartArea },
   { name: 'Cursos', href: '/admin/courses', icon: BookOpen },
   { name: 'Usuarios', href: '/admin/users', icon: Users },
   { name: 'Instructores', href: '/admin/instructors', icon: ShieldUser },
@@ -40,7 +42,7 @@ export default function AdminLayout({ children }) {
       <button
         type="button"
         aria-label="Abrir menú"
-        className="lg:hidden fixed top-4 left-4 z-50 p-2 rounded-md bg-[var(--color-primary)] text-gray-500 shadow-lg"
+        className="lg:hidden cursor-pointer fixed top-4 left-4 z-50 p-2 rounded-md bg-[var(--color-primary)] text-gray-500 shadow-lg"
         onClick={() => setSidebarOpen(!sidebarOpen)}
       >
         {sidebarOpen ? <X size={24} /> : <Menu size={24} />}
@@ -51,7 +53,7 @@ export default function AdminLayout({ children }) {
         <button
           type="button"
           aria-label="Cerrar menú"
-          className="lg:hidden fixed inset-0 bg-black bg-opacity-50 z-40 w-full h-full"
+          className="lg:hidden cursor-pointer fixed inset-0 bg-black bg-opacity-50 z-40 w-full h-full"
           onClick={() => setSidebarOpen(false)}
           onKeyDown={(e) => e.key === 'Escape' && setSidebarOpen(false)}
         />
@@ -88,7 +90,7 @@ export default function AdminLayout({ children }) {
               <button 
                 type="button"
                 aria-label="Colapsar/expandir sidebar"
-                className="hidden lg:flex p-1.5 rounded-md bg-[var(--color-primary)] transition-colors"
+                className="hidden lg:flex cursor-pointer p-1.5 rounded-md bg-[var(--color-primary)] transition-colors"
                 onClick={() => setSidebarCollapsed(!sidebarCollapsed)}
                 title={sidebarCollapsed ? 'Expandir sidebar' : 'Colapsar sidebar'}
               >
@@ -99,7 +101,7 @@ export default function AdminLayout({ children }) {
               <button 
                 type="button"
                 aria-label="Cerrar menú"
-                className="lg:hidden p-1 rounded-md hover:bg-[var(--color-primary)]"
+                className="lg:hidden cursor-pointer p-1 rounded-md hover:bg-[var(--color-primary)]"
                 onClick={() => setSidebarOpen(false)}
               >
                 <X size={20} />

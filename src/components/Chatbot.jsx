@@ -75,7 +75,7 @@ export default function Chatbot() {
       <button
         type="button"
         onClick={() => setIsOpen(true)}
-        className="fixed bottom-5 right-5 w-14 h-14 bg-[var(--color-surface)] text-[var(--color-primary-text)] rounded-full flex items-center justify-center shadow-lg z-50 hover:scale-110 transition-transform"
+        className="fixed bottom-5 right-5 w-14 h-14 cursor-pointer bg-[var(--color-surface)] text-[var(--color-primary-text)] rounded-full flex items-center justify-center shadow-lg z-50 hover:scale-110 transition-transform"
         aria-label="Abrir chat"
       >
         <Image
@@ -84,7 +84,7 @@ export default function Chatbot() {
           alt="Chatbot Lumi"
           width={50}
           height={50}
-          className="items-center border-[4px] border-primary rounded-full"
+          className="items-center border-[4px] border-primary rounded-full cursor-pointer"
           priority
           unoptimized
         />
@@ -103,7 +103,7 @@ export default function Chatbot() {
             alt="Logo"
             width={50}
             height={50}
-            className="items-center border-[2px] border-[var(--color-outline)] rounded-full"
+            className="items-center cursor-pointer border-[2px] border-[var(--color-outline)] rounded-full"
             unoptimized
             priority
           />
@@ -113,7 +113,7 @@ export default function Chatbot() {
           type="button"
           aria-label="Cerrar chat"
           onClick={() => setIsOpen(false)}
-          className="text-[var(--color-primary-text)] text-xl sm:text-2xl"
+          className="text-[var(--color-primary-text)] cursor-pointer text-xl sm:text-2xl"
         >
           <FaTimes />
         </button>
@@ -147,7 +147,7 @@ export default function Chatbot() {
               setInputValue(item.keywords[0]);
               handleSendMessage({ preventDefault: () => {} });
             }}
-            className="px-2 sm:px-3 py-1 text-xs sm:text-xs rounded-full bg-[var(--color-primary)] text-[var(--color-primary-text)] hover:bg-[var(--color-primary-hover)] transition-colors"
+            className="px-2 sm:px-3 py-1 text-xs cursor-pointer sm:text-xs rounded-full bg-[var(--color-primary)] text-[var(--color-primary-text)] hover:bg-[var(--color-primary-hover)] transition-colors"
           >
             {item.keywords[0]}
           </button>
@@ -180,7 +180,7 @@ export default function Chatbot() {
         <button
           aria-label="Enviar mensaje"
           type="submit"
-          className="ml-2 w-10 h-10 sm:w-12 sm:h-12 bg-[var(--color-primary)] rounded-full flex items-center justify-center hover:bg-[var(--color-primary)] transition-colors"
+          className="ml-2 w-10 h-10 cursor-pointer sm:w-12 sm:h-12 bg-[var(--color-primary)] rounded-full flex items-center justify-center hover:bg-[var(--color-primary)] transition-colors"
         >
           <FaPaperPlane />
         </button>

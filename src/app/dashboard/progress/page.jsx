@@ -1,8 +1,9 @@
 "use client";
 import { useState , useEffect } from "react";
-import { BookOpen, CheckCircle, Clock, TrendingUp, Loader2 } from "lucide-react";
+import { BookOpen, CheckCircle, Clock, TrendingUp, Loader2, ArrowLeft } from "lucide-react";
 import { mockProgress } from "@/data/progressDashboard";
 import { useFetch } from "@/hooks/useFetch";
+import Link from "next/link";
 
 export default function ProgressPage() {
   // Para datos reales desde Java/Spring Boot:
@@ -72,6 +73,9 @@ export default function ProgressPage() {
 
   return (
     <main className="min-h-screen bg-[var(--color-bg)] flex flex-col items-center py-8 px-2 sm:px-4">
+      <Link href="/dashboard/profile" className="text-primary text-lg hover:text-primary/80 mt-2 mb-4 inline-block">
+        Volver al perfil
+      </Link>
       <section className="w-full max-w-4xl bg-[var(--color-surface)] rounded-2xl shadow-xl p-4 sm:p-8 flex flex-col gap-8">
         <h1 className="text-2xl sm:text-3xl font-bold text-[var(--color-primary)] text-center mb-2">
           Mi Progreso

@@ -33,7 +33,7 @@ export default function CoursesCarousel() {
             y consigas nuevas oportunidades laborales.
           </p>
           <Link href="/courses" passHref>
-            <Button type="button" aria-label="Explorar todos los cursos" className="bg-primary text-white px-6 py-2 rounded-lg shadow cursor-pointer hover:bg-[#3f3e3c] transition w-full md:w-fit"
+            <Button type="button" aria-label="Explorar todos los cursos" className="bg-primary cursor-pointer text-white px-6 py-2 rounded-lg shadow cursor-pointer hover:bg-[#3f3e3c] transition w-full md:w-fit"
               variant="primary">
               Explorar Todos
             </Button>
@@ -98,7 +98,7 @@ export default function CoursesCarousel() {
                         Ver Demo
                       </a>
                       <Link href={"/payments"}>
-                        <Button type="button" aria-label="Suscribirse al curso" className="w-full p-2 bg-outline text-hover-text text-sm text-foreground py-1.5 rounded-lg shadow hover:bg-[var(--color-secondary-hover)] transition">
+                        <Button type="button" aria-label="Suscribirse al curso" className="w-full cursor-pointer p-2 bg-outline text-hover-text cursor-pointer text-sm text-foreground py-1.5 rounded-lg shadow hover:bg-[var(--color-secondary-hover)] transition">
                           Suscribirse
                         </Button>
                       </Link>

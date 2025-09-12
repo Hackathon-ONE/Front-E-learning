@@ -20,7 +20,7 @@ export default function ThemeToggle() {
       type="button"
       aria-label="Alternar tema"
       onClick={() => setTheme(currentTheme === "dark" ? "light" : "dark")}
-      className="p-2 rounded-full bg-surface shadow hover:bg-primary transition"
+      className="p-2 cursor-pointer rounded-full bg-surface shadow hover:bg-primary transition"
     >
       {currentTheme === "dark" ? (
         <Sun data-testid="sun-icon" className="w-6 h-6 text-yellow-400" />

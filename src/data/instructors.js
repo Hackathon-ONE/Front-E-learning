@@ -2,7 +2,7 @@ export const instructorMock = {
     id: 1,
     name: "Christian Velasco",
     bio: "Ingeniero en sistemas, especializado en Ciencia de Datos e Inteligencia Artificial.",
-    avatar: "https://storage.cloud.google.com/luminamp4/instructor.jpg",
+    avatar: "/images/instructor.jpg",
     social: {
       linkedin: "https://linkedin.com",
       github: "https://github.com",
@@ -16,7 +16,7 @@ export const instructorsDashboard = [
     name: "Aylen Reyes",
     email: "aylen@example.com",
     experience: "Software Engineer, 5 años enseñando React y Node.js",
-    demoLink: "https://storage.cloud.google.com/luminamp4/video5.mp4",
+    demoLink: "/video/video5.mp4",
     status: "pending",
   },
   {
@@ -24,7 +24,7 @@ export const instructorsDashboard = [
     name: "Carlos Mora",
     email: "carlos@lumina.com",
     experience: "Instructor en universidades, experto en NestJS",
-    demoLink: "https://storage.cloud.google.com/luminamp4/video8.mp4",
+    demoLink: "/video/video8.mp4",
     status: "approved",
   },
   {

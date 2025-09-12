@@ -4,10 +4,13 @@ import Link from "next/link";
 import { useParams } from "next/navigation";
 import { useState, useEffect } from "react";
 import { lessonsCoursesData } from "@/data/courses";
+import { useRouter } from "next/navigation";
+import { ArrowLeft } from "lucide-react";
 
 export default function LessonsPage() {
   const { id } = useParams(); // courseId
   const [lessons, setLessons] = useState([]);
+  const router = useRouter();
 
   useEffect(() => {
     // fetch(`/api/courses/${id}/lessons`)
@@ -16,6 +19,16 @@ export default function LessonsPage() {
 
   return (
     <div className="max-w-4xl mx-auto px-6 py-10">
+      <button
+        onClick={() => router.back()}
+        className="flex items-center gap-2 px-4 py-2 mb-4 rounded-lg font-medium 
+                   bg-[var(--color-surface)] text-[var(--color-text)] 
+                   hover:bg-[var(--color-primary)] hover:text-[var(--color-primary-text)]
+                   transition w-full sm:w-auto"
+      >
+        <ArrowLeft className="w-5 h-5" />
+        <span className="text-sm sm:text-base">Volver</span>
+      </button>
       {/* Título */}
       <h1 className="text-3xl font-bold mb-6 text-center">
         Lecciones del curso {id}

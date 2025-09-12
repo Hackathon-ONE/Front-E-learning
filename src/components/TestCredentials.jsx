@@ -60,7 +60,7 @@ export default function TestCredentials() {
         type="button"
         aria-label="Credenciales de Prueba"
         onClick={toggleDropdown}
-        className="w-full bg-gradient-to-r from-orange-50 to-yellow-50 dark:from-orange-900/20 dark:to-yellow-900/20 border border-orange-200 dark:border-orange-800 rounded-lg p-4 hover:from-orange-100 hover:to-yellow-100 dark:hover:from-orange-900/30 dark:hover:to-yellow-900/30 transition-all duration-200"
+        className="w-full cursor-pointer bg-gradient-to-r from-orange-50 to-yellow-50 dark:from-orange-900/20 dark:to-yellow-900/20 border border-orange-200 dark:border-orange-800 rounded-lg p-4 hover:from-orange-100 hover:to-yellow-100 dark:hover:from-orange-900/30 dark:hover:to-yellow-900/30 transition-all duration-200"
       >
         <div className="flex items-center justify-between">
           <div className="flex items-center gap-3">
@@ -126,7 +126,7 @@ export default function TestCredentials() {
                       type="button"
                       aria-label="Copiar email"
                       onClick={() => copyToClipboard(account.email, `email-${index}`)}
-                      className="p-1 rounded transition-colors flex-shrink-0"
+                      className="p-1 cursor-pointer rounded transition-colors flex-shrink-0"
                       title="Copiar email"
                     >
                       {copiedField === `email-${index}` ? (
@@ -149,7 +149,7 @@ export default function TestCredentials() {
                       type="button"
                       aria-label="Mostrar/ocultar contraseña"
                       onClick={() => togglePassword(index)}
-                      className="p-1 rounded transition-colors flex-shrink-0"
+                      className="p-1 cursor-pointer rounded transition-colors flex-shrink-0"
                       title={showPasswords[index] ? 'Ocultar contraseña' : 'Mostrar contraseña'}
                     >
                       {showPasswords[index] ? (
@@ -162,7 +162,7 @@ export default function TestCredentials() {
                       type="button"
                       aria-label="Copiar contraseña"
                       onClick={() => copyToClipboard(account.password, `pass-${index}`)}
-                      className="p-1 rounded transition-colors flex-shrink-0"
+                      className="p-1 cursor-pointer rounded transition-colors flex-shrink-0"
                       title="Copiar contraseña"
                     >
                       {copiedField === `pass-${index}` ? (

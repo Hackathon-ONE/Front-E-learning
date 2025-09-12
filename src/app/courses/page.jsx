@@ -43,6 +43,10 @@ export default function CoursesPage() {
   const [instructor, setInstructor] = useState("all");
   const [sortOrder, setSortOrder] = useState("asc");
   const [type, setType] = useState("all");
+  
+  // Estado para paginación
+  const [currentPage, setCurrentPage] = useState(1);
+  const coursesPerPage = 6;
 
   // Extraer categorías e instructores únicos
   const categories = ["all", ...new Set(courses.map((c) => c.category))];
@@ -91,7 +95,7 @@ export default function CoursesPage() {
       <button
         aria-label="Inscribirse"
         type="button"
-        className="mt-2 px-4 py-2 rounded-lg bg-primary text-white hover:bg-gray-800 transition text-sm"
+        className="mt-2 cursor-pointer px-4 py-2 rounded-lg bg-primary text-white hover:bg-gray-800 transition text-sm"
         onClick={(e) => {
           e.preventDefault();
           router.push("/payments");
@@ -101,6 +105,12 @@ export default function CoursesPage() {
       </button>
     );
   };
+
+  // Lógica de paginación
+ const totalPages = Math.ceil(courses.length / coursesPerPage);
+ const startIndex = (currentPage - 1) * coursesPerPage;
+ const endIndex = startIndex + coursesPerPage;
+ const currentCourses = courses.slice(startIndex, endIndex);
 
   // Loader y error
   if (loading) {
@@ -120,7 +130,7 @@ export default function CoursesPage() {
 
   // Render principal
   return (
-    <section className="flex flex-col md:flex-row p-4 sm:p-6 md:p-8 lg:p-12 gap-6 sm:gap-8 ">
+    <div className="flex flex-col md:flex-row p-4 sm:p-6 md:p-8 lg:p-12 gap-6 sm:gap-8">
       {/* Sidebar */}
       <aside className="w-full md:w-1/4 bg-surface text-[var(--color-text)] p-4 sm:p-6 rounded-2xl shadow-md h-fit border border-[var(--color-text)]">
         <h2 className="text-base sm:text-lg font-bold mb-4 sm:mb-6 text-[var(--color-text)] ">
@@ -240,7 +250,7 @@ export default function CoursesPage() {
             onClick={() =>
               setSortOrder((prev) => (prev === "asc" ? "desc" : "asc"))
             }
-            className="w-full flex items-center bg-surface justify-between px-3 sm:px-4 py-2 rounded-lg border border-gray-300 dark:border-gray-700 text-xs sm:text-sm text-[var(--color-text)] hover:bg-gray-500 transition"
+            className="cursor-pointer w-full flex items-center justify-between px-3 sm:px-4 py-2 rounded-lg border border-gray-300 dark:border-gray-700 text-xs sm:text-sm text-[var(--color-text)] hover:bg-[var(--color-primary)] hover:text-[var(--color-primary-text)] transition"
           >
             {sortOrder === "asc" ? "Ascendente (A-Z)" : "Descendente (Z-A)"}
             <ChevronDown className="w-3 h-3 sm:w-4 sm:h-4 text-[var(--color-text)]" />
@@ -250,37 +260,87 @@ export default function CoursesPage() {
 
       {/* Catálogo */}
       <main className="flex-1">
-        <h1 className="text-xl sm:text-2xl font-bold mb-4 sm:mb-6">Catálogo de Cursos</h1>
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 items-stretch">
-        {filteredCourses.map((course) => (
-        <Link key={course.id} href={`/courses/${course.id}/overview`} className="block h-full">
-          <Card className="group relative flex flex-col rounded-2xl overflow-hidden border border-gray-200 dark:border-gray-700 shadow-md bg-surface h-full transition-transform transform hover:scale-105 hover:-rotate-1 hover:shadow-2xl">
-          {/* Imagen cuadrada */}
-          <div className="relative w-full aspect-square">
-            <Image
-              aria-label={course.title}
-              src={course.cover}
-              alt={course.title}
-              fill
-              className="object-cover transition-transform duration-300 group-hover:scale-110"
-              priority
-            />
-          </div>
+        <h1 className="text-xl sm:text-2xl font-bold mb-4 sm:mb-6">
+          Catálogo de Cursos
+        </h1>
 
-          {/* Overlay estilo Netflix */}
-          <div className="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition flex flex-col justify-end p-4">
-            <h3 className="text-white font-bold text-lg mb-2 line-clamp-2">
-              {course.title}
-            </h3>
-            <p className="text-gray-200 text-sm line-clamp-2">
-              {course.description}
-            </p>
-          </div>
-        </Card>
-      </Link>
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 items-stretch">
+          {filteredCourses.map((course) => (
+            <Link
+              key={course.id}
+              href={`/courses/${course.id}/overview`}
+              className="block h-full"
+            >
+              <Card className="group relative flex flex-col rounded-2xl overflow-hidden border border-gray-200 dark:border-gray-700 shadow-md bg-surface h-full transition-transform transform hover:scale-105 hover:-rotate-1 hover:shadow-2xl">
+                <div className="relative w-full aspect-square">
+                  <Image
+                    aria-label={course.title}
+                    src={course.cover}
+                    alt={course.title}
+                    fill
+                    className="object-cover transition-transform duration-300 group-hover:scale-110"
+                    priority
+                  />
+                </div>
+                <div className="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition flex flex-col justify-end p-4">
+                  <h3 className="text-white font-bold text-lg mb-2 line-clamp-2">
+                    {course.title}
+                  </h3>
+                  <p className="text-gray-200 text-sm line-clamp-2">
+                    {course.description}
+                  </p>
+                </div>
+              </Card>
+            </Link>
           ))}
         </div>
+
+        {/* 🔥 Paginación clásica */}
+        {totalPages > 1 && (
+          <div className="flex justify-center mt-10">
+            <nav className="flex flex-wrap gap-2 sm:gap-3">
+              {/* Botón anterior */}
+              <button
+                onClick={() =>
+                  setCurrentPage((prev) => Math.max(prev - 1, 1))
+                }
+                disabled={currentPage === 1}
+                className="cursor-pointer px-3 py-1 rounded-lg border border-gray-300 dark:border-gray-700 text-sm sm:text-base disabled:opacity-50"
+              >
+                Anterior
+              </button>
+
+              {/* Números */}
+              {Array.from({ length: totalPages }, (_, i) => i + 1).map(
+                (page) => (
+                  <button
+                    key={page}
+                    onClick={() => setCurrentPage(page)}
+                    className={`px-3 py-1 rounded-lg text-sm cursor-pointer sm:text-base ${
+                      currentPage === page
+                        ? "bg-primary text-white"
+                        : "border border-gray-300 dark:border-gray-700"
+                    }`}
+                  >
+                    {page}
+                  </button>
+                )
+              )}
+
+              {/* Botón siguiente */}
+              <button
+                onClick={() =>
+                  setCurrentPage((prev) => Math.min(prev + 1, totalPages))
+                }
+                disabled={currentPage === totalPages}
+                className="cursor-pointer px-3 py-1 rounded-lg border border-gray-300 dark:border-gray-700 text-sm sm:text-base disabled:opacity-50"
+              >
+                Siguiente
+              </button>
+            </nav>
+          </div>
+        )}
       </main>
-    </section>
+    </div>
   );
 }

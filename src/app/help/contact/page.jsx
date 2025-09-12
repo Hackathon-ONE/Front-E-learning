@@ -123,7 +123,7 @@ export default function ContactPage() {
             <button
               aria-label="Enviar mensaje"
               type="submit"
-              className="btn-primary py-2 px-6 rounded-lg font-bold text-lg mt-2"
+              className="cursor-pointer btn-primary py-2 px-6 rounded-lg font-bold text-lg mt-2"
               disabled={sent}
             >
               {sent ? "¡Mensaje enviado!" : "Enviar"}

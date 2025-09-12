@@ -16,7 +16,7 @@ export default function Toast() {
         type="button"
         aria-label="Mostrar Toast"
         onClick={() => showToast("¡Acción completada con éxito!")}
-        className="px-6 py-3 bg-indigo-600 hover:bg-indigo-500 text-white font-semibold rounded-lg shadow-md transition"
+        className="px-6 py-3 cursor-pointer bg-indigo-600 hover:bg-indigo-500 text-white font-semibold rounded-lg shadow-md transition"
       >
         Mostrar Toast
       </button>

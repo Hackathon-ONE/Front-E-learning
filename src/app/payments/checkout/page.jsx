@@ -1,7 +1,8 @@
 "use client";
 import { useState /*, useEffect */ } from "react";
 import { useRouter } from "next/navigation";
-import { CreditCard, CheckCircle, XCircle } from "lucide-react";
+import { useSession } from "next-auth/react";
+import { CreditCard, CheckCircle, XCircle, LogIn } from "lucide-react";
 import Button from "@/components/ui/Button";
 import { checkoutCourse, mockCard } from "@/data/paymentsData";
 
@@ -39,6 +40,7 @@ useEffect(() => {
 export default function CheckoutPage() {
   const router = useRouter();
   const [course] = useState(checkoutCourse);
+  const { data: session } = useSession();
 
   const [card, setCard] = useState({
     number: "",
@@ -46,6 +48,7 @@ export default function CheckoutPage() {
     expiry: "",
     cvc: "",
   });
+
   const [success, setSuccess] = useState(false);
   const [error, setError] = useState("");
 
@@ -64,6 +67,11 @@ export default function CheckoutPage() {
   const handleSubmit = (e) => {
     e.preventDefault();
     setError("");
+
+    if (!session) {
+      setError("Debes iniciar sesión antes de realizar el pago.");
+      return;
+    }
 
     // Validación con datos hardcodeados
     if (
@@ -106,6 +114,23 @@ export default function CheckoutPage() {
             </span>
           </div>
         </div>
+
+        {/* Si NO está logueado */}
+        {!session && (
+          <div className="flex flex-col gap-4 items-center text-center">
+            <div className="text-red-600 font-semibold flex items-center gap-2">
+              <LogIn size={20} /> Debes iniciar sesión para pagar este curso.
+            </div>
+           {/*  <Button
+              aria-label="Iniciar sesión"
+              type="button"
+              onClick={() => router.push("/auth/login")}
+              className="btn-primary cursor-pointer py-2 px-6 rounded-lg font-bold text-lg"
+            >
+              Iniciar sesión
+            </Button> */}
+          </div>
+        )}
 
         {/* Formulario de pago */}
         <form
@@ -180,7 +205,7 @@ export default function CheckoutPage() {
             <Button
               aria-label="Pagar"
               type="submit"
-              className="btn-primary py-2 px-6 rounded-lg font-bold text-lg mt-2"
+              className="btn-primary cursor-pointer py-2 px-6 rounded-lg font-bold text-lg mt-2"
             >
               Pagar
             </Button>
@@ -196,7 +221,7 @@ export default function CheckoutPage() {
                 type="button"
                 aria-label="Ir al curso"
                 onClick={() => router.push(`/courses/${course.id}/overview`)}
-                className="btn-primary text-[var(--color-text)] hover:bg-[var(--color-primary)] hover:text-white py-2 px-6 rounded-lg font-bold text-lg"
+                className="btn-primary cursor-pointer text-[var(--color-text)] hover:bg-[var(--color-primary)] hover:text-white py-2 px-6 rounded-lg font-bold text-lg"
               >
                 Ir al curso
               </Button>

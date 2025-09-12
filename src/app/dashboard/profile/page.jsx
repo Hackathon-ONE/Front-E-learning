@@ -11,14 +11,9 @@ import Link from "next/link";
 
 export default function ProfilePage() {
   const { data: session, status } = useSession();
-
-  if (status === "loading") {
-    return <p>Cargando...</p>;
-  }
-
-  if (!session) {
-    return <p>No autenticado</p>;
-  }
+  const [profile, setProfile] = useState(null);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
 
   const [isEditing, setIsEditing] = useState(false);
   const [stats, setStats] = useState(profileStats);
@@ -30,12 +25,16 @@ export default function ProfilePage() {
   const name = session?.user?.name || "Usuario";
   const [editableBio, setEditableBio] = useState(bio);
 
+  if (status === "loading") {
+    return <p>Cargando...</p>;
+  }
+
+  if (!session) {
+    return <p>No autenticado</p>;
+  }
+
   // Ejemplo de cómo importar datos desde la base de datos (Java/Spring Boot):
   /*
-
-  const [profile, setProfile] = useState(null);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
 
   useEffect(() => {
     async function fetchProfile() {
@@ -63,6 +62,9 @@ export default function ProfilePage() {
 
   return (
     <section className="py-10 px-6 container mx-auto">
+      <Link href="/" className="text-primary text-lg hover:text-primary/80 mt-2 mb-4 inline-block">
+        Volver al panel
+      </Link>
       {/* Perfil */}
       <div className="bg-surface rounded-2xl shadow p-6 flex flex-col md:flex-row gap-6 items-start">
       <Image
@@ -75,7 +77,7 @@ export default function ProfilePage() {
       />
         <div className="flex-1">
         <h1 className="text-2xl font-bold text-foreground">{name}</h1>
-          <h2 className="text-2xl font-bold text-foreground">Bio</h2>
+         {/*  <h2 className="text-2xl font-bold text-foreground">Bio</h2> */}
 
           {isEditing ? (
             <textarea
@@ -88,13 +90,13 @@ export default function ProfilePage() {
           )}
 
           <div className="mt-3 flex gap-3">
-            <Button aria-label="Editar Perfil" onClick={() => setIsEditing(!isEditing)} variant="primary">
+            <Button aria-label="Editar Perfil" onClick={() => setIsEditing(!isEditing)} className="cursor-pointer px-6 py-2 bg-primary text-white rounded-lg hover:bg-primary/80 transition">
               {isEditing ? "Guardar" : "Editar Perfil"}
             </Button>
           </div>
         </div>
       </div>
-
+     
       {/* Stats */}
       <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mt-8">
         {stats.map((s, idx) => (
@@ -109,6 +111,18 @@ export default function ProfilePage() {
         ))}
       </div>
 
+      <div className="flex justify-center items-center mt-10">
+       <Link href="/dashboard/progress">
+         <button
+           type="button"
+           aria-label="Ver Progreso"
+           className="cursor-pointer px-6 py-2 bg-primary text-white rounded-lg hover:bg-primary/80 transition"
+         >
+           Ver Progreso
+         </button>
+       </Link>
+      </div>
+
       {/* Cursos finalizados */}
       <h2 className="text-xl md:text-2xl font-semibold mt-10 mb-4">Formaciones Finalizadas</h2>
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
@@ -117,19 +131,21 @@ export default function ProfilePage() {
             key={i}
             className="bg-surface shadow rounded-xl p-4 flex flex-col items-center"
           >
-            <Image
+          {/* 🔹 contenedor con tamaño fijo */}
+          <div className="w-[120px] h-[120px] relative mb-3">
+           <Image
               aria-label={c.title}
               src={c.image}
               alt={c.title}
-              width={120}
-              height={120}
-              className="rounded-md mb-3"
-            />
-            <h3 className="text-foreground font-medium">{c.title}</h3>
-            <span className="text-green-500 text-sm mt-1">Completado </span>
+              fill
+              className="rounded-md object-cover"
+           />
           </div>
-        ))}
-      </div>
+          <h3 className="text-foreground font-medium text-center">{c.title}</h3>
+          <span className="text-green-500 text-sm mt-1">Completado</span>
+        </div>
+      ))}
+    </div>
 
       {/* Cursos en progreso */}
       <h2 className="text-xl md:text-2xl font-semibold mt-10 mb-4">Cursos en Progreso</h2>
@@ -139,14 +155,16 @@ export default function ProfilePage() {
             key={i}
             className="bg-surface shadow rounded-xl p-4 flex gap-4 items-center"
           >
-            <Image
+          {/* 🔹 contenedor con tamaño fijo */}
+          <div className="w-[120px] h-[120px] relative mb-3">
+           <Image
               aria-label={c.title}
               src={c.image}
               alt={c.title}
-              width={100}
-              height={100}
-              className="rounded-md"
-            />
+              fill
+              className="rounded-md object-cover"
+           />
+          </div>
             <div className="flex-1">
               <h3 className="text-foreground font-medium">{c.title}</h3>
               <div className="w-full bg-gray-300 dark:bg-gray-700 rounded-full h-2 mt-2">
@@ -162,14 +180,6 @@ export default function ProfilePage() {
       </div>
       <div className="text-xl font-semibold mt-10 mb-4">
         <GridProjects />
-      </div>
-     {/* Botón Ver Progreso */}
-     <div className="mt-10">
-        <Link href="/dashboard/progress">
-          <button type="button" aria-label="Ver Progreso" className="px-6 py-2 bg-primary text-white rounded-lg hover:bg-primary/80 transition">
-            Ver Progreso
-          </button>
-        </Link>
       </div>
     </section>
   );

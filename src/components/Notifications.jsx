@@ -34,7 +34,7 @@ export default function Notifications() {
         type="button"
         aria-label="Notificaciones"
         onClick={() => setOpen((prev) => !prev)}
-        className="relative p-2 rounded-full hover:bg-[var(--color-surface)] transition"
+        className="relative p-2 rounded-full cursor-pointer hover:bg-[var(--color-surface)] transition"
       >
         <Bell className="w-6 h-6 text-[var(--color-text)]" />
         {unreadCount > 0 && (
@@ -76,7 +76,7 @@ export default function Notifications() {
                 onClick={() =>
                   setNotifications((prev) => prev.map((n) => ({ ...n, read: true })))
                 }
-                className="w-full py-2 text-sm rounded-lg btn-primary"
+                className="w-full py-2 text-sm cursor-pointer rounded-lg btn-primary"
               >
                 Marcar todas como leídas
               </button>

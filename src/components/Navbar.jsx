@@ -69,19 +69,19 @@ export default function Navbar() {
               aria-label="User menu"
               aria-expanded={dropdownOpen}
               onClick={() => setDropdownOpen(!dropdownOpen)}
-              className="rounded-full p-1 hover:bg-secondary transition flex items-center gap-2"
+              className="rounded-full p-1 hover:bg-secondary cursor-pointer transition flex items-center gap-2"
             >
               {user?.image ? (
                 <>
                   <Image
                     aria-label="Avatar"
-                    src={user.image}
+                    src={user.image || "/default-avatar.png"}
                     alt={user.name || 'avatar'}
                     width={128}
                     height={64}
                     unoptimized
                     priority
-                    className="w-9 h-9 rounded-full border"
+                    className="w-9 h-9 rounded-full border cursor-pointer"
                   />
                   <span className="text-sm text-[var(--color-text)] hidden lg:block">{user.name}</span>
                 </>
@@ -101,7 +101,7 @@ export default function Navbar() {
                         closeDropdown();
                         router.push("/auth/login");
                       }}
-                      className="w-full text-left px-3 py-2 text-[var(--color-text)] hover:text-primary rounded-md"
+                      className="w-full text-left cursor-pointer px-3 py-2 text-[var(--color-text)] hover:text-primary rounded-md"
                     >
                       Iniciar sesión
                     </button>
@@ -122,7 +122,7 @@ export default function Navbar() {
                     {/* Opciones específicas por rol */}
                     {user.role === 'ADMIN' && (
                       <Link href="/admin" className="block rounded-md px-3 py-2 text-[var(--color-text)] hover:bg-secondary">
-                        Dashboard
+                        Panel Admin
                       </Link>
                     )}
 
@@ -133,7 +133,7 @@ export default function Navbar() {
                           onClick={closeDropdown}
                           className="block rounded-md px-3 py-2 text-[var(--color-text)] hover:bg-secondary"
                         >
-                          Dashboard
+                          Panel Instructor
                         </Link>
                         <Link
                           href="/dashboard/profile"
@@ -146,6 +146,14 @@ export default function Navbar() {
                     )}
 
                     {user.role === 'STUDENT' && (
+                    <>
+                      <Link
+                      href="/"
+                      onClick={closeDropdown}
+                      className="block rounded-md px-3 py-2 text-[var(--color-text)] hover:bg-secondary"
+                    >
+                      Panel Estudiante
+                    </Link>
                       <Link
                         href="/dashboard/profile"
                         onClick={closeDropdown}
@@ -153,7 +161,8 @@ export default function Navbar() {
                       >
                         Perfil
                       </Link>
-                    )}
+                    </>
+                  )}
 
                     {/* Opciones comunes */}
                     <Link
@@ -173,7 +182,7 @@ export default function Navbar() {
                         closeDropdown();
                         handleSignOut();
                       }}
-                      className="w-full text-left rounded-md px-3 py-2 text-[var(--color-text)] hover:bg-secondary text-red-600"
+                      className="w-full text-left cursor-pointer rounded-md px-3 py-2 text-[var(--color-text)] hover:bg-secondary text-red-600"
                     >
                       Cerrar sesión
                     </button>
@@ -188,7 +197,7 @@ export default function Navbar() {
         <button
           type="button"
           aria-label="Toggle menu"
-          className="md:hidden text-2xl"
+          className="md:hidden cursor-pointer text-2xl"
           onClick={() => setMobileOpen(!mobileOpen)}
         >
           {mobileOpen ? <XIcon /> : <MenuIcon />}
@@ -207,7 +216,7 @@ export default function Navbar() {
             {user?.image ? (
               <Image
                 aria-label="Avatar"
-                src={user.image}
+                src={user.image || "/default-avatar.png"}
                 alt={user.name || 'avatar'}
                 width={128}
                 height={64}
@@ -240,7 +249,7 @@ export default function Navbar() {
                 setMobileOpen(false);
                 router.push("/auth/login");
               }}
-              className="px-4 py-2 bg-primary text-[var(--color-primary-text)] rounded-lg text-center"
+              className="px-4 py-2 bg-primary cursor-pointer text-[var(--color-primary-text)] rounded-lg text-center"
             >
               Iniciar sesión
             </button>
@@ -261,7 +270,7 @@ export default function Navbar() {
                 onClick={() => setMobileOpen(false)}
                 className="px-4 py-2 hover:bg-secondary rounded-lg text-center"
               >
-                Dashboard Admin
+                Panel Admin
               </Link>
             )}
 
@@ -271,7 +280,17 @@ export default function Navbar() {
                 onClick={() => setMobileOpen(false)}
                 className="px-4 py-2 hover:bg-secondary rounded-lg text-center"
               >
-                Dashboard Instructor
+                Panel Instructor
+              </Link>
+            )}
+
+            {user.role === 'STUDENT' && (
+              <Link
+                href="/students/dashboard/profile"
+                onClick={() => setMobileOpen(false)}
+                className="px-4 py-2 hover:bg-secondary rounded-lg text-center"
+              >
+                Panel Estudiante
               </Link>
             )}
 
@@ -297,7 +316,7 @@ export default function Navbar() {
                 setMobileOpen(false);
                 handleSignOut();
               }}
-              className="px-4 py-2 hover:bg-secondary rounded-lg text-center w-full text-red-600"
+              className="px-4 py-2 hover:bg-secondary cursor-pointer rounded-lg text-center w-full text-red-600"
             >
               Cerrar sesión
             </button>

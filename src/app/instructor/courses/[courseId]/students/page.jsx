@@ -110,7 +110,7 @@ export default function ProgressReportsPage() {
                               )
                             }
                             type="button"
-                            className="px-3 py-1.5 rounded-lg text-sm font-medium"
+                            className="cursor-pointer px-3 py-1.5 rounded-lg text-sm font-medium"
                             style={{
                               backgroundColor: "var(--color-primary)",
                               color: "var(--color-primary-text)",

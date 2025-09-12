@@ -3,8 +3,11 @@
 import { useState } from "react";
 import { Upload, Send, CheckCircle } from "lucide-react";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
+import { ArrowLeft } from "lucide-react";
 
 export default function InstructorApplyPage() {
+  const router = useRouter();
   const [formData, setFormData] = useState({
     name: "",
     linkedin: "",
@@ -40,6 +43,7 @@ export default function InstructorApplyPage() {
         color: "var(--color-text)",
       }}
     >
+     
       {/* Formulario */}
       <section className="w-full max-w-2xl bg-[var(--color-surface)] rounded-2xl shadow-lg p-6 md:p-10">
         <h1 className="text-2xl md:text-3xl font-bold mb-6 text-center">
@@ -151,7 +155,7 @@ export default function InstructorApplyPage() {
           <button
             aria-label="Enviar solicitud"
             type="submit"
-            className="w-full flex items-center justify-center gap-2 px-6 py-3 rounded-lg btn-primary text-lg font-semibold"
+            className="w-full cursor-pointer flex items-center justify-center gap-2 px-6 py-3 rounded-lg btn-primary text-lg font-semibold"
           >
             <Send className="w-5 h-5" /> Enviar solicitud
           </button>
@@ -172,13 +176,13 @@ export default function InstructorApplyPage() {
               type="button"
               aria-label="Cerrar modal"
               onClick={() => setIsModalOpen(false)}
-              className="w-full py-3 rounded-lg btn-primary font-semibold"
+              className="cursor-pointer w-full py-3 rounded-lg btn-primary font-semibold"
             >
               Cerrar
             </button>
             <div className="flex flex-col mt-4 gap-2">
             <Link href="/instructor/apply/status">
-              <button type="button" aria-label="Ver estado de solicitud" className="w-full py-3 rounded-lg btn-primary font-semibold">
+              <button type="button" aria-label="Ver estado de solicitud" className="cursor-pointer w-full py-3 rounded-lg btn-primary font-semibold">
                 Ver estado de solicitud
               </button>
             </Link>

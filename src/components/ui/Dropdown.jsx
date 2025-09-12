@@ -11,7 +11,7 @@ export default function Dropdown() {
         type="button"
         aria-label="Dropdown"
         onClick={() => setOpen(!open)}
-        className="px-4 py-2 rounded-md bg-[var(--color-primary)] text-white"
+        className="px-4 py-2 cursor-pointer rounded-md bg-[var(--color-primary)] text-white"
       >
         Opciones
       </button>

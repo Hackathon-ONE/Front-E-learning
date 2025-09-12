@@ -10,14 +10,14 @@ export default function LumiSection() {
         <div className="w-full">
           <div className="rounded-2xl overflow-hidden shadow-lg">
             <video
-              src="https://storage.cloud.google.com/luminamp4/lumi_asistente.mp4"
+              src="/video/lumi_asistente.mp4"
               controls
               autoPlay
               loop
               muted
               aria-label="video lumi"
               className="w-full h-auto object-cover"
-              // poster="https://storage.cloud.google.com/luminamp4/lumi_asistente.jpg"
+              poster="/video/lumi_asistente.jpg"
             />
           </div>
         </div>
@@ -31,7 +31,7 @@ export default function LumiSection() {
             Tu asistente en <span className="font-semibold text-[var(--color-primary)]">Lumina</span>, lista para guiarte
             en cada paso de tu recorrido dentro de la plataforma.
           </p>
-          {/* <button type="button" aria-label="Empezar con Lumi" className="px-6 py-3 bg-primary hover:bg-primary/60 text-white font-semibold rounded-xl shadow-md transition">
+          {/* <button type="button" aria-label="Empezar con Lumi" className="px-6 cursor-pointer py-3 bg-primary hover:bg-primary/60 text-white font-semibold rounded-xl shadow-md transition">
             Empezar con Lumi
           </button> */}
         </div>

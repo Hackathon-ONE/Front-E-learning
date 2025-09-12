@@ -38,7 +38,7 @@ export default function ForgotPasswordPage() {
         <button
           aria-label="Enviar instrucciones"
           type="submit"
-          className="w-full py-2 rounded-lg font-bold text-lg"
+          className="cursor-pointer w-full py-2 rounded-lg font-bold text-lg"
           style={{ backgroundColor: "var(--color-primary)", color: "var(--color-primary-text)" }}
           disabled={sent}
         >

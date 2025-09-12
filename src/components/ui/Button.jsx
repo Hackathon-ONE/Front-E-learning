@@ -9,7 +9,7 @@ export default function Button({ children, endIcon, variant = "primary", ...prop
   return (
     <button type="button" aria-label="Botón" className={variants[variant]} {...props}>
       {children}
-      {endIcon && <span className="ml-2 inline-block">{endIcon}</span>}
+      {endIcon && <span className="ml-2 inline-block cursor-pointer">{endIcon}</span>}
     </button>
   );
 }

@@ -46,7 +46,7 @@ export default function CoursesPage() {
             <button 
               type="button"
               aria-label="Nuevo curso" 
-              className="w-full sm:w-auto px-4 py-2.5 bg-[var(--color-primary)] hover:bg-[var(--color-primary-hover)] text-white rounded-lg text-sm sm:text-base font-medium transition-colors">
+              className="w-full sm:w-auto cursor-pointer px-4 py-2.5 bg-[var(--color-primary)] hover:bg-[var(--color-primary-hover)] text-white rounded-lg text-sm sm:text-base font-medium transition-colors">
               + Nuevo Curso
             </button>
             </Link>
@@ -109,7 +109,7 @@ export default function CoursesPage() {
               <button 
                 type="button"
                 aria-label="Aplicar filtros" 
-                className="w-full p-2.5 bg-[var(--color-primary)] hover:bg-[var(--color-primary-hover)] text-white rounded-lg text-sm font-medium transition-colors">
+                className="w-full cursor-pointer p-2.5 bg-[var(--color-primary)] hover:bg-[var(--color-primary-hover)] text-white rounded-lg text-sm font-medium transition-colors">
                 Aplicar Filtros
               </button>
             </div>
@@ -136,13 +136,13 @@ export default function CoursesPage() {
                 <button 
                   type="button"
                   aria-label="Editar curso" 
-                  className="flex-1 px-3 py-2 text-xs sm:text-sm bg-[var(--color-primary)] hover:bg-[var(--color-primary-hover)] text-[var(--color-text)] rounded-lg transition-colors">
+                  className="flex-1 cursor-pointer px-3 py-2 text-xs sm:text-sm bg-[var(--color-primary)] hover:bg-[var(--color-primary-hover)] text-[var(--color-text)] rounded-lg transition-colors">
                   Editar
                 </button>
                 <button 
                   type="button"
                   aria-label="Ver curso" 
-                  className="flex-1 px-3 py-2 text-xs sm:text-sm border border-[var(--color-muted)] bg-[var(--color-secondary)] hover:bg-[var(--color-secondary-hover)] text-[var(--color-text)] rounded-lg transition-colors">
+                  className="flex-1 cursor-pointer px-3 py-2 text-xs sm:text-sm border border-[var(--color-muted)] bg-[var(--color-secondary)] hover:bg-[var(--color-secondary-hover)] text-[var(--color-text)] rounded-lg transition-colors">
                   Ver
                 </button>
               </div>
@@ -156,31 +156,31 @@ export default function CoursesPage() {
             <button 
               type="button"
               aria-label="Anterior" 
-              className="px-3 py-2 text-sm border border-[var(--color-muted)] text-[var(--color-text)] rounded-lg hover:bg-[var(--color-muted)] transition-colors">
+              className="px-3 py-2 cursor-pointer text-sm border border-[var(--color-muted)] text-[var(--color-text)] rounded-lg hover:bg-[var(--color-muted)] transition-colors">
               Anterior
             </button>
             <button 
               type="button"
               aria-label="Página 1" 
-              className="px-3 py-2 text-sm bg-[var(--color-primary)] text-[var(--color-text)] rounded-lg">
+              className="px-3 py-2 cursor-pointer text-sm bg-[var(--color-primary)] text-[var(--color-text)] rounded-lg">
               1
             </button>
             <button 
               type="button"
               aria-label="Página 2" 
-              className="px-3 py-2 text-sm border border-[var(--color-muted)] text-[var(--color-text)] rounded-lg hover:bg-[var(--color-muted)] transition-colors">
+              className="px-3 py-2 cursor-pointer text-sm border border-[var(--color-muted)] text-[var(--color-text)] rounded-lg hover:bg-[var(--color-muted)] transition-colors">
               2
             </button>
             <button 
               type="button"
               aria-label="Página 3" 
-              className="px-3 py-2 text-sm border border-[var(--color-muted)] text-[var(--color-text)] rounded-lg hover:bg-[var(--color-muted)] transition-colors">
+              className="px-3 py-2 cursor-pointer text-sm border border-[var(--color-muted)] text-[var(--color-text)] rounded-lg hover:bg-[var(--color-muted)] transition-colors">
               3
             </button>
             <button 
               type="button"
               aria-label="Siguiente" 
-              className="px-3 py-2 text-sm border border-[var(--color-muted)] text-[var(--color-text)] rounded-lg hover:bg-[var(--color-muted)] transition-colors">
+              className="px-3 py-2 cursor-pointer text-sm border border-[var(--color-muted)] text-[var(--color-text)] rounded-lg hover:bg-[var(--color-muted)] transition-colors">
               Siguiente
             </button>
           </div>

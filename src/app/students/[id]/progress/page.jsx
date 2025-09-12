@@ -135,7 +135,7 @@ export default function StudentProgressPage() {
                   aria-label="Ver curso"
                   key={course.id}
                   onClick={() => setSelectedCourse(course)}
-                  className={`w-full text-left p-4 rounded-xl transition-all ${
+                  className={`w-full text-left p-4 cursor-pointer rounded-xl transition-all ${
                     selectedCourse?.id === course.id
                       ? 'bg-primary text-white shadow-lg'
                       : 'bg-[var(--color-surface)] hover:shadow-md'
@@ -338,7 +338,7 @@ export default function StudentProgressPage() {
                         <button 
                           type="button"
                           aria-label="Descargar certificado"
-                          className="mt-2 px-4 py-2 bg-yellow-500 text-white rounded-lg hover:bg-yellow-600 transition-colors"
+                          className="mt-2 px-4 py-2 bg-yellow-500 cursor-pointer text-white rounded-lg hover:bg-yellow-600 transition-colors"
                         >
                           Descargar Certificado
                         </button>

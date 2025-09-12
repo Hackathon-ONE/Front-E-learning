@@ -28,7 +28,7 @@ export default function UsersPage() {
               Administra los usuarios de la plataforma
             </p>
           </div>
-          <button type="button" aria-label="Nuevo usuario" className="w-full sm:w-auto px-4 py-2.5 bg-[var(--color-primary)] hover:bg-[var(--color-primary-hover)] text-white rounded-lg text-sm sm:text-base font-medium transition-colors">
+          <button type="button" aria-label="Nuevo usuario" className="cursor-pointer w-full sm:w-auto px-4 py-2.5 bg-[var(--color-primary)] hover:bg-[var(--color-primary-hover)] text-white rounded-lg text-sm sm:text-base font-medium transition-colors">
             + Nuevo Usuario
           </button>
         </div>
@@ -86,7 +86,7 @@ export default function UsersPage() {
               </select>
             </div>
             <div className="flex items-end">
-              <button type="button" aria-label="Aplicar filtros" className="w-full p-2.5 bg-[var(--color-primary)] hover:bg-[var(--color-primary-hover)] text-white rounded-lg text-sm font-medium transition-colors">
+              <button type="button" aria-label="Aplicar filtros" className="cursor-pointer w-full p-2.5 bg-[var(--color-primary)] hover:bg-[var(--color-primary-hover)] text-white rounded-lg text-sm font-medium transition-colors">
                 Aplicar Filtros
               </button>
             </div>
@@ -173,7 +173,7 @@ export default function UsersPage() {
                             type="button"
                             aria-label="Editar"
                             onClick={() => handleEdit(user)}
-                            className="text-[var(--color-primary)] hover:text-[var(--color-primary-hover)] p-1 rounded-md hover:bg-[var(--color-card-secondary)] transition-colors"
+                            className="cursor-pointer text-[var(--color-primary)] hover:text-[var(--color-primary-hover)] p-1 rounded-md hover:bg-[var(--color-card-secondary)] transition-colors"
                             title="Editar"
                           >
                             <svg
@@ -193,7 +193,7 @@ export default function UsersPage() {
                           <button
                             type="button"
                             aria-label="Eliminar"
-                            className="text-red-500 hover:text-red-600 p-1 rounded-md hover:bg-red-50 dark:hover:bg-red-900/20 transition-colors"
+                            className="cursor-pointer text-red-500 hover:text-red-600 p-1 rounded-md hover:bg-red-50 dark:hover:bg-red-900/20 transition-colors"
                             title="Eliminar"
                           >
                             <svg
@@ -222,10 +222,10 @@ export default function UsersPage() {
           {/* Paginación */}
           <div className="bg-[var(--color-surface)] px-4 py-3 flex items-center justify-between border-t border-[var(--color-muted)] sm:px-6">
             <div className="flex-1 flex justify-between sm:hidden">
-              <button type="button" aria-label="Anterior" className="relative inline-flex items-center px-4 py-2 border border-[var(--color-muted)] text-sm font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50">
+              <button type="button" aria-label="Anterior" className="relative cursor-pointer inline-flex items-center px-4 py-2 border border-[var(--color-muted)] text-sm font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50">
                 Anterior
               </button>
-              <button type="button" aria-label="Siguiente" className="ml-3 relative inline-flex items-center px-4 py-2 border border-[var(--color-muted)] text-sm font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50">
+              <button type="button" aria-label="Siguiente" className="ml-3 relative cursor-pointer inline-flex items-center px-4 py-2 border border-[var(--color-muted)] text-sm font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50">
                 Siguiente
               </button>
             </div>
@@ -242,7 +242,7 @@ export default function UsersPage() {
                   className="relative z-0 inline-flex rounded-md shadow-sm -space-x-px"
                   aria-label="Pagination"
                 >
-                  <button type="button" aria-label="Anterior" className="relative inline-flex items-center px-2 py-2 rounded-l-md border border-[var(--color-muted)] bg-white text-sm font-medium text-gray-500 hover:bg-gray-50">
+                  <button type="button" aria-label="Anterior" className="relative cursor-pointer inline-flex items-center px-2 py-2 rounded-l-md border border-[var(--color-muted)] bg-white text-sm font-medium text-gray-500 hover:bg-gray-50">
                     <span className="sr-only">Anterior</span>
                     <svg
                       className="h-5 w-5"
@@ -258,16 +258,16 @@ export default function UsersPage() {
                       />
                     </svg>
                   </button>
-                  <button type="button" aria-label="Página 1" className="z-10 bg-[var(--color-primary)] border-[var(--color-primary)] text-white relative inline-flex items-center px-4 py-2 border text-sm font-medium">
+                  <button type="button" aria-label="Página 1" className="z-10 cursor-pointer bg-[var(--color-primary)] border-[var(--color-primary)] text-white relative inline-flex items-center px-4 py-2 border text-sm font-medium">
                     1
                   </button>
-                  <button type="button" aria-label="Página 2" className="bg-white border-[var(--color-muted)] text-gray-500 hover:bg-gray-50 relative inline-flex items-center px-4 py-2 border text-sm font-medium">
+                  <button type="button" aria-label="Página 2" className="cursor-pointer bg-white border-[var(--color-muted)] text-gray-500 hover:bg-gray-50 relative inline-flex items-center px-4 py-2 border text-sm font-medium">
                     2
                   </button>
-                  <button type="button" aria-label="Página 3" className="bg-white border-[var(--color-muted)] text-gray-500 hover:bg-gray-50 relative inline-flex items-center px-4 py-2 border text-sm font-medium">
+                  <button type="button" aria-label="Página 3" className="cursor-pointer bg-white border-[var(--color-muted)] text-gray-500 hover:bg-gray-50 relative inline-flex items-center px-4 py-2 border text-sm font-medium">
                     3
                   </button>
-                  <button type="button" aria-label="Siguiente" className="relative inline-flex items-center px-2 py-2 rounded-r-md border border-[var(--color-muted)] bg-white text-sm font-medium text-gray-500 hover:bg-gray-50">
+                  <button type="button" aria-label="Siguiente" className="relative cursor-pointer inline-flex items-center px-2 py-2 rounded-r-md border border-[var(--color-muted)] bg-white text-sm font-medium text-gray-500 hover:bg-gray-50">
                     <span className="sr-only">Siguiente</span>
                     <svg
                       className="h-5 w-5"
@@ -301,7 +301,7 @@ export default function UsersPage() {
                   type="button"
                   aria-label="Cerrar modal"
                   onClick={() => setSelectedUser(null)}
-                  className="text-gray-400 hover:text-gray-500"
+                  className="text-gray-400 cursor-pointer hover:text-gray-500"
                 >
                   <svg className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path
@@ -413,7 +413,7 @@ export default function UsersPage() {
                   type="button"
                   aria-label="Cancelar"
                   onClick={() => setSelectedUser(null)}
-                  className="px-4 py-2.5 rounded-lg border border-[var(--color-muted)] bg-transparent text-[var(--color-card-primary-text)] hover:bg-[var(--color-muted)] transition-colors text-sm font-medium w-full sm:w-auto"
+                  className="cursor-pointer px-4 py-2.5 rounded-lg border border-[var(--color-muted)] bg-transparent text-[var(--color-card-primary-text)] hover:bg-[var(--color-muted)] transition-colors text-sm font-medium w-full sm:w-auto"
                 >
                   Cancelar
                 </button>
@@ -421,7 +421,7 @@ export default function UsersPage() {
                   type="button"
                   aria-label="Guardar cambios"
                   onClick={handleSave}
-                  className="px-4 py-2.5 rounded-lg bg-[var(--color-primary)] hover:bg-[var(--color-primary-hover)] text-white transition-colors text-sm font-medium w-full sm:w-auto"
+                  className="cursor-pointer px-4 py-2.5 rounded-lg bg-[var(--color-primary)] hover:bg-[var(--color-primary-hover)] text-white transition-colors text-sm font-medium w-full sm:w-auto"
                 >
                   Guardar cambios
                 </button>

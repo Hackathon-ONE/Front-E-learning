@@ -30,7 +30,7 @@ export default function SettingsPage() {
           <button
             type="button" 
             aria-label="Perfil"
-            className="w-full flex justify-between items-center p-4 sm:p-6 hover:bg-[var(--color-card-secondary)] rounded-t-xl transition-colors"
+            className="w-full flex justify-between cursor-pointer items-center p-4 sm:p-6 hover:bg-[var(--color-card-secondary)] rounded-t-xl transition-colors"
             onClick={() => toggleSection("perfil")}
           >
             <div className="flex items-center gap-3">
@@ -71,7 +71,7 @@ export default function SettingsPage() {
                   />
                 </div>
               </div>
-              <button type="button" aria-label="Guardar cambios" className="px-4 py-2.5 bg-[var(--color-primary)] hover:bg-[var(--color-primary-hover)] text-white rounded-lg text-sm font-medium transition-colors">
+              <button type="button" aria-label="Guardar cambios" className="cursor-pointer px-4 py-2.5 bg-[var(--color-primary)] hover:bg-[var(--color-primary-hover)] text-white rounded-lg text-sm font-medium transition-colors">
                 Guardar cambios
               </button>
             </div>
@@ -83,7 +83,7 @@ export default function SettingsPage() {
           <button
             type="button"
             aria-label="Seguridad"
-            className="w-full flex justify-between items-center p-4 sm:p-6 hover:bg-[var(--color-card-secondary)] rounded-t-xl transition-colors"
+            className="w-full flex justify-between cursor-pointer items-center p-4 sm:p-6 hover:bg-[var(--color-card-secondary)] rounded-t-xl transition-colors"
             onClick={() => toggleSection("seguridad")}
           >
             <div className="flex items-center gap-3">
@@ -122,7 +122,7 @@ export default function SettingsPage() {
                   />
                 </div>
               </div>
-              <button type="button" aria-label="Actualizar contraseña" className="px-4 py-2.5 bg-[var(--color-primary)] hover:bg-[var(--color-primary-hover)] text-white rounded-lg text-sm font-medium transition-colors">
+              <button type="button" aria-label="Actualizar contraseña" className="cursor-pointer px-4 py-2.5 bg-[var(--color-primary)] hover:bg-[var(--color-primary-hover)] text-white rounded-lg text-sm font-medium transition-colors">
                 Actualizar contraseña
               </button>
             </div>
@@ -134,7 +134,7 @@ export default function SettingsPage() {
           <button
             type="button"
             aria-label="Notificaciones"
-            className="w-full flex justify-between items-center p-4 sm:p-6 hover:bg-[var(--color-card-secondary)] rounded-t-xl transition-colors"
+            className="w-full flex justify-between cursor-pointer items-center p-4 sm:p-6 hover:bg-[var(--color-card-secondary)] rounded-t-xl transition-colors"
             onClick={() => toggleSection("notificaciones")}
           >
             <div className="flex items-center gap-3">
@@ -179,7 +179,7 @@ export default function SettingsPage() {
                   <span className="text-sm text-[var(--color-card-primary-text)]">Notificaciones de seguridad</span>
                 </label>
               </div>
-              <button type="button" aria-label="Guardar preferencias" className="px-4 py-2.5 bg-[var(--color-primary)] hover:bg-[var(--color-primary-hover)] text-white rounded-lg text-sm font-medium transition-colors">
+              <button type="button" aria-label="Guardar preferencias" className="cursor-pointer px-4 py-2.5 bg-[var(--color-primary)] hover:bg-[var(--color-primary-hover)] text-white rounded-lg text-sm font-medium transition-colors">
                 Guardar preferencias
               </button>
             </div>

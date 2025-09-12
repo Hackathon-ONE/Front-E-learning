@@ -2,7 +2,7 @@
 
 import { useAuth } from '@/context/AuthContext';
 import Link from 'next/link';
-import { BookOpen, Users, BarChart3, Settings, User, Wallet, GraduationCap } from 'lucide-react';
+import { BookOpen, Users, BarChart3, Settings, User, Wallet, GraduationCap, UserStar } from 'lucide-react';
 
 import Hero from '@/components/Hero';
 import CoursesCarousel from '@/components/CoursesCarousel';
@@ -156,16 +156,7 @@ function AdminDashboard({ user }) {
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-8 bg-surface">
-        <Link
-          href="/admin"
-          className="bg-[var(--color-card-primary)] p-6 rounded-lg shadow-md hover:shadow-lg transition-shadow"
-        >
-          <BarChart3 className="w-8 h-8 text-red-600 mb-4" />
-          <h3 className="text-xl font-semibold text-[var(--color-text)] mb-2">Dashboard</h3>
-          <p className="text-[var(--color-text)]">Métricas del sistema</p>
-        </Link>
-
-        <Link
+      <Link
           href="/admin/users"
           className="bg-[var(--color-card-primary)] p-6 rounded-lg shadow-md hover:shadow-lg transition-shadow"
         >
@@ -184,21 +175,30 @@ function AdminDashboard({ user }) {
         </Link>
 
         <Link
-          href="/students"
-          className="bg-[var(--color-card-primary)] p-6 rounded-lg shadow-md hover:shadow-lg transition-shadow"
-        >
-          <GraduationCap className="w-8 h-8 text-yellow-600 mb-4" />
-          <h3 className="text-xl font-semibold text-[var(--color-text)] mb-2">Inscritos</h3>
-          <p className="text-[var(--color-text)]">Gestionar estudiantes inscritos</p>
-        </Link>
-
-        <Link
           href="/admin/payments"
           className="bg-[var(--color-card-primary)] p-6 rounded-lg shadow-md hover:shadow-lg transition-shadow"
         >
           <Wallet className="w-8 h-8 text-cyan-600 mb-4" />
           <h3 className="text-xl font-semibold text-[var(--color-text)] mb-2">Pagos</h3>
           <p className="text-[var(--color-text)]">Administrar pagos</p>
+        </Link>
+        
+        <Link
+          href="/instructor"
+          className="bg-[var(--color-card-primary)] p-6 rounded-lg shadow-md hover:shadow-lg transition-shadow"
+        >
+          <UserStar className="w-8 h-8 text-red-600 mb-4" />
+          <h3 className="text-xl font-semibold text-[var(--color-text)] mb-2">Instructores</h3>
+          <p className="text-[var(--color-text)]">Gestionar instructores</p>
+        </Link>
+
+        <Link
+          href="/students"
+          className="bg-[var(--color-card-primary)] p-6 rounded-lg shadow-md hover:shadow-lg transition-shadow"
+        >
+          <GraduationCap className="w-8 h-8 text-yellow-600 mb-4" />
+          <h3 className="text-xl font-semibold text-[var(--color-text)] mb-2">Inscritos</h3>
+          <p className="text-[var(--color-text)]">Gestionar estudiantes inscritos</p>
         </Link>
 
         <Link

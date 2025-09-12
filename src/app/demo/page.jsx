@@ -45,7 +45,6 @@ export default function DemoPage() {
                 autoPlay
                 aria-label="Video player lesson"
                 className="w-full h-48 sm:h-64 md:h-[400px] object-cover"
-                // poster="https://storage.cloud.google.com/luminamp4/demo_inicial.jpg"
               />
             ) : (
               <div className="flex justify-center items-center h-48 sm:h-64 md:h-[400px] text-center p-4 sm:p-6">
@@ -100,7 +99,7 @@ export default function DemoPage() {
             {/* CTA para suscribirse */}
             <div className="mt-6 mb-6 text-center">
               <Link href="/payments">
-                <button type="button" aria-label="Suscríbete para desbloquear todas las lecciones" className="w-full py-2 rounded-lg btn-primary text-xs sm:text-base flex items-center justify-center">
+                <button type="button" aria-label="Suscríbete para desbloquear todas las lecciones" className="cursor-pointer w-full py-2 rounded-lg btn-primary text-xs sm:text-base flex items-center justify-center">
                   Suscríbete para desbloquear todas las lecciones
                 </button>
               </Link>
@@ -117,7 +116,7 @@ export default function DemoPage() {
               type="button"
               aria-label="Cerrar modal"
               onClick={() => setShowModal(false)}
-              className="absolute top-3 right-3 text-[var(--color-muted)] hover:text-[var(--color-primary)]"
+              className="absolute top-3 cursor-pointer right-3 text-[var(--color-muted)] hover:text-[var(--color-primary)]"
             >
               <X className="w-5 h-5" />
             </button>
@@ -133,7 +132,7 @@ export default function DemoPage() {
 
             <div className="flex flex-col gap-3">
               <Link href="/payments" onClick={() => setShowModal(false)}>
-                <button type="button" aria-label="Suscríbete para desbloquear todas las lecciones" className="w-full py-3 rounded-lg btn-primary flex items-center justify-center gap-2">
+                <button type="button" aria-label="Suscríbete para desbloquear todas las lecciones" className="cursor-pointer w-full py-3 rounded-lg btn-primary flex items-center justify-center gap-2">
                   <Star className="w-5 h-5" /> Suscribirme ahora
                 </button>
               </Link>
@@ -141,7 +140,7 @@ export default function DemoPage() {
                 type="button"
                 aria-label="Seguir explorando"
                 onClick={() => setShowModal(false)}
-                className="w-full py-3 rounded-lg bg-[var(--color-secondary)] text-[var(--color-secondary-text)] hover:bg-[var(--color-secondary-hover)] hover:text-[var(--color-secondary-hover-text)] flex items-center justify-center gap-2"
+                className="cursor-pointer w-full py-3 rounded-lg bg-[var(--color-secondary)] text-[var(--color-secondary-text)] hover:bg-[var(--color-secondary-hover)] hover:text-[var(--color-secondary-hover-text)] flex items-center justify-center gap-2"
               >
                 <PlayCircle className="w-5 h-5" /> Seguir explorando
               </button>

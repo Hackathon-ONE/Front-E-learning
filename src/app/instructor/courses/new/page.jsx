@@ -2,17 +2,20 @@
 
 import { useState } from "react";
 import { useRouter } from "next/navigation";
+import { ArrowLeft } from "lucide-react";
 
 export default function CreateCoursePage() {
   const router = useRouter();
 
-  const [form, setForm] = useState({
+  const [formData, setFormData] = useState({
     title: "",
     description: "",
     category: "",
     level: "",
     price: 0,
-    instructorId: "", // viene del login del instructor
+    instructorId: "", // agregado
+    resourceUrl: "",
+    resourceFile: null,
   });
 
   const [loading, setLoading] = useState(false);
@@ -20,7 +23,7 @@ export default function CreateCoursePage() {
 
   const handleChange = (e) => {
     const { name, value } = e.target;
-    setForm((prev) => ({
+    setFormData((prev) => ({
       ...prev,
       [name]: name === "price" ? Number(value) : value,
     }));
@@ -29,8 +32,7 @@ export default function CreateCoursePage() {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    // Validación rápida
-    if (!form.title || !form.description) {
+    if (!formData.title || !formData.description) {
       setError("El título y la descripción son obligatorios.");
       return;
     }
@@ -39,16 +41,8 @@ export default function CreateCoursePage() {
       setLoading(true);
       setError(null);
 
-      // Llamada real al backend
-      // const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/courses`, {
-      //   method: "POST",
-      //   headers: { "Content-Type": "application/json" },
-      //   body: JSON.stringify(form),
-      // });
-      // if (!res.ok) throw new Error("Error al crear el curso");
-      // const data = await res.json();
-
-      console.log("Curso enviado al backend:", form);
+      // Enviar al backend
+      console.log("Curso enviado al backend:", formData);
 
       router.push("/instructor/courses");
     } catch (err) {
@@ -67,6 +61,18 @@ export default function CreateCoursePage() {
         color: "var(--color-text)",
       }}
     >
+      {/* Botón volver */}
+      <button
+        onClick={() => router.back()}
+        className="flex items-center gap-2 px-4 py-2 mb-4 rounded-lg font-medium 
+                   bg-[var(--color-surface)] text-[var(--color-text)] 
+                   hover:bg-[var(--color-primary)] hover:text-[var(--color-primary-text)]
+                   transition w-full sm:w-auto"
+      >
+        <ArrowLeft className="w-5 h-5" />
+        <span className="text-sm sm:text-base">Volver</span>
+      </button>
+
       <h1 className="text-3xl font-bold mb-6">Crear nuevo curso</h1>
 
       {error && (
@@ -79,14 +85,14 @@ export default function CreateCoursePage() {
       >
         {/* Título */}
         <div>
-        <label className="block mb-1 font-medium text-[var(--color-text)]">
+          <label className="block mb-1 font-medium text-[var(--color-text)]">
             Título del curso
           </label>
           <input
             id="title"
             type="text"
             name="title"
-            value={form.title}
+            value={formData.title}
             onChange={handleChange}
             className="w-full p-3 border rounded-lg text-sm text-[var(--color-text)]"
           />
@@ -100,7 +106,7 @@ export default function CreateCoursePage() {
           <textarea
             id="description"
             name="description"
-            value={form.description}
+            value={formData.description}
             onChange={handleChange}
             rows={4}
             className="w-full p-3 border rounded-lg text-sm text-[var(--color-text)]"
@@ -116,7 +122,7 @@ export default function CreateCoursePage() {
             id="category"
             type="text"
             name="category"
-            value={form.category}
+            value={formData.category}
             onChange={handleChange}
             className="w-full p-3 border rounded-lg text-sm text-[var(--color-text)]"
           />
@@ -130,7 +136,7 @@ export default function CreateCoursePage() {
           <select
             id="level"
             name="level"
-            value={form.level}
+            value={formData.level}
             onChange={handleChange}
             className="w-full p-3 border border-[var(--color-muted)] rounded-lg text-sm text-[var(--color-text)]"
           >
@@ -150,14 +156,58 @@ export default function CreateCoursePage() {
             id="price"
             type="number"
             name="price"
-            value={form.price}
+            value={formData.price}
             onChange={handleChange}
             min="0"
             className="w-full p-3 border border-[var(--color-muted)] rounded-lg text-sm text-[var(--color-text)]"
           />
         </div>
 
-        {/* Instructor (puede venir del login) */}
+        {/* Recurso */}
+        <div>
+          <label className="block text-sm font-medium text-[var(--color-text)] mb-1">
+            Recurso del curso (imagen/documento)
+          </label>
+
+          <input
+            id="resourceUrl"
+            type="url"
+            name="resourceUrl"
+            value={formData.resourceUrl || ""}
+            onChange={handleChange}
+            className="w-full p-3 border rounded-lg text-sm text-[var(--color-text)] mb-3"
+            placeholder="Pega aquí un enlace (Drive, imagen, PDF, etc.)"
+          />
+
+          <input
+            id="resourceFile"
+            type="file"
+            accept=".jpg,.jpeg,.png,.pdf,.docx"
+            onChange={(e) => {
+              const file = e.target.files?.[0];
+              if (file) {
+                setFormData((prev) => ({
+                  ...prev,
+                  resourceFile: file,
+                }));
+              }
+            }}
+            className="w-full p-3 border rounded-lg text-sm text-[var(--color-text)]"
+          />
+
+          {formData.resourceUrl && (
+            <p className="mt-2 text-xs text-[var(--color-text)]">
+              URL añadida: {formData.resourceUrl}
+            </p>
+          )}
+          {formData.resourceFile && (
+            <p className="mt-2 text-xs text-[var(--color-text)]">
+              Archivo seleccionado: {formData.resourceFile.name}
+            </p>
+          )}
+        </div>
+
+        {/* Instructor */}
         <div>
           <label className="block mb-1 font-medium text-[var(--color-text)]">
             ID Instructor
@@ -166,7 +216,7 @@ export default function CreateCoursePage() {
             id="instructorId"
             type="text"
             name="instructorId"
-            value={form.instructorId}
+            value={formData.instructorId}
             onChange={handleChange}
             placeholder="Se obtiene del login"
             className="w-full p-3 border border-[var(--color-muted)] rounded-lg text-sm text-[var(--color-text)]"
@@ -178,11 +228,10 @@ export default function CreateCoursePage() {
           aria-label="Crear curso"
           type="submit"
           disabled={loading}
-          className="w-full py-3 rounded-lg font-semibold bg-[var(--color-primary)] text-white text-sm font-medium hover:bg-[var(--color-primary-hover)]"
+          className="cursor-pointer w-full py-3 rounded-lg font-semibold bg-[var(--color-primary)] text-white text-sm font-medium hover:bg-[var(--color-primary-hover)]"
         >
           {loading ? "Creando curso..." : "Crear curso"}
         </button>
-        
       </form>
     </main>
   );

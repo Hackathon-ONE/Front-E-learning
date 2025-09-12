@@ -63,7 +63,7 @@ export default function PaymentsPage() {
               type="button"
               aria-label="Suscribirse"  
               onClick={() => router.push("/payments/checkout")}
-              className="mt-6 w-full py-3 rounded-lg font-semibold btn-primary"
+              className="mt-6 w-full py-3 cursor-pointer rounded-lg font-semibold btn-primary"
             >
               Suscribirse
             </Button>
@@ -131,21 +131,21 @@ export default function PaymentsPage() {
         </h2>
         <div className="space-y-4">
           <details className="bg-[var(--color-surface)] p-4 rounded-lg shadow cursor-pointer">
-            <summary className="font-semibold">¿Puedo cancelar en cualquier momento?</summary>
+            <summary className="font-semibold text-[var(--color-text)]">¿Puedo cancelar en cualquier momento?</summary>
             <p className="mt-2 text-sm text-[var(--color-muted)]">
               Sí, puedes cancelar tu plan desde tu perfil y no se te cobrará en el siguiente ciclo.
             </p>
           </details>
 
           <details className="bg-[var(--color-surface)] p-4 rounded-lg shadow cursor-pointer">
-            <summary className="font-semibold">¿Recibiré factura o comprobante?</summary>
+            <summary className="font-semibold text-[var(--color-text)]">¿Recibiré factura o comprobante?</summary>
             <p className="mt-2 text-sm text-[var(--color-muted)]">
               Sí, recibirás una factura digital automáticamente en tu correo electrónico.
             </p>
           </details>
 
           <details className="bg-[var(--color-surface)] p-4 rounded-lg shadow cursor-pointer">
-            <summary className="font-semibold">¿Qué métodos de pago aceptan?</summary>
+            <summary className="font-semibold text-[var(--color-text)]">¿Qué métodos de pago aceptan?</summary>
             <p className="mt-2 text-sm text-[var(--color-muted)]">
               Aceptamos tarjetas de crédito, débito, PayPal y transferencias bancarias.
             </p>

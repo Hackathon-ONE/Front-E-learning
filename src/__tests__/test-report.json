@@ -1,0 +1,49 @@
+{
+  "timestamp": "2025-09-14T20:07:12.957Z",
+  "summary": {
+    "total": 5,
+    "passed": 5,
+    "failed": 0,
+    "criticalFailed": 0
+  },
+  "results": [
+    {
+      "name": "Authentication Flow Tests",
+      "status": "PASSED",
+      "critical": true,
+      "output": "\n> front-lumina@0.1.0 test\n> jest --testPathPatterns=critical-features.test.jsx --testNamePattern=Authentication Flow\n\n"
+    },
+    {
+      "name": "Student Detail Page Tests",
+      "status": "PASSED",
+      "critical": true,
+      "output": "\n> front-lumina@0.1.0 test\n> jest --testPathPatterns=critical-features.test.jsx --testNamePattern=Student Detail Page\n\n"
+    },
+    {
+      "name": "Navigation Tests",
+      "status": "PASSED",
+      "critical": true,
+      "output": "\n> front-lumina@0.1.0 test\n> jest --testPathPatterns=critical-features.test.jsx --testNamePattern=Navigation Links\n\n"
+    },
+    {
+      "name": "Integration Tests",
+      "status": "PASSED",
+      "critical": true,
+      "output": "\n> front-lumina@0.1.0 test\n> jest --testPathPatterns=integration.test.jsx\n\n"
+    },
+    {
+      "name": "Auth Form Tests",
+      "status": "PASSED",
+      "critical": false,
+      "output": "\n> front-lumina@0.1.0 test\n> jest --testPathPatterns=AuthForm.test.jsx\n\n"
+    }
+  ],
+  "criticalFeatures": [
+    "User Authentication (Login/Logout)",
+    "Role-based Access Control",
+    "Student Profile Display",
+    "Course Progress Tracking",
+    "Navigation Between Pages",
+    "Data Persistence"
+  ]
+}

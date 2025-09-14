@@ -1,8 +1,8 @@
-const nextJest = require('next/jest')
+const nextJest = require('next/jest');
 
 const createJestConfig = nextJest({
   dir: './', // Path to your Next.js app
-})
+});
 
 const config = {
   testEnvironment: 'jsdom',
@@ -10,7 +10,11 @@ const config = {
   moduleNameMapper: {
     '^@/(.*)$': '<rootDir>/src/$1',
   },
-  testPathIgnorePatterns: ['<rootDir>/.next/', '<rootDir>/node_modules/'],
-}
+  testPathIgnorePatterns: [
+    '<rootDir>/.next/',
+    '<rootDir>/node_modules/',
+    '<rootDir>/src/__tests__/test-runner.js',
+  ],
+};
 
-module.exports = createJestConfig(config)
+module.exports = createJestConfig(config);

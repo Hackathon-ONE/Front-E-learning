@@ -55,8 +55,8 @@ export default function StudentDetailPage() {
           <h1 className="text-2xl font-bold text-[var(--color-text)]">
             Estudiante no encontrado
           </h1>
-          <Link href="/students" className="text-primary hover:text-primary/80 mt-4 inline-block">
-            Volver a estudiantes
+          <Link href="/" className="text-primary hover:text-primary/80 mt-4 inline-block">
+            Volver
           </Link>
         </div>
       </div>

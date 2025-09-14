@@ -5,7 +5,7 @@ export const mockUsers = [
       email: "admin@lumina.com",
       role: "ADMIN",
       password: "admin123",
-      image: "https://i.pravatar.cc/150?img=35",
+      image: "/avatars/img35.jpg",
     },
     {
       id: "2",
@@ -13,7 +13,7 @@ export const mockUsers = [
       email: "instructor@lumina.com",
       role: "INSTRUCTOR",
       password: "instructor123",
-      image: "https://i.pravatar.cc/150?img=60",
+      image: "/avatars/img60.jpg",
     },
     {
       id: "3",
@@ -21,7 +21,7 @@ export const mockUsers = [
       email: "student@example.com",
       role: "STUDENT",
       password: "student123",
-      image: "https://i.pravatar.cc/150?img=12",
+      image: "/avatars/img12.jpg",
     },
     {
       id: "4",
@@ -29,7 +29,7 @@ export const mockUsers = [
       email: "alicia@example.com",
       role: "STUDENT",
       password: "alicia123",
-      image: "https://i.pravatar.cc/150?img=45",
+      image: "/avatars/img45.jpg",
     },
     {
       id: "5",
@@ -37,7 +37,7 @@ export const mockUsers = [
       email: "marco@lumina.com",
       role: "INSTRUCTOR",
       password: "marco123",
-      image: "https://i.pravatar.cc/150?img=53",
+      image: "/avatars/img53.jpg",
     },
     {
       id: "6",
@@ -45,7 +45,7 @@ export const mockUsers = [
       email: "lupita@lumina.com",
       role: "ADMIN",
       password: "lupita123",
-      image: "https://i.pravatar.cc/150?img=48",
+      image: "/avatars/img48.jpg",
     },
     // Usuarios adicionales para pruebas
     {
@@ -54,7 +54,7 @@ export const mockUsers = [
       email: "maria@example.com",
       role: "STUDENT",
       password: "mariastudent123",
-      image: "https://i.pravatar.cc/150?img=5",
+      image: "/avatars/img5.jpg",
     },
     {
       id: "8",
@@ -62,7 +62,7 @@ export const mockUsers = [
       email: "carlos@lumina.com",
       role: "INSTRUCTOR",
       password: "carlosinstructor123",
-      image: "https://i.pravatar.cc/150?img=55",
+      image: "/avatars/img55.jpg",
     },
     {
       id: "9",
@@ -70,7 +70,7 @@ export const mockUsers = [
       email: "ana@lumina.com",
       role: "INSTRUCTOR",
       password: "anaadmin123",
-      image: "https://i.pravatar.cc/150?img=44",
+      image: "/avatars/img44.jpg",
     },
     { 
       id: "10",
@@ -78,7 +78,7 @@ export const mockUsers = [
       email: "marian@example.com",
       role: "STUDENT",
       password: "mariastudent123",
-      image: "https://i.pravatar.cc/150?img=32",
+      image: "/avatars/img32.jpg",
     },
     { 
       id: "11",
@@ -86,7 +86,7 @@ export const mockUsers = [
       email: "fernanda@lumina.com",
       role: "INSTRUCTOR",
       password: "fernandainstructor123",
-      image: "https://i.pravatar.cc/150?img=38",
+      image: "/avatars/img38.jpg",
     },
     { 
       id: "12",
@@ -94,7 +94,7 @@ export const mockUsers = [
       email: "jose@lumina.com",
       role: "ADMIN",
       password: "joseadmin123",
-      image: "https://i.pravatar.cc/150?img=11",
+      image: "/avatars/img11.jpg",
     },
     {
       id: "13",
@@ -110,7 +110,7 @@ export const mockUsers = [
       email: "gustavo@example.com",
       role: "STUDENT",
       password: "gustavostudent123", 
-      image: "https://i.pravatar.cc/150?img=15",
+      image: "/avatars/img15.jpg",
     },
     {
       id: "15",
@@ -118,7 +118,7 @@ export const mockUsers = [
       email: "carla@example.com",
       role: "STUDENT",
       password: "carla123",
-      image: "https://i.pravatar.cc/150?img=16",
+      image: "/avatars/img16.jpg",
     },
     {
       id: "16",
@@ -126,7 +126,7 @@ export const mockUsers = [
       email: "pedro@example.com",
       role: "STUDENT",
       password: "pedrostudent123",
-      image: "https://i.pravatar.cc/150?img=17",
+      image: "/avatars/img17.jpg",
     },
     {
       id: "17",
@@ -134,7 +134,7 @@ export const mockUsers = [
       email: "laura@example.com",
       role: "STUDENT",
       password: "laurastudent123",
-      image: "https://i.pravatar.cc/150?img=22",
+      image: "/avatars/img22.jpg",
     },
     {
       id: "18",
@@ -142,6 +142,6 @@ export const mockUsers = [
       email: "anah@example.com",
       role: "STUDENT",
       password: "anastudent123",
-      image: "https://i.pravatar.cc/150?img=25",
+      image: "/avatars/img25.jpg",
     },
   ];  

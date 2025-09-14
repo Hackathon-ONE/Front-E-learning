@@ -6,92 +6,43 @@ Plataforma de aprendizaje electrónico construida con Next.js 15 (App Router).
 
 ```
 /src
- ├── app/                            # Rutas de la aplicación
- │    ├── (auth)/                    # Rutas de autenticación
- │    │    ├── login/page.jsx
- │    │    ├── register/page.jsx
- │    │    └── forgot-password/page.jsx
- │    │
- │    ├── admin/                     # Panel de administración
- │    │    ├── courses/             # Gestión de cursos
- │    │    ├── instructors/         # Gestión de instructores
- │    │    ├── payments/            # Gestión de pagos
- │    │    ├── settings/            # Configuración
- │    │    └── users/               # Gestión de usuarios
- │    │
- │    ├── courses/                   # Catálogo de cursos
- │    │    ├── [id]/                # Detalles del curso
- │    │    │    ├── lessons/        # Lecciones
- │    │    │    │    └── [lessonId] # Reproductor de lección
- │    │    │    ├── overview/       # Vista general
- │    │    │    ├── quizzes/        # Cuestionarios
- │    │    │    └── resources/      # Recursos
- │    │    └── page.jsx             # Listado de cursos
- │    │
- │    ├── dashboard/                 # Panel del usuario
- │    │    ├── profile/             # Perfil
- │    │    ├── progress/            # Progreso
- │    │    └── settings/            # Configuración
- │    │
- │    ├── help/                     # Centro de ayuda
- │    │    ├── contact/             # Contacto
- │    │    ├── faq/                 # Preguntas frecuentes
- │    │    ├── policies/            # Políticas
- │    │    ├── support/             # Soporte
- │    │    └── terms/               # Términos y condiciones
- │    │
- │    ├── instructor/               # Área de instructores
- │    │    ├── [id]/               # Perfil de instructor
- │    │    ├── apply/              # Solicitud de instructor
- │    │    ├── courses/            # Cursos del instructor
- │    │    │    └── [courseId]/    # Gestión de curso específico
- │    │    │         ├── analytics # Análiticas
- │    │    │         ├── edit/     # Edición
- │    │    │         ├── lessons/  # Lecciones
- │    │    │         └── students/ # Estudiantes
- │    │    ├── dashboard/          # Panel principal
- │    │    └── earnings/           # Ganancias
- │    │
+ ├── ai/                            # Inteligencia Artificial y flujos
+ ├── app/                           # Rutas de la aplicación (Next.js App Router)
+ │    ├── about/                    # Páginas sobre la plataforma
+ │    ├── admin/                    # Panel de administración
+ │    ├── api/                      # Endpoints de API
+ │    ├── auth/                     # Autenticación
+ │    ├── chatbot/                  # Chatbot de asistencia
+ │    ├── courses/                  # Cursos
+ │    ├── dashboard/                # Panel de control
+ │    ├── demo/                     # Demostraciones
+ │    ├── help/                     # Ayuda y soporte
+ │    ├── instructor/               # Panel de instructores
  │    ├── payments/                 # Gestión de pagos
- │    │    ├── checkout/           # Proceso de pago
- │    │    └── history/            # Historial
- │    │
- │    ├── students/                 # Gestión de estudiantes
- │    │    └── [id]/               # Perfil de estudiante
- │    │         └── progress/      # Progreso del estudiante
- │    │
- │    ├── about/                    # Sobre nosotros
- │    ├── team/                     # Equipo
- │    └── layout.jsx                # Layout global
+ │    ├── students/                 # Área de estudiantes
+ │    └── team/                     # Equipo
  │
+ ├── assets/                        # Recursos estáticos
  ├── components/                    # Componentes reutilizables
- │    ├── ui/                       # Componentes de UI
- │    │    ├── button.jsx          # Botones
- │    │    ├── card.jsx            # Tarjetas
- │    │    └── ...
- │    ├── Navbar.jsx               # Barra de navegación
- │    ├── Sidebar.jsx              # Barra lateral
- │    └── Footer.jsx               # Pie de página
+ │    ├── __tests__/               # Pruebas de componentes
+ │    └── ui/                       # Componentes de interfaz de usuario
  │
- ├── context/                      # Contextos de React
- │    └── AuthContext.jsx          # Autenticación y autorización
+ ├── constants/                     # Constantes de la aplicación
+ ├── context/                       # Contextos de React
+ ├── data/                          # Datos y configuraciones
+ ├── hooks/                         # Custom React Hooks
+ │    ├── useAuth.js                # Manejo de autenticación
+ │    └── useCourse.js              # Lógica de cursos
  │
- ├── data/                         # Datos estáticos y mocks
- │    ├── courses.js               # Datos de cursos
- │    ├── instructors.js           # Datos de instructores
- │    └── payments.js              # Datos de pagos
+ ├── lib/                           # Utilidades y bibliotecas
+ │    ├── api/                      # Llamadas a la API
+ │    ├── auth/                     # Helpers de autenticación
+ │    └── utils/                    # Funciones de utilidad
  │
- ├── hooks/                        # Custom hooks
- │    ├── useAuth.js               # Manejo de autenticación
- │    └── useCourse.js             # Lógica de cursos
- │
- ├── lib/                          # Utilidades
- │    ├── api/                     # Llamadas a la API
- │    ├── auth/                    # Helpers de autenticación
- │    └── utils/                   # Funciones de utilidad
- │
- └── styles/                       # Estilos globales
-      └── globals.css              # Tailwind y estilos base
+ ├── pages/                         # Páginas (legacy, usar app/)
+ ├── services/                      # Servicios y APIs
+ ├── shared/                        # Código compartido
+ └── types/                         # Definiciones de TypeScript
 
 /public                           # Archivos estáticos
  ├── avatars/                      # Imágenes de perfil
@@ -99,7 +50,6 @@ Plataforma de aprendizaje electrónico construida con Next.js 15 (App Router).
  ├── images/                       # Imágenes generales
  ├── logos/                        # Logotipos
  └── videos/                       # Videos de lecciones
-```
 
 ## Instalación y uso rápido
 

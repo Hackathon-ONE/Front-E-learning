@@ -24,15 +24,15 @@
 
 ### Más Estudiantes
 
-- **Email:** `maria@student.com` | **Contraseña:** `123456`
+- **Email:** `maria@example.com` | **Contraseña:** `mariastudent123`
 
 ### Más Instructores
 
-- **Email:** `carlos@instructor.com` | **Contraseña:** `123456`
+- **Email:** `carlos@lumina.com` | **Contraseña:** `carlosinstructor123`
 
 ### Más Administradores
 
-- **Email:** `ana@admin.com` | **Contraseña:** `123456`
+- **Email:** `jose@lumina.com` | **Contraseña:** `joseadmin123`
 
 ## 🚀 Flujo de Login Actualizado
 
@@ -101,7 +101,7 @@
 ## 🔍 Cómo Probar
 
 1. **Inicia la aplicación:** `npm run dev`
-2. **Ve a login:** `http://localhost:3000/auth/login`
+2. **Ve a login:** `http://localhost:9002/auth/login`
 3. **Prueba cada rol:** Usa las credenciales de arriba
 4. **Observa las diferencias:** Cada rol ve contenido diferente
 5. **Verifica el navbar:** El dropdown cambia según el rol

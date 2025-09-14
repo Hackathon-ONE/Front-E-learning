@@ -10,11 +10,9 @@ export default function LessonPlayerPage() {
   const router = useRouter();
   const lessons = lessonsPlayerData;
 
-  const [currentLesson, setCurrentLesson] = useState(
-    lessonId?.toString() || "1"
-  );
-
-  const activeLesson = lessons.find((l) => l.id.toString() === currentLesson);
+  const activeLesson =
+    lessons.find((l) => l.id.toString() === lessonId?.toString()) ||
+    lessons[0]; // fallback seguro
 
   return (
     <div
@@ -45,26 +43,28 @@ export default function LessonPlayerPage() {
           {lessons.map((lesson) => (
             <li
               key={lesson.id}
-              onClick={() => setCurrentLesson(lesson.id)}
+              onClick={() =>
+                router.push(`/courses/${courseId}/lessons/${lesson.id}`)
+              }
               className={`p-3 rounded-lg cursor-pointer transition text-[var(--color-text)] text-sm sm:text-base ${
-                currentLesson === lesson.id
+                lessonId?.toString() === lesson.id.toString()
                   ? "font-semibold"
                   : "opacity-80 hover:opacity-100"
               }`}
               style={{
                 backgroundColor:
-                  currentLesson === lesson.id
+                  lessonId?.toString() === lesson.id.toString()
                     ? "var(--color-primary)"
                     : "var(--color-surface)",
                 color:
-                  currentLesson === lesson.id
+                  lessonId?.toString() === lesson.id.toString()
                     ? "var(--color-primary-text)"
                     : "var(--color-text)",
               }}
             >
               <div className="flex justify-between items-center text-sm md:text-base">
                 <span>{lesson.title}</span>
-                <span className="text-xs sm:text-xs justify-end text-end opacity-90 text-[var(--color-text)]">
+                <span className="text-xs opacity-90 text-[var(--color-text)]">
                   {lesson.duration}
                 </span>
               </div>
@@ -75,20 +75,19 @@ export default function LessonPlayerPage() {
 
       {/* Player */}
       <main className="flex-1 flex flex-col">
-        {/* Video Player */}
         <div className="w-full bg-black relative aspect-video">
           <video
-            key={currentLesson}
+            key={activeLesson.id}
             controls
             loop
             playsInline
             className="w-full h-full object-contain"
-            src={activeLesson?.videoUrl || "/video/video1.mp4"}
-            poster={activeLesson?.posterUrl || "/video/video1.jpg"}
-            autoPlay
-            aria-label="Video player 1"
+            src={activeLesson.videoUrl || "/video/video1.mp4"}
+            // poster={activeLesson.posterUrl || "/video/video1.jpg"}
+            aria-label={`Video de ${activeLesson.title}`}
           />
         </div>
+
 
         {/* Info de la lección */}
         <div
@@ -96,10 +95,10 @@ export default function LessonPlayerPage() {
           style={{ backgroundColor: "var(--color-card-primary)" }}
         >
           <h1 className="text-lg sm:text-xl font-semibold text-[var(--color-text)]">
-            {activeLesson?.title}
+            {activeLesson.title}
           </h1>
           <p className="text-xs sm:text-sm opacity-75 mt-1 text-[var(--color-text)]">
-            Curso {courseId} · Lección {currentLesson}
+            Curso {courseId} · Lección {activeLesson.id}
           </p>
         </div>
       </main>

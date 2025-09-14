@@ -42,7 +42,7 @@ export default function CreateCoursePage() {
       setError(null);
 
       // Enviar al backend
-      console.log("Curso enviado al backend:", formData);
+      // console.log("Curso enviado al backend:", formData);
 
       router.push("/instructor/courses");
     } catch (err) {

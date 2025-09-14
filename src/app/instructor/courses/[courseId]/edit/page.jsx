@@ -72,7 +72,7 @@ export default function EditCoursePage() {
       //   body: data,
       // });
 
-      console.log("Datos enviados:", Object.fromEntries(data));
+      // console.log("Datos enviados:", Object.fromEntries(data));
 
       router.push("/instructor/courses");
     } catch (err) {

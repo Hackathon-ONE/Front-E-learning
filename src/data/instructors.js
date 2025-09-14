@@ -42,7 +42,7 @@ export const instructorsPage = [
     id: 1,
     name: "Benjamín Pérez",
     bio: "Especialista en React y Next.js con 8 años de experiencia.",
-    avatar: "https://i.pravatar.cc/150?img=60",
+    avatar: "/avatars/img60.jpg",
     courses: 5,
     reviews: 4.7,
     students: 320,
@@ -51,7 +51,7 @@ export const instructorsPage = [
     id: 2,
     name: "María Gómez",
     bio: "Apasionada por el desarrollo web moderno y la mentoría de nuevos talentos. Experiencia en React, Node.js y arquitectura cloud.",
-    avatar: "https://i.pravatar.cc/150?img=32",
+    avatar: "/avatars/img32.jpg",
     courses: 3,
     reviews: 4.9,
     students: 210,
@@ -60,7 +60,7 @@ export const instructorsPage = [
     id: 3,
     name: "Carlos Mora",
     bio: "Backend developer con foco en Node.js, NestJS y bases de datos.",
-    avatar: "https://i.pravatar.cc/150?img=55",
+    avatar: "/avatars/img55.jpg",
     courses: 7,
     reviews: 4.5,
     students: 410,
@@ -92,7 +92,7 @@ export const earningsData = {
 export const instructorDashboardData = {
   name: "Benjamín Pérez",
   bio: "Desarrollador Frontend con 8 años de experiencia. Instructor apasionado por React y Next.js.",
-  avatar: "https://i.pravatar.cc/150?img=60", 
+  avatar: "/avatars/img60.jpg", 
   stats: {
     courses: 5,
     students: 320,
@@ -105,7 +105,7 @@ export const instructorsData = [
   {
     id: "1",
     name: "Benjamín Pérez",
-    avatar: "https://i.pravatar.cc/150?img=60",
+    avatar: "/avatars/img60.jpg",
     specialty: "Frontend Developer & React Expert",
     bio: "Desarrollador con 8+ años de experiencia en JavaScript, React y Next.js. Apasionado por enseñar y crear experiencias digitales modernas.",
     stats: { courses: 5, students: 320, rating: 4.8 },
@@ -131,7 +131,7 @@ export const instructorsData = [
   {
     id: "2",
     name: "María Gómez",
-    avatar: "https://i.pravatar.cc/150?img=32",
+    avatar: "/avatars/img32.jpg",
     specialty: "Fullstack Developer & Mentora",
     bio: "Apasionada por el desarrollo web moderno y la mentoría de nuevos talentos.",
     stats: { courses: 4, students: 210, rating: 4.9 },
@@ -158,7 +158,7 @@ export const instructorsData = [
   {
     id: "3",
     name: "Carlos Mora",
-    avatar: "https://i.pravatar.cc/150?img=55",
+    avatar: "/avatars/img55.jpg",
     specialty: "Backend Developer & NestJS Expert",
     bio: "Backend developer con foco en Node.js, NestJS y bases de datos.",
     stats: { courses: 4, students: 210, rating: 4.9 },
@@ -268,7 +268,7 @@ export const studentsInstructorData = [
     id: "1",
     name: "Ana Hunt",
     email: "anah@example.com",
-    avatar: "https://i.pravatar.cc/150?img=25",
+    avatar: "/avatars/img25.jpg",
     courses: [
       {
         id: "c1",

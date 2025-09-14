@@ -24,7 +24,7 @@ export default function EditLessonPage() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log("Lección actualizada:", lesson);
+    // console.log("Lección actualizada:", lesson);
 
     // Simular guardado
     alert("Lección actualizada con éxito");

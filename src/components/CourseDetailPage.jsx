@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { PlayCircle, Clock, CheckCircle, Linkedin, Github, Twitter } from "lucide-react";
+import { PlayCircle, Clock, CheckCircle, Linkedin, Github, Twitter, Loader2 } from "lucide-react";
 import Card from "@/components/ui/Card";
 import Link from "next/link";
 import { courseDetailMock } from "@/data/courses";
@@ -19,8 +19,6 @@ export default function CourseDetailPage({ courseId }) {
   const [linkedCourses] = useState(linkedCoursesMock);
   const [instructor] = useState(instructorMock);
   const [progress] = useState(100);
-
-
 
 /*   const [course, setCourse] = useState(null);
   const [lessons, setLessons] = useState([]);
@@ -65,7 +63,6 @@ export default function CourseDetailPage({ courseId }) {
   if (!course) {
     return <p className="p-6">Curso no encontrado.</p>;
   } */
-
 
   return (
     <section className="p-6 md:p-12 space-y-8">

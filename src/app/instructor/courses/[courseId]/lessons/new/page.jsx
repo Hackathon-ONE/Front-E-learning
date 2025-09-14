@@ -26,7 +26,7 @@ export default function NewLessonPage() {
 
     try {
       // ⚡ Aquí luego conectas con tu backend
-      console.log("Nueva lección creada:", { courseId: id, ...lesson });
+      // console.log("Nueva lección creada:", { courseId: id, ...lesson });
 
       // Redirige al listado de lecciones del curso
       router.push(`/instructor/courses/${id}/lessons`);

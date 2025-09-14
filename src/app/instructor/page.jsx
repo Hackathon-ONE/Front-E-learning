@@ -2,16 +2,34 @@
 
 import { useEffect, useState } from "react";
 import Link from "next/link";
-import { Users, BookOpen, Star } from "lucide-react";
+import { Users, BookOpen, Star, Loader2 } from "lucide-react";
 import { instructorsPage } from "@/data/instructors";
 import Image from "next/image";
+// import { getCourses } from "@/services/courseService";
 
 export default function InstructorsPage() {
   const [instructors, setInstructors] = useState(instructorsPage);
+  // const [loading, setLoading] = useState(true);
+  // const [error, setError] = useState(null);
 
   useEffect(() => {
     setInstructors(instructorsPage);
   }, []);
+
+  /* if (loading) {
+    // muestra varios skeletons
+    return (
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+        {Array.from({ length: 6 }).map((_, i) => (
+          <Loader2 key={i} className="w-12 h-12 text-primary animate-spin" />
+        ))}
+      </div>
+    );
+  }
+
+  if (error) {
+    return <div>Error cargando instructores: {error.message}</div>;
+  } */
 
   return (
     <main className="min-h-screen bg-[var(--color-bg)] py-8 sm:py-10 px-4 sm:px-6 lg:px-12">

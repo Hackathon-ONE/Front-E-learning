@@ -1,4 +1,5 @@
 "use client";
+
 import { useState , useEffect } from "react";
 import { BookOpen, CheckCircle, Clock, TrendingUp, Loader2, ArrowLeft } from "lucide-react";
 import { mockProgress } from "@/data/progressDashboard";

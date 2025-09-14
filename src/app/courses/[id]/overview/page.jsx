@@ -1,4 +1,5 @@
 "use client";
+
 import { useState } from "react";
 import { BookOpen, Users, Clock, CheckCircle } from "lucide-react";
 import Image from "next/image";

@@ -35,25 +35,19 @@ function PublicHome() {
 function StudentDashboard({ user }) {
   // Asumiendo que el user tiene un ID
   const studentId = user?.id || '1'; // Fallback a '1' si no hay ID
+  // const studentId = user?.id ?? "mock-student";
+
   return (
     <div className="container mx-auto px-4 py-8 bg-surface">
       <div className="mb-8">
-        <h1 className="text-3xl font-bold mb-2">¡Hola, {user.name}! </h1>
+        <h1 className="text-3xl font-bold mb-2">¡Hola, {user?.name || "Estudiante"}! </h1>
         <p className="text-[var(--color-text)]">Continúa tu aprendizaje donde lo dejaste</p>
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-8">
-        <Link
-          href={`/students/${studentId}`}
-          className="bg-[var(--color-card-primary)] p-6 rounded-lg shadow-md hover:shadow-lg transition-shadow"
-        >
-          <BookOpen className="w-8 h-8 text-blue-600 mb-4" />
-          <h3 className="text-xl font-semibold text-[var(--color-text)] mb-2">Mis Cursos</h3>
-          <p className="text-[var(--color-text)]">Accede a todos tus cursos matriculados</p>
-        </Link>
-
-        <Link
+      <Link
           href="/dashboard/profile"
+          aria-label="Mi Perfil"
           className="bg-[var(--color-card-primary)] p-6 rounded-lg shadow-md hover:shadow-lg transition-shadow"
         >
           <User className="w-8 h-8 text-green-600 mb-4" />
@@ -62,7 +56,19 @@ function StudentDashboard({ user }) {
         </Link>
 
         <Link
+          href="/courses"
+          aria-label="Explorar Cursos"
+          className="bg-[var(--color-card-primary)] p-6 rounded-lg shadow-md hover:shadow-lg transition-shadow"
+        >
+          <BookOpen className="w-8 h-8 text-blue-600 mb-4" />
+          <h3 className="text-xl font-semibold text-[var(--color-text)] mb-2">Explorar Cursos</h3>
+          <p className="text-[var(--color-text)]">Accede a todos los cursos disponibles</p>
+        </Link>
+
+        
+        <Link
           href="/dashboard/settings"
+          aria-label="Configuración"
           className="bg-[var(--color-card-primary)] p-6 rounded-lg shadow-md hover:shadow-lg transition-shadow"
         >
           <Settings className="w-8 h-8 text-purple-600 mb-4" />
@@ -73,12 +79,13 @@ function StudentDashboard({ user }) {
 
       <div className="bg-gradient-to-r from-orange-500 to-yellow-600 text-white p-6 rounded-lg">
         <h2 className="text-2xl font-bold mb-2">¿Listo para aprender algo nuevo?</h2>
-        <p className="mb-4">Explora nuestro catálogo de cursos y encuentra tu próximo desafío</p>
+        <p className="mb-4">Suscríbete y encuentra tu próximo desafío</p>
         <Link
-          href="/courses"
-          className="bg-white text-orange-600 px-6 py-2 rounded-lg font-semibold hover:bg-gray-100"
+          href="/payments"
+          aria-label="Suscribirse"
+          className="bg-[var(--color-card-primary)] text-[var(--color-primary)] px-6 py-2 rounded-lg font-semibold hover:bg-[var(--color-secondary-hover)]"
         >
-          Explorar Cursos
+          Suscribirse
         </Link>
       </div>
     </div>
@@ -90,13 +97,14 @@ function InstructorDashboard({ user }) {
   return (
     <div className="container mx-auto px-4 py-8">
       <div className="mb-8">
-        <h1 className="text-3xl font-bold mb-2">Panel de Instructor - {user.name} </h1>
+        <h1 className="text-3xl font-bold mb-2">¡Hola, {user?.name || "Instructor"}! </h1>
         <p className="text-[var(--color-text)]">Gestiona tus cursos y estudiantes</p>
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
         <Link
           href="/instructor/dashboard"
+          aria-label="Dashboard"
           className="bg-[var(--color-card-primary)] p-6 rounded-lg shadow-md hover:shadow-lg transition-shadow"
         >
           <BarChart3 className="w-8 h-8 text-blue-600 mb-4" />
@@ -106,6 +114,7 @@ function InstructorDashboard({ user }) {
 
         <Link
           href="/instructor/courses"
+          aria-label="Mis Cursos"
           className="bg-[var(--color-card-primary)] p-6 rounded-lg shadow-md hover:shadow-lg transition-shadow"
         >
           <BookOpen className="w-8 h-8 text-green-600 mb-4" />
@@ -115,6 +124,7 @@ function InstructorDashboard({ user }) {
 
         <Link
           href="/instructor/students"
+          aria-label="Estudiantes"
           className="bg-[var(--color-card-primary)] p-6 rounded-lg shadow-md hover:shadow-lg transition-shadow"
         >
           <Users className="w-8 h-8 text-purple-600 mb-4" />
@@ -124,6 +134,7 @@ function InstructorDashboard({ user }) {
 
         <Link
           href="/dashboard/profile"
+          aria-label="Perfil"
           className="bg-[var(--color-card-primary)] p-6 rounded-lg shadow-md hover:shadow-lg transition-shadow"
         >
           <User className="w-8 h-8 text-orange-600 mb-4" />
@@ -137,6 +148,7 @@ function InstructorDashboard({ user }) {
         <p className="mb-4">Comparte tu conocimiento con estudiantes de todo el mundo</p>
         <Link
           href="/instructor/courses/new"
+          aria-label="Crear Nuevo Curso"
           className="bg-[var(--color-text)] text-[var(--color-primary)] px-6 py-2 rounded-lg font-semibold hover:bg-gray-50"
         >
           Crear Nuevo Curso
@@ -151,13 +163,14 @@ function AdminDashboard({ user }) {
   return (
     <div className="container mx-auto px-4 py-8">
       <div className="mb-8">
-        <h1 className="text-3xl font-bold mb-2">Panel de Administración - {user.name}</h1>
+        <h1 className="text-3xl font-bold mb-2">¡Hola, {user?.name || "Administrador"}! </h1>
         <p className="text-[var(--color-text)]">Control total del sistema</p>
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-8 bg-surface">
       <Link
           href="/admin/users"
+          aria-label="Usuarios"
           className="bg-[var(--color-card-primary)] p-6 rounded-lg shadow-md hover:shadow-lg transition-shadow"
         >
           <Users className="w-8 h-8 text-blue-600 mb-4" />
@@ -167,6 +180,7 @@ function AdminDashboard({ user }) {
 
         <Link
           href="/admin/courses"
+          aria-label="Cursos"
           className="bg-[var(--color-card-primary)] p-6 rounded-lg shadow-md hover:shadow-lg transition-shadow"
         >
           <BookOpen className="w-8 h-8 text-green-600 mb-4" />
@@ -176,6 +190,7 @@ function AdminDashboard({ user }) {
 
         <Link
           href="/admin/payments"
+          aria-label="Pagos"
           className="bg-[var(--color-card-primary)] p-6 rounded-lg shadow-md hover:shadow-lg transition-shadow"
         >
           <Wallet className="w-8 h-8 text-cyan-600 mb-4" />
@@ -185,6 +200,7 @@ function AdminDashboard({ user }) {
         
         <Link
           href="/instructor"
+          aria-label="Instructores"
           className="bg-[var(--color-card-primary)] p-6 rounded-lg shadow-md hover:shadow-lg transition-shadow"
         >
           <UserStar className="w-8 h-8 text-red-600 mb-4" />
@@ -194,6 +210,7 @@ function AdminDashboard({ user }) {
 
         <Link
           href="/students"
+          aria-label="Inscritos"
           className="bg-[var(--color-card-primary)] p-6 rounded-lg shadow-md hover:shadow-lg transition-shadow"
         >
           <GraduationCap className="w-8 h-8 text-yellow-600 mb-4" />
@@ -203,6 +220,7 @@ function AdminDashboard({ user }) {
 
         <Link
           href="/admin/settings"
+          aria-label="Configuración"
           className="bg-[var(--color-card-primary)] p-6 rounded-lg shadow-md hover:shadow-lg transition-shadow"
         >
           <Settings className="w-8 h-8 text-purple-600 mb-4" />
@@ -216,6 +234,7 @@ function AdminDashboard({ user }) {
         <p className="mb-4">Todos los servicios están operativos y el sistema está actualizado</p>
         <Link
           href="/admin"
+          aria-label="Ver Detalles"
           className="bg-[var(--color-card-primary)] text-[var(--color-primary)] px-6 py-2 rounded-lg font-semibold hover:bg-[var(--color-secondary-hover)]"
         >
           Ver Detalles
@@ -242,7 +261,7 @@ export default function RoleBasedHome() {
     return <PublicHome />;
   }
 
-  switch (user?.role) {
+  switch (role) {
     case 'ADMIN':
       return <AdminDashboard user={user} />;
     case 'INSTRUCTOR':
@@ -250,5 +269,5 @@ export default function RoleBasedHome() {
     case 'STUDENT':
     default:
       return <StudentDashboard user={user} />;
-  }
+  }  
 }

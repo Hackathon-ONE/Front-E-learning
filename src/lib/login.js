@@ -1,3 +1,5 @@
+"use client";
+
 import api from "@/lib/axiosClient";
 
 export async function handleLogin(email, password) {

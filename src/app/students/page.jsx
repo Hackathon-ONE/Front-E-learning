@@ -1,17 +1,33 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import { BookOpen, BarChart, Lightbulb } from 'lucide-react';
+import { BookOpen, BarChart, Lightbulb, Loader2 } from 'lucide-react';
 import Link from 'next/link';
 import { studentsData } from '@/data/students';
 import Image from 'next/image';
 
 export default function StudentsPage() {
   const [students, setStudents] = useState([]);
+  // const [loading, setLoading] = useState(true);
+  // const [error, setError] = useState(null);
 
   useEffect(() => {
     setStudents(studentsData);
   }, []);
+
+/*   if (loading) {
+      return (
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+          {Array.from({ length: 6 }).map((_, i) => (
+            <Loader2 key={i} />
+          ))}
+        </div>
+      );
+    }
+  
+    if (error) {
+      return <div>Error cargando cursos: {error.message}</div>;
+    } */
 
   return (
     <main className="min-h-screen bg-[var(--color-bg)] py-8 sm:py-12 px-4 sm:px-6 lg:px-8">

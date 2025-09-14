@@ -1,10 +1,9 @@
 "use client";
 
 import { useState } from "react";
-import { Upload, Send, CheckCircle } from "lucide-react";
+import { Upload, Send, CheckCircle, ArrowLeft } from "lucide-react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import { ArrowLeft } from "lucide-react";
 
 export default function InstructorApplyPage() {
   const router = useRouter();
@@ -30,20 +29,31 @@ export default function InstructorApplyPage() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log("Datos enviados:", formData);
-    // Aquí puedes hacer fetch("/api/instructor/apply", { ... })
     setIsModalOpen(true);
   };
 
   return (
     <main
-      className="min-h-screen flex items-center justify-center p-6"
+      className="min-h-screen flex flex-col items-center justify-start p-6"
       style={{
         backgroundColor: "var(--color-bg)",
         color: "var(--color-text)",
       }}
     >
-     
+      {/* Botón Volver */}
+      <div className="w-full flex justify-center md:justify-start max-w-2xl mb-6">
+        <button
+          onClick={() => router.back()}
+          className="flex items-center gap-2 px-4 py-2 rounded-lg font-medium 
+                     bg-[var(--color-surface)] text-[var(--color-text)] 
+                     hover:bg-[var(--color-primary)] hover:text-[var(--color-primary-text)]
+                     transition"
+        >
+          <ArrowLeft className="w-5 h-5" />
+          <span className="text-sm sm:text-base">Volver</span>
+        </button>
+      </div>
+
       {/* Formulario */}
       <section className="w-full max-w-2xl bg-[var(--color-surface)] rounded-2xl shadow-lg p-6 md:p-10">
         <h1 className="text-2xl md:text-3xl font-bold mb-6 text-center">
@@ -53,7 +63,9 @@ export default function InstructorApplyPage() {
         <form onSubmit={handleSubmit} className="space-y-5">
           {/* Nombre */}
           <div>
-            <label className="block text-sm font-medium mb-2">Nombre completo</label>
+            <label className="block text-sm font-medium mb-2">
+              Nombre completo
+            </label>
             <input
               id="name"
               type="text"
@@ -82,7 +94,9 @@ export default function InstructorApplyPage() {
 
           {/* GitHub */}
           <div>
-            <label className="block text-sm font-medium mb-2">GitHub / Portafolio</label>
+            <label className="block text-sm font-medium mb-2">
+              GitHub / Portafolio
+            </label>
             <input
               id="github"
               type="url"
@@ -111,7 +125,9 @@ export default function InstructorApplyPage() {
 
           {/* Categoría */}
           <div>
-            <label className="block text-sm font-medium mb-2">Categoría de enseñanza</label>
+            <label className="block text-sm font-medium mb-2">
+              Categoría de enseñanza
+            </label>
             <select
               id="category"
               name="category"
@@ -130,9 +146,11 @@ export default function InstructorApplyPage() {
             </select>
           </div>
 
-          {/* Demo en video */}
+          {/* Demo */}
           <div>
-            <label className="block text-sm font-medium mb-2">Sube un demo (video)</label>
+            <label className="block text-sm font-medium mb-2">
+              Sube un demo (video)
+            </label>
             <input
               type="file"
               name="demo"
@@ -162,7 +180,7 @@ export default function InstructorApplyPage() {
         </form>
       </section>
 
-      {/* Modal de confirmación */}
+      {/* Modal */}
       {isModalOpen && (
         <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4">
           <div className="bg-[var(--color-surface)] rounded-2xl shadow-lg p-6 md:p-8 max-w-md w-full text-center">
@@ -181,11 +199,15 @@ export default function InstructorApplyPage() {
               Cerrar
             </button>
             <div className="flex flex-col mt-4 gap-2">
-            <Link href="/instructor/apply/status">
-              <button type="button" aria-label="Ver estado de solicitud" className="cursor-pointer w-full py-3 rounded-lg btn-primary font-semibold">
-                Ver estado de solicitud
-              </button>
-            </Link>
+              <Link href="/instructor/apply/status">
+                <button
+                  type="button"
+                  aria-label="Ver estado de solicitud"
+                  className="cursor-pointer w-full py-3 rounded-lg btn-primary font-semibold"
+                >
+                  Ver estado de solicitud
+                </button>
+              </Link>
             </div>
           </div>
         </div>

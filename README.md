@@ -346,6 +346,12 @@ cat src/__tests__/test-report.json
 - `merge` para traer cambios de develop
 - `push` y PR para colaborar
 
+# Imagen Inicial
 <div align="center">
   <img src="https://github.com/user-attachments/assets/bc85ece2-16f8-4c27-ba00-6ad47dc7ed4c" alt="imagen"/>
+</div>
+
+# Imagen Actual
+<div align="center">
+  <img src="https://github.com/user-attachments/assets/995e3cea-b374-4ab2-a6f6-a48c5285e08b" alt="imagen"/>
 </div>

@@ -1,7 +1,7 @@
 "use client";
 
 import { useState /*, useEffect */ } from "react";
-import { useRouter } from "next/navigation";
+import { useRouter, useParams } from "next/navigation";
 import { useSession } from "next-auth/react";
 import { CreditCard, CheckCircle, XCircle, LogIn } from "lucide-react";
 import Button from "@/components/ui/Button";
@@ -40,9 +40,36 @@ useEffect(() => {
 
 export default function CheckoutPage() {
   const router = useRouter();
-  const [course] = useState(checkoutCourse);
+  const params = useParams(); // obtiene dinámicamente el parámetro de la URL
+  const { id } = params; // courseId
   const { data: session } = useSession();
 
+  // Validar que el ID existe
+  if (!id || id === 'undefined') {
+    return (
+      <div className="flex justify-center items-center min-h-screen bg-[var(--color-bg)]">
+        <div className="text-center">
+          <h1 className="text-2xl font-bold text-[var(--color-text)] mb-4">
+            Curso no encontrado
+          </h1>
+          <p className="text-[var(--color-text)] mb-6">
+            El ID del curso no es válido.
+          </p>
+          <button
+            onClick={() => router.push('/courses')}
+            className="px-6 py-3 bg-primary text-white rounded-lg hover:bg-primary/80 transition"
+          >
+            Volver a Cursos
+          </button>
+        </div>
+      </div>
+    );
+  }
+
+  // Estado del curso
+  const [course] = useState(checkoutCourse);
+
+  // Estado de tarjeta
   const [card, setCard] = useState({
     number: "",
     name: "",
@@ -50,22 +77,17 @@ export default function CheckoutPage() {
     cvc: "",
   });
 
+  // Estado de pago
   const [success, setSuccess] = useState(false);
   const [error, setError] = useState("");
 
+  // Manejar inputs de la tarjeta
   const handleChange = (e) => {
     setCard({ ...card, [e.target.name]: e.target.value });
   };
 
-  // const handleSubmit = (e) => {
-  //   e.preventDefault();
-  //   // Aquí iría la lógica real de pago
-  //   setSuccess(true);
-  //   setTimeout(() => setSuccess(false), 4000);
-  //   setCard({ number: "", name: "", expiry: "", cvc: "" });
-  // };
-
-  const handleSubmit = (e) => {
+  // Lógica para procesar pago (mock + backend)
+  const handleSubmit = async (e) => {
     e.preventDefault();
     setError("");
 
@@ -74,17 +96,27 @@ export default function CheckoutPage() {
       return;
     }
 
-    // Validación con datos hardcodeados
-    if (
+    // Validación con tarjeta mock
+    const isMockValid =
       card.number === mockCard.number &&
-      card.name.toUpperCase() === mockCard.name &&
+      card.name.trim().toLowerCase() === mockCard.name.trim().toLowerCase() &&
       card.expiry === mockCard.expiry &&
-      card.cvc === mockCard.cvc
-    ) {
+      card.cvc === mockCard.cvc;
+
+    if (!isMockValid) {
+      setError("Los datos de la tarjeta no son válidos.");
+      return;
+    }
+
+    try {
+      // Aquí llamas a tu API real para confirmar suscripción
+      const res = await fetch(`/api/subscriptions/${id}`, { method: "POST" });
+      if (!res.ok) throw new Error("Error en el pago");
+
       setSuccess(true);
       setCard({ number: "", name: "", expiry: "", cvc: "" });
-    } else {
-      setError("Los datos de la tarjeta no son válidos.");
+    } catch (err) {
+      setError("No se pudo procesar el pago. Intenta de nuevo.");
     }
   };
 
@@ -122,14 +154,16 @@ export default function CheckoutPage() {
             <div className="text-red-600 font-semibold flex items-center gap-2">
               <LogIn size={20} /> Debes iniciar sesión para pagar este curso.
             </div>
-           {/*  <Button
+            {/* 
+            <Button
               aria-label="Iniciar sesión"
               type="button"
               onClick={() => router.push("/auth/login")}
               className="btn-primary cursor-pointer py-2 px-6 rounded-lg font-bold text-lg"
             >
               Iniciar sesión
-            </Button> */}
+            </Button> 
+            */}
           </div>
         )}
 
@@ -221,7 +255,7 @@ export default function CheckoutPage() {
               <Button
                 type="button"
                 aria-label="Ir al curso"
-                onClick={() => router.push(`/courses/${course.id}/overview`)}
+                onClick={() => router.push(`/courses/${id}/overview`)}
                 className="btn-primary cursor-pointer text-[var(--color-text)] hover:bg-[var(--color-primary)] hover:text-white py-2 px-6 rounded-lg font-bold text-lg"
               >
                 Ir al curso

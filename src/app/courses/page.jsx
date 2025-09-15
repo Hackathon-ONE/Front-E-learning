@@ -1,23 +1,26 @@
-"use client";
+'use client';
 
-import { useState, useEffect } from "react";
-import { Search, ChevronDown, Loader2 } from "lucide-react";
-import Card from "@/components/ui/Card";
-import Link from "next/link";
-import { useRouter } from "next/navigation";
-import { coursesPageData } from "@/data/courses";
-import Image from "next/image";
+import { useState, useEffect, useMemo } from 'react';
+import { Search, ChevronDown, Loader2 } from 'lucide-react';
+import Card from '@/components/ui/Card';
+import Link from 'next/link';
+import { useRouter } from 'next/navigation';
+import { coursesPageData } from '@/data/courses';
+import Image from 'next/image';
 
-// Fake user para simular login/inscripción
-const fakeUser = {
-  isLoggedIn: true, // cambia a false para probar como visitante
-  enrolledCourses: [2],
-};
+// Importar hooks de autenticación
+import { useAuth } from '@/context/AuthContext';
+import { useMultipleSubscriptions } from '@/hooks/useSubscription';
 
 export default function CoursesPage() {
   const [courses, setCourses] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const { isAuthenticated, user } = useAuth();
+
+  // Obtener suscripciones de todos los cursos - memoizar para evitar re-renders
+  const courseIds = useMemo(() => coursesPageData.map((course) => course.id), []);
+  const { subscriptions, loading: subscriptionsLoading } = useMultipleSubscriptions(courseIds);
   const router = useRouter();
 
   // Simulación de carga (con mocks)
@@ -32,40 +35,38 @@ export default function CoursesPage() {
 
       return () => clearTimeout(timer);
     } catch (err) {
-      setError("No se pudieron cargar los cursos.");
+      setError('No se pudieron cargar los cursos.');
       setLoading(false);
     }
   }, []);
 
   // Estados de filtros
-  const [search, setSearch] = useState("");
-  const [category, setCategory] = useState("all");
-  const [instructor, setInstructor] = useState("all");
-  const [sortOrder, setSortOrder] = useState("asc");
-  const [type, setType] = useState("all");
-  
+  const [search, setSearch] = useState('');
+  const [category, setCategory] = useState('all');
+  const [instructor, setInstructor] = useState('all');
+  const [sortOrder, setSortOrder] = useState('asc');
+  const [type, setType] = useState('all');
+
   // Estado para paginación
   const [currentPage, setCurrentPage] = useState(1);
   const coursesPerPage = 6;
 
   // Extraer categorías e instructores únicos
-  const categories = ["all", ...new Set(courses.map((c) => c.category))];
-  const instructors = ["all", ...new Set(courses.map((c) => c.instructor))];
+  const categories = ['all', ...new Set(courses.map((c) => c.category))];
+  const instructors = ['all', ...new Set(courses.map((c) => c.instructor))];
 
   // 🔎 Filtrado de cursos
   const filteredCourses = courses
     .filter((c) => c.title.toLowerCase().includes(search.toLowerCase()))
-    .filter((c) => (category === "all" ? true : c.category === category))
-    .filter((c) => (instructor === "all" ? true : c.instructor === instructor))
+    .filter((c) => (category === 'all' ? true : c.category === category))
+    .filter((c) => (instructor === 'all' ? true : c.instructor === instructor))
     .filter((c) => {
-      if (type === "free") return c.isFree === true;
-      if (type === "paid") return c.isFree === false;
+      if (type === 'free') return c.isFree === true;
+      if (type === 'paid') return c.isFree === false;
       return true;
     })
     .sort((a, b) =>
-      sortOrder === "asc"
-        ? a.title.localeCompare(b.title)
-        : b.title.localeCompare(a.title)
+      sortOrder === 'asc' ? a.title.localeCompare(b.title) : b.title.localeCompare(a.title)
     );
 
   // Renderizar acceso
@@ -77,14 +78,12 @@ export default function CoursesPage() {
         </p>
       );
     }
-    if (!fakeUser.isLoggedIn) {
+    if (!isAuthenticated) {
       return (
-        <p className="text-red-600 dark:text-red-400 text-sm mt-2">
-          Inicia sesión para acceder
-        </p>
+        <p className="text-red-600 dark:text-red-400 text-sm mt-2">Inicia sesión para acceder</p>
       );
     }
-    if (fakeUser.enrolledCourses.includes(course.id)) {
+    if (subscriptions[course.id]) {
       return (
         <p className="text-blue-600 dark:text-blue-400 font-semibold text-sm mt-2">
           Inscrito: acceso completo
@@ -98,7 +97,7 @@ export default function CoursesPage() {
         className="mt-2 cursor-pointer px-4 py-2 rounded-lg bg-primary text-white hover:bg-gray-800 transition text-sm"
         onClick={(e) => {
           e.preventDefault();
-          router.push("/payments");
+          router.push('/payments');
         }}
       >
         Inscribirse
@@ -107,10 +106,10 @@ export default function CoursesPage() {
   };
 
   // Lógica de paginación
- const totalPages = Math.ceil(courses.length / coursesPerPage);
- const startIndex = (currentPage - 1) * coursesPerPage;
- const endIndex = startIndex + coursesPerPage;
- const currentCourses = courses.slice(startIndex, endIndex);
+  const totalPages = Math.ceil(courses.length / coursesPerPage);
+  const startIndex = (currentPage - 1) * coursesPerPage;
+  const endIndex = startIndex + coursesPerPage;
+  const currentCourses = courses.slice(startIndex, endIndex);
 
   // Loader y error
   if (loading) {
@@ -121,11 +120,7 @@ export default function CoursesPage() {
     );
   }
   if (error) {
-    return (
-      <div className="text-center text-red-500 py-10">
-        {error}
-      </div>
-    );
+    return <div className="text-center text-red-500 py-10">{error}</div>;
   }
 
   // Render principal
@@ -172,7 +167,7 @@ export default function CoursesPage() {
                   htmlFor={`cat-${cat}`}
                   className="text-xs sm:text-sm text-[var(--color-text)] cursor-pointer"
                 >
-                  {cat === "all" ? "Todas" : cat}
+                  {cat === 'all' ? 'Todas' : cat}
                 </label>
               </li>
             ))}
@@ -200,7 +195,7 @@ export default function CoursesPage() {
                   htmlFor={`inst-${inst}`}
                   className="text-xs sm:text-sm text-[var(--color-text)] cursor-pointer"
                 >
-                  {inst === "all" ? "Todos" : inst}
+                  {inst === 'all' ? 'Todos' : inst}
                 </label>
               </li>
             ))}
@@ -208,7 +203,7 @@ export default function CoursesPage() {
         </div>
 
         {/* Tipo */}
-        <div className="mb-6 sm:mb-8">
+        {/* <div className="mb-6 sm:mb-8">
           <h3 className="text-xs sm:text-sm font-semibold mb-2 sm:mb-3 text-[var(--color-text)]">
             Tipo
           </h3>
@@ -237,7 +232,7 @@ export default function CoursesPage() {
               </li>
             ))}
           </ul>
-        </div>
+        </div> */}
 
         {/* Orden */}
         <div>
@@ -247,12 +242,10 @@ export default function CoursesPage() {
           <button
             type="button"
             aria-label="Ordenar por"
-            onClick={() =>
-              setSortOrder((prev) => (prev === "asc" ? "desc" : "asc"))
-            }
+            onClick={() => setSortOrder((prev) => (prev === 'asc' ? 'desc' : 'asc'))}
             className="cursor-pointer w-full flex items-center justify-between px-3 sm:px-4 py-2 rounded-lg border border-gray-300 dark:border-gray-700 text-xs sm:text-sm text-[var(--color-text)] hover:bg-[var(--color-primary)] hover:text-[var(--color-primary-text)] transition"
           >
-            {sortOrder === "asc" ? "Ascendente (A-Z)" : "Descendente (Z-A)"}
+            {sortOrder === 'asc' ? 'Ascendente (A-Z)' : 'Descendente (Z-A)'}
             <ChevronDown className="w-3 h-3 sm:w-4 sm:h-4 text-[var(--color-text)]" />
           </button>
         </div>
@@ -260,22 +253,16 @@ export default function CoursesPage() {
 
       {/* Catálogo */}
       <main className="flex-1">
-        <h1 className="text-xl sm:text-2xl font-bold mb-4 sm:mb-6">
-          Catálogo de Cursos
-        </h1>
+        <h1 className="text-xl sm:text-2xl font-bold mb-4 sm:mb-6">Catálogo de Cursos</h1>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 items-stretch">
           {filteredCourses.map((course) => (
-            <Link
-              key={course.id}
-              href={`/courses/${course.id}/overview`}
-              className="block h-full"
-            >
+            <Link key={course.id} href={`/courses/${course.id}`} className="block h-full">
               <Card className="group relative flex flex-col rounded-2xl overflow-hidden border border-gray-200 dark:border-gray-700 shadow-md bg-surface h-full transition-transform transform hover:scale-105 hover:-rotate-1 hover:shadow-2xl">
                 <div className="relative w-full aspect-square">
                   <Image
                     aria-label={course.title}
-                    src={course.cover}
+                    src={course.cover || '/images/start.jpg'}
                     alt={course.title}
                     fill
                     className="object-cover transition-transform duration-300 group-hover:scale-110"
@@ -283,12 +270,11 @@ export default function CoursesPage() {
                   />
                 </div>
                 <div className="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition flex flex-col justify-end p-4">
-                  <h3 className="text-white font-bold text-lg mb-2 line-clamp-2">
-                    {course.title}
-                  </h3>
-                  <p className="text-gray-200 text-sm line-clamp-2">
-                    {course.description}
-                  </p>
+                  <h3 className="text-white font-bold text-lg mb-2 line-clamp-2">{course.title}</h3>
+                  <p className="text-gray-200 text-sm line-clamp-2">{course.description}</p>
+                  {/* <p pricing="text-gray-200 text-sm line-clamp-2">
+                    {course.price}
+                  </p> */}
                 </div>
               </Card>
             </Link>
@@ -301,9 +287,7 @@ export default function CoursesPage() {
             <nav className="flex flex-wrap gap-2 sm:gap-3">
               {/* Botón anterior */}
               <button
-                onClick={() =>
-                  setCurrentPage((prev) => Math.max(prev - 1, 1))
-                }
+                onClick={() => setCurrentPage((prev) => Math.max(prev - 1, 1))}
                 disabled={currentPage === 1}
                 className="cursor-pointer px-3 py-1 rounded-lg border border-gray-300 dark:border-gray-700 text-sm sm:text-base disabled:opacity-50"
               >
@@ -311,27 +295,23 @@ export default function CoursesPage() {
               </button>
 
               {/* Números */}
-              {Array.from({ length: totalPages }, (_, i) => i + 1).map(
-                (page) => (
-                  <button
-                    key={page}
-                    onClick={() => setCurrentPage(page)}
-                    className={`px-3 py-1 rounded-lg text-sm cursor-pointer sm:text-base ${
-                      currentPage === page
-                        ? "bg-primary text-white"
-                        : "border border-gray-300 dark:border-gray-700"
-                    }`}
-                  >
-                    {page}
-                  </button>
-                )
-              )}
+              {Array.from({ length: totalPages }, (_, i) => i + 1).map((page) => (
+                <button
+                  key={page}
+                  onClick={() => setCurrentPage(page)}
+                  className={`px-3 py-1 rounded-lg text-sm cursor-pointer sm:text-base ${
+                    currentPage === page
+                      ? 'bg-primary text-white'
+                      : 'border border-gray-300 dark:border-gray-700'
+                  }`}
+                >
+                  {page}
+                </button>
+              ))}
 
               {/* Botón siguiente */}
               <button
-                onClick={() =>
-                  setCurrentPage((prev) => Math.min(prev + 1, totalPages))
-                }
+                onClick={() => setCurrentPage((prev) => Math.min(prev + 1, totalPages))}
                 disabled={currentPage === totalPages}
                 className="cursor-pointer px-3 py-1 rounded-lg border border-gray-300 dark:border-gray-700 text-sm sm:text-base disabled:opacity-50"
               >

@@ -1,21 +1,113 @@
 "use client";
 
 import Link from "next/link";
-import { useParams } from "next/navigation";
+import { useParams, useRouter } from "next/navigation";
 import { useState, useEffect } from "react";
 import { lessonsCoursesData } from "@/data/courses";
-import { useRouter } from "next/navigation";
-import { ArrowLeft } from "lucide-react";
+import { ArrowLeft, Lock, AlertCircle } from "lucide-react";
+import { useAuth } from "@/context/AuthContext";
+import { useSubscription } from "@/hooks/useSubscription";
 
 export default function LessonsPage() {
   const { id } = useParams(); // courseId
   const [lessons, setLessons] = useState([]);
   const router = useRouter();
+  const { isAuthenticated, loading: authLoading } = useAuth();
+  const { hasAccess, loading: subscriptionLoading, error } = useSubscription(id);
 
   useEffect(() => {
     // fetch(`/api/courses/${id}/lessons`)
     setLessons(lessonsCoursesData);
   }, [id]);
+
+  // Mostrar loading mientras se verifica la autenticación y suscripción
+  if (authLoading || subscriptionLoading) {
+    return (
+      <div className="flex justify-center items-center min-h-screen bg-[var(--color-bg)]">
+        <div className="text-center">
+          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-primary mx-auto mb-4"></div>
+          <p className="text-[var(--color-text)]">Verificando acceso...</p>
+        </div>
+      </div>
+    );
+  }
+
+  // Si no está autenticado, redirigir a login
+  if (!isAuthenticated) {
+    return (
+      <div className="flex justify-center items-center min-h-screen bg-[var(--color-bg)]">
+        <div className="text-center max-w-md mx-auto p-6">
+          <Lock className="w-16 h-16 text-red-500 mx-auto mb-4" />
+          <h2 className="text-2xl font-bold text-[var(--color-text)] mb-4">
+            Acceso Restringido
+          </h2>
+          <p className="text-[var(--color-text)] mb-6">
+            Debes iniciar sesión para acceder a este contenido.
+          </p>
+          <Link
+            href={`/auth/login?redirect=${encodeURIComponent(window.location.pathname)}`}
+            className="btn-primary px-6 py-3 rounded-lg font-semibold"
+          >
+            Iniciar Sesión
+          </Link>
+        </div>
+      </div>
+    );
+  }
+
+  // Si no tiene acceso al curso, mostrar mensaje de suscripción requerida
+  if (!hasAccess) {
+    return (
+      <div className="flex justify-center items-center min-h-screen bg-[var(--color-bg)]">
+        <div className="text-center max-w-md mx-auto p-6">
+          <Lock className="w-16 h-16 text-yellow-500 mx-auto mb-4" />
+          <h2 className="text-2xl font-bold text-[var(--color-text)] mb-4">
+            Suscripción Requerida
+          </h2>
+          <p className="text-[var(--color-text)] mb-6">
+            Necesitas suscribirte para acceder al contenido de este curso.
+          </p>
+          <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            <Link
+              href={`/courses/${id}`}
+              className="btn-secondary px-6 py-3 rounded-lg font-semibold"
+            >
+              Ver Curso
+            </Link>
+            <Link
+              href="/payments"
+              className="btn-primary px-6 py-3 rounded-lg font-semibold"
+            >
+              Suscribirse
+            </Link>
+          </div>
+        </div>
+      </div>
+    );
+  }
+
+  // Si hay error, mostrar mensaje de error
+  if (error) {
+    return (
+      <div className="flex justify-center items-center min-h-screen bg-[var(--color-bg)]">
+        <div className="text-center max-w-md mx-auto p-6">
+          <AlertCircle className="w-16 h-16 text-red-500 mx-auto mb-4" />
+          <h2 className="text-2xl font-bold text-[var(--color-text)] mb-4">
+            Error de Acceso
+          </h2>
+          <p className="text-[var(--color-text)] mb-6">
+            {error}
+          </p>
+          <button
+            onClick={() => window.location.reload()}
+            className="btn-primary px-6 py-3 rounded-lg font-semibold"
+          >
+            Reintentar
+          </button>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className="max-w-4xl mx-auto px-6 py-10">

@@ -15,7 +15,7 @@ export default function StudentsPage() {
     setStudents(studentsData);
   }, []);
 
-/*   if (loading) {
+  /*   if (loading) {
       return (
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
           {Array.from({ length: 6 }).map((_, i) => (
@@ -50,7 +50,7 @@ export default function StudentsPage() {
               {/* Avatar */}
               <Image
                 aria-label={student.name}
-                src={student.avatar}
+                src={student.avatar || '/default-avatar.png'}
                 alt={student.name}
                 width={128}
                 height={64}

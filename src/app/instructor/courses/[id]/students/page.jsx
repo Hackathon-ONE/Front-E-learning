@@ -7,7 +7,7 @@ import { progressReportsCoursesData, progressReportsStudentsData } from "@/data/
 
 export default function ProgressReportsPage() {
   const router = useRouter();
-  const { courseId } = useParams(); // en caso de usar dinámica [courseId]
+  const { id: courseId } = useParams(); // id del curso
 
   return (
     <main className="min-h-screen bg-[var(--color-bg)] text-[var(--color-text)] p-4 sm:p-6 md:p-8">

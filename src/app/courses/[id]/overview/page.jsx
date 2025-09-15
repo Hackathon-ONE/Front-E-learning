@@ -1,14 +1,34 @@
 "use client";
 
-import { useState } from "react";
+import { useMemo } from "react";
 import { BookOpen, Users, Clock, CheckCircle } from "lucide-react";
 import Image from "next/image";
 import Button from "@/components/ui/Button";
 import Link from "next/link";
-import { overviewCourse } from "@/data/courses";    
+import { overviewCourse, coursesPageData, coursesDetailData } from "@/data/courses";    
+import { useParams } from "next/navigation";
 
 export default function CourseOverviewPage() {
-  const [course, setCourse] = useState(overviewCourse);
+  const { id } = useParams();
+  const course = useMemo(() => {
+    const detailed = coursesDetailData.find((c) => c.id.toString() === String(id));
+    if (detailed) return detailed;
+    const basic = coursesPageData.find((c) => c.id.toString() === String(id));
+    if (basic) {
+      return {
+        id: basic.id,
+        title: basic.title,
+        description: basic.description,
+        cover: basic.cover,
+        lessons: overviewCourse.lessons,
+        duration: overviewCourse.duration,
+        students: overviewCourse.students,
+        progress: overviewCourse.progress,
+        objectives: overviewCourse.objectives,
+      };
+    }
+    return overviewCourse;
+  }, [id]);
 
   return (
     <main className="min-h-screen bg-[var(--color-bg)] flex flex-col items-center py-8 px-2 sm:px-4">
@@ -18,7 +38,7 @@ export default function CourseOverviewPage() {
           <div className="w-full md:w-56 flex-shrink-0 aspect-video relative">
             <Image
               aria-label={course.title}
-              src={course.cover}
+              src={course.cover || "/images/start.jpg"}
               alt={course.title}
               width={224}
               height={224}

@@ -34,11 +34,11 @@ export default function StudentDetailPage() {
   const [activeTab, setActiveTab] = useState('courses');
 
   useEffect(() => {
-    const studentId = params.id;
+    const studentId = params?.id;
     const foundStudent = studentsProgress.find((s) => s.id === studentId);
     setStudent(foundStudent);
     setLoading(false);
-  }, [params.id]);
+  }, [params]);
 
   if (loading) {
     return (
@@ -85,7 +85,7 @@ export default function StudentDetailPage() {
             <div className="flex flex-col md:flex-row items-start md:items-center gap-6">
               <Image
                 aria-label={student.name}
-                src={student.avatar}
+                src={student.avatar || "/default-avatar.png"}
                 alt={student.name}
                 width={128}
                 height={64}

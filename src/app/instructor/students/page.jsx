@@ -34,7 +34,7 @@ export default function StudentsPage() {
               {/* Avatar */}
               <Image
                 aria-label={student.name} 
-                src={student.avatar}
+                src={student.avatar || "/default-avatar.png"}
                 alt={student.name}
                 width={128}
                 height={64}

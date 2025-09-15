@@ -26,7 +26,7 @@ export default function StudentProgressPage() {
       <section className="max-w-6xl mx-auto bg-[var(--color-surface)] rounded-2xl shadow-lg p-6 flex flex-col sm:flex-row sm:items-center gap-6">
         <Image
           aria-label={student.name}
-          src={student.avatar}
+          src={student.avatar || "/default-avatar.png"}
           alt={student.name}
           width={128}
           height={64}

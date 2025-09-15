@@ -27,6 +27,9 @@ export const CourseEntity = (data) => ({
   title: data.title ?? "",
   description: data.description ?? "",
   instructor: data.instructor ? InstructorEntity(data.instructor) : null,
+  price: data.price ?? 0,
+  isFree: data.isFree ?? false,
+  currency: data.currency ?? "USD",
   //instructor: data.instructor ? UserEntity(data.instructor) : null,
   studentsCount: data.studentsCount ?? 0,
   image: data.image ?? "", // portada del curso

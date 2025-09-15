@@ -1,12 +1,11 @@
 "use client";
 
-import React from "react";
 import { useParams } from "next/navigation";
 import CourseDetailPage from "@/components/CourseDetailPage";
 
-export default function Page() {
+export default function CourseDetail() {
   const { id } = useParams();
-
+  
   // Validar que el ID existe
   if (!id) {
     return (
@@ -22,6 +21,6 @@ export default function Page() {
       </div>
     );
   }
-
+  
   return <CourseDetailPage courseId={id} />;
 }

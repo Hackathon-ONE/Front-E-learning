@@ -63,7 +63,7 @@ export default function InstructorsPage() {
             {/* Avatar */}
             <Image
               aria-label={instructor.name}
-              src={instructor.avatar}
+              src={instructor.avatar || "/default-avatar.png"}
               alt={instructor.name}
               width={128}
               height={128}

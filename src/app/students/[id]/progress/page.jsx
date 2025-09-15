@@ -25,14 +25,14 @@ export default function StudentProgressPage() {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    const studentId = params.id;
+    const studentId = params?.id;
     const foundStudent = studentsProgress.find((s) => s.id === studentId);
     setStudent(foundStudent);
     if (foundStudent && foundStudent.courses.length > 0) {
       setSelectedCourse(foundStudent.courses[0]);
     }
     setLoading(false);
-  }, [params.id]);
+  }, [params]);
 
   if (loading) {
     return (
@@ -78,7 +78,7 @@ export default function StudentProgressPage() {
             <div className="flex items-center gap-4 mb-6">
               <Image
                 aria-label={student.name}
-                src={student.avatar}
+                src={student.avatar || "/default-avatar.png"}
                 alt={student.name}
                 width={128}
                 height={64}

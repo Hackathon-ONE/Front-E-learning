@@ -49,6 +49,9 @@ export default function Navbar() {
             unoptimized
             className="hover:scale-110 hover:shadow-lg hover:shadow-primary/20 rounded-xl"
             style={{ height: 'auto', width: '30%' }}
+            onError={(e) => {
+              e.currentTarget.src = "/default-avatar.png"; // coloca tu imagen local en /public
+            }}
           />
         </Link>
 

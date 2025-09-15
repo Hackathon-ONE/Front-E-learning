@@ -13,46 +13,50 @@ SwiperCore.use([Navigation, Autoplay]);
 
 const testimonials = [
   {
-    name: "Ana Peralta",
-    profession: "Desarrolladora Frontend",
-    avatar: "/avatars/ana.jpg",
-    review: "Esta plataforma ha transformado la manera en que aprendo y aplico nuevas tecnologías. ¡Recomendada al 100%!",
-    rating: 5
+    name: 'Ana Peralta',
+    profession: 'Desarrolladora Frontend',
+    avatar: '/avatars/ana.jpg',
+    review:
+      'Esta plataforma ha transformado la manera en que aprendo y aplico nuevas tecnologías. ¡Recomendada al 100%!',
+    rating: 5,
   },
   {
-    name: "Carlos Méndez",
-    profession: "Diseñador UX/UI",
-    avatar: "/avatars/carlos.jpg",
-    review: "El contenido es muy completo y práctico. Los instructores son claros y motivadores.",
-    rating: 4
+    name: 'Carlos Méndez',
+    profession: 'Diseñador UX/UI',
+    avatar: '/avatars/carlos.jpg',
+    review: 'El contenido es muy completo y práctico. Los instructores son claros y motivadores.',
+    rating: 4,
   },
   {
-    name: "María Laura Fernández",
-    profession: "Project Manager",
-    avatar: "/avatars/laura.jpg",
-    review: "Gracias a esta plataforma mejoré mis habilidades en gestión de proyectos y herramientas digitales.",
-    rating: 5
+    name: 'María Laura Fernández',
+    profession: 'Project Manager',
+    avatar: '/avatars/laura.jpg',
+    review:
+      'Gracias a esta plataforma mejoré mis habilidades en gestión de proyectos y herramientas digitales.',
+    rating: 5,
   },
   {
-    name: "Jorge Ramírez",
-    profession: "Data Analyst",
-    avatar: "/avatars/jorge.jpg",
-    review: "Los cursos son de alta calidad, con ejercicios y ejemplos reales que me ayudaron a crecer profesionalmente.",
-    rating: 5
+    name: 'Jorge Ramírez',
+    profession: 'Data Analyst',
+    avatar: '/avatars/jorge.jpg',
+    review:
+      'Los cursos son de alta calidad, con ejercicios y ejemplos reales que me ayudaron a crecer profesionalmente.',
+    rating: 5,
   },
   {
-    name: "Sofía López",
-    profession: "Marketing Specialist",
-    avatar: "/avatars/maria.jpg",
-    review: "Aprender aquí es fácil y dinámico. La interfaz y los recursos son muy amigables.",
-    rating: 4
+    name: 'Sofía López',
+    profession: 'Marketing Specialist',
+    avatar: '/avatars/maria.jpg',
+    review: 'Aprender aquí es fácil y dinámico. La interfaz y los recursos son muy amigables.',
+    rating: 4,
   },
   {
-    name: "David Torres",
-    profession: "Fullstack Developer",
-    avatar: "/avatars/david.jpg",
-    review: "Excelente plataforma para mejorar habilidades técnicas. Los proyectos prácticos son muy útiles.",
-    rating: 5
+    name: 'David Torres',
+    profession: 'Fullstack Developer',
+    avatar: '/avatars/david.jpg',
+    review:
+      'Excelente plataforma para mejorar habilidades técnicas. Los proyectos prácticos son muy útiles.',
+    rating: 5,
   },
 ];
 
@@ -82,7 +86,7 @@ export default function Testimonials() {
                 <div className="flex flex-col items-center">
                   <Image
                     aria-label={t.name}
-                    src={t.avatar}
+                    src={t.avatar || '/default-avatar.png'}
                     alt={t.name}
                     width={128}
                     height={64}
@@ -97,12 +101,14 @@ export default function Testimonials() {
                       <Star
                         key={index}
                         size={16}
-                        className={index < t.rating ? "text-yellow-400" : "text-gray-300"}
+                        className={index < t.rating ? 'text-yellow-400' : 'text-gray-300'}
                       />
                     ))}
                   </div>
                 </div>
-                <p className="text-[var(--color-card-primary-text)] text-sm overflow-auto">{t.review}</p>
+                <p className="text-[var(--color-card-primary-text)] text-sm overflow-auto">
+                  {t.review}
+                </p>
               </Card>
             </SwiperSlide>
           ))}

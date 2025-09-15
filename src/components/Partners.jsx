@@ -1,17 +1,17 @@
 'use client';
 
-import { useEffect, useRef, useState } from "react";
-import { motion } from "framer-motion";
-import Image from "next/image";
+import { useEffect, useRef, useState } from 'react';
+import { motion } from 'framer-motion';
+import Image from 'next/image';
 
 const partners = [
-  { name: "Udemy", logo: "/logos/udemy.png" },
-  { name: "Webflow", logo: "/logos/webflow.png" },
-  { name: "Gmail", logo: "/logos/gmail.png" },
-  { name: "Vaddy", logo: "/logos/vaddy.png" },
-  { name: "Struts", logo: "/logos/struts.png" },
-  { name: "Wikilabs", logo: "/logos/wikilabs.png" },
-  { name: "Telefónica", logo: "/logos/telefonica.png" },
+  { name: 'Udemy', logo: '/logos/udemy.png' },
+  { name: 'Webflow', logo: '/logos/webflow.png' },
+  { name: 'Gmail', logo: '/logos/gmail.png' },
+  { name: 'Vaddy', logo: '/logos/vaddy.png' },
+  { name: 'Struts', logo: '/logos/struts.png' },
+  { name: 'Wikilabs', logo: '/logos/wikilabs.png' },
+  { name: 'Telefónica', logo: '/logos/telefonica.png' },
 ];
 
 export default function Partners() {
@@ -34,9 +34,7 @@ export default function Partners() {
   return (
     <section className="py-16 bg-surface overflow-hidden">
       <div className="container mx-auto text-center">
-        <h2 className="text-3xl md:text-4xl font-bold mb-20">
-          Nuestros Aliados
-        </h2>
+        <h2 className="text-3xl md:text-4xl font-bold mb-20">Nuestros Aliados</h2>
 
         <div
           className="flex gap-12 items-center mb-8"
@@ -56,7 +54,7 @@ export default function Partners() {
               >
                 <Image
                   aria-label={p.name}
-                  src={p.logo}
+                  src={p.logo || '/logos/udemy.png'}
                   alt={p.name}
                   fill
                   className="object-contain"

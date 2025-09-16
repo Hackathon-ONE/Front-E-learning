@@ -1,19 +1,20 @@
-"use client";
+'use client';
 
-import { useState, useEffect } from "react";
-import Link from "next/link";
-import ThemeToggle from "./ThemeToggle";
-import { MenuIcon, XIcon, CircleUserRound } from "lucide-react";
-import { useSession, signIn, signOut } from "next-auth/react";
-import Image from "next/image";
-import Notifications from "./Notifications";
-import { useRouter } from "next/navigation";
+import { useState, useEffect } from 'react';
+import Link from 'next/link';
+import ThemeToggle from './ThemeToggle';
+import { MenuIcon, XIcon, CircleUserRound } from 'lucide-react';
+import { useSession, signIn, signOut } from 'next-auth/react';
+import Image from 'next/image';
+import ProfileImage from './ProfileImage';
+import Notifications from './Notifications';
+import { useRouter } from 'next/navigation';
 
 const navLinks = [
-  { href: "/team", label: "Team Lumina" },
-  { href: "/payments", label: "Planes" },
-  { href: "/help/faq", label: "FAQ" },
-  { href: "/help/contact", label: "Contacto" },
+  { href: '/team', label: 'Team Lumina' },
+  { href: '/payments', label: 'Planes' },
+  { href: '/help/faq', label: 'FAQ' },
+  { href: '/help/contact', label: 'Contacto' },
 ];
 
 export default function Navbar() {
@@ -29,7 +30,7 @@ export default function Navbar() {
   if (!mounted) return null;
 
   const handleSignOut = () => {
-    signOut({ callbackUrl: "/" });
+    signOut({ callbackUrl: '/' });
   };
 
   const closeDropdown = () => setDropdownOpen(false);
@@ -50,7 +51,7 @@ export default function Navbar() {
             className="hover:scale-110 hover:shadow-lg hover:shadow-primary/20 rounded-xl"
             style={{ height: 'auto', width: '30%' }}
             onError={(e) => {
-              e.currentTarget.src = "/default-avatar.png"; // coloca tu imagen local en /public
+              e.currentTarget.src = '/default-avatar.png'; // coloca tu imagen local en /public
             }}
           />
         </Link>
@@ -58,7 +59,11 @@ export default function Navbar() {
         {/* Desktop Menu */}
         <div className="hidden md:flex gap-6 items-center">
           {navLinks.map(({ href, label }) => (
-            <Link key={href} href={href} className="text-[var(--color-text)] hover:text-primary transition">
+            <Link
+              key={href}
+              href={href}
+              className="text-[var(--color-text)] hover:text-primary transition"
+            >
               {label}
             </Link>
           ))}
@@ -76,17 +81,16 @@ export default function Navbar() {
             >
               {user?.image ? (
                 <>
-                  <Image
-                    aria-label="Avatar"
-                    src={user.image || "/default-avatar.png"}
+                  <ProfileImage
+                    src={user.image}
                     alt={user.name || 'avatar'}
-                    width={128}
-                    height={64}
-                    unoptimized
-                    priority
+                    width={36}
+                    height={36}
                     className="w-9 h-9 rounded-full border cursor-pointer"
                   />
-                  <span className="text-sm text-[var(--color-text)] hidden lg:block">{user.name}</span>
+                  <span className="text-sm text-[var(--color-text)] hidden lg:block">
+                    {user.name}
+                  </span>
                 </>
               ) : (
                 <CircleUserRound className="w-8 h-8 text-[var(--color-text)] hover:text-primary transition" />
@@ -94,7 +98,7 @@ export default function Navbar() {
             </button>
 
             {dropdownOpen && (
-              <div className="absolute right-0 mt-2 w-52 bg-[var(--color-surface)] rounded-xl shadow-lg border border-muted bg-[var(--color-card-secondary)] p-2 z-50">
+              <div className="absolute right-0 mt-2 w-52 rounded-xl shadow-lg border border-muted bg-[var(--color-card-secondary)] p-2 z-50">
                 {!user ? (
                   <>
                     <button
@@ -102,7 +106,7 @@ export default function Navbar() {
                       aria-label="Iniciar sesión"
                       onClick={() => {
                         closeDropdown();
-                        router.push("/auth/login");
+                        router.push('/auth/login');
                       }}
                       className="w-full text-left cursor-pointer px-3 py-2 text-[var(--color-text)] hover:text-primary rounded-md"
                     >
@@ -124,7 +128,10 @@ export default function Navbar() {
 
                     {/* Opciones específicas por rol */}
                     {user.role === 'ADMIN' && (
-                      <Link href="/admin" className="block rounded-md px-3 py-2 text-[var(--color-text)] hover:bg-secondary">
+                      <Link
+                        href="/admin"
+                        className="block rounded-md px-3 py-2 text-[var(--color-text)] hover:bg-secondary"
+                      >
                         Panel Admin
                       </Link>
                     )}
@@ -132,14 +139,40 @@ export default function Navbar() {
                     {user.role === 'INSTRUCTOR' && (
                       <>
                         <Link
+                          href="/"
+                          onClick={closeDropdown}
+                          className="block rounded-md px-3 py-2 text-[var(--color-text)] hover:bg-secondary"
+                        >
+                          Inicio
+                        </Link>
+                        <Link
+                          href={`/instructor/${user.id || '1'}`}
+                          onClick={closeDropdown}
+                          className="block rounded-md px-3 py-2 text-[var(--color-text)] hover:bg-secondary"
+                        >
+                          Perfil
+                        </Link>
+                        <Link
                           href="/instructor/dashboard"
                           onClick={closeDropdown}
                           className="block rounded-md px-3 py-2 text-[var(--color-text)] hover:bg-secondary"
                         >
                           Panel Instructor
                         </Link>
+                      </>
+                    )}
+
+                    {user.role === 'STUDENT' && (
+                      <>
                         <Link
-                          href="/dashboard/profile"
+                          href="/"
+                          onClick={closeDropdown}
+                          className="block rounded-md px-3 py-2 text-[var(--color-text)] hover:bg-secondary"
+                        >
+                          Panel
+                        </Link>
+                        <Link
+                          href={`/students/${user.id || '1'}`}
                           onClick={closeDropdown}
                           className="block rounded-md px-3 py-2 text-[var(--color-text)] hover:bg-secondary"
                         >
@@ -147,25 +180,6 @@ export default function Navbar() {
                         </Link>
                       </>
                     )}
-
-                    {user.role === 'STUDENT' && (
-                    <>
-                      <Link
-                      href="/"
-                      onClick={closeDropdown}
-                      className="block rounded-md px-3 py-2 text-[var(--color-text)] hover:bg-secondary"
-                    >
-                      Panel Estudiante
-                    </Link>
-                      <Link
-                        href="/dashboard/profile"
-                        onClick={closeDropdown}
-                        className="block rounded-md px-3 py-2 text-[var(--color-text)] hover:bg-secondary"
-                      >
-                        Perfil
-                      </Link>
-                    </>
-                  )}
 
                     {/* Opciones comunes */}
                     <Link
@@ -217,14 +231,11 @@ export default function Navbar() {
         <div className="flex justify-between items-center py-2 border-b border-muted">
           <div className="flex items-center gap-2">
             {user?.image ? (
-              <Image
-                aria-label="Avatar"
-                src={user.image || "/default-avatar.png"}
+              <ProfileImage
+                src={user.image}
                 alt={user.name || 'avatar'}
-                width={128}
-                height={64}
-                unoptimized
-                priority
+                width={36}
+                height={36}
                 className="w-9 h-9 rounded-full border"
               />
             ) : (
@@ -250,7 +261,7 @@ export default function Navbar() {
               aria-label="Iniciar sesión"
               onClick={() => {
                 setMobileOpen(false);
-                router.push("/auth/login");
+                router.push('/auth/login');
               }}
               className="px-4 py-2 bg-primary cursor-pointer text-[var(--color-primary-text)] rounded-lg text-center"
             >
@@ -278,23 +289,48 @@ export default function Navbar() {
             )}
 
             {user.role === 'INSTRUCTOR' && (
-              <Link
-                href="/instructor/dashboard"
-                onClick={() => setMobileOpen(false)}
-                className="px-4 py-2 hover:bg-secondary rounded-lg text-center"
-              >
-                Panel Instructor
-              </Link>
+              <>
+                <Link
+                  href="/"
+                  onClick={() => setMobileOpen(false)}
+                  className="px-4 py-2 hover:bg-secondary rounded-lg text-center"
+                >
+                  Inicio
+                </Link>
+                <Link
+                  href={`/instructor/${user.id || '1'}`}
+                  onClick={() => setMobileOpen(false)}
+                  className="px-4 py-2 hover:bg-secondary rounded-lg text-center"
+                >
+                  Perfil
+                </Link>
+                <Link
+                  href="/instructor/dashboard"
+                  onClick={() => setMobileOpen(false)}
+                  className="px-4 py-2 hover:bg-secondary rounded-lg text-center"
+                >
+                  Panel Instructor
+                </Link>
+              </>
             )}
 
             {user.role === 'STUDENT' && (
-              <Link
-                href="/students/dashboard/profile"
-                onClick={() => setMobileOpen(false)}
-                className="px-4 py-2 hover:bg-secondary rounded-lg text-center"
-              >
-                Panel Estudiante
-              </Link>
+              <>
+                <Link
+                  href="/"
+                  onClick={() => setMobileOpen(false)}
+                  className="px-4 py-2 hover:bg-secondary rounded-lg text-center"
+                >
+                  Panel
+                </Link>
+                <Link
+                  href={`/students/${user.id || '1'}`}
+                  onClick={() => setMobileOpen(false)}
+                  className="px-4 py-2 hover:bg-secondary rounded-lg text-center"
+                >
+                  Perfil
+                </Link>
+              </>
             )}
 
             {/* Opciones comunes */}

@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from 'react';
 import { useParams } from 'next/navigation';
+import withRole from '@/components/withRole';
 import {
   ArrowLeft,
   BookOpen,
@@ -20,6 +21,7 @@ import {
   Heart,
   TrendingUp,
   Lightbulb,
+  CreditCard,
 } from 'lucide-react';
 import Link from 'next/link';
 import { studentsProgress } from '@/data/students';
@@ -27,7 +29,7 @@ import StudentStats from '@/components/StudentStats';
 import RecommendationsForm from '../recommendations-form';
 import Image from 'next/image';
 
-export default function StudentDetailPage() {
+function StudentDetailPage() {
   const params = useParams();
   const [student, setStudent] = useState(null);
   const [loading, setLoading] = useState(true);
@@ -52,11 +54,13 @@ export default function StudentDetailPage() {
     return (
       <div className="min-h-screen bg-[var(--color-bg)] flex items-center justify-center">
         <div className="text-center">
-          <h1 className="text-2xl font-bold text-[var(--color-text)]">
-            Estudiante no encontrado
-          </h1>
-          <Link href="/" className="text-primary hover:text-primary/80 mt-4 inline-block">
-            Volver
+          <h1 className="text-2xl font-bold text-[var(--color-text)]">Estudiante no encontrado</h1>
+          <Link
+            href="/payments"
+            className="inline-flex items-center gap-2 bg-primary text-white px-4 py-2 rounded-lg hover:bg-primary/90 transition-colors mt-4"
+          >
+            <CreditCard className="w-4 h-4" />
+            Suscribirse
           </Link>
         </div>
       </div>
@@ -73,11 +77,11 @@ export default function StudentDetailPage() {
         {/* Header con navegación */}
         <div className="mb-8">
           <Link
-            href="/"
-            className="inline-flex items-center gap-2 text-primary hover:text-primary/80 transition-colors mb-4"
+            href="/payments"
+            className="inline-flex items-center gap-2 bg-primary text-white px-4 py-2 rounded-lg hover:bg-primary/90 transition-colors mb-4"
           >
-            <ArrowLeft className="w-4 h-4" />
-            Volver
+            <CreditCard className="w-4 h-4" />
+            Suscribirse
           </Link>
 
           {/* Perfil del estudiante */}
@@ -85,7 +89,7 @@ export default function StudentDetailPage() {
             <div className="flex flex-col md:flex-row items-start md:items-center gap-6">
               <Image
                 aria-label={student.name}
-                src={student.avatar || "/default-avatar.png"}
+                src={student.avatar || '/default-avatar.png'}
                 alt={student.name}
                 width={128}
                 height={64}
@@ -178,7 +182,7 @@ export default function StudentDetailPage() {
               >
                 Cursos
               </button>
-              
+
               <button
                 type="button"
                 aria-label="Estadísticas"
@@ -316,7 +320,7 @@ export default function StudentDetailPage() {
                         ))}
                         {course.lessons.length > 3 && (
                           <div className="text-center pt-2">
-                            <button 
+                            <button
                               type="button"
                               aria-label="Ver todas las lecciones"
                               className="text-primary cursor-pointer hover:text-primary/80 text-sm"
@@ -419,7 +423,7 @@ export default function StudentDetailPage() {
             <StudentStats student={student} />
           </div>
         )}
-        
+
         {activeTab === 'recommendations' && (
           <div className="bg-[var(--color-surface)] rounded-xl p-6 shadow-md">
             <div className="text-center">
@@ -439,3 +443,5 @@ export default function StudentDetailPage() {
     </main>
   );
 }
+
+export default withRole(StudentDetailPage, ['STUDENT', 'ADMIN']);

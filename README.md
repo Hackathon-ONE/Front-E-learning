@@ -541,6 +541,203 @@ Como experto en JavaScript y React, se ha realizado un análisis exhaustivo del 
 
 ---
 
+## 🔐 **SISTEMA DE PERMISOS IMPLEMENTADO**
+
+### 🎯 **Control de Acceso Basado en Roles (RBAC)**
+
+La plataforma implementa un sistema robusto de permisos que garantiza la seguridad y el acceso apropiado según el rol del usuario.
+
+---
+
+### 🔓 **Rutas Públicas (Acceso sin autenticación)**
+
+| **Ruta**        | **Descripción**                 | **Acceso** |
+| --------------- | ------------------------------- | ---------- |
+| `/`             | Página principal                | ✅ Público |
+| `/courses`      | Catálogo de cursos              | ✅ Público |
+| `/courses/[id]` | Detalle de curso (vista básica) | ✅ Público |
+| `/team`         | Página del equipo               | ✅ Público |
+| `/help`         | Ayuda y soporte                 | ✅ Público |
+| `/payments`     | Información de pagos            | ✅ Público |
+| `/auth/*`       | Páginas de autenticación        | ✅ Público |
+
+---
+
+### 🔒 **Rutas que Requieren Autenticación + Suscripción**
+
+| **Ruta**                  | **Descripción**     | **Requisitos**                    |
+| ------------------------- | ------------------- | --------------------------------- |
+| `/courses/[id]/lessons`   | Lecciones del curso | ✅ Usuario logueado + Suscripción |
+| `/courses/[id]/resources` | Recursos del curso  | ✅ Usuario logueado + Suscripción |
+| `/courses/[id]/quizzes/*` | Quizzes del curso   | ✅ Usuario logueado + Suscripción |
+
+---
+
+### 👨‍🏫 **Rutas de Instructores (Solo Instructores + Admins)**
+
+| **Ruta**                 | **Descripción**        | **Permisos**               |
+| ------------------------ | ---------------------- | -------------------------- |
+| `/instructor/dashboard`  | Dashboard principal    | ✅ Crear/editar cursos     |
+| `/instructor/[id]`       | Perfil del instructor  | ✅ Gestionar perfil        |
+| `/instructor/courses/*`  | Gestión de cursos      | ✅ CRUD completo de cursos |
+| `/instructor/students/*` | Gestión de estudiantes | ✅ Ver progreso de alumnos |
+
+**Permisos de Instructores:**
+
+- ✅ Crear, editar y publicar cursos
+- ✅ Gestionar lecciones y recursos
+- ✅ Ver progreso de estudiantes inscritos
+- ✅ Acceder a analytics de sus cursos
+- ❌ No pueden acceder a rutas de administradores
+- ❌ No pueden ver perfiles de otros instructores
+
+---
+
+### 👑 **Rutas de Administradores (Solo Admins)**
+
+| **Ruta**           | **Descripción**          | **Permisos**                    |
+| ------------------ | ------------------------ | ------------------------------- |
+| `/admin/dashboard` | Dashboard administrativo | ✅ Acceso completo al sistema   |
+| `/admin/users`     | Gestión de usuarios      | ✅ CRUD completo de usuarios    |
+| `/admin/courses`   | Gestión de cursos        | ✅ Administrar todos los cursos |
+| `/admin/payments`  | Gestión de pagos         | ✅ Ver todas las transacciones  |
+| `/admin/analytics` | Analytics del sistema    | ✅ Métricas globales            |
+
+**Permisos de Administradores:**
+
+- ✅ Acceso completo a todas las funcionalidades
+- ✅ Gestionar usuarios, cursos y pagos
+- ✅ Ver analytics y reportes del sistema
+- ✅ Acceder a todas las rutas de instructores y estudiantes
+
+---
+
+### 🎓 **Rutas de Estudiantes (Solo Estudiantes + Admins)**
+
+| **Ruta**         | **Descripción**       | **Permisos**                |
+| ---------------- | --------------------- | --------------------------- |
+| `/students/[id]` | Perfil del estudiante | ✅ Ver/editar perfil propio |
+| `/dashboard`     | Dashboard personal    | ✅ Ver progreso y cursos    |
+
+**Permisos de Estudiantes:**
+
+- ✅ Ver catálogo de cursos
+- ✅ Acceder a lecciones con suscripción
+- ✅ Gestionar su perfil personal (solo bio)
+- ✅ Ver su progreso en cursos
+- ❌ No pueden crear, editar o eliminar cursos
+- ❌ No pueden acceder a rutas de instructores
+- ❌ No pueden ver perfiles de otros estudiantes
+
+---
+
+### 🛡️ **Componentes de Seguridad Implementados**
+
+#### **1. Middleware de Protección**
+
+```javascript
+// middleware.js - Protección a nivel de servidor
+- Verificación de autenticación
+- Validación de roles
+- Redirección automática según permisos
+```
+
+#### **2. Hooks de Autorización**
+
+```javascript
+// useRoleAccess.jsx - Verificación en componentes
+- useAdminAccess() - Solo administradores
+- useInstructorAccess() - Instructores + admins
+- useStudentAccess() - Estudiantes + admins
+```
+
+#### **3. Componentes de Protección**
+
+```javascript
+// SubscriptionGuard.jsx - Protección por suscripción
+- Verificación de suscripción activa
+- Redirección a página de pago si es necesario
+- Mensajes informativos para el usuario
+```
+
+#### **4. HOC de Protección**
+
+```javascript
+// withRole.jsx - Protección de páginas completas
+- Verificación de roles permitidos
+- Redirección automática si no tiene acceso
+- Estados de carga y error
+```
+
+---
+
+### 🔄 **Flujo de Acceso por Rol**
+
+#### **Usuario No Autenticado:**
+
+1. ✅ Accede a rutas públicas
+2. ✅ Ve catálogo de cursos
+3. ✅ Ve detalle básico de cursos
+4. ❌ No puede acceder a lecciones/recursos
+5. ❌ No puede acceder a dashboards
+
+#### **Estudiante Autenticado:**
+
+1. ✅ Acceso a todas las rutas públicas
+2. ✅ Acceso a lecciones/recursos con suscripción
+3. ✅ Gestión de su perfil personal
+4. ❌ No puede crear/editar cursos
+5. ❌ No puede acceder a rutas de instructores
+
+#### **Instructor Autenticado:**
+
+1. ✅ Acceso a todas las rutas públicas
+2. ✅ Acceso completo a sus rutas de instructor
+3. ✅ Gestión de cursos y estudiantes
+4. ❌ No puede acceder a rutas de administradores
+
+#### **Administrador Autenticado:**
+
+1. ✅ Acceso completo a todo el sistema
+2. ✅ Gestión de usuarios, cursos y pagos
+3. ✅ Acceso a analytics y reportes
+
+---
+
+### 🧪 **Página de Pruebas de Permisos**
+
+Visita `/test-permissions` para:
+
+- ✅ Ejecutar pruebas automáticas de permisos
+- ✅ Verificar acceso a diferentes rutas
+- ✅ Probar con diferentes roles de usuario
+- ✅ Validar redirecciones automáticas
+
+---
+
+### 📋 **Configuración de Permisos**
+
+Los permisos están centralizados en `src/utils/roleUtils.js`:
+
+```javascript
+// Definición de roles
+ROLES = {
+  ADMIN: 'ADMIN',
+  INSTRUCTOR: 'INSTRUCTOR',
+  STUDENT: 'STUDENT',
+  GUEST: 'GUEST',
+};
+
+// Permisos por rol
+ROLE_PERMISSIONS = {
+  ADMIN: ['manage_users', 'manage_courses', 'access_admin_panel'],
+  INSTRUCTOR: ['create_courses', 'edit_own_courses', 'access_instructor_panel'],
+  STUDENT: ['enroll_courses', 'view_own_progress', 'access_student_panel'],
+};
+```
+
+---
+
 ## 🧪 **CREDENCIALES DE PRUEBA**
 
 ### **Administrador**
@@ -557,6 +754,96 @@ Como experto en JavaScript y React, se ha realizado un análisis exhaustivo del 
 
 - **Email:** `student@lumina.com`
 - **Contraseña:** `student123`
+
+---
+
+## 🚀 **SISTEMA DE MANEJO DE IMÁGENES SIMPLIFICADO**
+
+### 🛡️ **Solución al Error 429 de Google OAuth**
+
+La plataforma implementa un sistema simplificado de manejo de imágenes para resolver los problemas de "Too Many Requests" de Google.
+
+---
+
+### 🔧 **Componentes del Sistema**
+
+#### **1. Hook de Imágenes Mejorado**
+
+- **Archivo:** `src/hooks/useProfileImage.jsx`
+- **Funcionalidad:** Manejo inteligente de errores con reintentos
+- **Reintentos:** Hasta 2 intentos con cache busting
+- **Fallback:** Avatar por defecto automático
+
+#### **2. Componente ProfileImage**
+
+- **Archivo:** `src/components/ProfileImage.jsx`
+- **Funcionalidad:** Componente visual con indicadores de estado
+- **Indicadores:** Animación durante reintentos
+- **Optimización:** Deshabilitada para imágenes de Google
+
+---
+
+### ⚡ **Características del Sistema**
+
+#### **Manejo de Errores:**
+
+- ✅ **Reintentos automáticos** - Hasta 2 intentos con cache busting
+- ✅ **Fallback automático** - Usa avatar por defecto si falla
+- ✅ **Indicadores visuales** - Animación durante reintentos
+- ✅ **Cache busting** - Parámetros únicos para evitar cache del navegador
+
+#### **Optimización de Imágenes:**
+
+- ✅ **Optimización deshabilitada** - Para imágenes de Google (evita problemas)
+- ✅ **Múltiples dominios** - Configurados en next.config.mjs
+- ✅ **Fallback local** - Avatar por defecto siempre disponible
+
+---
+
+### 🔄 **Flujo de Manejo de Errores**
+
+#### **1. Carga Inicial de Imagen:**
+
+```
+1. Intentar cargar imagen original
+2. Si falla → Reintentar con cache busting
+3. Si falla nuevamente → Usar avatar por defecto
+```
+
+#### **2. Manejo de Error 429:**
+
+```
+1. Detectar error 429 de Google
+2. Reintentar con parámetros únicos
+3. Si falla definitivamente → Usar fallback
+```
+
+---
+
+### 🛠️ **Configuración**
+
+#### **Dominios Permitidos:**
+
+```javascript
+// next.config.mjs
+remotePatterns: [
+  'lh3.googleusercontent.com',
+  'lh4.googleusercontent.com',
+  'lh5.googleusercontent.com',
+  'lh6.googleusercontent.com',
+  'avatars.githubusercontent.com',
+  'cdn.pixabay.com',
+];
+```
+
+---
+
+### 🎯 **Beneficios Implementados**
+
+- ✅ **Manejo robusto de errores** - Reintentos automáticos con fallback
+- ✅ **Experiencia fluida** - Sin interrupciones para el usuario
+- ✅ **Configuración simple** - Sistema fácil de mantener
+- ✅ **Compatibilidad** - Funciona con todos los navegadores
 
 ---
 

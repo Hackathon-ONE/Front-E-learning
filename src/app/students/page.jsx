@@ -5,8 +5,9 @@ import { BookOpen, BarChart, Lightbulb, Loader2 } from 'lucide-react';
 import Link from 'next/link';
 import { studentsData } from '@/data/students';
 import Image from 'next/image';
+import withRole from '@/components/withRole';
 
-export default function StudentsPage() {
+function StudentsPage() {
   const [students, setStudents] = useState([]);
   // const [loading, setLoading] = useState(true);
   // const [error, setError] = useState(null);
@@ -101,3 +102,5 @@ export default function StudentsPage() {
     </main>
   );
 }
+
+export default withRole(StudentsPage, ["STUDENT", "ADMIN"]);

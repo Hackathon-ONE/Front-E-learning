@@ -3,6 +3,7 @@
 import { useState, useEffect } from 'react';
 import { useAuth } from '@/context/AuthContext';
 import { coursesPageData, coursesDetailData } from '@/data/courses';
+import { isMockedUser, hasActiveSubscription } from '@/utils/userUtils';
 
 /**
  * Hook para verificar si un usuario tiene acceso a un curso específico
@@ -30,13 +31,27 @@ export function useSubscription(courseId) {
         setLoading(true);
         setError(null);
 
+        // Validar que courseId sea válido
+        if (!courseId || courseId === 'undefined' || courseId === undefined || courseId === null) {
+          console.warn('CourseId inválido:', courseId);
+          setHasAccess(false);
+          setIsSubscribed(false);
+          setLoading(false);
+          return;
+        }
+
         // Buscar el curso en los datos locales
         const course =
           coursesDetailData.find((c) => c.id.toString() === String(courseId)) ||
           coursesPageData.find((c) => c.id.toString() === String(courseId));
 
         if (!course) {
-          throw new Error('Curso no encontrado');
+          console.warn('Curso no encontrado para ID:', courseId);
+          setError(`Curso con ID ${courseId} no encontrado`);
+          setHasAccess(false);
+          setIsSubscribed(false);
+          setLoading(false);
+          return;
         }
 
         // Si es gratuito, acceso libre
@@ -55,10 +70,17 @@ export function useSubscription(courseId) {
           return;
         }
 
-        // Simular verificación de suscripción (en un entorno real, esto vendría de una API)
-        // Por ahora, asumimos que el usuario no está suscrito a menos que sea el curso gratuito
-        setIsSubscribed(false);
-        setHasAccess(false);
+        // Verificar si el usuario tiene suscripción activa
+        const isMocked = isMockedUser(user);
+        const isSubscribed = hasActiveSubscription(user);
+
+        if (isMocked || isSubscribed) {
+          setHasAccess(true);
+          setIsSubscribed(true);
+        } else {
+          setHasAccess(false);
+          setIsSubscribed(false);
+        }
       } catch (err) {
         console.error('Error verificando suscripción:', err);
         setError(err.message);
@@ -86,7 +108,7 @@ export function useSubscription(courseId) {
  * @returns {Object} - { subscriptions, loading, error }
  */
 export function useMultipleSubscriptions(courseIds) {
-  const { isAuthenticated, loading: authLoading } = useAuth();
+  const { user, isAuthenticated, loading: authLoading } = useAuth();
   const [subscriptions, setSubscriptions] = useState({});
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
@@ -108,7 +130,23 @@ export function useMultipleSubscriptions(courseIds) {
 
         const subscriptionMap = {};
 
+        // Verificar si el usuario tiene suscripción activa
+        const isMocked = isMockedUser(user);
+        const isSubscribed = hasActiveSubscription(user);
+
         courseIds.forEach((courseId) => {
+          // Validar que courseId sea válido
+          if (
+            !courseId ||
+            courseId === 'undefined' ||
+            courseId === undefined ||
+            courseId === null
+          ) {
+            console.warn('CourseId inválido en múltiples suscripciones:', courseId);
+            subscriptionMap[courseId] = false;
+            return;
+          }
+
           // Buscar el curso en los datos locales
           const course =
             coursesDetailData.find((c) => c.id.toString() === String(courseId)) ||
@@ -116,8 +154,17 @@ export function useMultipleSubscriptions(courseIds) {
 
           if (course) {
             // Si es gratuito, acceso libre
-            subscriptionMap[courseId] = course.isFree;
+            if (course.isFree) {
+              subscriptionMap[courseId] = true;
+            } else if (isMocked || isSubscribed) {
+              // Usuarios mockeados o con suscripción tienen acceso completo
+              subscriptionMap[courseId] = true;
+            } else {
+              // Sin acceso
+              subscriptionMap[courseId] = false;
+            }
           } else {
+            console.warn('Curso no encontrado para ID:', courseId);
             subscriptionMap[courseId] = false;
           }
         });

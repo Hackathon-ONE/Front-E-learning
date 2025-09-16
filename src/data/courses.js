@@ -267,4 +267,32 @@ export const coursesDetailData = [
       'Introducción a frameworks',
     ],
   },
+  // {
+  //   id: 7,
+  //   title: 'Introducción a JavaScript',
+  //   description: 'Aprende los fundamentos de JavaScript para construir aplicaciones web.',
+  //   cover: '/images/javascript.png',
+  //   isFree: false,
+  // },
+  // {
+  //   id: 8,
+  //   title: 'Introducción a Python',
+  //   description: 'Aprende los fundamentos de Python para construir aplicaciones web.',
+  //   cover: '/images/python.png',
+  //   isFree: false,
+  // },
+  // {
+  //   id: 9,
+  //   title: 'Introducción a Python',
+  //   description: 'Aprende los fundamentos de Python para construir aplicaciones web.',
+  //   cover: '/images/python.png',
+  //   isFree: false,
+  // },
+  // {
+  //   id: 10,
+  //   title: 'Introducción a Python',
+  //   description: 'Aprende los fundamentos de Python para construir aplicaciones web.',
+  //   cover: '/images/python.png',
+  //   isFree: false,
+  // },
 ];

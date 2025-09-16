@@ -3,11 +3,26 @@
 import { useAuth } from "@/context/AuthContext";
 import { useRouter } from "next/navigation";
 import { Loader2 } from "lucide-react";
+import { useEffect } from "react";
 
 export default function withRole(Component, allowedRoles = []) {
   return function ProtectedPage(props) {
     const { user, role, loading, isAuthenticated } = useAuth();
     const router = useRouter();
+
+    useEffect(() => {
+      if (loading) return; // Esperar a que cargue la sesión
+
+      if (!isAuthenticated) {
+        router.push("/auth/login");
+        return;
+      }
+
+      if (allowedRoles.length > 0 && !allowedRoles.includes(role)) {
+        router.push("/403");
+        return;
+      }
+    }, [isAuthenticated, role, loading, router, allowedRoles]);
 
     if (loading) {
       return (
@@ -18,13 +33,11 @@ export default function withRole(Component, allowedRoles = []) {
     }
 
     if (!isAuthenticated) {
-      router.push("/(auth)/login");
-      return null;
+      return null; // Se redirige en useEffect
     }
 
-    if (!allowedRoles.includes(role)) {
-      router.push("/");
-      return null;
+    if (allowedRoles.length > 0 && !allowedRoles.includes(role)) {
+      return null; // Se redirige en useEffect
     }
 
     return <Component {...props} />;

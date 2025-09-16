@@ -7,8 +7,9 @@ import Link from "next/link";
 import SuggestionsForm from "./suggestions-form";
 import { instructorsData } from "@/data/instructors";
 import Image from "next/image";
+import withRole from "@/components/withRole";
 
-export default function InstructorProfilePage() {
+function InstructorProfilePage() {
   const { id } = useParams();
   const [instructor, setInstructor] = useState(null);
   const [loading, setLoading] = useState(true);
@@ -127,3 +128,5 @@ export default function InstructorProfilePage() {
     </main>
   );
 }
+
+export default withRole(InstructorProfilePage, ["INSTRUCTOR", "ADMIN"]);

@@ -12,9 +12,21 @@ jest.mock('next/navigation', () => ({
 
 // Mock next-auth/react
 jest.mock('next-auth/react', () => ({
-  useSession: jest.fn(() => ({ data: null, status: 'unauthenticated' })),
+  useSession: jest.fn(() => ({ 
+    data: { user: { role: 'ADMIN' } }, 
+    status: 'authenticated' 
+  })),
   SessionProvider: ({ children }) => children,
 }));
+
+// Mock withRole component
+jest.mock('@/components/withRole', () => {
+  return function withRole(Component, allowedRoles) {
+    return function WrappedComponent(props) {
+      return <Component {...props} />;
+    };
+  };
+});
 
 // Mock components
 jest.mock('@/components/SimpleRecommendationsForm', () => {

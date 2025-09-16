@@ -3,6 +3,8 @@
 import { useState, useEffect } from 'react';
 import { useParams } from 'next/navigation';
 import withRole from '@/components/withRole';
+import { useAuth } from '@/context/AuthContext';
+import { hasActiveSubscription } from '@/utils/userUtils';
 import {
   ArrowLeft,
   BookOpen,
@@ -31,16 +33,47 @@ import Image from 'next/image';
 
 function StudentDetailPage() {
   const params = useParams();
+  const { user, isAuthenticated } = useAuth();
   const [student, setStudent] = useState(null);
   const [loading, setLoading] = useState(true);
   const [activeTab, setActiveTab] = useState('courses');
 
   useEffect(() => {
     const studentId = params?.id;
+    
+    // Si es el usuario actual y está autenticado, crear perfil básico
+    if (isAuthenticated && user && user.id === studentId) {
+      const isSubscribed = hasActiveSubscription(user);
+      
+      // Crear perfil básico para usuario nuevo
+      const newStudent = {
+        id: user.id,
+        name: user.name || 'Usuario',
+        email: user.email || '',
+        avatar: user.image || '/default-avatar.png',
+        joinDate: new Date().toISOString(),
+        totalCourses: 0,
+        completedCourses: 0,
+        completedLessons: 0,
+        totalLessons: 0,
+        passedQuizzes: 0,
+        totalQuizzes: 0,
+        courses: [],
+        achievements: [],
+        favoriteTopics: [],
+        upcomingCourses: []
+      };
+      
+      setStudent(newStudent);
+      setLoading(false);
+      return;
+    }
+    
+    // Buscar en datos mockeados
     const foundStudent = studentsProgress.find((s) => s.id === studentId);
     setStudent(foundStudent);
     setLoading(false);
-  }, [params]);
+  }, [params, user, isAuthenticated]);
 
   if (loading) {
     return (
@@ -55,6 +88,9 @@ function StudentDetailPage() {
       <div className="min-h-screen bg-[var(--color-bg)] flex items-center justify-center">
         <div className="text-center">
           <h1 className="text-2xl font-bold text-[var(--color-text)]">Estudiante no encontrado</h1>
+          <p className="text-[var(--color-text)] mt-2 mb-4">
+            El perfil que buscas no existe o no tienes permisos para verlo.
+          </p>
           <Link
             href="/payments"
             className="inline-flex items-center gap-2 bg-primary text-white px-4 py-2 rounded-lg hover:bg-primary/90 transition-colors mt-4"
@@ -67,9 +103,9 @@ function StudentDetailPage() {
     );
   }
 
-  const overallProgress = Math.round(
-    student.courses.reduce((acc, course) => acc + course.progress, 0) / student.courses.length
-  );
+  const overallProgress = student.courses.length > 0 
+    ? Math.round(student.courses.reduce((acc, course) => acc + course.progress, 0) / student.courses.length)
+    : 0;
 
   return (
     <main className="min-h-screen bg-[var(--color-bg)] py-6 px-4 sm:px-6 lg:px-8">
@@ -217,8 +253,26 @@ function StudentDetailPage() {
             {/* Cursos inscritos */}
             <div className="lg:col-span-2">
               <h2 className="text-2xl font-bold text-[var(--color-text)] mb-6">Cursos Inscritos</h2>
-              <div className="space-y-6">
-                {student.courses.map((course) => (
+              {student.courses.length === 0 ? (
+                <div className="bg-[var(--color-surface)] rounded-xl p-8 shadow-md text-center">
+                  <BookOpen className="w-16 h-16 text-primary mx-auto mb-4" />
+                  <h3 className="text-xl font-semibold text-[var(--color-text)] mb-2">
+                    ¡Bienvenido a Lumina!
+                  </h3>
+                  <p className="text-[var(--color-text)] mb-6">
+                    Aún no te has inscrito en ningún curso. Explora nuestro catálogo y encuentra el curso perfecto para ti.
+                  </p>
+                  <Link
+                    href="/courses"
+                    className="inline-flex items-center gap-2 bg-primary text-white px-6 py-3 rounded-lg hover:bg-primary/90 transition-colors font-semibold"
+                  >
+                    <BookOpen className="w-5 h-5" />
+                    Explorar Cursos
+                  </Link>
+                </div>
+              ) : (
+                <div className="space-y-6">
+                  {student.courses.map((course) => (
                   <div
                     key={course.id}
                     className="bg-[var(--color-surface)] rounded-xl p-6 shadow-md"
@@ -333,7 +387,8 @@ function StudentDetailPage() {
                     </div>
                   </div>
                 ))}
-              </div>
+                </div>
+              )}
             </div>
 
             {/* Sidebar con información adicional */}

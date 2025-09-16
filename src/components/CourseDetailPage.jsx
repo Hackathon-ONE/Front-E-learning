@@ -1,16 +1,15 @@
 'use client';
 
 import { useState } from 'react';
-import { PlayCircle, Clock, CheckCircle, Loader2, Lock } from 'lucide-react';
+import { PlayCircle, Clock, CheckCircle, Loader2, Lock, ArrowLeft } from 'lucide-react';
 import Card from '@/components/ui/Card';
 import Link from 'next/link';
 import { courseDetailMock, coursesPageData, coursesDetailData } from '@/data/courses';
 import { lessonsMock } from '@/data/lessons';
 import { linkedCoursesMock } from '@/data/linkedCourses';
-import { instructorMock } from '@/data/instructors';
+import { instructorMock, instructorsData } from '@/data/instructors';
 import Image from 'next/image';
 import { useRouter } from 'next/navigation';
-import { ArrowLeft } from 'lucide-react';
 import { useAuth } from '@/context/AuthContext';
 import { useSubscription } from '@/hooks/useSubscription';
 import { isMockedUser } from '@/utils/userUtils';
@@ -18,24 +17,19 @@ import { isMockedUser } from '@/utils/userUtils';
 export default function CourseDetailPage({ courseId }) {
   const router = useRouter();
   const { user, isAuthenticated } = useAuth();
-  
+  const { hasAccess, loading: subscriptionLoading } = useSubscription(courseId);
+
   // Validar que courseId existe
   if (!courseId || courseId === 'undefined') {
     return (
       <div className="flex justify-center items-center min-h-screen bg-[var(--color-bg)]">
         <div className="text-center">
-          <h1 className="text-2xl font-bold text-[var(--color-text)] mb-4">
-            Curso no encontrado
-          </h1>
-          <p className="text-[var(--color-text)]">
-            El ID del curso no es válido.
-          </p>
+          <h1 className="text-2xl font-bold text-[var(--color-text)] mb-4">Curso no encontrado</h1>
+          <p className="text-[var(--color-text)]">El ID del curso no es válido.</p>
         </div>
       </div>
     );
   }
-  
-  const { hasAccess, loading: subscriptionLoading } = useSubscription(courseId);
   const [course] = useState(() => {
     const found = coursesDetailData.find((c) => c.id.toString() === String(courseId));
     if (found) return found;
@@ -56,7 +50,45 @@ export default function CourseDetailPage({ courseId }) {
   });
   const [lessons] = useState(lessonsMock);
   const [linkedCourses] = useState(linkedCoursesMock);
-  const [instructor] = useState(instructorMock);
+
+  // Mapeo de cursos a instructores por nombre
+  const courseInstructorMap = {
+    'Marco Alonzo': '1',
+    'Benjamín Pérez': '1',
+    'Ana Torres': '2',
+    'Carlos Mora': '3',
+    'Fernanda López': '2',
+    'María Gómez': '2',
+  };
+
+  // Buscar el instructor correcto del curso
+  const [instructor] = useState(() => {
+    // Buscar el curso en coursesPageData para obtener el nombre del instructor
+    const courseWithInstructor = coursesPageData.find((c) => c.id.toString() === String(courseId));
+    if (courseWithInstructor && courseWithInstructor.instructor) {
+      const instructorId = courseInstructorMap[courseWithInstructor.instructor];
+      if (instructorId) {
+        const foundInstructor = instructorsData.find((i) => i.id === instructorId);
+        if (foundInstructor) {
+          return {
+            id: foundInstructor.id,
+            name: foundInstructor.name,
+            bio: foundInstructor.bio,
+            avatar: foundInstructor.avatar,
+            title: foundInstructor.specialty,
+            linkedin: `https://linkedin.com/in/${foundInstructor.name
+              .toLowerCase()
+              .replace(' ', '-')}`,
+            github: `https://github.com/${foundInstructor.name.toLowerCase().replace(' ', '-')}`,
+            twitter: `https://twitter.com/${foundInstructor.name.toLowerCase().replace(' ', '-')}`,
+          };
+        }
+      }
+    }
+    // Fallback al instructor mock si no se encuentra
+    return instructorMock;
+  });
+
   const [progress] = useState(100);
 
   // Mostrar loading mientras se verifica la suscripción
@@ -154,6 +186,7 @@ export default function CourseDetailPage({ courseId }) {
                 width={60}
                 height={60}
                 className="rounded-full"
+                style={{ width: 'auto', height: 'auto' }}
               />
               <div>
                 <h3 className="font-semibold text-lg">{instructor.name}</h3>

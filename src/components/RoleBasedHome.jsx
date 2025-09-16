@@ -53,8 +53,8 @@ function StudentDashboard({ user }) {
         <p className="text-[var(--color-text)]">Continúa tu aprendizaje donde lo dejaste</p>
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-8">
-        <Link
+      <div className="grid grid-cols-1 md:grid-cols-1 lg:grid-cols-2 gap-6 mb-8">
+        {/* <Link
           href={`/students/${studentId}`}
           aria-label="Mi Perfil"
           className="bg-[var(--color-card-primary)] p-6 rounded-lg shadow-md hover:shadow-lg transition-shadow"
@@ -62,7 +62,7 @@ function StudentDashboard({ user }) {
           <User className="w-8 h-8 text-green-600 mb-4" />
           <h3 className="text-xl font-semibold text-[var(--color-text)] mb-2">Mi Perfil</h3>
           <p className="text-[var(--color-text)]">Gestiona tu información personal</p>
-        </Link>
+        </Link> */}
 
         <Link
           href="/courses"

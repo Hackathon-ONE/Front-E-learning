@@ -1,5 +1,5 @@
 export const usersData = [
-  { id: 10, name: "María Aponte", email: "marian@example.com", role: "STUDENT", active: true, avatar: "/avatars/img32.jpg", is_subscribed: false },
+  { id: 10, name: "María Aponte", email: "marian@example.com", role: "STUDENT", active: true, avatar: "/avatars/img44.jpg", is_subscribed: false },
   { id: 11, name: "Fernanda López", email: "fernanda@lumina.com", role: "INSTRUCTOR", active: true, avatar: "/avatars/img38.jpg", is_subscribed: false },
   { id: 12, name: "José Martínez", email: "jose@lumina.com", role: "ADMIN", active: true, avatar: "/avatars/img11.jpg", is_subscribed: false },
 ];

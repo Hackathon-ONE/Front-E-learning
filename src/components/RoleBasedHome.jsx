@@ -2,7 +2,16 @@
 
 import { useAuth } from '@/context/AuthContext';
 import Link from 'next/link';
-import { BookOpen, Users, BarChart3, Settings, User, Wallet, GraduationCap, UserStar } from 'lucide-react';
+import {
+  BookOpen,
+  Users,
+  BarChart3,
+  Settings,
+  User,
+  Wallet,
+  GraduationCap,
+  UserStar,
+} from 'lucide-react';
 
 import Hero from '@/components/Hero';
 import CoursesCarousel from '@/components/CoursesCarousel';
@@ -40,13 +49,13 @@ function StudentDashboard({ user }) {
   return (
     <div className="container mx-auto px-4 py-8 bg-surface">
       <div className="mb-8">
-        <h1 className="text-3xl font-bold mb-2">¡Hola, {user?.name || "Estudiante"}! </h1>
+        <h1 className="text-3xl font-bold mb-2">¡Hola, {user?.name || 'Estudiante'}! </h1>
         <p className="text-[var(--color-text)]">Continúa tu aprendizaje donde lo dejaste</p>
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-8">
-      <Link
-          href="/dashboard/profile"
+        <Link
+          href={`/students/${studentId}`}
           aria-label="Mi Perfil"
           className="bg-[var(--color-card-primary)] p-6 rounded-lg shadow-md hover:shadow-lg transition-shadow"
         >
@@ -65,7 +74,6 @@ function StudentDashboard({ user }) {
           <p className="text-[var(--color-text)]">Accede a todos los cursos disponibles</p>
         </Link>
 
-        
         <Link
           href="/dashboard/settings"
           aria-label="Configuración"
@@ -94,10 +102,13 @@ function StudentDashboard({ user }) {
 
 // Dashboard para instructores
 function InstructorDashboard({ user }) {
+  // Obtener el ID del instructor actual
+  const instructorId = user?.id || '1'; // Fallback a '1' si no hay ID
+
   return (
     <div className="container mx-auto px-4 py-8">
       <div className="mb-8">
-        <h1 className="text-3xl font-bold mb-2">¡Hola, {user?.name || "Instructor"}! </h1>
+        <h1 className="text-3xl font-bold mb-2">¡Hola, {user?.name || 'Instructor'}! </h1>
         <p className="text-[var(--color-text)]">Gestiona tus cursos y estudiantes</p>
       </div>
 
@@ -133,7 +144,7 @@ function InstructorDashboard({ user }) {
         </Link>
 
         <Link
-          href="/dashboard/profile"
+          href={`/instructor/${instructorId}`}
           aria-label="Perfil"
           className="bg-[var(--color-card-primary)] p-6 rounded-lg shadow-md hover:shadow-lg transition-shadow"
         >
@@ -163,12 +174,12 @@ function AdminDashboard({ user }) {
   return (
     <div className="container mx-auto px-4 py-8">
       <div className="mb-8">
-        <h1 className="text-3xl font-bold mb-2">¡Hola, {user?.name || "Administrador"}! </h1>
+        <h1 className="text-3xl font-bold mb-2">¡Hola, {user?.name || 'Administrador'}! </h1>
         <p className="text-[var(--color-text)]">Control total del sistema</p>
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-8 bg-surface">
-      <Link
+        <Link
           href="/admin/users"
           aria-label="Usuarios"
           className="bg-[var(--color-card-primary)] p-6 rounded-lg shadow-md hover:shadow-lg transition-shadow"
@@ -197,7 +208,7 @@ function AdminDashboard({ user }) {
           <h3 className="text-xl font-semibold text-[var(--color-text)] mb-2">Pagos</h3>
           <p className="text-[var(--color-text)]">Administrar pagos</p>
         </Link>
-        
+
         <Link
           href="/instructor"
           aria-label="Instructores"
@@ -269,5 +280,5 @@ export default function RoleBasedHome() {
     case 'STUDENT':
     default:
       return <StudentDashboard user={user} />;
-  }  
+  }
 }

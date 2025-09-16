@@ -1,10 +1,10 @@
-"use client";
+'use client';
 
-import { useRouter } from "next/navigation";
-import { useState, useEffect } from "react";
-import { CheckCircle, XCircle } from "lucide-react";
-import Button from "@/components/ui/Button";
-import { plans } from "@/data/paymentsData";
+import { useRouter } from 'next/navigation';
+import { useState, useEffect } from 'react';
+import { CheckCircle, XCircle } from 'lucide-react';
+import Button from '@/components/ui/Button';
+import { plans } from '@/data/paymentsData';
 
 export default function PaymentsPage() {
   const router = useRouter();
@@ -33,7 +33,7 @@ export default function PaymentsPage() {
             className={`relative rounded-2xl p-4 sm:p-6 shadow-lg flex flex-col justify-between 
               hover:scale-105 transition-transform duration-200
               bg-[var(--color-card-primary)] text-[var(--color-card-primary-text)] 
-              ${index === 1 ? "border-2 border-[var(--color-primary)]" : ""}`}
+              ${index === 1 ? 'border-2 border-[var(--color-primary)]' : ''}`}
           >
             {/* Badge para el plan destacado */}
             {index === 1 && (
@@ -61,8 +61,8 @@ export default function PaymentsPage() {
 
             <Button
               type="button"
-              aria-label="Suscribirse"  
-              onClick={() => router.push("/payments/checkout")}
+              aria-label="Suscribirse"
+              onClick={() => router.push(`/payments/checkout/${plan.id}`)}
               className="mt-6 w-full py-3 cursor-pointer rounded-lg font-semibold btn-primary"
             >
               Suscribirse
@@ -73,16 +73,16 @@ export default function PaymentsPage() {
 
       {/* Comparativa de planes */}
       <div className="max-w-5xl mx-auto mb-20">
-        <h2 className="text-2xl font-bold text-center mb-6">
-          Comparación de planes
-        </h2>
+        <h2 className="text-2xl font-bold text-center mb-6">Comparación de planes</h2>
         <div className="overflow-x-auto">
           <table className="w-full border-collapse text-sm md:text-base">
             <thead>
               <tr className="bg-[var(--color-surface)]">
                 <th className="p-3 text-left">Características</th>
                 {plans.map((p) => (
-                  <th key={p.id} className="p-3 text-center">{p.name}</th>
+                  <th key={p.id} className="p-3 text-center">
+                    {p.name}
+                  </th>
                 ))}
               </tr>
             </thead>
@@ -126,26 +126,30 @@ export default function PaymentsPage() {
 
       {/* FAQ */}
       <div className="max-w-3xl mx-auto px-2 sm:px-0">
-        <h2 className="text-2xl font-bold text-center mb-6">
-          Preguntas Frecuentes
-        </h2>
+        <h2 className="text-2xl font-bold text-center mb-6">Preguntas Frecuentes</h2>
         <div className="space-y-4">
           <details className="bg-[var(--color-surface)] p-4 rounded-lg shadow cursor-pointer">
-            <summary className="font-semibold text-[var(--color-text)]">¿Puedo cancelar en cualquier momento?</summary>
+            <summary className="font-semibold text-[var(--color-text)]">
+              ¿Puedo cancelar en cualquier momento?
+            </summary>
             <p className="mt-2 text-sm text-[var(--color-muted)]">
               Sí, puedes cancelar tu plan desde tu perfil y no se te cobrará en el siguiente ciclo.
             </p>
           </details>
 
           <details className="bg-[var(--color-surface)] p-4 rounded-lg shadow cursor-pointer">
-            <summary className="font-semibold text-[var(--color-text)]">¿Recibiré factura o comprobante?</summary>
+            <summary className="font-semibold text-[var(--color-text)]">
+              ¿Recibiré factura o comprobante?
+            </summary>
             <p className="mt-2 text-sm text-[var(--color-muted)]">
               Sí, recibirás una factura digital automáticamente en tu correo electrónico.
             </p>
           </details>
 
           <details className="bg-[var(--color-surface)] p-4 rounded-lg shadow cursor-pointer">
-            <summary className="font-semibold text-[var(--color-text)]">¿Qué métodos de pago aceptan?</summary>
+            <summary className="font-semibold text-[var(--color-text)]">
+              ¿Qué métodos de pago aceptan?
+            </summary>
             <p className="mt-2 text-sm text-[var(--color-muted)]">
               Aceptamos tarjetas de crédito, débito, PayPal y transferencias bancarias.
             </p>

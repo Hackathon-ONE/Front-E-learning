@@ -1,11 +1,12 @@
-"use client";
+'use client';
 
-import { useState /*, useEffect */ } from "react";
-import { useRouter, useParams } from "next/navigation";
-import { useSession } from "next-auth/react";
-import { CreditCard, CheckCircle, XCircle, LogIn } from "lucide-react";
-import Button from "@/components/ui/Button";
-import { checkoutCourse, mockCard } from "@/data/paymentsData";
+import { useState /*, useEffect */ } from 'react';
+import { useRouter, useParams } from 'next/navigation';
+import { useSession } from 'next-auth/react';
+import { CreditCard, CheckCircle, XCircle, LogIn } from 'lucide-react';
+import Button from '@/components/ui/Button';
+import { checkoutCourse, mockCard } from '@/data/paymentsData';
+import { activateSubscription } from '@/utils/userUtils';
 
 // Ejemplo de cómo importar datos desde la base de datos (Java/Spring Boot):
 /*
@@ -49,12 +50,8 @@ export default function CheckoutPage() {
     return (
       <div className="flex justify-center items-center min-h-screen bg-[var(--color-bg)]">
         <div className="text-center">
-          <h1 className="text-2xl font-bold text-[var(--color-text)] mb-4">
-            Curso no encontrado
-          </h1>
-          <p className="text-[var(--color-text)] mb-6">
-            El ID del curso no es válido.
-          </p>
+          <h1 className="text-2xl font-bold text-[var(--color-text)] mb-4">Curso no encontrado</h1>
+          <p className="text-[var(--color-text)] mb-6">El ID del curso no es válido.</p>
           <button
             onClick={() => router.push('/courses')}
             className="px-6 py-3 bg-primary text-white rounded-lg hover:bg-primary/80 transition"
@@ -71,15 +68,15 @@ export default function CheckoutPage() {
 
   // Estado de tarjeta
   const [card, setCard] = useState({
-    number: "",
-    name: "",
-    expiry: "",
-    cvc: "",
+    number: '',
+    name: '',
+    expiry: '',
+    cvc: '',
   });
 
   // Estado de pago
   const [success, setSuccess] = useState(false);
-  const [error, setError] = useState("");
+  const [error, setError] = useState('');
 
   // Manejar inputs de la tarjeta
   const handleChange = (e) => {
@@ -89,10 +86,10 @@ export default function CheckoutPage() {
   // Lógica para procesar pago (mock + backend)
   const handleSubmit = async (e) => {
     e.preventDefault();
-    setError("");
+    setError('');
 
     if (!session) {
-      setError("Debes iniciar sesión antes de realizar el pago.");
+      setError('Debes iniciar sesión antes de realizar el pago.');
       return;
     }
 
@@ -104,19 +101,23 @@ export default function CheckoutPage() {
       card.cvc === mockCard.cvc;
 
     if (!isMockValid) {
-      setError("Los datos de la tarjeta no son válidos.");
+      setError('Los datos de la tarjeta no son válidos.');
       return;
     }
 
     try {
-      // Aquí llamas a tu API real para confirmar suscripción
-      const res = await fetch(`/api/subscriptions/${id}`, { method: "POST" });
-      if (!res.ok) throw new Error("Error en el pago");
+      // Simular procesamiento de pago
+      await new Promise((resolve) => setTimeout(resolve, 2000));
+
+      // Activar suscripción para el usuario
+      if (session?.user?.id) {
+        activateSubscription(session.user.id);
+      }
 
       setSuccess(true);
-      setCard({ number: "", name: "", expiry: "", cvc: "" });
+      setCard({ number: '', name: '', expiry: '', cvc: '' });
     } catch (err) {
-      setError("No se pudo procesar el pago. Intenta de nuevo.");
+      setError('No se pudo procesar el pago. Intenta de nuevo.');
     }
   };
 
@@ -129,18 +130,12 @@ export default function CheckoutPage() {
 
         {/* Info del curso */}
         <div className="bg-[var(--color-card-primary)] rounded-xl shadow p-4 flex flex-col gap-2">
-          <h2 className="text-lg font-bold text-[var(--color-text)]">
-            {course.title}
-          </h2>
-          <p className="text-[var(--color-text)] text-sm">
-            {course.description}
-          </p>
+          <h2 className="text-lg font-bold text-[var(--color-text)]">{course.title}</h2>
+          <p className="text-[var(--color-text)] text-sm">{course.description}</p>
           <div className="flex flex-wrap gap-4 mt-2 items-center">
             <span className="text-sm text-[var(--color-text)]">
-              Instructor:{" "}
-              <span className="font-semibold text-[var(--color-text)]">
-                {course.instructor}
-              </span>
+              Instructor:{' '}
+              <span className="font-semibold text-[var(--color-text)]">{course.instructor}</span>
             </span>
             <span className="text-lg font-bold text-[var(--color-primary)]">
               {course.currency} ${course.price}
@@ -252,14 +247,24 @@ export default function CheckoutPage() {
               <div className="text-green-600 text-center font-semibold flex items-center gap-2">
                 <CheckCircle size={20} /> ¡Pago realizado con éxito!
               </div>
-              <Button
-                type="button"
-                aria-label="Ir al curso"
-                onClick={() => router.push(`/courses/${id}/overview`)}
-                className="btn-primary cursor-pointer text-[var(--color-text)] hover:bg-[var(--color-primary)] hover:text-white py-2 px-6 rounded-lg font-bold text-lg"
-              >
-                Ir al curso
-              </Button>
+              <div className="flex flex-col gap-3">
+                <Button
+                  type="button"
+                  aria-label="Ver confirmación"
+                  onClick={() => router.push('/payments/success')}
+                  className="btn-primary cursor-pointer text-[var(--color-text)] hover:bg-[var(--color-primary)] hover:text-white py-2 px-6 rounded-lg font-bold text-lg"
+                >
+                  Ver Confirmación
+                </Button>
+                <Button
+                  type="button"
+                  aria-label="Ir al curso"
+                  onClick={() => router.push(`/courses/${id}`)}
+                  className="btn-secondary cursor-pointer py-2 px-6 rounded-lg font-semibold text-lg"
+                >
+                  Ir al curso
+                </Button>
+              </div>
             </div>
           )}
         </form>

@@ -8,13 +8,12 @@ function mapUserRole(email, backendRole) {
   // Primero tomamos el rol que venga del backend si existe
   if (backendRole) return backendRole;
 
-  // Buscar en mockUsers
-  const user = mockUsers.find(u => u.email === email);
+  // Buscar en mockUsers (case-insensitive)
+  const user = mockUsers.find(u => u.email.toLowerCase() === email.toLowerCase());
   if (user) return user.role.toUpperCase();
 
-  // Rol por defecto según email
-  if (email === "admin@gmail.com") return "ADMIN";
-  if (email === "instructor@gmail.com") return "INSTRUCTOR";
+  // Para usuarios de Google, asignar rol de estudiante por defecto
+  // Los usuarios de Google necesitarán pagar suscripción para acceder
   return "STUDENT";
 }
 
@@ -31,9 +30,9 @@ export const authOptions = {
           return null;
         }
 
-        // Buscar usuario en mockUsers
+        // Buscar usuario en mockUsers (case-insensitive para email)
         const user = mockUsers.find(
-          u => u.email === credentials.email && u.password === credentials.password
+          u => u.email.toLowerCase() === credentials.email.toLowerCase() && u.password === credentials.password
         );
 
         if (user) {
@@ -69,13 +68,22 @@ export const authOptions = {
     },
 
     // Guardar rol en token JWT
-    async jwt({ token, user }) {
+    async jwt({ token, user, account }) {
       if (user) {
         // Si tienes un endpoint de backend para obtener el rol, aquí podrías llamarlo
         // Por ejemplo: const backendRole = await fetchRoleFromBackend(user.email)
         const backendRole = null; // placeholder por ahora
 
+        // Para usuarios de Google, generar un ID único si no existe
+        if (account?.provider === "google" && !user.id) {
+          user.id = `google_${user.email?.split('@')[0]}_${Date.now()}`;
+        }
+
         token.role = mapUserRole(user.email, backendRole);
+        token.userId = user.id; // Guardar el ID del usuario
+        token.email = user.email;
+        token.name = user.name;
+        token.image = user.image;
       }
       return token;
     },
@@ -83,9 +91,11 @@ export const authOptions = {
     // Pasar rol del token a la sesión
     async session({ session, token }) {
       if (session.user) {
-        session.user.id = token.sub;
-        session.user.image = token.picture;
+        session.user.id = token.userId || token.sub; // Usar userId del token o sub como fallback
+        session.user.image = token.image || token.picture || '/default-avatar.png';
         session.user.role = token.role || "STUDENT";
+        session.user.email = token.email || session.user.email;
+        session.user.name = token.name || session.user.name;
       }
       return session;
     },

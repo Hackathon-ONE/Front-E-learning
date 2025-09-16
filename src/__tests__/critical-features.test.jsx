@@ -15,7 +15,10 @@ jest.mock('next/navigation', () => ({
 
 // Mock next-auth/react
 jest.mock('next-auth/react', () => ({
-  useSession: jest.fn(),
+  useSession: jest.fn(() => ({ 
+    data: { user: { role: 'STUDENT' } }, 
+    status: 'authenticated' 
+  })),
   signIn: jest.fn(),
   signOut: jest.fn(),
   SessionProvider: ({ children }) => children,
@@ -35,6 +38,15 @@ jest.mock('@/context/AuthContext', () => ({
   useAuth: () => mockAuthContext,
   AuthProvider: ({ children }) => children,
 }));
+
+// Mock withRole component
+jest.mock('@/components/withRole', () => {
+  return function withRole(Component, allowedRoles) {
+    return function WrappedComponent(props) {
+      return <Component {...props} />;
+    };
+  };
+});
 
 // Mock StudentStats component
 jest.mock('@/components/StudentStats', () => {
@@ -269,7 +281,7 @@ describe('Critical Features Tests', () => {
 
       // Check for profile link (using more flexible selector)
       const profileLink = screen.getByRole('link', { name: 'Mi Perfil' });
-      expect(profileLink).toHaveAttribute('href', '/dashboard/profile');
+      expect(profileLink).toHaveAttribute('href', '/students/1');
     });
 
     it('should have correct navigation links for instructors', () => {
@@ -338,7 +350,7 @@ describe('Critical Features Tests', () => {
       );
 
       expect(screen.getByText('Estudiante no encontrado')).toBeInTheDocument();
-      expect(screen.getByRole('link', { name: /Volver/i })).toBeInTheDocument();
+      expect(screen.getByRole('link', { name: /Suscribirse/i })).toBeInTheDocument();
     });
 
     it('should show loading spinner during data fetch', () => {

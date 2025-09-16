@@ -3,6 +3,7 @@
 import { useEffect } from "react";
 import { useRouter } from "next/navigation";
 import { useAuth } from "@/context/AuthContext";
+import { getDefaultRedirectPath } from "@/utils/roleUtils";
 
 /**
  * Hook para manejar redirecciones automáticas basadas en el rol del usuario
@@ -38,7 +39,9 @@ export function useRoleRedirect(options = {}) {
 
     // Si hay roles permitidos y el usuario no tiene el rol correcto
     if (allowedRoles.length > 0 && isAuthenticated && !allowedRoles.includes(role)) {
-      router.push("/"); // Redirigir a home si no tiene permisos
+      // Redirigir según el rol del usuario usando utilidades
+      const redirectPath = getDefaultRedirectPath(role);
+      router.push(redirectPath);
       return;
     }
   }, [isAuthenticated, role, loading, router, redirectOnAuth, requireAuth, allowedRoles]);

@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { Users } from "lucide-react";
+import { Users, ArrowLeft } from "lucide-react";
 import { useRouter, useParams } from "next/navigation";
 import { progressReportsCoursesData, progressReportsStudentsData } from "@/data/instructors";
 
@@ -11,6 +11,16 @@ export default function ProgressReportsPage() {
 
   return (
     <main className="min-h-screen bg-[var(--color-bg)] text-[var(--color-text)] p-4 sm:p-6 md:p-8">
+      <button
+        onClick={() => router.back()}
+        className="flex items-center gap-2 px-4 py-2 mb-4 rounded-lg font-medium 
+                   bg-[var(--color-surface)] text-[var(--color-text)] 
+                   hover:bg-[var(--color-primary)] hover:text-[var(--color-primary-text)]
+                   transition w-full sm:w-auto"
+      >
+        <ArrowLeft className="w-5 h-5" />
+        <span className="text-sm sm:text-base">Volver</span>
+      </button>
       <section className="max-w-6xl mx-auto space-y-10">
         {/* ====================== */}
         {/* Reporte global cursos */}
@@ -46,13 +56,11 @@ export default function ProgressReportsPage() {
                           className="h-4 rounded-full text-gray-500"
                           style={{
                             width: `${course.progress}%`,
-                            backgroundColor: "var(--color-progress)",
+                            backgroundColor: 'var(--color-progress)',
                           }}
                         ></div>
                       </div>
-                      <span className="text-sm mt-1 block">
-                        {course.progress}%
-                      </span>
+                      <span className="text-sm mt-1 block">{course.progress}%</span>
                     </td>
                   </tr>
                 ))}
@@ -65,9 +73,7 @@ export default function ProgressReportsPage() {
         {/* Listado de estudiantes */}
         {/* ====================== */}
         <div>
-          <h2 className="text-2xl md:text-3xl font-bold mb-6">
-            Estudiantes inscritos
-          </h2>
+          <h2 className="text-2xl md:text-3xl font-bold mb-6">Estudiantes inscritos</h2>
 
           {progressReportsStudentsData.length === 0 ? (
             <p className="text-center text-sm text-[var(--color-text)]">
@@ -77,7 +83,7 @@ export default function ProgressReportsPage() {
             <div className="bg-[var(--color-card-primary)] rounded-xl shadow overflow-hidden">
               <div className="overflow-x-auto">
                 <table className="w-full min-w-[500px] border-collapse text-xs sm:text-sm md:text-base">
-                  <thead style={{ backgroundColor: "var(--color-surface)" }}>
+                  <thead style={{ backgroundColor: 'var(--color-surface)' }}>
                     <tr>
                       <th className="p-3 text-left">Nombre</th>
                       <th className="p-3 text-left">Email</th>
@@ -90,15 +96,13 @@ export default function ProgressReportsPage() {
                       <tr
                         key={s.id}
                         className="border-t hover:bg-[var(--color-surface)] transition"
-                        style={{ borderColor: "var(--color-surface)" }}
+                        style={{ borderColor: 'var(--color-surface)' }}
                       >
                         <td className="p-3 text-[var(--color-text)]">{s.name}</td>
                         <td className="p-3 text-[var(--color-text)]">{s.email}</td>
                         <td className="p-3 text-[var(--color-text)]">
                           {s.courseTitle || (
-                            <span className="text-[var(--color-text)]">
-                              Sin curso asignado
-                            </span>
+                            <span className="text-[var(--color-text)]">Sin curso asignado</span>
                           )}
                         </td>
                         <td className="p-3">
@@ -112,8 +116,8 @@ export default function ProgressReportsPage() {
                             type="button"
                             className="cursor-pointer px-3 py-1.5 rounded-lg text-sm font-medium"
                             style={{
-                              backgroundColor: "var(--color-primary)",
-                              color: "var(--color-primary-text)",
+                              backgroundColor: 'var(--color-primary)',
+                              color: 'var(--color-primary-text)',
                             }}
                           >
                             Ver progreso

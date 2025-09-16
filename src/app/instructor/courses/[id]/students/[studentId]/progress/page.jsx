@@ -2,14 +2,16 @@
 
 import { useParams } from "next/navigation";
 import { useEffect, useState } from "react";
-import { CheckCircle, Circle } from "lucide-react";
+import { CheckCircle, Circle, ArrowLeft } from "lucide-react";
 import { studentsInstructorData } from "@/data/instructors";
 import Image from "next/image";
+import { useRouter } from "next/navigation";
 
 export default function StudentProgressPage() {
   const { studentId } = useParams();
   const [student, setStudent] = useState(null);
   const [loading, setLoading] = useState(true);
+  const router = useRouter();
 
   useEffect(() => {
     const found = studentsInstructorData.find((s) => s.id === studentId);
@@ -23,10 +25,20 @@ export default function StudentProgressPage() {
   return (
     <main className="min-h-screen bg-[var(--color-bg)] py-6 px-3 sm:px-6 lg:px-12">
       {/* Perfil del estudiante */}
+      <button
+        onClick={() => router.back()}
+        className="flex items-center gap-2 px-4 py-2 mb-4 rounded-lg font-medium 
+                   bg-[var(--color-surface)] text-[var(--color-text)] 
+                   hover:bg-[var(--color-primary)] hover:text-[var(--color-primary-text)]
+                   transition w-full sm:w-auto"
+      >
+        <ArrowLeft className="w-5 h-5" />
+        <span className="text-sm sm:text-base">Volver</span>
+      </button>
       <section className="max-w-6xl mx-auto bg-[var(--color-surface)] rounded-2xl shadow-lg p-6 flex flex-col sm:flex-row sm:items-center gap-6">
         <Image
           aria-label={student.name}
-          src={student.avatar || "/default-avatar.png"}
+          src={student.avatar || '/default-avatar.png'}
           alt={student.name}
           width={128}
           height={64}
@@ -38,7 +50,9 @@ export default function StudentProgressPage() {
           <h1 className="text-2xl sm:text-3xl font-bold text-[var(--color-text)]">
             {student.name}
           </h1>
-          <p className="text-[var(--color-text)] text-sm sm:text-base text-center sm:text-left">{student.email}</p>
+          <p className="text-[var(--color-text)] text-sm sm:text-base text-center sm:text-left">
+            {student.email}
+          </p>
         </div>
       </section>
 
@@ -54,7 +68,9 @@ export default function StudentProgressPage() {
             className="bg-[var(--color-surface)] rounded-xl shadow p-6 flex flex-col gap-4"
           >
             <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2">
-              <h3 className="text-lg font-semibold text-center sm:text-left text-[var(--color-text)]">{course.title}</h3>
+              <h3 className="text-lg font-semibold text-center sm:text-left text-[var(--color-text)]">
+                {course.title}
+              </h3>
               <span className="text-sm text-[var(--color-text)] text-center sm:text-right">
                 {course.progress}% completado
               </span>
@@ -83,8 +99,8 @@ export default function StudentProgressPage() {
                   <span
                     className={`text-sm sm:text-base ${
                       lesson.completed
-                        ? "line-through text-[var(--color-text)]"
-                        : "text-[var(--color-text)]"
+                        ? 'line-through text-[var(--color-text)]'
+                        : 'text-[var(--color-text)]'
                     }`}
                   >
                     {lesson.title}

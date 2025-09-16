@@ -13,10 +13,11 @@ import { useRouter } from 'next/navigation';
 import { ArrowLeft } from 'lucide-react';
 import { useAuth } from '@/context/AuthContext';
 import { useSubscription } from '@/hooks/useSubscription';
+import { isMockedUser } from '@/utils/userUtils';
 
 export default function CourseDetailPage({ courseId }) {
   const router = useRouter();
-  const { isAuthenticated } = useAuth();
+  const { user, isAuthenticated } = useAuth();
   
   // Validar que courseId existe
   if (!courseId || courseId === 'undefined') {
@@ -70,6 +71,9 @@ export default function CourseDetailPage({ courseId }) {
     );
   }
 
+  // Verificar si el usuario es un usuario mockeado (ya tiene suscripción)
+  const isMocked = isMockedUser(user);
+
   return (
     <section className="p-6 md:p-12 space-y-8">
       <button
@@ -101,7 +105,7 @@ export default function CourseDetailPage({ courseId }) {
                 Iniciar Sesión
               </button>
             </Link>
-          ) : hasAccess ? (
+          ) : isMocked || hasAccess ? (
             <Link href={`/courses/${courseId}/lessons/${lessons[0].id}`}>
               <button
                 type="button"
@@ -235,7 +239,7 @@ export default function CourseDetailPage({ courseId }) {
                     if (!isAuthenticated) {
                       return <Lock className="w-5 h-5 text-gray-400" />;
                     }
-                    if (!hasAccess) {
+                    if (!isMocked && !hasAccess) {
                       return <Lock className="w-5 h-5 text-yellow-500" />;
                     }
                     if (lesson.completed) {
@@ -254,7 +258,7 @@ export default function CourseDetailPage({ courseId }) {
                   if (!isAuthenticated) {
                     return <span className="text-sm text-gray-400">Inicia sesión</span>;
                   }
-                  if (!hasAccess) {
+                  if (!isMocked && !hasAccess) {
                     return <span className="text-sm text-yellow-600">Suscripción requerida</span>;
                   }
                   return (

@@ -8,6 +8,7 @@ import AuthLayout from "./AuthLayout";
 import { useRouter } from "next/navigation";
 import TestCredentials from "./TestCredentials";
 import { useAuthRedirect } from "@/hooks/useRoleRedirect";
+import { getDefaultRedirectPath } from "@/utils/roleUtils";
 
 export default function LoginForm() {
   const [formData, setFormData] = useState({ email: "", password: "" });
@@ -34,8 +35,10 @@ export default function LoginForm() {
     return Object.keys(newErrors).length === 0;
   };
 
-  const redirectAfterLogin = () => {
-    router.push("/"); // Siempre redirige al home
+  const redirectAfterLogin = (userRole) => {
+    // Redirigir según el rol del usuario usando utilidades
+    const redirectPath = getDefaultRedirectPath(userRole);
+    router.push(redirectPath);
   };
 
   const handleSubmit = async (e) => {
@@ -57,14 +60,23 @@ export default function LoginForm() {
       return;
     }
 
-    redirectAfterLogin();
+    // Obtener el rol del usuario de la respuesta
+    const userRole = res?.user?.role || "STUDENT";
+    redirectAfterLogin(userRole);
   };
 
   const handleGoogleLogin = async () => {
     setLoading(true);
 
-    // ⚡ Redirige al flujo de Google (esto reemplaza la página)
-    await signIn("google", { callbackUrl: "/" });
+    try {
+      // Usar método tradicional de NextAuth
+      await signIn("google", { callbackUrl: "/" });
+    } catch (error) {
+      console.error('Error en OAuth:', error);
+      setErrors({ general: 'Error en la autenticación con Google' });
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
@@ -149,7 +161,7 @@ export default function LoginForm() {
         }}
       >
         <FcGoogle className="w-5 h-5" />
-        Iniciar sesión con Google
+        {loading ? "Cargando..." : "Iniciar sesión con Google"}
       </button>
 
       <div className="text-center mt-4 text-sm flex flex-col gap-2">

@@ -3,7 +3,8 @@
 import { useParams, useRouter } from 'next/navigation';
 import { useState, useEffect } from 'react';
 import { useAuth } from '@/context/AuthContext';
-import { Check, CreditCard, Shield, Clock } from 'lucide-react';
+import { activateSubscription } from '@/utils/userUtils';
+import { Check, CreditCard, Shield, Clock, X, CheckCircle } from 'lucide-react';
 
 export default function CheckoutPage() {
   const { id } = useParams();
@@ -11,6 +12,7 @@ export default function CheckoutPage() {
   const { user, isAuthenticated } = useAuth();
   const [loading, setLoading] = useState(false);
   const [plan, setPlan] = useState(null);
+  const [showSuccessModal, setShowSuccessModal] = useState(false);
 
   // Datos de planes de suscripción
   const subscriptionPlans = {
@@ -72,6 +74,36 @@ export default function CheckoutPage() {
     }
   }, [id, router]);
 
+  // Cerrar modal con Escape
+  useEffect(() => {
+    const handleEscape = (e) => {
+      if (e.key === 'Escape' && showSuccessModal) {
+        setShowSuccessModal(false);
+      }
+    };
+
+    if (showSuccessModal) {
+      document.addEventListener('keydown', handleEscape);
+      return () => document.removeEventListener('keydown', handleEscape);
+    }
+  }, [showSuccessModal]);
+
+  const handleSuccessRedirect = () => {
+    setShowSuccessModal(false);
+    
+    // Redirigir según el rol del usuario
+    if (user.role === 'STUDENT') {
+      router.push('/students/' + user.id);
+    } else if (user.role === 'INSTRUCTOR') {
+      router.push('/instructor/' + user.id);
+    } else if (user.role === 'ADMIN') {
+      router.push('/admin/dashboard');
+    } else {
+      // Usuario nuevo con Google, redirigir a cursos
+      router.push('/courses');
+    }
+  };
+
   const handleCheckout = async () => {
     if (!isAuthenticated) {
       router.push('/auth/login?redirect=' + encodeURIComponent(window.location.pathname));
@@ -85,9 +117,11 @@ export default function CheckoutPage() {
       // Aquí iría la integración con Stripe, PayPal, etc.
       await new Promise(resolve => setTimeout(resolve, 2000));
       
-      // Simular éxito del pago
-      alert(`¡Pago exitoso! Has suscrito al ${plan.name}.`);
-      router.push('/dashboard');
+      // Activar suscripción en localStorage
+      activateSubscription(user.id);
+      
+      // Mostrar modal de éxito
+      setShowSuccessModal(true);
     } catch (error) {
       console.error('Error en el checkout:', error);
       alert('Error procesando el pago. Intenta de nuevo.');
@@ -255,6 +289,68 @@ export default function CheckoutPage() {
           </div>
         </div>
       </div>
+
+      {/* Modal de Éxito */}
+      {showSuccessModal && (
+        <div 
+          className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4"
+          onClick={(e) => {
+            if (e.target === e.currentTarget) {
+              setShowSuccessModal(false);
+            }
+          }}
+        >
+          <div className="bg-[var(--color-surface)] rounded-2xl p-8 max-w-md w-full mx-4 shadow-2xl">
+            <div className="text-center">
+              {/* Icono de éxito */}
+              <div className="mx-auto flex items-center justify-center w-16 h-16 bg-green-100 dark:bg-green-900/30 rounded-full mb-6">
+                <CheckCircle className="w-8 h-8 text-green-600 dark:text-green-400" />
+              </div>
+              
+              {/* Título */}
+              <h3 className="text-2xl font-bold text-[var(--color-text)] mb-4">
+                ¡Pago Exitoso!
+              </h3>
+              
+              {/* Mensaje */}
+              <p className="text-[var(--color-text)] mb-6">
+                Has suscrito exitosamente al <span className="font-semibold text-primary">{plan?.name}</span>. 
+                Ya tienes acceso completo a todos los cursos y funcionalidades.
+              </p>
+              
+              {/* Información del plan */}
+              <div className="bg-[var(--color-bg)] rounded-lg p-4 mb-6">
+                <div className="flex justify-between items-center">
+                  <span className="text-[var(--color-text)]">Plan:</span>
+                  <span className="font-semibold text-[var(--color-text)]">{plan?.name}</span>
+                </div>
+                <div className="flex justify-between items-center mt-2">
+                  <span className="text-[var(--color-text)]">Precio:</span>
+                  <span className="font-semibold text-primary">${plan?.price}/{plan?.period}</span>
+                </div>
+              </div>
+              
+              {/* Botones */}
+              <div className="flex flex-col sm:flex-row gap-3">
+                <button
+                  onClick={handleSuccessRedirect}
+                  className="flex-1 bg-primary text-white px-6 py-3 rounded-lg font-semibold hover:bg-primary/90 transition-colors flex items-center justify-center gap-2"
+                >
+                  <CheckCircle className="w-5 h-5" />
+                  Continuar
+                </button>
+                <button
+                  onClick={() => setShowSuccessModal(false)}
+                  className="flex-1 border border-gray-300 dark:border-gray-600 text-[var(--color-text)] px-6 py-3 rounded-lg font-semibold hover:bg-[var(--color-bg)] transition-colors flex items-center justify-center gap-2"
+                >
+                  <X className="w-5 h-5" />
+                  Cerrar
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 }

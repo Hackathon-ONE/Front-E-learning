@@ -70,7 +70,7 @@ export const mockUsers = [
     email: 'ana@lumina.com',
     role: 'INSTRUCTOR',
     password: 'anaadmin123',
-    image: '/avatars/img44.jpg',
+    image: '/avatars/img33.jpg',
   },
   {
     // id: "10",
@@ -78,7 +78,7 @@ export const mockUsers = [
     email: 'marian@example.com',
     role: 'STUDENT',
     password: 'mariastudent123',
-    image: '/avatars/img32.jpg',
+    image: '/avatars/img44.jpg',
   },
   {
     // id: "11",

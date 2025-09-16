@@ -161,6 +161,17 @@ export const coursesPageData = [
     description: 'Aprende los fundamentos de Python para construir aplicaciones web.',
     cover: '/images/python.png',
   },
+  {
+    id: 102,
+    title: 'JavaScript Avanzado',
+    instructor: 'María Gómez',
+    category: 'Frontend',
+    price: 39,
+    currency: 'USD',
+    isFree: false,
+    description: 'Domina JavaScript moderno, ES6+, async/await y patrones avanzados.',
+    cover: '/images/javascript-avanzado.png',
+  },
 ];
 
 // Datos detallados de cursos (mock) para render en detalle/overview
@@ -265,6 +276,23 @@ export const coursesDetailData = [
       'Manipulación de datos',
       'Entornos virtuales',
       'Introducción a frameworks',
+    ],
+  },
+  {
+    id: 102,
+    title: 'JavaScript Avanzado',
+    description: 'Domina JavaScript moderno, ES6+, async/await y patrones avanzados.',
+    cover: '/images/javascript-avanzado.png',
+    isFree: false,
+    lessons: 28,
+    duration: '12h 30m',
+    students: 450,
+    objectives: [
+      'ES6+ y características modernas',
+      'Async/await y Promises',
+      'Closures y scope avanzado',
+      'Patrones de diseño en JS',
+      'Optimización y performance',
     ],
   },
   // {

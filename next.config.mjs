@@ -2,7 +2,6 @@
 const nextConfig = {
   // Optimizaciones para reducir warnings
   experimental: {
-    optimizeCss: true,
     optimizePackageImports: ['lucide-react', 'react-icons'],
   },
   
@@ -11,17 +10,9 @@ const nextConfig = {
     removeConsole: process.env.NODE_ENV === 'production',
   },
   
-  // Configuración de webpack para optimizar CSS
+  // Configuración de webpack simplificada
   webpack: (config, { dev, isServer }) => {
-    if (!dev && !isServer) {
-      // Optimizar CSS en producción
-      config.optimization.splitChunks.cacheGroups.styles = {
-        name: 'styles',
-        test: /\.(css|scss|sass)$/,
-        chunks: 'all',
-        enforce: true,
-      };
-    }
+    // Configuración básica sin optimizaciones complejas
     return config;
   },
   

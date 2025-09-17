@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, Suspense } from "react";
 import { FcGoogle } from "react-icons/fc";
 import { signIn } from "next-auth/react";
 import Link from "next/link";
@@ -10,7 +10,7 @@ import { useRouter, useSearchParams } from "next/navigation";
 import { useAuthRedirect } from "@/hooks/useRoleRedirect";
 import { getDefaultRedirectPath } from "@/utils/roleUtils";
 
-export default function LoginForm() {
+function LoginFormContent() {
   const [formData, setFormData] = useState({ email: "", password: "" });
   const [errors, setErrors] = useState({});
   const [loading, setLoading] = useState(false);
@@ -203,5 +203,13 @@ export default function LoginForm() {
         </p>
       </div>
     </AuthLayout>
+  );
+}
+
+export default function LoginForm() {
+  return (
+    <Suspense fallback={<div>Cargando...</div>}>
+      <LoginFormContent />
+    </Suspense>
   );
 }

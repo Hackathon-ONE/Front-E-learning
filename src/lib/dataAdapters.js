@@ -252,7 +252,7 @@ export function handleBackendError(error) {
   return 'Error desconocido del backend';
 }
 
-export default {
+const dataAdapters = {
   adaptUser,
   adaptUsers,
   adaptCourse,
@@ -273,3 +273,5 @@ export default {
   extractBackendData,
   handleBackendError,
 };
+
+export default dataAdapters;

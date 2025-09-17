@@ -95,18 +95,20 @@ export default function BackendConfigPage() {
     setMessage('');
     
     try {
-      // Crear un cliente temporal con la nueva configuración
-      const tempApiClient = new (await import('@/lib/apiClient')).default();
-      tempApiClient.api.defaults.baseURL = config.apiUrl;
-      
+      // Probar la conexión directamente con fetch
       const startTime = Date.now();
-      const healthCheck = await tempApiClient.checkBackendHealth();
+      const response = await fetch(`${config.apiUrl}/courses`, {
+        method: 'GET',
+        headers: { 'Content-Type': 'application/json' }
+      });
       const responseTime = Date.now() - startTime;
       
-      if (healthCheck.available) {
+      if (response.status === 403) {
+        setMessage(`✅ Backend responde correctamente (${responseTime}ms) - Requiere autenticación`);
+      } else if (response.ok) {
         setMessage(`✅ Conexión exitosa (${responseTime}ms)`);
       } else {
-        setMessage(`⚠️ Backend no disponible: ${healthCheck.error}`);
+        setMessage(`⚠️ Backend responde con status ${response.status} (${responseTime}ms)`);
       }
     } catch (error) {
       setMessage(`❌ Error de conexión: ${error.message}`);
@@ -281,7 +283,7 @@ export default function BackendConfigPage() {
               <h3 className="font-semibold text-[var(--color-text)] mb-2">Usuarios</h3>
               <ul className="text-sm text-[var(--color-text)] space-y-1">
                 <li>GET /users</li>
-                <li>GET /users/{id}</li>
+                <li>GET /users/&#123;id&#125;</li>
                 <li>GET /users/profile</li>
                 <li>PUT /users/profile</li>
               </ul>
@@ -291,10 +293,10 @@ export default function BackendConfigPage() {
               <h3 className="font-semibold text-[var(--color-text)] mb-2">Cursos</h3>
               <ul className="text-sm text-[var(--color-text)] space-y-1">
                 <li>GET /courses</li>
-                <li>GET /courses/{id}</li>
+                <li>GET /courses/&#123;id&#125;</li>
                 <li>POST /courses</li>
-                <li>PUT /courses/{id}</li>
-                <li>DELETE /courses/{id}</li>
+                <li>PUT /courses/&#123;id&#125;</li>
+                <li>DELETE /courses/&#123;id&#125;</li>
               </ul>
             </div>
 
@@ -303,8 +305,8 @@ export default function BackendConfigPage() {
               <ul className="text-sm text-[var(--color-text)] space-y-1">
                 <li>GET /subscriptions</li>
                 <li>POST /subscriptions</li>
-                <li>PUT /subscriptions/{id}</li>
-                <li>DELETE /subscriptions/{id}</li>
+                <li>PUT /subscriptions/&#123;id&#125;</li>
+                <li>DELETE /subscriptions/&#123;id&#125;</li>
               </ul>
             </div>
           </div>

@@ -1,10 +1,16 @@
 'use client';
 
 import { useState } from 'react';
+import PropTypes from 'prop-types';
 import { PlayCircle, Clock, CheckCircle, Loader2, Lock, ArrowLeft } from 'lucide-react';
 import Card from '@/components/ui/Card';
 import Link from 'next/link';
-import { courseDetailMock, coursesPageData, coursesDetailData } from '@/data/courses';
+import {
+  courseDetailMock,
+  coursesPageData,
+  coursesDetailData,
+  vercelLessonsPlayerData,
+} from '@/data/courses';
 import { lessonsMock } from '@/data/lessons';
 import { linkedCoursesMock } from '@/data/linkedCourses';
 import { instructorMock, instructorsData } from '@/data/instructors';
@@ -19,17 +25,7 @@ export default function CourseDetailPage({ courseId }) {
   const { user, isAuthenticated } = useAuth();
   const { hasAccess, loading: subscriptionLoading } = useSubscription(courseId);
 
-  // Validar que courseId existe
-  if (!courseId || courseId === 'undefined') {
-    return (
-      <div className="flex justify-center items-center min-h-screen bg-[var(--color-bg)]">
-        <div className="text-center">
-          <h1 className="text-2xl font-bold text-[var(--color-text)] mb-4">Curso no encontrado</h1>
-          <p className="text-[var(--color-text)]">El ID del curso no es válido.</p>
-        </div>
-      </div>
-    );
-  }
+  // Todos los hooks deben estar antes de cualquier return condicional
   const [course] = useState(() => {
     const found = coursesDetailData.find((c) => c.id.toString() === String(courseId));
     if (found) return found;
@@ -48,8 +44,14 @@ export default function CourseDetailPage({ courseId }) {
     }
     return courseDetailMock;
   });
-  const [lessons] = useState(lessonsMock);
+
+  const [lessons] = useState(() => {
+    // Usar lecciones específicas para el curso de Vercel (ID: 103)
+    return courseId === '103' ? vercelLessonsPlayerData : lessonsMock;
+  });
+
   const [linkedCourses] = useState(linkedCoursesMock);
+  const [progress] = useState(100);
 
   // Mapeo de cursos a instructores por nombre
   const courseInstructorMap = {
@@ -59,13 +61,47 @@ export default function CourseDetailPage({ courseId }) {
     'Carlos Mora': '3',
     'Fernanda López': '2',
     'María Gómez': '2',
+    'Carlos Rodríguez': '3', // Carlos Rodríguez tiene ID 3 en instructorsDashboard
+  };
+
+  // Función para determinar si el instructor logueado es el creador del curso
+  const isCourseCreator = (courseId, user) => {
+    if (!isAuthenticated || user?.role !== 'INSTRUCTOR') return false;
+
+    // Mapeo de instructores a sus cursos creados
+    const instructorCoursesMap = {
+      'Benjamín Pérez': [1, 2, 3], // IDs de cursos que creó
+      'Marco Alonzo': [1, 4, 5],
+      'Ana Torres': [2, 6, 7],
+      'Carlos Mora': [3, 8, 9],
+      'Fernanda López': [4, 10, 11],
+      'María Gómez': [5, 12, 13],
+      'Carlos Rodríguez': [103], // Curso de Vercel
+    };
+
+    const userCourses = instructorCoursesMap[user?.name] ?? [];
+    return userCourses.includes(parseInt(courseId));
   };
 
   // Buscar el instructor correcto del curso
   const [instructor] = useState(() => {
-    // Buscar el curso en coursesPageData para obtener el nombre del instructor
+    // Si el usuario logueado es un instructor Y es el creador del curso, mostrar su información
+    if (isAuthenticated && user?.role === 'INSTRUCTOR' && isCourseCreator(courseId, user)) {
+      return {
+        id: user.id,
+        name: user.name,
+        bio: `Instructor especializado en desarrollo web y tecnologías modernas.`,
+        avatar: user.image || '/default-avatar.png',
+        title: 'Instructor',
+        linkedin: `https://linkedin.com/in/${user.name.toLowerCase().replace(/\s+/g, '-')}`,
+        github: `https://github.com/${user.name.toLowerCase().replace(/\s+/g, '-')}`,
+        twitter: `https://twitter.com/${user.name.toLowerCase().replace(/\s+/g, '-')}`,
+      };
+    }
+
+    // Si no es instructor o no es el creador del curso, mostrar la información del instructor del curso
     const courseWithInstructor = coursesPageData.find((c) => c.id.toString() === String(courseId));
-    if (courseWithInstructor && courseWithInstructor.instructor) {
+    if (courseWithInstructor?.instructor) {
       const instructorId = courseInstructorMap[courseWithInstructor.instructor];
       if (instructorId) {
         const foundInstructor = instructorsData.find((i) => i.id === instructorId);
@@ -78,9 +114,11 @@ export default function CourseDetailPage({ courseId }) {
             title: foundInstructor.specialty,
             linkedin: `https://linkedin.com/in/${foundInstructor.name
               .toLowerCase()
-              .replace(' ', '-')}`,
-            github: `https://github.com/${foundInstructor.name.toLowerCase().replace(' ', '-')}`,
-            twitter: `https://twitter.com/${foundInstructor.name.toLowerCase().replace(' ', '-')}`,
+              .replace(/\s+/g, '-')}`,
+            github: `https://github.com/${foundInstructor.name.toLowerCase().replace(/\s+/g, '-')}`,
+            twitter: `https://twitter.com/${foundInstructor.name
+              .toLowerCase()
+              .replace(/\s+/g, '-')}`,
           };
         }
       }
@@ -89,7 +127,17 @@ export default function CourseDetailPage({ courseId }) {
     return instructorMock;
   });
 
-  const [progress] = useState(100);
+  // Validar que courseId existe
+  if (!courseId || courseId === 'undefined') {
+    return (
+      <div className="flex justify-center items-center min-h-screen bg-[var(--color-bg)]">
+        <div className="text-center">
+          <h1 className="text-2xl font-bold text-[var(--color-text)] mb-4">Curso no encontrado</h1>
+          <p className="text-[var(--color-text)]">El ID del curso no es válido.</p>
+        </div>
+      </div>
+    );
+  }
 
   // Mostrar loading mientras se verifica la suscripción
   if (subscriptionLoading) {
@@ -118,6 +166,7 @@ export default function CourseDetailPage({ courseId }) {
         <ArrowLeft className="w-5 h-5" />
         <span className="text-sm sm:text-base">Volver</span>
       </button>
+
       {/* Header */}
       <header className="rounded-2xl p-8 shadow-md flex flex-col md:flex-row md:items-center md:justify-between bg-primary text-primary-text">
         <div>
@@ -127,35 +176,45 @@ export default function CourseDetailPage({ courseId }) {
           </p>
         </div>
         <div className="mt-4 md:mt-0 flex gap-4">
-          {!isAuthenticated ? (
-            <Link href={`/auth/login?redirect=${encodeURIComponent(window.location.pathname)}`}>
+          {(() => {
+            if (!isAuthenticated) {
+              return (
+                <Link href={`/auth/login?redirect=${encodeURIComponent(window.location.pathname)}`}>
+                  <button
+                    type="button"
+                    aria-label="Iniciar sesión"
+                    className="px-6 cursor-pointer py-2 rounded-lg shadow transition bg-[var(--color-accent)] text-white hover:scale-105"
+                  >
+                    Iniciar Sesión
+                  </button>
+                </Link>
+              );
+            }
+
+            if (isMocked || hasAccess) {
+              return (
+                <Link href={`/courses/${courseId}/lessons/${lessons[0].id}`}>
+                  <button
+                    type="button"
+                    aria-label="Acceder al curso"
+                    className="px-6 cursor-pointer py-2 rounded-lg shadow transition bg-[var(--color-muted)] text-[var(--color-primary-text)] hover:scale-105"
+                  >
+                    Acceder Curso
+                  </button>
+                </Link>
+              );
+            }
+
+            return (
               <button
                 type="button"
-                aria-label="Iniciar sesión"
+                onClick={() => router.push('/payments')}
                 className="px-6 cursor-pointer py-2 rounded-lg shadow transition bg-[var(--color-accent)] text-white hover:scale-105"
               >
-                Iniciar Sesión
+                Suscribirse
               </button>
-            </Link>
-          ) : isMocked || hasAccess ? (
-            <Link href={`/courses/${courseId}/lessons/${lessons[0].id}`}>
-              <button
-                type="button"
-                aria-label="Acceder al curso"
-                className="px-6 cursor-pointer py-2 rounded-lg shadow transition bg-[var(--color-muted)] text-[var(--color-primary-text)] hover:scale-105"
-              >
-                Acceder Curso
-              </button>
-            </Link>
-          ) : (
-            <button
-              type="button"
-              onClick={() => router.push('/payments')}
-              className="px-6 cursor-pointer py-2 rounded-lg shadow transition bg-[var(--color-accent)] text-white hover:scale-105"
-            >
-              Suscribirse
-            </button>
-          )}
+            );
+          })()}
         </div>
       </header>
 
@@ -191,6 +250,14 @@ export default function CourseDetailPage({ courseId }) {
               <div>
                 <h3 className="font-semibold text-lg">{instructor.name}</h3>
                 <p className="text-sm text-muted">{instructor.title}</p>
+                {/* Indicador si es el instructor logueado */}
+                {isAuthenticated &&
+                  user?.role === 'INSTRUCTOR' &&
+                  isCourseCreator(courseId, user) && (
+                    <span className="inline-block px-2 py-1 text-xs font-medium bg-green-100 text-green-800 rounded-full mt-1">
+                      Tu curso
+                    </span>
+                  )}
               </div>
             </div>
             <p className="text-sm text-muted mb-4">{instructor.bio}</p>
@@ -314,3 +381,7 @@ export default function CourseDetailPage({ courseId }) {
     </section>
   );
 }
+
+CourseDetailPage.propTypes = {
+  courseId: PropTypes.string.isRequired,
+};

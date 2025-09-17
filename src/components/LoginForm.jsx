@@ -1,12 +1,12 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { FcGoogle } from "react-icons/fc";
 import { signIn } from "next-auth/react";
 import Link from "next/link";
 import AuthLayout from "./AuthLayout";
-import { useRouter } from "next/navigation";
-import TestCredentials from "./TestCredentials";
+import { useRouter, useSearchParams } from "next/navigation";
+// import TestCredentials from "./TestCredentials";
 import { useAuthRedirect } from "@/hooks/useRoleRedirect";
 import { getDefaultRedirectPath } from "@/utils/roleUtils";
 
@@ -14,10 +14,22 @@ export default function LoginForm() {
   const [formData, setFormData] = useState({ email: "", password: "" });
   const [errors, setErrors] = useState({});
   const [loading, setLoading] = useState(false);
+  const [successMessage, setSuccessMessage] = useState("");
   const router = useRouter();
+  const searchParams = useSearchParams();
 
   // Si ya está autenticado → redirige automáticamente
   useAuthRedirect();
+
+  // Mostrar mensaje de éxito si viene de registro
+  useEffect(() => {
+    const message = searchParams.get('message');
+    if (message) {
+      setSuccessMessage(message);
+      // Limpiar el mensaje después de 5 segundos
+      setTimeout(() => setSuccessMessage(""), 5000);
+    }
+  }, [searchParams]);
 
   const handleChange = (e) =>
     setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -85,9 +97,14 @@ export default function LoginForm() {
         Iniciar sesión
       </h2>
 
-      <TestCredentials />
+      {/* <TestCredentials /> */}
 
       <form onSubmit={handleSubmit} className="space-y-4">
+        {successMessage && (
+          <div className="p-3 bg-green-100 border border-green-400 text-green-700 rounded-lg text-sm">
+            {successMessage}
+          </div>
+        )}
         {errors.general && (
           <p className="text-sm text-red-500">{errors.general}</p>
         )}

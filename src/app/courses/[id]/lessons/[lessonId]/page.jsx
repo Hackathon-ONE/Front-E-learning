@@ -1,22 +1,22 @@
-"use client";
+'use client';
 
-import { useParams, useRouter } from "next/navigation";
-import { lessonsPlayerData } from "@/data/courses";
-import { ArrowLeft, Lock, AlertCircle } from "lucide-react";
-import { useSubscription } from "@/hooks/useSubscription";
-import { useAuth } from "@/context/AuthContext";
-import Link from "next/link";
+import { useParams, useRouter } from 'next/navigation';
+import { lessonsPlayerData, vercelLessonsPlayerData } from '@/data/courses';
+import { ArrowLeft, Lock, AlertCircle } from 'lucide-react';
+import { useSubscription } from '@/hooks/useSubscription';
+import { useAuth } from '@/context/AuthContext';
+import Link from 'next/link';
 
 export default function LessonPlayerPage() {
   const { id: courseId, lessonId } = useParams();
   const router = useRouter();
   const { isAuthenticated, loading: authLoading } = useAuth();
   const { hasAccess, loading: subscriptionLoading, error } = useSubscription(courseId);
-  const lessons = lessonsPlayerData;
 
-  const activeLesson =
-    lessons.find((l) => l.id.toString() === lessonId?.toString()) ||
-    lessons[0]; // fallback seguro
+  // Usar lecciones específicas para el curso de Vercel (ID: 103)
+  const lessons = courseId === '103' ? vercelLessonsPlayerData : lessonsPlayerData;
+
+  const activeLesson = lessons.find((l) => l.id.toString() === lessonId?.toString()) || lessons[0]; // fallback seguro
 
   // Mostrar loading mientras se verifica la autenticación y suscripción
   if (authLoading || subscriptionLoading) {
@@ -36,9 +36,7 @@ export default function LessonPlayerPage() {
       <div className="flex justify-center items-center min-h-screen bg-[var(--color-bg)]">
         <div className="text-center max-w-md mx-auto p-6">
           <Lock className="w-16 h-16 text-red-500 mx-auto mb-4" />
-          <h2 className="text-2xl font-bold text-[var(--color-text)] mb-4">
-            Acceso Restringido
-          </h2>
+          <h2 className="text-2xl font-bold text-[var(--color-text)] mb-4">Acceso Restringido</h2>
           <p className="text-[var(--color-text)] mb-6">
             Debes iniciar sesión para acceder a este contenido.
           </p>
@@ -72,10 +70,7 @@ export default function LessonPlayerPage() {
             >
               Ver Curso
             </Link>
-            <Link
-              href="/payments"
-              className="btn-primary px-6 py-3 rounded-lg font-semibold"
-            >
+            <Link href="/payments" className="btn-primary px-6 py-3 rounded-lg font-semibold">
               Suscribirse
             </Link>
           </div>
@@ -90,12 +85,8 @@ export default function LessonPlayerPage() {
       <div className="flex justify-center items-center min-h-screen bg-[var(--color-bg)]">
         <div className="text-center max-w-md mx-auto p-6">
           <AlertCircle className="w-16 h-16 text-red-500 mx-auto mb-4" />
-          <h2 className="text-2xl font-bold text-[var(--color-text)] mb-4">
-            Error de Acceso
-          </h2>
-          <p className="text-[var(--color-text)] mb-6">
-            {error}
-          </p>
+          <h2 className="text-2xl font-bold text-[var(--color-text)] mb-4">Error de Acceso</h2>
+          <p className="text-[var(--color-text)] mb-6">{error}</p>
           <button
             onClick={() => window.location.reload()}
             className="btn-primary px-6 py-3 rounded-lg font-semibold"
@@ -110,12 +101,12 @@ export default function LessonPlayerPage() {
   return (
     <div
       className="flex flex-col md:flex-row h-auto"
-      style={{ backgroundColor: "var(--color-bg)", color: "var(--color-text)" }}
+      style={{ backgroundColor: 'var(--color-bg)', color: 'var(--color-text)' }}
     >
       {/* Sidebar lecciones */}
       <aside
         className="w-full md:w-1/4 p-4 md:p-6 overflow-y-auto border-b md:border-b-0 md:border-r"
-        style={{ backgroundColor: "var(--color-card-primary)" }}
+        style={{ backgroundColor: 'var(--color-card-primary)' }}
       >
         {/* Botón volver */}
         <button
@@ -129,16 +120,12 @@ export default function LessonPlayerPage() {
           <span className="text-sm sm:text-base">Volver</span>
         </button>
 
-        <h2 className="text-lg font-bold mb-4 text-[var(--color-text)]">
-          Contenido del curso
-        </h2>
+        <h2 className="text-lg font-bold mb-4 text-[var(--color-text)]">Contenido del curso</h2>
         <ul className="space-y-3">
           {lessons.map((lesson) => (
             <li
               key={lesson.id}
-              onClick={() =>
-                router.push(`/courses/${courseId}/lessons/${lesson.id}`)
-              }
+              onClick={() => router.push(`/courses/${courseId}/lessons/${lesson.id}`)}
               onKeyDown={(e) => {
                 if (e.key === 'Enter' || e.key === ' ') {
                   e.preventDefault();
@@ -149,18 +136,18 @@ export default function LessonPlayerPage() {
               role="button"
               className={`p-3 rounded-lg cursor-pointer transition text-[var(--color-text)] text-sm sm:text-base ${
                 lessonId?.toString() === lesson.id.toString()
-                  ? "font-semibold"
-                  : "opacity-80 hover:opacity-100"
+                  ? 'font-semibold'
+                  : 'opacity-80 hover:opacity-100'
               }`}
               style={{
                 backgroundColor:
                   lessonId?.toString() === lesson.id.toString()
-                    ? "var(--color-primary)"
-                    : "var(--color-surface)",
+                    ? 'var(--color-primary)'
+                    : 'var(--color-surface)',
                 color:
                   lessonId?.toString() === lesson.id.toString()
-                    ? "var(--color-primary-text)"
-                    : "var(--color-text)",
+                    ? 'var(--color-primary-text)'
+                    : 'var(--color-text)',
               }}
             >
               <div className="flex justify-between items-center text-sm md:text-base">
@@ -183,7 +170,7 @@ export default function LessonPlayerPage() {
             loop
             playsInline
             className="w-full h-full object-contain"
-            src={activeLesson.videoUrl || "/video/video1.mp4"}
+            src={activeLesson.videoUrl || '/video/video1.mp4'}
             // poster={activeLesson.posterUrl || "/video/video1.jpg"}
             aria-label={`Video de ${activeLesson.title}`}
           >
@@ -191,12 +178,8 @@ export default function LessonPlayerPage() {
           </video>
         </div>
 
-
         {/* Info de la lección */}
-        <div
-          className="p-4 sm:p-6"
-          style={{ backgroundColor: "var(--color-card-primary)" }}
-        >
+        <div className="p-4 sm:p-6" style={{ backgroundColor: 'var(--color-card-primary)' }}>
           <h1 className="text-lg sm:text-xl font-semibold text-[var(--color-text)]">
             {activeLesson.title}
           </h1>

@@ -51,6 +51,67 @@ export const lessonsPlayerData = [
   /* { id: "4", title: "Estrategias para textos largos", videoUrl: "/video/video4.mp4", duration: "27 min" }, */
 ];
 
+// Lecciones específicas para el curso de Vercel (ID: 103)
+export const vercelLessonsPlayerData = [
+  {
+    id: '1',
+    title: 'Introducción a Vercel',
+    videoUrl: '/video/vercel.mp4',
+    duration: '15 min',
+    description:
+      'Conoce qué es Vercel y por qué es la mejor opción para desplegar aplicaciones Next.js',
+  },
+  {
+    id: '2',
+    title: 'Configuración del Proyecto',
+    videoUrl: '/video/vercel.mp4',
+    duration: '20 min',
+    description: 'Aprende a configurar tu proyecto Next.js para Vercel',
+  },
+  {
+    id: '3',
+    title: 'Variables de Entorno',
+    videoUrl: '/video/vercel.mp4',
+    duration: '18 min',
+    description: 'Configura variables de entorno de forma segura en Vercel',
+  },
+  {
+    id: '4',
+    title: 'Despliegue Automático',
+    videoUrl: '/video/vercel.mp4',
+    duration: '25 min',
+    description: 'Configura el despliegue automático con Git',
+  },
+  {
+    id: '5',
+    title: 'Optimización de Rendimiento',
+    videoUrl: '/video/vercel.mp4',
+    duration: '22 min',
+    description: 'Optimiza tu aplicación para el mejor rendimiento en Vercel',
+  },
+  {
+    id: '6',
+    title: 'Funciones Serverless',
+    videoUrl: '/video/vercel.mp4',
+    duration: '30 min',
+    description: 'Crea y despliega funciones serverless con Vercel',
+  },
+  {
+    id: '7',
+    title: 'Dominios Personalizados',
+    videoUrl: '/video/vercel.mp4',
+    duration: '15 min',
+    description: 'Configura dominios personalizados para tu aplicación',
+  },
+  {
+    id: '8',
+    title: 'Monitoreo y Analytics',
+    videoUrl: '/video/vercel.mp4',
+    duration: '20 min',
+    description: 'Configura monitoreo y analytics para tu aplicación',
+  },
+];
+
 export const lessonsCoursesData = [
   {
     id: 1,
@@ -171,6 +232,17 @@ export const coursesPageData = [
     isFree: false,
     description: 'Domina JavaScript moderno, ES6+, async/await y patrones avanzados.',
     cover: '/images/javascript-avanzado.png',
+  },
+  {
+    id: 103,
+    title: 'Despliegue con Vercel',
+    instructor: 'Carlos Rodríguez',
+    category: 'DevOps',
+    price: 49,
+    currency: 'USD',
+    isFree: false,
+    description: 'Aprende a desplegar aplicaciones Next.js de forma profesional con Vercel.',
+    cover: '/courses/vercel.jpg',
   },
 ];
 
@@ -295,32 +367,24 @@ export const coursesDetailData = [
       'Optimización y performance',
     ],
   },
-  // {
-  //   id: 7,
-  //   title: 'Introducción a JavaScript',
-  //   description: 'Aprende los fundamentos de JavaScript para construir aplicaciones web.',
-  //   cover: '/images/javascript.png',
-  //   isFree: false,
-  // },
-  // {
-  //   id: 8,
-  //   title: 'Introducción a Python',
-  //   description: 'Aprende los fundamentos de Python para construir aplicaciones web.',
-  //   cover: '/images/python.png',
-  //   isFree: false,
-  // },
-  // {
-  //   id: 9,
-  //   title: 'Introducción a Python',
-  //   description: 'Aprende los fundamentos de Python para construir aplicaciones web.',
-  //   cover: '/images/python.png',
-  //   isFree: false,
-  // },
-  // {
-  //   id: 10,
-  //   title: 'Introducción a Python',
-  //   description: 'Aprende los fundamentos de Python para construir aplicaciones web.',
-  //   cover: '/images/python.png',
-  //   isFree: false,
-  // },
+  {
+    id: 103,
+    title: 'Despliegue con Vercel',
+    description: 'Aprende a desplegar aplicaciones Next.js de forma profesional con Vercel.',
+    cover: '/courses/vercel.jpg',
+    isFree: false,
+    lessons: 18,
+    duration: '8h 45m',
+    students: 320,
+    objectives: [
+      'Configuración de proyectos en Vercel',
+      'Despliegue automático con Git',
+      'Variables de entorno y configuración',
+      'Optimización de rendimiento',
+      'Monitoreo y analytics',
+      'Dominios personalizados',
+      'Funciones serverless',
+      'Edge functions y CDN',
+    ],
+  },
 ];

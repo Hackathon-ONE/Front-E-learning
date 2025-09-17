@@ -1,6 +1,7 @@
 import NextAuth from "next-auth";
 import GoogleProvider from "next-auth/providers/google";
 import CredentialsProvider from "next-auth/providers/credentials";
+import { query } from "@/lib/database";
 import { mockUsers } from "@/data/mockUsers";
 
 // Función helper para mapear roles según el email o datos del backend
@@ -30,12 +31,39 @@ export const authOptions = {
           return null;
         }
 
-        // Buscar usuario en mockUsers (case-insensitive para email)
+        try {
+          // Buscar usuario en la base de datos
+          const dbResult = await query(
+            'SELECT id, full_name, email, password_hash, role, profile_photo FROM users WHERE email = $1 AND active = true',
+            [credentials.email.toLowerCase()]
+          );
+
+          if (dbResult.rows.length > 0) {
+            const user = dbResult.rows[0];
+            
+            // Verificar contraseña (en producción deberías usar bcrypt.compare)
+            if (user.password_hash === credentials.password) {
+              console.log('✅ Usuario autenticado desde base de datos:', user.email);
+              return {
+                id: user.id.toString(),
+                email: user.email,
+                name: user.full_name,
+                image: user.profile_photo || '/default-avatar.png',
+                role: user.role.toUpperCase()
+              };
+            }
+          }
+        } catch (dbError) {
+          console.warn('Error consultando base de datos, usando mock data:', dbError.message);
+        }
+
+        // Fallback a mock data si hay error de DB o usuario no encontrado
         const user = mockUsers.find(
           u => u.email.toLowerCase() === credentials.email.toLowerCase() && u.password === credentials.password
         );
 
         if (user) {
+          console.log('✅ Usuario autenticado desde mock data:', user.email);
           return {
             id: user.id,
             email: user.email,
@@ -45,6 +73,7 @@ export const authOptions = {
           };
         }
 
+        console.log('❌ Credenciales inválidas para:', credentials.email);
         return null;
       }
     }),
@@ -58,12 +87,32 @@ export const authOptions = {
   },
   callbacks: {
     // Validación de inicio de sesión
-    async signIn({ account, profile }) {
+    async signIn({ user, account, profile }) {
+      console.log('🔐 signIn callback:', { 
+        user: user ? { id: user.id, email: user.email, name: user.name } : null, 
+        account: account ? { provider: account.provider, type: account.type } : null,
+        profile: profile ? { email: profile.email, email_verified: profile.email_verified } : null
+      });
+      
       if (account?.provider === "google") {
-        if (profile?.email_verified) return true;
-        console.error("Google profile inválido:", profile);
+        if (profile?.email_verified) {
+          console.log('✅ Google signIn exitoso');
+          return true;
+        }
+        console.error("❌ Google profile inválido:", profile);
         return false;
       }
+      
+      if (account?.provider === "credentials") {
+        if (user && user.email) {
+          console.log('✅ Credentials signIn exitoso:', user.email);
+          return true;
+        }
+        console.log('❌ Credentials signIn falló - user:', user);
+        return false;
+      }
+      
+      console.log('⚠️ Provider no reconocido:', account?.provider);
       return true;
     },
 

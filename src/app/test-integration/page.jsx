@@ -2,11 +2,24 @@
 
 import { useState } from 'react';
 import IntegrationTestService from '@/lib/integrationTest';
+import { useBackend } from '@/hooks/useBackend';
+import BackendStatus from '@/components/BackendStatus';
+import {
+  CheckCircle,
+  XCircle,
+  AlertTriangle,
+  Database,
+  Users,
+  BookOpen,
+  CreditCard,
+  BarChart3,
+} from 'lucide-react';
 
 export default function TestIntegrationPage() {
   const [isRunning, setIsRunning] = useState(false);
   const [results, setResults] = useState(null);
   const [error, setError] = useState(null);
+  const { getConnectionStatus, forceCheck, isChecking } = useBackend();
 
   const runTests = async () => {
     setIsRunning(true);
@@ -24,25 +37,34 @@ export default function TestIntegrationPage() {
     }
   };
 
+  const connectionStatus = getConnectionStatus();
+
   return (
     <div className="min-h-screen bg-[var(--color-bg)] p-6">
       <div className="max-w-4xl mx-auto">
-        <h1 className="text-3xl font-bold mb-6 text-[var(--color-text)]">
-          🧪 Testing de Integración Frontend ↔ Backend Java
-        </h1>
+        <div className="flex items-center justify-between mb-6">
+          <h1 className="text-3xl font-bold text-[var(--color-text)]">
+            🧪 Testing de Integración Frontend ↔ Backend Java
+          </h1>
+          <BackendStatus showDetails={true} />
+        </div>
 
         <div className="bg-[var(--color-surface)] rounded-lg p-6 mb-6">
           <h2 className="text-xl font-semibold mb-4 text-[var(--color-text)]">
             Descripción del Test
           </h2>
           <p className="text-[var(--color-text)] mb-4">
-            Este test verifica que el frontend esté preparado para recibir datos del backend Java/Spring Boot.
-            Simula las respuestas del backend y verifica la compatibilidad de datos.
+            Este test verifica que el frontend esté preparado para recibir datos del backend
+            Java/Spring Boot. Simula las respuestas del backend y verifica la compatibilidad de
+            datos.
           </p>
-          
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
             <div className="bg-[var(--color-card-primary)] p-4 rounded-lg">
-              <h3 className="font-semibold text-[var(--color-text)] mb-2">Tests Incluidos:</h3>
+              <h3 className="font-semibold text-[var(--color-text)] mb-2 flex items-center gap-2">
+                <Database className="w-4 h-4" />
+                Tests Incluidos:
+              </h3>
               <ul className="text-sm text-[var(--color-text)] space-y-1">
                 <li>✅ Autenticación</li>
                 <li>✅ Endpoint de Usuarios</li>
@@ -52,9 +74,12 @@ export default function TestIntegrationPage() {
                 <li>✅ Compatibilidad de Datos</li>
               </ul>
             </div>
-            
+
             <div className="bg-[var(--color-card-primary)] p-4 rounded-lg">
-              <h3 className="font-semibold text-[var(--color-text)] mb-2">Verificaciones:</h3>
+              <h3 className="font-semibold text-[var(--color-text)] mb-2 flex items-center gap-2">
+                <BarChart3 className="w-4 h-4" />
+                Verificaciones:
+              </h3>
               <ul className="text-sm text-[var(--color-text)] space-y-1">
                 <li>🔍 Estructura de respuestas</li>
                 <li>🔍 Campos requeridos</li>
@@ -62,6 +87,40 @@ export default function TestIntegrationPage() {
                 <li>🔍 Tiempo de respuesta</li>
                 <li>🔍 Operaciones POST/PUT</li>
               </ul>
+            </div>
+
+            <div className="bg-[var(--color-card-primary)] p-4 rounded-lg">
+              <h3 className="font-semibold text-[var(--color-text)] mb-2 flex items-center gap-2">
+                <AlertTriangle className="w-4 h-4" />
+                Estado Actual:
+              </h3>
+              <div className="text-sm text-[var(--color-text)] space-y-1">
+                <div
+                  className={`flex items-center gap-2 ${
+                    connectionStatus.status === 'connected'
+                      ? 'text-green-600'
+                      : connectionStatus.status === 'offline'
+                      ? 'text-red-600'
+                      : 'text-yellow-600'
+                  }`}
+                >
+                  <div
+                    className={`w-2 h-2 rounded-full ${
+                      connectionStatus.status === 'connected'
+                        ? 'bg-green-500'
+                        : connectionStatus.status === 'offline'
+                        ? 'bg-red-500'
+                        : 'bg-yellow-500'
+                    }`}
+                  ></div>
+                  {connectionStatus.message}
+                </div>
+                <div className="text-xs text-gray-500 mt-2">
+                  {connectionStatus.status === 'connected'
+                    ? 'Backend disponible para pruebas reales'
+                    : 'Usando datos mock para las pruebas'}
+                </div>
+              </div>
             </div>
           </div>
 
@@ -86,25 +145,28 @@ export default function TestIntegrationPage() {
             <h2 className="text-xl font-semibold mb-4 text-[var(--color-text)]">
               📊 Resultados de los Tests
             </h2>
-            
+
             <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
               <div className="bg-green-100 p-4 rounded-lg text-center">
                 <div className="text-2xl font-bold text-green-800">
-                  {results.filter(r => r.status === 'PASS').length}
+                  {results.filter((r) => r.status === 'PASS').length}
                 </div>
                 <div className="text-green-600">Tests Pasados</div>
               </div>
-              
+
               <div className="bg-red-100 p-4 rounded-lg text-center">
                 <div className="text-2xl font-bold text-red-800">
-                  {results.filter(r => r.status === 'FAIL').length}
+                  {results.filter((r) => r.status === 'FAIL').length}
                 </div>
                 <div className="text-red-600">Tests Fallidos</div>
               </div>
-              
+
               <div className="bg-blue-100 p-4 rounded-lg text-center">
                 <div className="text-2xl font-bold text-blue-800">
-                  {Math.round((results.filter(r => r.status === 'PASS').length / results.length) * 100)}%
+                  {Math.round(
+                    (results.filter((r) => r.status === 'PASS').length / results.length) * 100
+                  )}
+                  %
                 </div>
                 <div className="text-blue-600">Éxito</div>
               </div>
@@ -115,8 +177,8 @@ export default function TestIntegrationPage() {
                 <div
                   key={index}
                   className={`p-4 rounded-lg border ${
-                    test.status === 'PASS' 
-                      ? 'bg-green-50 border-green-200' 
+                    test.status === 'PASS'
+                      ? 'bg-green-50 border-green-200'
                       : 'bg-red-50 border-red-200'
                   }`}
                 >
@@ -124,15 +186,17 @@ export default function TestIntegrationPage() {
                     <h3 className="font-semibold text-[var(--color-text)]">
                       {test.status === 'PASS' ? '✅' : '❌'} {test.name}
                     </h3>
-                    <span className={`px-2 py-1 rounded text-sm ${
-                      test.status === 'PASS' 
-                        ? 'bg-green-200 text-green-800' 
-                        : 'bg-red-200 text-red-800'
-                    }`}>
+                    <span
+                      className={`px-2 py-1 rounded text-sm ${
+                        test.status === 'PASS'
+                          ? 'bg-green-200 text-green-800'
+                          : 'bg-red-200 text-red-800'
+                      }`}
+                    >
                       {test.status}
                     </span>
                   </div>
-                  
+
                   {test.details && (
                     <div className="text-sm text-[var(--color-text)] space-y-1">
                       <p>Status Code: {test.details.statusCode}</p>
@@ -151,29 +215,28 @@ export default function TestIntegrationPage() {
                       <p>Campos requeridos: {test.details.hasRequiredFields ? '✅' : '❌'}</p>
                     </div>
                   )}
-                  
+
                   {test.error && (
-                    <div className="text-sm text-red-600 mt-2">
-                      Error: {test.error}
-                    </div>
+                    <div className="text-sm text-red-600 mt-2">Error: {test.error}</div>
                   )}
                 </div>
               ))}
             </div>
 
-            {results.filter(r => r.status === 'PASS').length === results.length && (
+            {results.filter((r) => r.status === 'PASS').length === results.length && (
               <div className="mt-6 p-4 bg-green-100 border border-green-400 text-green-700 rounded">
                 <h3 className="font-bold text-lg mb-2">🎉 ¡Excelente!</h3>
-                <p>El frontend está completamente preparado para recibir datos del backend Java/Spring Boot.</p>
+                <p>
+                  El frontend está completamente preparado para recibir datos del backend
+                  Java/Spring Boot.
+                </p>
               </div>
             )}
           </div>
         )}
 
         <div className="mt-8 bg-[var(--color-surface)] rounded-lg p-6">
-          <h2 className="text-xl font-semibold mb-4 text-[var(--color-text)]">
-            📋 Próximos Pasos
-          </h2>
+          <h2 className="text-xl font-semibold mb-4 text-[var(--color-text)]">📋 Próximos Pasos</h2>
           <ol className="list-decimal list-inside space-y-2 text-[var(--color-text)]">
             <li>Configurar el backend Java/Spring Boot con los endpoints documentados</li>
             <li>Actualizar la URL del backend en las variables de entorno</li>

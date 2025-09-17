@@ -2,7 +2,10 @@
 
 import axios from "axios";
 import { CONFIG, ENDPOINTS } from "@/config";
-import { mockUsers, coursesPageData, coursesDetailData, studentsProgress } from "@/data";
+import { mockUsers } from "@/data/mockUsers";
+import { coursesPageData } from "@/data/courses";
+import { coursesDetailData } from "@/data/courses";
+import { studentsProgress } from "@/data/students";
 
 /**
  * Cliente API mejorado con fallback a datos mock

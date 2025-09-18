@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { PlusCircle, BookOpen, Users, Edit } from "lucide-react";
+import { PlusCircle, BookOpen, Users, Edit, FileText, HelpCircle } from "lucide-react";
 import Link from "next/link";
 import Button from "@/components/ui/Button";
 import { instructorCourses } from "@/data/instructors";
@@ -93,14 +93,14 @@ useEffect(() => {
 return (
   <main className="min-h-screen bg-[var(--color-bg)] flex flex-col items-center py-8 px-2 sm:px-4">
     <button
-          onClick={() => router.back()}
-          className="flex items-center gap-2 px-4 py-2 mb-4 rounded-lg font-medium 
+      onClick={() => router.back()}
+      className="flex items-center gap-2 px-4 py-2 mb-4 rounded-lg font-medium 
                      bg-[var(--color-surface)] text-[var(--color-text)] 
                      hover:bg-[var(--color-primary)] hover:text-[var(--color-primary-text)]
                      transition w-full sm:w-auto"
-        >
-          <ArrowLeft className="w-5 h-5" />
-          <span className="text-sm sm:text-base">Volver</span>
+    >
+      <ArrowLeft className="w-5 h-5" />
+      <span className="text-sm sm:text-base">Volver</span>
     </button>
     <section className="w-full max-w-4xl bg-[var(--color-surface)] rounded-2xl shadow-xl p-4 sm:p-8 flex flex-col gap-8">
       <h1 className="text-2xl sm:text-3xl font-bold text-center mb-2">
@@ -110,7 +110,11 @@ return (
       {/* Botón Crear curso */}
       <div className="flex justify-end mb-4">
         <Link href="/instructor/courses/new">
-          <Button type="button" aria-label="Crear nuevo curso" className="cursor-pointer btn-primary px-6 py-2 rounded-lg font-bold">
+          <Button
+            type="button"
+            aria-label="Crear nuevo curso"
+            className="cursor-pointer btn-primary px-6 py-2 rounded-lg font-bold"
+          >
             Crear nuevo curso
           </Button>
         </Link>
@@ -121,30 +125,17 @@ return (
         <table className="min-w-full text-sm">
           <thead>
             <tr>
-              <th className="px-3 py-2 text-left text-[var(--color-muted)]">
-                Curso
-              </th>
-              <th className="px-3 py-2 text-center text-[var(--color-muted)]">
-                Lecciones
-              </th>
-              <th className="px-3 py-2 text-center text-[var(--color-muted)]">
-                Estudiantes
-              </th>
-              <th className="px-3 py-2 text-center text-[var(--color-muted)]">
-                Estado
-              </th>
-              <th className="px-3 py-2 text-center text-[var(--color-muted)]">
-                Acciones
-              </th>
+              <th className="px-3 py-2 text-left text-[var(--color-muted)]">Curso</th>
+              <th className="px-3 py-2 text-center text-[var(--color-muted)]">Lecciones</th>
+              <th className="px-3 py-2 text-center text-[var(--color-muted)]">Estudiantes</th>
+              <th className="px-3 py-2 text-center text-[var(--color-muted)]">Estado</th>
+              <th className="px-3 py-2 text-center text-[var(--color-muted)]">Acciones</th>
             </tr>
           </thead>
           <tbody>
             {courses.length === 0 ? (
               <tr>
-                <td
-                  colSpan={5}
-                  className="text-center py-6 text-gray-500"
-                >
+                <td colSpan={5} className="text-center py-6 text-gray-500">
                   No tienes cursos aún. ¡Crea tu primer curso!
                 </td>
               </tr>
@@ -152,14 +143,9 @@ return (
               courses.map((c) => (
                 <tr key={c.id} className="border-b border-gray-100">
                   <td className="px-3 py-2 flex items-center gap-2">
-                    <BookOpen
-                      size={18}
-                      className="text-[var(--color-primary)]"
-                    />
+                    <BookOpen size={18} className="text-[var(--color-primary)]" />
                     <div>
-                      <span className="font-semibold text-[var(--color-text)]">
-                        {c.title}
-                      </span>
+                      <span className="font-semibold text-[var(--color-text)]">{c.title}</span>
                       <p className="text-xs text-[var(--color-muted)]">
                         {c.category} • {c.level}
                       </p>
@@ -167,28 +153,35 @@ return (
                   </td>
                   <td className="px-3 py-2 text-center">0</td>
                   <td className="px-3 py-2 flex items-center gap-1 justify-center">
-                    <Users size={16} className="text-blue-500" />
-                    0
+                    <Users size={16} className="text-blue-500" />0
                   </td>
                   <td className="px-3 py-2 text-center">
                     <span
                       className={`text-xs font-bold rounded px-2 py-1 ${
                         c.published
-                          ? "bg-green-100 text-green-700"
-                          : "bg-yellow-100 text-yellow-700"
+                          ? 'bg-green-100 text-green-700'
+                          : 'bg-yellow-100 text-yellow-700'
                       }`}
                     >
-                      {c.published ? "Publicado" : "Borrador"}
+                      {c.published ? 'Publicado' : 'Borrador'}
                     </span>
                   </td>
                   <td className="px-3 py-2 flex gap-2 justify-center">
                     <Link href={`/instructor/courses/${c.id}`}>
-                      <Button type="button" aria-label="Ver detalles" className="cursor-pointer flex items-center gap-1 px-3 py-1 rounded-lg text-sm border border-primary text-primary hover:bg-primary hover:text-white transition">
+                      <Button
+                        type="button"
+                        aria-label="Ver detalles"
+                        className="cursor-pointer flex items-center gap-1 px-3 py-1 rounded-lg text-sm border border-primary btn-primary transition"
+                      >
                         Ver detalles
                       </Button>
                     </Link>
                     <Link href={`/instructor/courses/${c.id}/edit`}>
-                      <Button type="button" aria-label="Editar curso" className="cursor-pointer flex items-center gap-1 px-3 py-1 rounded-lg text-sm">
+                      <Button
+                        type="button"
+                        aria-label="Editar curso"
+                        className="cursor-pointer flex items-center gap-1 px-3 py-1 rounded-lg text-sm"
+                      >
                         <Edit size={16} /> Editar
                       </Button>
                     </Link>
@@ -198,6 +191,31 @@ return (
             )}
           </tbody>
         </table>
+      </div>
+
+      {/* Botones de Recursos y Quizzes */}
+      <div className="flex flex-col sm:flex-row gap-4 justify-center items-center mt-8 pt-6 border-t border-gray-200">
+        <Link href="/instructor/resources" className="w-full sm:w-auto">
+          <Button
+            type="button"
+            aria-label="Gestionar Recursos y Materiales"
+            className="w-full sm:w-auto cursor-pointer flex items-center justify-center gap-2 px-6 py-3 rounded-lg font-semibold btn-primary transition-all duration-200 shadow-md hover:shadow-lg"
+          >
+            <FileText size={20} />
+            <span className="text-sm sm:text-base">Recursos y Materiales</span>
+          </Button>
+        </Link>
+
+        <Link href="/instructor/quizzes" className="w-full sm:w-auto">
+          <Button
+            type="button"
+            aria-label="Gestionar Quizzes y Evaluaciones"
+            className="w-full sm:w-auto cursor-pointer flex items-center justify-center gap-2 px-6 py-3 rounded-lg font-semibold btn-primary transition-all duration-200 shadow-md hover:shadow-lg"
+          >
+            <HelpCircle size={20} />
+            <span className="text-sm sm:text-base">Quizzes y Evaluaciones</span>
+          </Button>
+        </Link>
       </div>
     </section>
   </main>

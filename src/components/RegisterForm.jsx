@@ -38,32 +38,28 @@ export default function RegisterForm() {
     setLoading(true);
 
     try {
-      const res = await fetch('/api/auth/register', {
-      //const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/auth/register`, {
+      const res = await fetch('/api/register', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
-          ...formData,
-          /* name: formData.name.trim(),
+          name: formData.name.trim(),
           email: formData.email.trim().toLowerCase(),
-          password: formData.password.trim(), */
+          password: formData.password.trim(),
           role: 'STUDENT', // por defecto
         }),
       });
 
-      /* if (!res.ok) {
-        const errorData = await res.json();
-        setErrors({ general: errorData.message || 'Error al registrarse' });
-      } */
-
       if (res.ok) {
-        router.push('/auth/login');
+        const data = await res.json();
+        console.log('Usuario registrado exitosamente:', data);
+        router.push('/auth/login?message=Registro exitoso. Inicia sesión con tus credenciales.');
       } else {
         const errorData = await res.json();
-        setErrors({ general: errorData.message || 'Error al registrarse' });
+        setErrors({ general: errorData.error || 'Error al registrarse' });
       }
     } catch (error) {
-      setErrors({ general: 'Error de conexión' });
+      console.error('Error en registro:', error);
+      setErrors({ general: 'Error de conexión. Inténtalo de nuevo.' });
     } finally {
       setLoading(false);
     }

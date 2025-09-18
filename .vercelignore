@@ -1,0 +1,24 @@
+# Archivos de AI que causan problemas en el build
+src/ai/
+*.ai.js
+*.genkit.js
+
+# Archivos de desarrollo
+src/ai/dev.js.bak
+src/ai/flows/
+
+# Archivos de configuración local
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+# Logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Archivos temporales
+.tmp/
+.temp/

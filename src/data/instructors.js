@@ -1,5 +1,5 @@
 export const instructorMock = {
-    id: 1,
+    id: 11,
     name: "Christian Velasco",
     bio: "Ingeniero en sistemas, especializado en Ciencia de Datos e Inteligencia Artificial.",
     avatar: "/images/instructor.jpg",
@@ -12,7 +12,7 @@ export const instructorMock = {
 
 export const instructorsDashboard = [
   {
-    id: 1,
+    id: 11,
     name: "Aylen Reyes",
     email: "aylen@example.com",
     experience: "Software Engineer, 5 años enseñando React y Node.js",
@@ -29,6 +29,14 @@ export const instructorsDashboard = [
   },
   {
     id: 3,
+    name: "Carlos Rodríguez",
+    email: "carlos.rodriguez@lumina.com",
+    experience: "DevOps Engineer, especialista en Vercel y despliegue de aplicaciones",
+    demoLink: "/video/vercel.mp4",
+    status: "approved",
+  },
+  {
+    id: 4,
     name: "Luis Beltrán",
     email: "luis@example.com",
     experience: "Diseñador UX/UI freelance",
@@ -39,7 +47,7 @@ export const instructorsDashboard = [
 
 export const instructorsPage = [
   {
-    id: 1,
+    id: 5,
     name: "Benjamín Pérez",
     bio: "Especialista en React y Next.js con 8 años de experiencia.",
     avatar: "/avatars/img60.jpg" || "/default-avatar.png",
@@ -48,7 +56,7 @@ export const instructorsPage = [
     students: 320,
   },
   {
-    id: 2,
+    id: 6,
     name: "María Gómez",
     bio: "Apasionada por el desarrollo web moderno y la mentoría de nuevos talentos. Experiencia en React, Node.js y arquitectura cloud.",
     avatar: "/avatars/img32.jpg" || "/default-avatar.png",
@@ -57,7 +65,7 @@ export const instructorsPage = [
     students: 210,
   },
   {
-    id: 3,
+    id: 7,
     name: "Carlos Mora",
     bio: "Backend developer con foco en Node.js, NestJS y bases de datos.",
     avatar: "/avatars/img55.jpg" || "/default-avatar.png",
@@ -78,12 +86,12 @@ export const earningsData = {
       { month: "Jun", amount: 2800 },
     ],
     courses: [
-      { id: 1, title: "React desde cero", revenue: 5500 },
+      { id: 11, title: "React desde cero", revenue: 5500 },
       { id: 2, title: "Next.js avanzado", revenue: 4500 },
       { id: 3, title: "UI/UX Design", revenue: 2500 },
     ],
     transactions: [
-      { id: 1, student: "María Aponte", course: "React desde cero", amount: 200, date: "2025-05-01" },
+      { id: 11, student: "María Aponte", course: "React desde cero", amount: 200, date: "2025-05-01" },
       { id: 2, student: "Gustavo Pérez", course: "Next.js avanzado", amount: 250, date: "2025-05-05" },
       { id: 3, student: "Samuel Jimenez", course: "UI/UX Design", amount: 150, date: "2025-05-10" },
     ],
@@ -115,13 +123,13 @@ export const instructorsData = [
     ],
     reviews: [
       {
-        id: 1,
+        id: 8,
         student: "Carla Martínez",
         comment: "Excelente instructor, explica muy claro y con ejemplos prácticos.",
         rating: 5,
       },
       {
-        id: 2,
+        id: 9,
         student: "Gustavo Pérez",
         comment: "Me ayudó a entender Next.js de forma sencilla.",
         rating: 4,
@@ -142,13 +150,13 @@ export const instructorsData = [
     ],
     reviews: [
       {
-        id: 1,
+        id: 8,
         student: "Pedro Sánchez",
         comment: "María es una excelente mentora, aprendí muchísimo.",
         rating: 5,
       },
       {
-        id: 2,
+        id: 9,
         student: "Laura Fernández",
         comment: "Muy clara en los conceptos, la recomiendo al 100%.",
         rating: 5,
@@ -168,7 +176,7 @@ export const instructorsData = [
     ],
     reviews: [
       {
-        id: 1,
+        id: 8,
         student: "Pedro Sánchez",
         comment: "Muy buen curso.",
         rating: 5,
@@ -179,7 +187,7 @@ export const instructorsData = [
 
 export const instructorCourses = [
   {
-    id: 1,
+    id: 11,
     title: "Introducción a React",
     description: "Aprende los fundamentos de React, componentes y props.",
     studentsCount: 120,
@@ -208,7 +216,7 @@ export const instructorCourses = [
 
 export const instructorAnalytics = [
   {
-    id: 1,
+    id: 11,
     title: "React Avanzado",
     students: 120,
     avgProgress: 68,
@@ -224,7 +232,7 @@ export const instructorAnalytics = [
 ];
 
 export const fakeCourseEdit = {
-  id: 1,
+  id: 11,
   title: "Curso de React Avanzado",
   description:
     "Aprende patrones avanzados de React, hooks personalizados y optimización de rendimiento.",
@@ -235,7 +243,7 @@ export const fakeCourseEdit = {
 };
 
 export const fakeLessonEdit = {
-  id: 1,
+  id: 11,
   title: "Componentes y Props",
   description: "Aprenderemos cómo funcionan los componentes y props en React.",
   duration: "15:20",
@@ -244,7 +252,7 @@ export const fakeLessonEdit = {
 
 export const fakeLessonPage = [
   {
-    id: 1,
+    id: 11,
     title: "Introducción a React",
     duration: "10:32",
     status: "publicada",
@@ -297,7 +305,7 @@ export const studentsInstructorData = [
 
 export const progressReportsStudentsData = [
     {
-      id: 1,
+      id: 11,
       name: "Carla Martinez",
       email: "carla@example.com",
       courseTitle: "React Avanzado",
@@ -312,7 +320,7 @@ export const progressReportsStudentsData = [
 
 export const progressReportsCoursesData = [
     {
-      id: 1,
+      id: 11,
       title: "Curso de React desde Cero",
       students: 120,
       progress: 75,

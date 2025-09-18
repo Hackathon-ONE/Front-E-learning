@@ -1,12 +1,19 @@
 "use server";
 
-import { getCourseRecommendations } from "@/ai/flows/ai-course-recommendations";
+// import { getCourseRecommendations } from "@/ai/flows/ai-course-recommendations";
 
 export async function getRecommendationsAction(input) {
   // In a real app, you might add authentication/authorization checks here.
   try {
-    const recommendations = await getCourseRecommendations(input);
-    return recommendations;
+    // const recommendations = await getCourseRecommendations(input);
+    // return recommendations;
+    
+    // Temporal fallback para evitar errores de build
+    return {
+      success: true,
+      recommendations: [],
+      message: "AI recommendations temporarily disabled for build"
+    };
   } catch (error) {
     console.error("Error getting AI recommendations:", error);
     // In a production app, you'd want more robust error handling and logging.

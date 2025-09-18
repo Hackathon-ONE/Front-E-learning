@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { PlayCircle, Clock, CheckCircle, Loader2, Lock, ArrowLeft } from 'lucide-react';
 import Card from '@/components/ui/Card';
 import Link from 'next/link';
@@ -19,6 +19,13 @@ export default function CourseDetailPage({ courseId }) {
   const { user, isAuthenticated } = useAuth();
   const { hasAccess, loading: subscriptionLoading } = useSubscription(courseId);
 
+  // Estados para datos reales
+  const [course, setCourse] = useState(null);
+  const [instructor, setInstructor] = useState(null);
+  const [lessons, setLessons] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+
   // Validar que courseId existe
   if (!courseId || courseId === 'undefined') {
     return (
@@ -30,75 +37,112 @@ export default function CourseDetailPage({ courseId }) {
       </div>
     );
   }
-  const [course] = useState(() => {
-    const found = coursesDetailData.find((c) => c.id.toString() === String(courseId));
-    if (found) return found;
-    const basic = coursesPageData.find((c) => c.id.toString() === String(courseId));
-    if (basic) {
-      return {
-        id: basic.id,
-        title: basic.title,
-        description: basic.description,
-        cover: basic.cover,
-        duration: '—',
-        students: 0,
-        lessons: 0,
-        objectives: courseDetailMock.objectives,
-      };
-    }
-    return courseDetailMock;
-  });
-  const [lessons] = useState(lessonsMock);
-  const [linkedCourses] = useState(linkedCoursesMock);
 
-  // Mapeo de cursos a instructores por nombre
-  const courseInstructorMap = {
-    'Benjamín Pérez': '1',
-    'María Gómez': '2',
-    'Carlos Mora': '3',
-    'Carlos Rodríguez': '0',
-    'Ana Torres': '5',
-    'Fernanda López': '6',
-    'Marco Alonzo': '7',
-  };
-
-  // Buscar el instructor correcto del curso
-  const [instructor] = useState(() => {
-    // Buscar el curso en coursesPageData para obtener el nombre del instructor
-    const courseWithInstructor = coursesPageData.find((c) => c.id.toString() === String(courseId));
-    if (courseWithInstructor && courseWithInstructor.instructor) {
-      const instructorId = courseInstructorMap[courseWithInstructor.instructor];
-      if (instructorId) {
-        const foundInstructor = instructorsData.find((i) => i.id === instructorId);
-        if (foundInstructor) {
-          return {
-            id: foundInstructor.id,
-            name: foundInstructor.name,
-            bio: foundInstructor.bio,
-            avatar: foundInstructor.avatar,
-            title: foundInstructor.specialty,
-            linkedin: `https://linkedin.com/in/${foundInstructor.name
-              .toLowerCase()
-              .replace(' ', '-')}`,
-            github: `https://github.com/${foundInstructor.name.toLowerCase().replace(' ', '-')}`,
-            twitter: `https://twitter.com/${foundInstructor.name.toLowerCase().replace(' ', '-')}`,
-          };
+  // Obtener datos del curso y instructor
+  useEffect(() => {
+    const fetchCourseData = async () => {
+      try {
+        setLoading(true);
+        
+        // Obtener datos del curso
+        const courseResponse = await fetch(`/api/courses/${courseId}`);
+        if (!courseResponse.ok) {
+          throw new Error('Error al obtener el curso');
         }
-      }
-    }
-    // Fallback al instructor mock si no se encuentra
-    return instructorMock;
-  });
+        const courseData = await courseResponse.json();
+        setCourse(courseData);
 
+        // Obtener datos del instructor
+        if (courseData.instructorId) {
+          const instructorResponse = await fetch(`/api/users/${courseData.instructorId}`);
+          if (instructorResponse.ok) {
+            const instructorData = await instructorResponse.json();
+            setInstructor({
+              id: instructorData.id,
+              name: instructorData.name,
+              bio: instructorData.bio || 'Instructor especializado en el área',
+              avatar: instructorData.image || '/default-avatar.png',
+              title: instructorData.specialty || 'Instructor',
+              linkedin: `https://linkedin.com/in/${instructorData.name?.toLowerCase().replace(/\s+/g, '-')}`,
+              github: `https://github.com/${instructorData.name?.toLowerCase().replace(/\s+/g, '-')}`,
+              twitter: `https://twitter.com/${instructorData.name?.toLowerCase().replace(/\s+/g, '-')}`,
+            });
+          }
+        }
+
+        // Obtener lecciones del curso
+        const lessonsResponse = await fetch(`/api/courses/${courseId}/lessons`);
+        if (lessonsResponse.ok) {
+          const lessonsData = await lessonsResponse.json();
+          setLessons(lessonsData.data || []);
+        } else {
+          // Fallback a lecciones mock si no hay API
+          setLessons(lessonsMock);
+        }
+
+      } catch (err) {
+        console.error('Error cargando datos del curso:', err);
+        setError(err.message);
+        
+        // Fallback a datos mock en caso de error
+        const found = coursesDetailData.find((c) => c.id.toString() === String(courseId));
+        if (found) {
+          setCourse(found);
+        } else {
+          const basic = coursesPageData.find((c) => c.id.toString() === String(courseId));
+          if (basic) {
+            setCourse({
+              id: basic.id,
+              title: basic.title,
+              description: basic.description,
+              cover: basic.cover,
+              duration: '—',
+              students: 0,
+              lessons: 0,
+              objectives: courseDetailMock.objectives,
+            });
+          } else {
+            setCourse(courseDetailMock);
+          }
+        }
+        setInstructor(instructorMock);
+        setLessons(lessonsMock);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchCourseData();
+  }, [courseId]);
+
+  const [linkedCourses] = useState(linkedCoursesMock);
   const [progress] = useState(100);
 
-  // Mostrar loading mientras se verifica la suscripción
-  if (subscriptionLoading) {
+  // Mostrar loading mientras se cargan los datos
+  if (loading || subscriptionLoading) {
     return (
       <div className="flex justify-center items-center min-h-screen bg-[var(--color-bg)]">
         <div className="text-center">
           <Loader2 className="w-12 h-12 text-primary animate-spin mx-auto mb-4" />
           <p className="text-[var(--color-text)]">Cargando información del curso...</p>
+        </div>
+      </div>
+    );
+  }
+
+  // Mostrar error si no se pudieron cargar los datos
+  if (error && !course) {
+    return (
+      <div className="flex justify-center items-center min-h-screen bg-[var(--color-bg)]">
+        <div className="text-center">
+          <h1 className="text-2xl font-bold text-[var(--color-text)] mb-4">Error al cargar el curso</h1>
+          <p className="text-[var(--color-text)] mb-4">{error}</p>
+          <button
+            onClick={() => router.back()}
+            className="px-4 py-2 bg-primary text-primary-text rounded-lg hover:bg-primary-hover transition"
+          >
+            Volver
+          </button>
         </div>
       </div>
     );
@@ -182,22 +226,25 @@ export default function CourseDetailPage({ courseId }) {
           <Card className="p-6 bg-[var(--color-card-primary)]">
             <div className="flex items-center gap-4 mb-4">
               <Image
-                src={instructor.avatar || '/default-avatar.png'}
-                alt={instructor.name}
+                src={instructor?.avatar || '/default-avatar.png'}
+                alt={instructor?.name || 'Instructor'}
                 width={60}
                 height={60}
                 className="rounded-full"
                 style={{ width: 'auto', height: 'auto' }}
               />
               <div>
-                <h3 className="font-semibold text-lg">{instructor.name}</h3>
-                <p className="text-sm text-muted">{instructor.title}</p>
+                <h3 className="font-semibold text-lg">{instructor?.name || 'Instructor'}</h3>
+                <p className="text-sm text-muted">{instructor?.title || 'Instructor'}</p>
+                {instructor?.id && (
+                  <p className="text-xs text-muted">ID: {instructor.id}</p>
+                )}
               </div>
             </div>
-            <p className="text-sm text-muted mb-4">{instructor.bio}</p>
+            <p className="text-sm text-muted mb-4">{instructor?.bio || 'Instructor especializado en el área'}</p>
             <div className="flex gap-2">
               <a
-                href={instructor.linkedin}
+                href={instructor?.linkedin || '#'}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="p-2 rounded-lg bg-blue-600 text-white hover:bg-blue-700 transition"
@@ -208,7 +255,7 @@ export default function CourseDetailPage({ courseId }) {
                 </svg>
               </a>
               <a
-                href={instructor.github}
+                href={instructor?.github || '#'}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="p-2 rounded-lg bg-gray-800 text-white hover:bg-gray-900 transition"
@@ -219,7 +266,7 @@ export default function CourseDetailPage({ courseId }) {
                 </svg>
               </a>
               <a
-                href={instructor.twitter}
+                href={instructor?.twitter || '#'}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="p-2 rounded-lg bg-blue-400 text-white hover:bg-blue-500 transition"

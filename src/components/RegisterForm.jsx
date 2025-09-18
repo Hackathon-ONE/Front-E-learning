@@ -38,8 +38,8 @@ export default function RegisterForm() {
     setLoading(true);
 
     try {
-      const res = await fetch('/api/auth/register', {
-      //const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/auth/register`, {
+      const res = await fetch('/api/register', {
+      //const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/register`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
@@ -51,15 +51,13 @@ export default function RegisterForm() {
         }),
       });
 
-      /* if (!res.ok) {
-        const errorData = await res.json();
-        setErrors({ general: errorData.message || 'Error al registrarse' });
-      } */
-
       if (res.ok) {
-        router.push('/auth/login');
+        const data = await res.json();
+        console.log('✅ Usuario registrado:', data);
+        router.push('/auth/login?message=Usuario registrado exitosamente');
       } else {
         const errorData = await res.json();
+        console.error('❌ Error en registro:', errorData);
         setErrors({ general: errorData.message || 'Error al registrarse' });
       }
     } catch (error) {

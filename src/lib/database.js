@@ -3,6 +3,8 @@
  * Este archivo maneja la conexión a la base de datos
  */
 
+import { Pool } from 'pg';
+
 // Configuración de la base de datos
 export const dbConfig = {
   // URL de conexión a PostgreSQL
@@ -20,11 +22,28 @@ export const dbConfig = {
   connectionTimeoutMillis: 2000, // timeout de conexión
 };
 
+// Crear pool de conexiones
+const pool = new Pool(dbConfig);
+
+// Función para ejecutar consultas
+export async function query(text, params = []) {
+  const start = Date.now();
+  try {
+    const res = await pool.query(text, params);
+    const duration = Date.now() - start;
+    console.log('🔍 Query ejecutada:', { text, duration, rows: res.rowCount });
+    return res;
+  } catch (error) {
+    console.error('❌ Error en query:', { text, error: error.message });
+    throw error;
+  }
+}
+
 // Función para probar la conexión
 export async function testConnection() {
   try {
-    // Aquí iría la lógica de prueba de conexión
-    console.log('✅ Base de datos configurada correctamente');
+    const result = await query('SELECT NOW()');
+    console.log('✅ Base de datos conectada correctamente:', result.rows[0]);
     return true;
   } catch (error) {
     console.error('❌ Error conectando a la base de datos:', error);
@@ -32,5 +51,16 @@ export async function testConnection() {
   }
 }
 
-// Exportar configuración
+// Función para cerrar el pool
+export async function closePool() {
+  try {
+    await pool.end();
+    console.log('🔌 Pool de conexiones cerrado');
+  } catch (error) {
+    console.error('❌ Error cerrando pool:', error);
+  }
+}
+
+// Exportar configuración y pool
+export { pool };
 export default dbConfig;

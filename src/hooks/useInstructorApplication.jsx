@@ -41,7 +41,7 @@ export function useInstructorApplication() {
 
     try {
       setLoading(true);
-      const res = await fetch(" /instructor/apply", {
+      const res = await fetch("/instructor/apply", {
       // const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/instructor/apply`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },

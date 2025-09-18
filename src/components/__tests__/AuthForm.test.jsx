@@ -307,7 +307,7 @@ describe('RegisterForm', () => {
     fireEvent.click(screen.getByRole('button', { name: 'Registrarse' }));
 
     await waitFor(() => {
-      expect(global.fetch).toHaveBeenCalledWith('/api/auth/register', {
+      expect(global.fetch).toHaveBeenCalledWith('/api/register', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
@@ -320,7 +320,7 @@ describe('RegisterForm', () => {
     });
 
     await waitFor(() => {
-      expect(mockRouter.push).toHaveBeenCalledWith('/auth/login');
+      expect(mockRouter.push).toHaveBeenCalledWith('/auth/login?message=Usuario registrado exitosamente');
     });
   });
 

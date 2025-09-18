@@ -87,7 +87,7 @@ export default function LoginForm() {
 
       {/* <TestCredentials /> */}
 
-      <form onSubmit={handleSubmit} className="space-y-4">
+      <form onSubmit={handleSubmit} className="space-y-4" data-testid="test-credentials">
         {errors.general && (
           <p className="text-sm text-red-500">{errors.general}</p>
         )}

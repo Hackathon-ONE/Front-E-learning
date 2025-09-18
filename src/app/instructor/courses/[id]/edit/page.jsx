@@ -25,13 +25,44 @@ export default function EditCoursePage() {
   const [saving, setSaving] = useState(false);
   const [error, setError] = useState(null);
 
-  // 🚀 Simulación de fetch con datos hardcodeados
+  // Cargar curso desde la API
   useEffect(() => {
-    setTimeout(() => {
-      setCourse(fakeCourseEdit);
-      setFormData(fakeCourseEdit);
-      setLoading(false);
-    }, 600);
+    const fetchCourse = async () => {
+      try {
+        setLoading(true);
+        console.log('🔍 Cargando curso:', id);
+        
+        const response = await fetch(`/api/courses/${id}`);
+        const data = await response.json();
+        
+        if (response.ok) {
+          console.log('✅ Curso cargado:', data);
+          setCourse(data);
+          setFormData({
+            title: data.title || "",
+            description: data.description || "",
+            category: data.category || "",
+            level: data.level || "",
+            price: data.price || 0,
+            instructor: data.instructorId || "",
+            resourceUrl: data.resourceUrl || "",
+            resourceFile: null,
+          });
+        } else {
+          console.error('❌ Error cargando curso:', data);
+          setError(data.error || "Error cargando el curso");
+        }
+      } catch (err) {
+        console.error('❌ Error de conexión:', err);
+        setError("Error de conexión al cargar el curso");
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    if (id) {
+      fetchCourse();
+    }
   }, [id]);
 
   const handleChange = (e) => {
@@ -50,34 +81,46 @@ export default function EditCoursePage() {
       return;
     }
 
+    if (!formData.category) {
+      setError("La categoría es obligatoria.");
+      return;
+    }
+
     try {
       setSaving(true);
       setError(null);
 
-      // Crear FormData para enviar archivo o url
-      const data = new FormData();
-      data.append("title", formData.title);
-      data.append("description", formData.description);
-      data.append("category", formData.category);
-      data.append("level", formData.level);
-      data.append("price", formData.price);
-      data.append("instructor", formData.instructor);
+      console.log('📝 Actualizando curso:', id, formData);
 
-      if (formData.resourceUrl) data.append("resourceUrl", formData.resourceUrl);
-      if (formData.resourceFile) data.append("resourceFile", formData.resourceFile);
+      // Enviar actualización al endpoint
+      const response = await fetch(`/api/courses/${id}`, {
+        method: 'PUT',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          title: formData.title,
+          description: formData.description,
+          category: formData.category,
+          level: formData.level,
+          price: formData.price,
+          resourceUrl: formData.resourceUrl,
+          imageUrl: '/courses/default.jpg'
+        })
+      });
 
-      // Aquí harías el PUT real al backend
-      // await fetch(`${process.env.NEXT_PUBLIC_API_URL}/courses/${id}`, {
-      //   method: "PUT",
-      //   body: data,
-      // });
+      const data = await response.json();
 
-      // console.log("Datos enviados:", Object.fromEntries(data));
-
-      router.push("/instructor/courses");
+      if (response.ok) {
+        console.log('✅ Curso actualizado exitosamente:', data);
+        router.push("/instructor/courses?message=Curso actualizado exitosamente");
+      } else {
+        console.error('❌ Error actualizando curso:', data);
+        setError(data.message || "Error al actualizar el curso");
+      }
     } catch (err) {
-      setError("Error al guardar los cambios.");
-      console.error(err);
+      console.error('❌ Error de conexión:', err);
+      setError("Error de conexión al actualizar el curso");
     } finally {
       setSaving(false);
     }

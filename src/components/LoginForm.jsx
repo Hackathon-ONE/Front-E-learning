@@ -6,7 +6,7 @@ import { signIn } from "next-auth/react";
 import Link from "next/link";
 import AuthLayout from "./AuthLayout";
 import { useRouter } from "next/navigation";
-import TestCredentials from "./TestCredentials";
+// import TestCredentials from "./TestCredentials";
 import { useAuthRedirect } from "@/hooks/useRoleRedirect";
 import { getDefaultRedirectPath } from "@/utils/roleUtils";
 
@@ -85,7 +85,7 @@ export default function LoginForm() {
         Iniciar sesión
       </h2>
 
-      <TestCredentials />
+      {/* <TestCredentials /> */}
 
       <form onSubmit={handleSubmit} className="space-y-4">
         {errors.general && (

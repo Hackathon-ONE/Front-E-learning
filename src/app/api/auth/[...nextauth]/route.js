@@ -2,6 +2,7 @@ import NextAuth from "next-auth";
 import GoogleProvider from "next-auth/providers/google";
 import CredentialsProvider from "next-auth/providers/credentials";
 import { mockUsers } from "@/data/mockUsers";
+import { query } from "@/lib/database";
 
 // Función helper para mapear roles según el email o datos del backend
 function mapUserRole(email, backendRole) {
@@ -27,25 +28,81 @@ export const authOptions = {
       },
       async authorize(credentials) {
         if (!credentials?.email || !credentials?.password) {
+          console.log('❌ Credenciales faltantes');
           return null;
         }
 
-        // Buscar usuario en mockUsers (case-insensitive para email)
-        const user = mockUsers.find(
-          u => u.email.toLowerCase() === credentials.email.toLowerCase() && u.password === credentials.password
-        );
+        try {
+          console.log('🔍 Buscando usuario en base de datos:', credentials.email);
+          
+          // Buscar usuario en base de datos PostgreSQL
+          const dbResult = await query(
+            'SELECT id, full_name, email, password_hash, role, profile_photo, active FROM users WHERE email = $1 AND active = true',
+            [credentials.email.toLowerCase()]
+          );
 
-        if (user) {
-          return {
-            id: user.id,
-            email: user.email,
-            name: user.name,
-            image: user.image,
-            role: user.role.toUpperCase()
-          };
+          if (dbResult.rows.length > 0) {
+            const user = dbResult.rows[0];
+            console.log('✅ Usuario encontrado en base de datos:', user.email);
+            
+            // Verificar contraseña (sin hashing por ahora - en producción usar bcrypt)
+            if (user.password_hash === credentials.password) {
+              console.log('✅ Contraseña válida para:', user.email);
+              return {
+                id: user.id.toString(),
+                email: user.email,
+                name: user.full_name,
+                image: user.profile_photo || '/default-avatar.png',
+                role: user.role.toUpperCase()
+              };
+            } else {
+              console.log('❌ Contraseña incorrecta para:', user.email);
+              return null;
+            }
+          }
+
+          // Fallback a mockUsers si no se encuentra en la base de datos
+          console.log('⚠️ Usuario no encontrado en DB, buscando en mock data...');
+          const mockUser = mockUsers.find(
+            u => u.email.toLowerCase() === credentials.email.toLowerCase() && u.password === credentials.password
+          );
+
+          if (mockUser) {
+            console.log('✅ Usuario encontrado en mock data:', mockUser.email);
+            return {
+              id: mockUser.id,
+              email: mockUser.email,
+              name: mockUser.name,
+              image: mockUser.image,
+              role: mockUser.role.toUpperCase()
+            };
+          }
+
+          console.log('❌ Usuario no encontrado en DB ni mock data');
+          return null;
+
+        } catch (error) {
+          console.error('❌ Error en authorize:', error);
+          
+          // Fallback a mockUsers en caso de error de base de datos
+          console.log('⚠️ Error de DB, usando fallback a mock data...');
+          const mockUser = mockUsers.find(
+            u => u.email.toLowerCase() === credentials.email.toLowerCase() && u.password === credentials.password
+          );
+
+          if (mockUser) {
+            console.log('✅ Usuario encontrado en fallback mock data:', mockUser.email);
+            return {
+              id: mockUser.id,
+              email: mockUser.email,
+              name: mockUser.name,
+              image: mockUser.image,
+              role: mockUser.role.toUpperCase()
+            };
+          }
+
+          return null;
         }
-
-        return null;
       }
     }),
     GoogleProvider({

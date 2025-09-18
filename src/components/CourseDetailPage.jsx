@@ -53,12 +53,13 @@ export default function CourseDetailPage({ courseId }) {
 
   // Mapeo de cursos a instructores por nombre
   const courseInstructorMap = {
-    'Marco Alonzo': '1',
     'Benjamín Pérez': '1',
-    'Ana Torres': '2',
-    'Carlos Mora': '3',
-    'Fernanda López': '2',
     'María Gómez': '2',
+    'Carlos Mora': '3',
+    'Carlos Rodríguez': '0',
+    'Ana Torres': '5',
+    'Fernanda López': '6',
+    'Marco Alonzo': '7',
   };
 
   // Buscar el instructor correcto del curso

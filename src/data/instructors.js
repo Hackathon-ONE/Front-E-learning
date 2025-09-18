@@ -39,7 +39,16 @@ export const instructorsDashboard = [
 
 export const instructorsPage = [
   {
-    id: 1,
+    id: "0",
+    name: "Carlos Rodríguez",
+    bio: "Especialista en DevOps con experiencia en despliegue de aplicaciones en la nube.",
+    avatar: "/avatars/img100.jpg",
+    courses: 3,
+    reviews: 4.9,
+    students: 450,
+  },
+  {
+    id: "1",
     name: "Benjamín Pérez",
     bio: "Especialista en React y Next.js con 8 años de experiencia.",
     avatar: "/avatars/img60.jpg" || "/default-avatar.png",
@@ -48,7 +57,7 @@ export const instructorsPage = [
     students: 320,
   },
   {
-    id: 2,
+    id: "2",
     name: "María Gómez",
     bio: "Apasionada por el desarrollo web moderno y la mentoría de nuevos talentos. Experiencia en React, Node.js y arquitectura cloud.",
     avatar: "/avatars/img32.jpg" || "/default-avatar.png",
@@ -57,7 +66,7 @@ export const instructorsPage = [
     students: 210,
   },
   {
-    id: 3,
+    id: "3",
     name: "Carlos Mora",
     bio: "Backend developer con foco en Node.js, NestJS y bases de datos.",
     avatar: "/avatars/img55.jpg" || "/default-avatar.png",
@@ -171,6 +180,32 @@ export const instructorsData = [
         id: 1,
         student: "Pedro Sánchez",
         comment: "Muy buen curso.",
+        rating: 5,
+      },
+    ],
+  },
+  {
+    id: "0",
+    name: "Carlos Rodríguez",
+    avatar: "/avatars/img100.jpg",
+    specialty: "DevOps & Cloud Specialist",
+    bio: "Experto en despliegue de aplicaciones en la nube con más de 6 años de experiencia en DevOps.",
+    stats: { courses: 3, students: 450, rating: 4.9 },
+    courses: [
+      { id: 201, title: "Introducción a Vercel", lessons: 12, students: 250 },
+      { id: 202, title: "DevOps con GitHub Actions", lessons: 15, students: 200 },
+    ],
+    reviews: [
+      {
+        id: 1,
+        student: "Ana Martínez",
+        comment: "Excelente explicación de los conceptos de despliegue en la nube.",
+        rating: 5,
+      },
+      {
+        id: 2,
+        student: "Luis Ramírez",
+        comment: "Muy buen curso, aprendí mucho sobre Vercel.",
         rating: 5,
       },
     ],

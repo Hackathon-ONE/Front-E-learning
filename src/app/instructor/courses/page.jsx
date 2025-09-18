@@ -7,20 +7,47 @@ import Button from "@/components/ui/Button";
 import { instructorCourses } from "@/data/instructors";
 import { useRouter } from "next/navigation";
 import { ArrowLeft } from "lucide-react";
+import { useSession } from "next-auth/react";
 
 export default function InstructorCoursesPage() {
   const [courses, setCourses] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
-
+  const { data: session, status } = useSession();
   const router = useRouter();
 
   useEffect(() => {
-    setTimeout(() => {
-      setCourses(instructorCourses);
-      setLoading(false);
-    }, 800);
-  }, []);
+    const fetchCourses = async () => {
+      try {
+        setLoading(true);
+        setError(null);
+        
+        console.log('🔍 Cargando cursos del instructor...');
+        
+        const response = await fetch('/api/courses');
+        const data = await response.json();
+        
+        if (response.ok) {
+          console.log('✅ Cursos cargados:', data);
+          setCourses(data.data || []);
+        } else {
+          console.error('❌ Error cargando cursos:', data);
+          setError(data.message || "Error al cargar los cursos");
+        }
+      } catch (err) {
+        console.error('❌ Error de conexión:', err);
+        setError("Error de conexión al cargar los cursos");
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    if (status === 'authenticated') {
+      fetchCourses();
+    } else if (status === 'unauthenticated') {
+      router.push('/auth/login');
+    }
+  }, [status, router]);
 
   if (loading)
     return <p className="text-center py-10 text-gray-500">Cargando cursos...</p>;
@@ -97,13 +124,13 @@ return (
               <th className="px-3 py-2 text-left text-[var(--color-muted)]">
                 Curso
               </th>
-              <th className="px-3 py-2 text-left text-center text-[var(--color-muted)]">
+              <th className="px-3 py-2 text-center text-[var(--color-muted)]">
                 Lecciones
               </th>
-              <th className="px-3 py-2 text-left text-center text-[var(--color-muted)]">
+              <th className="px-3 py-2 text-center text-[var(--color-muted)]">
                 Estudiantes
               </th>
-              <th className="px-3 py-2 text-left text-center text-[var(--color-muted)]">
+              <th className="px-3 py-2 text-center text-[var(--color-muted)]">
                 Estado
               </th>
               <th className="px-3 py-2 text-center text-[var(--color-muted)]">
@@ -129,16 +156,21 @@ return (
                       size={18}
                       className="text-[var(--color-primary)]"
                     />
-                    <span className="font-semibold text-[var(--color-text)]">
-                      {c.title}
-                    </span>
+                    <div>
+                      <span className="font-semibold text-[var(--color-text)]">
+                        {c.title}
+                      </span>
+                      <p className="text-xs text-[var(--color-muted)]">
+                        {c.category} • {c.level}
+                      </p>
+                    </div>
                   </td>
-                  <td className="px-3 py-2 justify-center items-center">{c.lessons}</td>
-                  <td className="px-3 py-2 flex items-center gap-1 justify-center items-center">
+                  <td className="px-3 py-2 text-center">0</td>
+                  <td className="px-3 py-2 flex items-center gap-1 justify-center">
                     <Users size={16} className="text-blue-500" />
-                    {c.studentsCount}
+                    0
                   </td>
-                  <td className="px-3 py-2 justify-center items-center">
+                  <td className="px-3 py-2 text-center">
                     <span
                       className={`text-xs font-bold rounded px-2 py-1 ${
                         c.published
@@ -149,7 +181,7 @@ return (
                       {c.published ? "Publicado" : "Borrador"}
                     </span>
                   </td>
-                  <td className="px-3 py-2 flex gap-2 justify-center items-center">
+                  <td className="px-3 py-2 flex gap-2 justify-center">
                     <Link href={`/instructor/courses/${c.id}`}>
                       <Button type="button" aria-label="Ver detalles" className="cursor-pointer flex items-center gap-1 px-3 py-1 rounded-lg text-sm border border-primary text-primary hover:bg-primary hover:text-white transition">
                         Ver detalles

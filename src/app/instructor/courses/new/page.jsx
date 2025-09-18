@@ -37,17 +37,46 @@ export default function CreateCoursePage() {
       return;
     }
 
+    if (!formData.category || !formData.level) {
+      setError("La categoría y el nivel son obligatorios.");
+      return;
+    }
+
     try {
       setLoading(true);
       setError(null);
 
-      // Enviar al backend
-      // console.log("Curso enviado al backend:", formData);
+      console.log("📝 Enviando curso al backend:", formData);
 
-      router.push("/instructor/courses");
+      // Enviar al endpoint de creación de cursos
+      const response = await fetch('/api/courses', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          title: formData.title,
+          description: formData.description,
+          category: formData.category,
+          level: formData.level,
+          price: formData.price,
+          resourceUrl: formData.resourceUrl,
+          imageUrl: '/courses/default.jpg' // Por ahora usar imagen por defecto
+        })
+      });
+
+      const data = await response.json();
+
+      if (response.ok) {
+        console.log('✅ Curso creado exitosamente:', data);
+        router.push("/instructor/courses?message=Curso creado exitosamente");
+      } else {
+        console.error('❌ Error creando curso:', data);
+        setError(data.message || "Hubo un problema al crear el curso.");
+      }
     } catch (err) {
-      console.error(err);
-      setError("Hubo un problema al crear el curso.");
+      console.error('❌ Error de conexión:', err);
+      setError("Error de conexión. Inténtalo de nuevo.");
     } finally {
       setLoading(false);
     }
@@ -228,7 +257,7 @@ export default function CreateCoursePage() {
           aria-label="Crear curso"
           type="submit"
           disabled={loading}
-          className="cursor-pointer w-full py-3 rounded-lg font-semibold bg-[var(--color-primary)] text-white text-sm font-medium hover:bg-[var(--color-primary-hover)]"
+          className="cursor-pointer w-full py-3 rounded-lg font-semibold bg-[var(--color-primary)] text-white text-sm hover:bg-[var(--color-primary-hover)]"
         >
           {loading ? "Creando curso..." : "Crear curso"}
         </button>

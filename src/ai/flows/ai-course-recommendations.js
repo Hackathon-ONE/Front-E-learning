@@ -17,12 +17,14 @@ const CourseRecommendationInputSchema = z.object({
 });
 
 const CourseRecommendationOutputSchema = z.object({
-  courseRecommendations: z.array(
-    z.object({
-      courseName: z.string().describe('El nombre del curso recomendado.'),
-      reason: z.string().describe('El motivo por el que se recomienda este curso.'),
-    })
-  ).describe('Una lista de recomendaciones de cursos con razones.'),
+  courseRecommendations: z
+    .array(
+      z.object({
+        courseName: z.string().describe('El nombre del curso recomendado.'),
+        reason: z.string().describe('El motivo por el que se recomienda este curso.'),
+      })
+    )
+    .describe('Una lista de recomendaciones de cursos con razones.'),
 });
 
 export async function getCourseRecommendations(input) {

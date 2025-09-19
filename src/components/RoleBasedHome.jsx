@@ -22,6 +22,7 @@ import CTA from '@/components/CTA';
 import Stats from '@/components/Stats';
 import Testimonials from '@/components/Testimonials';
 import LumiSection from '@/components/Lumi';
+import SuggestionsForm from '@/app/instructor/[id]/suggestions-form';
 
 // Componente para usuarios no autenticados (contenido público)
 function PublicHome() {
@@ -112,7 +113,7 @@ function InstructorDashboard({ user }) {
         <p className="text-[var(--color-text)]">Gestiona tus cursos y estudiantes</p>
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-8">
         <Link
           href="/instructor/dashboard"
           aria-label="Dashboard"
@@ -143,7 +144,7 @@ function InstructorDashboard({ user }) {
           <p className="text-[var(--color-text)]">Gestionar estudiantes</p>
         </Link>
 
-        <Link
+        {/* <Link
           href={`/instructor/${instructorId}`}
           aria-label="Perfil"
           className="bg-[var(--color-card-primary)] p-6 rounded-lg shadow-md hover:shadow-lg transition-shadow"
@@ -151,7 +152,7 @@ function InstructorDashboard({ user }) {
           <User className="w-8 h-8 text-orange-600 mb-4" />
           <h3 className="text-xl font-semibold text-[var(--color-text)] mb-2">Perfil</h3>
           <p className="text-[var(--color-text)]">Información personal</p>
-        </Link>
+        </Link> */}
       </div>
 
       <div className="bg-gradient-to-r from-orange-500 to-yellow-600 text-white p-6 rounded-lg">
@@ -164,6 +165,9 @@ function InstructorDashboard({ user }) {
         >
           Crear Nuevo Curso
         </Link>
+      </div> 
+      <div className="mt-8">
+      <SuggestionsForm />
       </div>
     </div>
   );

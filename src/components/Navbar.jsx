@@ -86,6 +86,7 @@ export default function Navbar() {
                     alt={user.name || 'avatar'}
                     width={36}
                     height={36}
+                    fallback='/default-avatar.png'
                     className="w-9 h-9 rounded-full border cursor-pointer"
                   />
                   <span className="text-sm text-[var(--color-text)] hidden lg:block">
@@ -145,13 +146,13 @@ export default function Navbar() {
                         >
                           Inicio
                         </Link>
-                        <Link
+                        {/* <Link
                           href={`/instructor/${user.id || '1'}`}
                           onClick={closeDropdown}
                           className="block rounded-md px-3 py-2 text-[var(--color-text)] hover:bg-secondary"
                         >
                           Perfil
-                        </Link>
+                        </Link> */}
                         <Link
                           href="/instructor/dashboard"
                           onClick={closeDropdown}
@@ -297,13 +298,13 @@ export default function Navbar() {
                 >
                   Inicio
                 </Link>
-                <Link
+               {/*  <Link
                   href={`/instructor/${user.id || '1'}`}
                   onClick={() => setMobileOpen(false)}
                   className="px-4 py-2 hover:bg-secondary rounded-lg text-center"
                 >
                   Perfil
-                </Link>
+                </Link> */}
                 <Link
                   href="/instructor/dashboard"
                   onClick={() => setMobileOpen(false)}
